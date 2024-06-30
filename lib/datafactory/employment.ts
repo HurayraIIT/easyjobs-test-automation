@@ -1,6 +1,6 @@
 import { expect, request } from '@playwright/test';
 import { faker } from '@faker-js/faker';
-import { getRandomFromToDate } from '../helpers/date';
+import { getRandomFromToDate } from '@helpers/date';
 
 export async function getRandomEmploymentData() {
     let from_to_date = await getRandomFromToDate();

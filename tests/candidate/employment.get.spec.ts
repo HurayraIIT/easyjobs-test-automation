@@ -1,8 +1,8 @@
 // GET: /api/v2/candidate/employment
 
 import { test, expect } from '@playwright/test';
-import { createAuthHeaders } from '../../lib/datafactory/auth';
-import { createCandidateEmployment, deleteAllEmployments, deleteEmployment } from '../../lib/datafactory/employment';
+import { createAuthHeaders } from '@datafactory/auth';
+import { createCandidateEmployment, deleteAllEmployments, deleteEmployment } from '@datafactory/employment';
 
 test.describe("/api/v2/candidate/employment GET requests @candidate", async () => {
     const candidateEmail = `${process.env.CANDIDATE_EMAIL}`;

@@ -1,8 +1,8 @@
 // POST: /api/v2/candidate/employment
 
 import { test, expect } from "@playwright/test";
-import { createAuthHeaders } from "../../lib/datafactory/auth";
-import { getRandomEmploymentData } from "../../lib/datafactory/employment";
+import { createAuthHeaders } from "@datafactory/auth";
+import { getRandomEmploymentData } from "@datafactory/employment";
 
 test.describe("/api/v2/candidate/employment POST requests @candidate", async () => {
   const candidateEmail = `${process.env.CANDIDATE_EMAIL}`;

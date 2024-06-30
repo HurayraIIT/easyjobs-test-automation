@@ -1,7 +1,7 @@
 // POST: /api/v2/logout
 
 import { test, expect } from '@playwright/test';
-import { createAuthHeaders } from '../../lib/datafactory/auth';
+import { createAuthHeaders } from '@datafactory/auth';
 
 test.describe("/api/v2/logout POST requests @auth", async () => {
     const companyEmail = process.env.COMPANY_EMAIL;

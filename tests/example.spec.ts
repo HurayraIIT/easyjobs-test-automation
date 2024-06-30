@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { createAuthHeaders } from '../lib/datafactory/auth';
+import { createAuthHeaders } from '@datafactory/auth';
+import { createAssertions } from '@helpers/createAssertions';
 
 test.describe("auth and test", async () => {
   let candidateAuthHeaders: any;
@@ -24,5 +25,8 @@ test.describe("auth and test", async () => {
     });
 
     expect(response.status()).toBe(200);
+    const body = await response.json();
+    //console.log(body.data.candidate);
+    //await createAssertions(body);
   });
 });
