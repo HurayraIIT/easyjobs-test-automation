@@ -32,13 +32,16 @@ export default defineConfig({
     : [["dot"], ["list"], ["html"]],
 
   use: {
-    baseURL: process.env.DEV_URL,
+    baseURL: process.env.BASE_URL,
 
     screenshot: "on",
     trace: "retain-on-failure",
     video: "retain-on-failure",
 
     ignoreHTTPSErrors: true,
+    extraHTTPHeaders: {
+      "QATEST": `${process.env.QATEST_HEADER}`,
+    }
   },
   projects: [
     {

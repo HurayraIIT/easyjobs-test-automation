@@ -308,10 +308,10 @@
   POST            api/v2/candidate/education
   POST            api/v2/candidate/education/re-order
   DELETE          api/v2/candidate/education/{education}/delete
-  GET|HEAD        api/v2/candidate/employment
-  POST            api/v2/candidate/employment
+  ✅ GET|HEAD        api/v2/candidate/employment
+  ✅ POST            api/v2/candidate/employment
   POST            api/v2/candidate/employment/re-order
-  DELETE          api/v2/candidate/employment/{education}/delete
+  ✅ DELETE          api/v2/candidate/employment/{education}/delete
   DELETE          api/v2/candidate/job/{job}/delete
   GET|HEAD        api/v2/candidate/notification
   POST            api/v2/candidate/notification/clear-all

@@ -18,7 +18,7 @@ test.describe("auth and test", async () => {
     expect(response.status()).toBe(200);
   });
 
-  test("Candidate API Calls Test", async ({ request }) => {
+  test("Candidate API Calls Test", async ({ page, request }) => {
     const response = await request.get('/api/v2/candidate', {
       headers: candidateAuthHeaders,
     });
