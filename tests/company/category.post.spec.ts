@@ -3,7 +3,7 @@
 import { test, expect } from "@playwright/test";
 import { createAuthHeaders } from "@datafactory/auth";
 import { createAssertions } from "@helpers/createAssertions";
-import { getRandomCategoryData } from "@datafactory/category";
+import { deleteCategoryById, getRandomCategoryData } from "@datafactory/category";
 
 test.describe("/api/v2/company/setting/category/save POST requests @company", async () => {
     const companyEmail = `${process.env.COMPANY_EMAIL}`;
@@ -57,6 +57,9 @@ test.describe("/api/v2/company/setting/category/save POST requests @company", as
         expect(new_body.data.parent_id).toBeNull();
         expect(new_body.data.company_id).toBeGreaterThan(0);
         expect(new_body.message).toBe("Category updated.");
+
+        // Delete the category
+        await deleteCategoryById(authHeaders, new_body.data.id);
     });
 
     test("POST with empty data", async ({ request }) => {

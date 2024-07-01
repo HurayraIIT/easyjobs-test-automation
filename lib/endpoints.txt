@@ -377,9 +377,9 @@
   PUT             api/v2/company/setting/beta-feature
   POST            api/v2/company/setting/brand-color
   GET|HEAD        api/v2/company/setting/brand-info
-🔗  GET|HEAD        api/v2/company/setting/category
+✅  GET|HEAD        api/v2/company/setting/category
 ✅  POST            api/v2/company/setting/category/save
-🔗  DELETE          api/v2/company/setting/category/{category}
+✅  DELETE          api/v2/company/setting/category/{category}
   POST            api/v2/company/setting/change-onboard-template
   GET|HEAD        api/v2/company/setting/collaborator
   DELETE          api/v2/company/setting/collaborator/{userId}/delete
@@ -412,9 +412,9 @@
   PUT             api/v2/company/setting/remove-cover-photo
   PUT             api/v2/company/setting/remove-powered-by
   POST            api/v2/company/setting/show-life
-  GET|HEAD        api/v2/company/setting/skill
-  POST            api/v2/company/setting/skill/save
-  DELETE          api/v2/company/setting/skill/{skill}
+  🔗 GET|HEAD        api/v2/company/setting/skill
+  🔗 POST            api/v2/company/setting/skill/save
+  🔗 DELETE          api/v2/company/setting/skill/{skill}
   POST            api/v2/company/setting/slack/integration/disconnect
   GET|HEAD        api/v2/company/setting/slack/notifications
   POST            api/v2/company/setting/slack/notifications
