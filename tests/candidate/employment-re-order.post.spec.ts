@@ -2,6 +2,7 @@
 
 import { test, expect } from '@playwright/test';
 import { createAuthHeaders } from '@datafactory/auth';
+import { createAssertions } from '@helpers/createAssertions';
 import { createCandidateEmployment, deleteAllEmployments, getAllEmployments } from '@datafactory/employment';
 
 test.describe("/api/v2/candidate/employment/re-order POST requests @candidate", async () => {
@@ -94,8 +95,11 @@ test.describe("/api/v2/candidate/employment/re-order POST requests @candidate", 
         expect(response.status()).toBe(422);
 
         const body = await response.json();
-        expect(body.status).toBe('FAILED');
-        expect(body.message.employments[0]).toBe('The employments field is required.');
+
+        // await createAssertions(body);
+        expect(body.status).toBe("FAILED");
+        expect(body.data).toEqual([]);
+        expect(body.message.employments).toEqual(["The employments field is required."]);
     });
 
     test("POST re-order employments with empty data", async ({ request }) => {
@@ -107,7 +111,10 @@ test.describe("/api/v2/candidate/employment/re-order POST requests @candidate", 
         expect(response.status()).toBe(422);
 
         const body = await response.json();
-        expect(body.status).toBe('FAILED');
-        expect(body.message.employments[0]).toBe('The employments field is required.');
+
+        // await createAssertions(body);
+        expect(body.status).toBe("FAILED");
+        expect(body.data).toEqual([]);
+        expect(body.message.employments).toEqual(["The employments field is required."]);
     });
 });

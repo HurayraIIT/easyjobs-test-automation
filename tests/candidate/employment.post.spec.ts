@@ -3,6 +3,7 @@
 import { test, expect } from "@playwright/test";
 import { createAuthHeaders } from "@datafactory/auth";
 import { getRandomEmploymentData } from "@datafactory/employment";
+import { createAssertions } from "@helpers/createAssertions";
 
 test.describe("/api/v2/candidate/employment POST requests @candidate", async () => {
   const candidateEmail = `${process.env.CANDIDATE_EMAIL}`;
@@ -14,36 +15,7 @@ test.describe("/api/v2/candidate/employment POST requests @candidate", async () 
     authHeaders = await createAuthHeaders(candidateEmail, candidatePassword);
   });
 
-  test("POST with valid data @happy", async ({ request }) => {
-    const employment_data = await getRandomEmploymentData();
-
-    const response = await request.post('/api/v2/candidate/employment', {
-      data: employment_data,
-      headers: authHeaders
-    });
-
-    expect(response.status()).toBe(200);
-
-    const body = await response.json();
-
-    expect(body.status).toBe('SUCCESS');
-    expect(body.message).toBe('Updated.');
-
-    expect(body.data.user_id).toBeGreaterThan(0);
-    expect(body.data.company_name).toBe(employment_data.company_name);
-    expect(body.data.designation).toBe(employment_data.designation);
-    expect(body.data.department).toBe(employment_data.department);
-    expect(body.data.responsibilities).toBe(employment_data.responsibilities);
-    expect(body.data.from).toBeTruthy();
-    expect(body.data.to).toBeTruthy();
-    expect(body.data.is_currently_working).toBe(false);
-    expect(body.data.order).toBeGreaterThan(0);
-    expect(body.data.updated_at).toBeTruthy();
-    expect(body.data.created_at).toBeTruthy();
-    expect(body.data.id).toBeGreaterThan(0);
-  });
-
-  test("POST can edit existing employment @happy", async ({ request }) => {
+  test("POST can create a new employment and edit it @happy", async ({ request }) => {
     // Create a new employment
     let employment_data = await getRandomEmploymentData();
     const response = await request.post('/api/v2/candidate/employment', {
@@ -110,11 +82,13 @@ test.describe("/api/v2/candidate/employment POST requests @candidate", async () 
 
     const body = await response.json();
 
-    expect(body.status).toBe('FAILED');
-    expect(body.message.company_name[0]).toBe('The company name field is required.');
-    expect(body.message.designation[0]).toBe('The designation field is required.');
-    expect(body.message.department[0]).toBe('The department field is required.');
-    expect(body.message.from_date[0]).toBe('The from date field is required.');
+    //await createAssertions(body);
+    expect(body.status).toBe("FAILED");
+    expect(body.data).toEqual([]);
+    expect(body.message.company_name).toEqual(["The company name field is required."]);
+    expect(body.message.designation).toEqual(["The designation field is required."]);
+    expect(body.message.department).toEqual(["The department field is required."]);
+    expect(body.message.from_date).toEqual(["The from date field is required."]);
   });
 
   test("POST with no data", async ({ request }) => {
@@ -126,11 +100,13 @@ test.describe("/api/v2/candidate/employment POST requests @candidate", async () 
 
     const body = await response.json();
 
-    expect(body.status).toBe('FAILED');
-    expect(body.message.company_name[0]).toBe('The company name field is required.');
-    expect(body.message.designation[0]).toBe('The designation field is required.');
-    expect(body.message.department[0]).toBe('The department field is required.');
-    expect(body.message.from_date[0]).toBe('The from date field is required.');
+    // await createAssertions(body);
+    expect(body.status).toBe("FAILED");
+    expect(body.data).toEqual([]);
+    expect(body.message.company_name).toEqual(["The company name field is required."]);
+    expect(body.message.designation).toEqual(["The designation field is required."]);
+    expect(body.message.department).toEqual(["The department field is required."]);
+    expect(body.message.from_date).toEqual(["The from date field is required."]);
   });
 
   test("POST with valid data but no auth", async ({ request }) => {

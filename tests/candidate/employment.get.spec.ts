@@ -3,6 +3,7 @@
 import { test, expect } from '@playwright/test';
 import { createAuthHeaders } from '@datafactory/auth';
 import { createCandidateEmployment, deleteAllEmployments, deleteEmployment } from '@datafactory/employment';
+import { createAssertions } from '@helpers/createAssertions';
 
 test.describe("/api/v2/candidate/employment GET requests @candidate", async () => {
     const candidateEmail = `${process.env.CANDIDATE_EMAIL}`;
@@ -66,8 +67,11 @@ test.describe("/api/v2/candidate/employment GET requests @candidate", async () =
         expect(response.status()).toBe(400);
 
         const body = await response.json();
-        expect(body.status).toBe('FAILED');
-        expect(body.message).toBe('responses.employment.not_found');
+
+        // await createAssertions(body);
+        expect(body.status).toBe("FAILED");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("responses.employment.not_found");
     });
 
     test("GET with empty id", async ({ request }) => {
@@ -78,8 +82,11 @@ test.describe("/api/v2/candidate/employment GET requests @candidate", async () =
         expect(response.status()).toBe(400);
 
         const body = await response.json();
-        expect(body.status).toBe('FAILED');
-        expect(body.message).toBe('responses.employment.not_found');
+
+        // await createAssertions(body);
+        expect(body.status).toBe("FAILED");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("responses.employment.not_found");
     });
 
     test("GET with string as id", async ({ request }) => {
@@ -90,7 +97,13 @@ test.describe("/api/v2/candidate/employment GET requests @candidate", async () =
         expect(response.status()).toBe(400);
 
         const body = await response.json();
-        expect(body.status).toBe('FAILED');
-        expect(body.message).toBe('responses.employment.not_found');
+
+        // await createAssertions(body);
+        expect(body.status).toBe("FAILED");
+        expect(body.status).toBe("FAILED");
+        expect(body.data).toEqual([]);
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("responses.employment.not_found");
+        expect(body.message).toBe("responses.employment.not_found");
     });
 });

@@ -15,3 +15,7 @@ export async function getRandomFromToDate() {
         to_date: format(to_date, 'MM/dd/yyyy')
     };
 }
+
+export function getRandomYear(min: number = 2000, max: number = 2022): number {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}

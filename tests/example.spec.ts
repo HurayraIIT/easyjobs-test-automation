@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { createAuthHeaders } from '@datafactory/auth';
-import { createAssertions } from '@helpers/createAssertions';
+import { createBulkEducations, deleteAllEducations } from '@datafactory/education';
 
 test.describe("auth and test", async () => {
   let candidateAuthHeaders: any;
@@ -11,14 +11,6 @@ test.describe("auth and test", async () => {
     companyAuthHeaders = await createAuthHeaders(process.env.COMPANY_EMAIL, process.env.COMPANY_PASSWORD);
   });
 
-  test("Company API Calls Test", async ({ request }) => {
-    const response = await request.get('/api/v2/company', {
-      headers: companyAuthHeaders,
-    });
-
-    expect(response.status()).toBe(200);
-  });
-
   test("Candidate API Calls Test", async ({ page, request }) => {
     const response = await request.get('/api/v2/candidate', {
       headers: candidateAuthHeaders,
@@ -26,7 +18,6 @@ test.describe("auth and test", async () => {
 
     expect(response.status()).toBe(200);
     const body = await response.json();
-    //console.log(body.data.candidate);
-    //await createAssertions(body);
+    await createBulkEducations(candidateAuthHeaders, 10);
   });
 });
