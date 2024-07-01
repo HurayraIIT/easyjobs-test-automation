@@ -377,9 +377,9 @@
   PUT             api/v2/company/setting/beta-feature
   POST            api/v2/company/setting/brand-color
   GET|HEAD        api/v2/company/setting/brand-info
-  GET|HEAD        api/v2/company/setting/category
-  POST            api/v2/company/setting/category/save
-  DELETE          api/v2/company/setting/category/{category}
+🔗  GET|HEAD        api/v2/company/setting/category
+✅  POST            api/v2/company/setting/category/save
+🔗  DELETE          api/v2/company/setting/category/{category}
   POST            api/v2/company/setting/change-onboard-template
   GET|HEAD        api/v2/company/setting/collaborator
   DELETE          api/v2/company/setting/collaborator/{userId}/delete

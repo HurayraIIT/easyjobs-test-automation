@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { createAuthHeaders } from '@datafactory/auth';
-import { createBulkEducations, deleteAllEducations } from '@datafactory/education';
+import { createCategory, getAllCategories, deleteCategoryById } from '@datafactory/category';
 
 test.describe("auth and test", async () => {
   let candidateAuthHeaders: any;
@@ -11,13 +11,9 @@ test.describe("auth and test", async () => {
     companyAuthHeaders = await createAuthHeaders(process.env.COMPANY_EMAIL, process.env.COMPANY_PASSWORD);
   });
 
-  test("Candidate API Calls Test", async ({ page, request }) => {
-    const response = await request.get('/api/v2/candidate', {
-      headers: candidateAuthHeaders,
-    });
-
-    expect(response.status()).toBe(200);
-    const body = await response.json();
-    await createBulkEducations(candidateAuthHeaders, 10);
+  test("Company API Calls Test", async ({ page, request }) => {
+    //await createBulkCategories(companyAuthHeaders, 10);
+    let cat = await getAllCategories(companyAuthHeaders);
+    console.log(cat.length);
   });
 });
