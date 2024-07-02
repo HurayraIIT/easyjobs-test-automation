@@ -349,12 +349,12 @@
   DELETE          api/v2/company/delete
   GET|HEAD        api/v2/company/jobs
   GET|HEAD        api/v2/company/managers
-🔗  POST            api/v2/company/question/group/create
-🔗  GET|HEAD        api/v2/company/question/group/{group}
-🔗  DELETE          api/v2/company/question/group/{group}
-🔗  GET|HEAD        api/v2/company/question/group/{group}/duplicate
-🔗  POST            api/v2/company/question/group/{group}/update
-🔗  GET|HEAD        api/v2/company/question/groups
+✅  POST            api/v2/company/question/group/create
+✅  GET|HEAD        api/v2/company/question/group/{group}
+✅  DELETE          api/v2/company/question/group/{group}
+✅  GET|HEAD        api/v2/company/question/group/{group}/duplicate
+✅  POST            api/v2/company/question/group/{group}/update
+✅  GET|HEAD        api/v2/company/question/groups
   GET|HEAD        api/v2/company/recent-applicants
   GET|HEAD        api/v2/company/recent-jobs
   GET|HEAD        api/v2/company/recent-jobs/analytics
