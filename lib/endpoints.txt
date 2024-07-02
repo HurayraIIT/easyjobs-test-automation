@@ -349,12 +349,12 @@
   DELETE          api/v2/company/delete
   GET|HEAD        api/v2/company/jobs
   GET|HEAD        api/v2/company/managers
-  POST            api/v2/company/question/group/create
-  GET|HEAD        api/v2/company/question/group/{group}
-  DELETE          api/v2/company/question/group/{group}
-  GET|HEAD        api/v2/company/question/group/{group}/duplicate
-  POST            api/v2/company/question/group/{group}/update
-  GET|HEAD        api/v2/company/question/groups
+🔗  POST            api/v2/company/question/group/create
+🔗  GET|HEAD        api/v2/company/question/group/{group}
+🔗  DELETE          api/v2/company/question/group/{group}
+🔗  GET|HEAD        api/v2/company/question/group/{group}/duplicate
+🔗  POST            api/v2/company/question/group/{group}/update
+🔗  GET|HEAD        api/v2/company/question/groups
   GET|HEAD        api/v2/company/recent-applicants
   GET|HEAD        api/v2/company/recent-jobs
   GET|HEAD        api/v2/company/recent-jobs/analytics
@@ -412,9 +412,9 @@
   PUT             api/v2/company/setting/remove-cover-photo
   PUT             api/v2/company/setting/remove-powered-by
   POST            api/v2/company/setting/show-life
-  🔗 GET|HEAD        api/v2/company/setting/skill
-  🔗 POST            api/v2/company/setting/skill/save
-  🔗 DELETE          api/v2/company/setting/skill/{skill}
+✅  GET|HEAD        api/v2/company/setting/skill
+✅  POST            api/v2/company/setting/skill/save
+✅  DELETE          api/v2/company/setting/skill/{skill}
   POST            api/v2/company/setting/slack/integration/disconnect
   GET|HEAD        api/v2/company/setting/slack/notifications
   POST            api/v2/company/setting/slack/notifications
@@ -442,7 +442,7 @@
   POST            api/v2/conversation/applicants/{id}/message
   POST            api/v2/conversation/applicants/{id}/message/status
   GET|HEAD        api/v2/conversation/notifications
-  GET|HEAD        api/v2/country
+  ✅ GET|HEAD        api/v2/country
   POST            api/v2/coupon
   GET|HEAD        api/v2/coupon/{plan}/{code}
   GET|HEAD        api/v2/degree/{level?}
@@ -476,7 +476,7 @@
   GET|HEAD        api/v2/job/category/{subcategory?}
   POST            api/v2/job/create
   GET|HEAD        api/v2/job/draft
-  GET|HEAD        api/v2/job/information-meta-data
+  ✅ GET|HEAD        api/v2/job/information-meta-data
   GET|HEAD        api/v2/job/permissions
   GET|HEAD        api/v2/job/published
   GET|HEAD        api/v2/job/quiz-meta-data
