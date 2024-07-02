@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { createAuthHeaders } from '@datafactory/auth';
-import { createCategory, getAllCategories, deleteCategoryById } from '@datafactory/category';
+import { createSkill, deleteSkillById, getAllSkills } from '@datafactory/skill';
 
 test.describe("auth and test", async () => {
   let candidateAuthHeaders: any;
@@ -12,8 +12,6 @@ test.describe("auth and test", async () => {
   });
 
   test("Company API Calls Test", async ({ page, request }) => {
-    //await createBulkCategories(companyAuthHeaders, 10);
-    let cat = await getAllCategories(companyAuthHeaders);
-    console.log(cat.length);
+    // await deleteSkillById(companyAuthHeaders, 1095);
   });
 });

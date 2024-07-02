@@ -56,7 +56,7 @@ test.describe("/api/v2/company/setting/category/{id} DELETE requests @company", 
         expect(body.status).toBe("SUCCESS");
         expect(body.data.id).toBe(category.id);
 
-        // Now try to delete the same education again
+        // Now try to delete the same category again
         const response2 = await request.delete(`/api/v2/company/setting/category/${category.id}`, {
             headers: authHeaders
         });
@@ -88,7 +88,7 @@ test.describe("/api/v2/company/setting/category/{id} DELETE requests @company", 
     });
 
     // TODO: Report Issue: Response status should be 400
-    test("DELETE with invalid int education id and valid token", async ({ request }) => {
+    test("DELETE with invalid int category id and valid token", async ({ request }) => {
         const response = await request.delete(`/api/v2/company/setting/category/1234`, {
             headers: authHeaders
         });
@@ -104,7 +104,7 @@ test.describe("/api/v2/company/setting/category/{id} DELETE requests @company", 
     });
 
     // TODO: Report Issue: Response status should be 400
-    test("DELETE with invalid string education id and valid token", async ({ request }) => {
+    test("DELETE with invalid string category id and valid token", async ({ request }) => {
         const response = await request.delete(`/api/v2/company/setting/category/abcdef`, {
             headers: authHeaders
         });
