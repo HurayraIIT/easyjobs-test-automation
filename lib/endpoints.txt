@@ -549,18 +549,18 @@
   POST            api/v2/onboard/status
   POST            api/v2/password/reset
   POST            api/v2/password/set
-  ❌ POST            api/v2/paypal/subscription
-  ❌ POST            api/v2/paypal/subscription/update
-  GET|HEAD        api/v2/question-set/{id}
-  GET|HEAD        api/v2/quiz-question-set/{id}
+❌  POST            api/v2/paypal/subscription
+❌  POST            api/v2/paypal/subscription/update
+✅  GET|HEAD        api/v2/question-set/{id}
+✅  GET|HEAD        api/v2/quiz-question-set/{id}
   POST            api/v2/redirect-to-dashboard
   GET|HEAD        api/v2/release-notification/notify/{version}
   GET|HEAD        api/v2/remote-interview-pipeline
-  GET|HEAD        api/v2/screening-question-set/{id}
+✅  GET|HEAD        api/v2/screening-question-set/{id}
   GET|HEAD        api/v2/setting/role-permissions
-  ✅ POST            api/v2/sign-in
-  ❌ POST            api/v2/sign-in-oauth/{provider}
-  ✅ POST            api/v2/sign-up
+✅  POST            api/v2/sign-in
+❌  POST            api/v2/sign-in-oauth/{provider}
+✅  POST            api/v2/sign-up
   GET|HEAD        api/v2/state/{country}
   POST            api/v2/state/{country}
   POST            api/v2/subscribe

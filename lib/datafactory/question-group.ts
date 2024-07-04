@@ -281,3 +281,27 @@ export async function getQuestionSetQuestions(authHeaders: any, id: number) {
 
     return questions;
 }
+
+export async function getQuizQuestionSetQuestions(authHeaders: any, id: number) {
+    const requestContext = await request.newContext();
+    const response = await requestContext.get(`/api/v2/quiz-question-set/${id}`, {
+        headers: authHeaders
+    });
+
+    expect(response.status()).toBe(200);
+    const questions = await response.json();
+
+    return questions;
+}
+
+export async function getScreeningQuestionSetQuestions(authHeaders: any, id: number) {
+    const requestContext = await request.newContext();
+    const response = await requestContext.get(`/api/v2/screening-question-set/${id}`, {
+        headers: authHeaders
+    });
+
+    expect(response.status()).toBe(200);
+    const questions = await response.json();
+
+    return questions;
+}
