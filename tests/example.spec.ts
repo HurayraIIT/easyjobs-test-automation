@@ -13,6 +13,6 @@ test.describe("auth and test", async () => {
 
   test("Company API Calls Test", async ({ page, request }) => {
     const data = await createQuestionSet(companyAuthHeaders);
-    console.log(data);
+    //console.log(data);
   });
 });

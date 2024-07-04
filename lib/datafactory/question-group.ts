@@ -2,18 +2,52 @@ import { expect, request } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 import { createAssertions } from '@helpers/createAssertions';
 
-export function getRandomTitle() {
+/**
+ * Generates a random title consisting of 2 to 5 lorem words followed by a random number.
+ * 
+ * @returns {string} A random title.
+ * 
+ * @example
+ * // returns something like 'Lorem ipsum 123456'
+ * const title = getRandomTitle();
+ * console.log(title); // 'Lorem ipsum 123456'
+ * 
+ * @example
+ * // returns something like 'Dolor sit amet consectetur 654321'
+ * const title = getRandomTitle();
+ * console.log(title); // 'Dolor sit amet consectetur 654321'
+ */
+export function getRandomTitle(): string {
     return `${faker.lorem.words({ min: 2, max: 5 })} ${faker.number.int({ min: 1, max: 999999 })}`;
 }
 
+/**
+ * Class representing different types of questions.
+ */
 export class QuestionType {
-    static TEXT = { "id": 1, "name": "Text" };
-    static MCQ = { "id": 2, "name": "Multiple Choice" };
+    /**
+     * Text question type.
+     * @type {{ id: number, name: string }}
+     * @example
+     * const textType = QuestionType.TEXT;
+     * console.log(textType); // { id: 1, name: 'Text' }
+     */
+    static TEXT = { id: 1, name: "Text" };
+
+    /**
+     * Multiple Choice question type.
+     * @type {{ id: number, name: string }}
+     * @example
+     * const mcqType = QuestionType.MCQ;
+     * console.log(mcqType); // { id: 2, name: 'Multiple Choice' }
+     */
+    static MCQ = { id: 2, name: "Multiple Choice" };
 }
 
 export class QuestionSetType {
     static SCREENING = { "id": 1, "name": "Screening" };
     static QUIZ = { "id": 2, "name": "Quiz" };
+    static ASSESSMENT = { "id": 3, "name": "Assessment" };
 }
 
 export class Option {
