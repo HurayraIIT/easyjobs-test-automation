@@ -269,3 +269,15 @@ export async function getQuizMetaData(authHeaders: any) {
 
     return body.quiz_set;
 }
+
+export async function getQuestionSetQuestions(authHeaders: any, id: number) {
+    const requestContext = await request.newContext();
+    const response = await requestContext.get(`/api/v2/question-set/${id}`, {
+        headers: authHeaders
+    });
+
+    expect(response.status()).toBe(200);
+    const questions = await response.json();
+
+    return questions;
+}
