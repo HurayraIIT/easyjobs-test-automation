@@ -7,7 +7,7 @@ import { createAssertions } from '@helpers/createAssertions';
  * @returns A promise that resolves to an object containing the generated category data.
  */
 export async function getRandomCategoryData(): Promise<{ id: any; category_name: string; }> {
-    const name = `${faker.commerce.department()} ${new Date().getTime()}`;
+    const name = `${faker.commerce.department()} 🇧🇩 ${new Date().getTime()}`;
     return {
         "id": null,
         "category_name": name

@@ -7,7 +7,7 @@ export async function getRandomEducationData() {
     const level = await getRandomEducationLevel();
     const degree = await getRandomDegreeTitle();
     const passing_year = `${getRandomYear()}`;
-    const academy_name = `${faker.company.name()} Academy`;
+    const academy_name = `${faker.company.name()} Academy 🇧🇩 🇵🇸`;
     return {
         "id": null,
         "level": level.name,

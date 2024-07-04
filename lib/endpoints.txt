@@ -336,11 +336,11 @@
   POST            api/v2/company
   GET|HEAD        api/v2/company
   GET|HEAD        api/v2/company/analytics
-🔗  GET|HEAD        api/v2/company/assessments
-🔗  POST            api/v2/company/assessments/create
-🔗  GET|HEAD        api/v2/company/assessments/{assessment}
-🔗  DELETE          api/v2/company/assessments/{assessment}/delete
-🔗  POST            api/v2/company/assessments/{assessment}/update
+✅  GET|HEAD        api/v2/company/assessments
+✅  POST            api/v2/company/assessments/create
+✅  GET|HEAD        api/v2/company/assessments/{assessment}
+✅  DELETE          api/v2/company/assessments/{assessment}/delete
+✅  POST            api/v2/company/assessments/{assessment}/update
   GET|HEAD        api/v2/company/candidates
   GET|HEAD        api/v2/company/company-types
   POST            api/v2/company/conversation-template

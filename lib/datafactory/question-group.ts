@@ -18,7 +18,7 @@ import { createAssertions } from '@helpers/createAssertions';
  * console.log(title); // 'Dolor sit amet consectetur 654321'
  */
 export function getRandomTitle(): string {
-    return `${faker.lorem.words({ min: 2, max: 5 })} ${faker.number.int({ min: 1, max: 999999 })}`;
+    return `🤔 ${faker.lorem.words({ min: 2, max: 5 })} ${faker.number.int({ min: 1, max: 999999 })}`;
 }
 
 /**
@@ -72,7 +72,7 @@ export class Question {
 
     constructor(set_type: { id: number; name: string }, optionCount: number = 2) {
         this.id = null;
-        this.title = `🤔 ${getRandomTitle()}???`;
+        this.title = `${getRandomTitle()}???`;
 
         let isQuiz = set_type === QuestionSetType.QUIZ;
         let random_index = faker.number.int({ min: 0, max: optionCount - 1 })
@@ -105,7 +105,7 @@ export class QuestionSet {
 
     constructor(set_type: { id: number; name: string }, questionCount: number, optionCount: number) {
         this.id = null;
-        this.internal_note = `Internal Note: ${faker.lorem.sentence()}`;
+        this.internal_note = `Internal Note: 📂 ${faker.lorem.sentence()}`;
         this.note = `<p>Note: <b>${faker.lorem.sentence()}</b></p>`;
         this.set_name = getRandomTitle();
         this.set_type = set_type;

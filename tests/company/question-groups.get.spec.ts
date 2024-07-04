@@ -9,25 +9,28 @@ test.describe("/api/v2/company/question/groups GET requests @company", async () 
     const companyEmail = `${process.env.COMPANY_EMAIL}`;
     const companyPassword = `${process.env.COMPANY_PASSWORD}`;
 
-    let authHeaders: any;
+    const candidateEmail = `${process.env.CANDIDATE_EMAIL}`;
+    const candidatePassword = `${process.env.CANDIDATE_PASSWORD}`;
 
-    test.beforeEach(async () => {
-        authHeaders = await createAuthHeaders(companyEmail, companyPassword);
+    let companyAuthHeaders: any;
+    let candidateAuthHeaders: any;
+
+    test.beforeAll(async () => {
+        companyAuthHeaders = await createAuthHeaders(companyEmail, companyPassword);
+        candidateAuthHeaders = await createAuthHeaders(candidateEmail, candidatePassword);
     });
 
     test.afterAll(async () => {
-        authHeaders = await createAuthHeaders(companyEmail, companyPassword);
-        await deleteAllQuestionSets(authHeaders);
+        await deleteAllQuestionSets(companyAuthHeaders);
     });
 
     test("GET with valid credentials @happy", async ({ request }) => {
-        const set = await createQuestionSet(authHeaders);
+        const set = await createQuestionSet(companyAuthHeaders);
 
         expect(set.id).toBeGreaterThan(0);
     });
 
     test("GET without auth token", async ({ request }) => {
-        const set = await createQuestionSet(authHeaders);
         const response = await request.get(`/api/v2/company/question/groups`, {
             headers: {
                 "ACCEPT": "application/json",
@@ -38,5 +41,20 @@ test.describe("/api/v2/company/question/groups GET requests @company", async () 
 
         const body = await response.json();
         expect(body.message).toBe('Unauthenticated.');
+    });
+
+    test("GET with candidates auth token", async ({ request }) => {
+        const response = await request.get(`/api/v2/company/question/groups`, {
+            headers: candidateAuthHeaders
+        });
+
+        expect(response.status()).toBe(480);
+
+        const body = await response.json();
+
+        // await createAssertions(body);
+        expect(body.status).toBe("failed");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("You do not have access permissions.");
     });
 });
