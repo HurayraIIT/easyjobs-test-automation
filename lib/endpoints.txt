@@ -336,11 +336,11 @@
   POST            api/v2/company
   GET|HEAD        api/v2/company
   GET|HEAD        api/v2/company/analytics
-  GET|HEAD        api/v2/company/assessments
-  POST            api/v2/company/assessments/create
-  GET|HEAD        api/v2/company/assessments/{assessment}
-  DELETE          api/v2/company/assessments/{assessment}/delete
-  POST            api/v2/company/assessments/{assessment}/update
+🔗  GET|HEAD        api/v2/company/assessments
+🔗  POST            api/v2/company/assessments/create
+🔗  GET|HEAD        api/v2/company/assessments/{assessment}
+🔗  DELETE          api/v2/company/assessments/{assessment}/delete
+🔗  POST            api/v2/company/assessments/{assessment}/update
   GET|HEAD        api/v2/company/candidates
   GET|HEAD        api/v2/company/company-types
   POST            api/v2/company/conversation-template
@@ -476,10 +476,10 @@
   GET|HEAD        api/v2/job/category/{subcategory?}
   POST            api/v2/job/create
   GET|HEAD        api/v2/job/draft
-  ✅ GET|HEAD        api/v2/job/information-meta-data
+✅  GET|HEAD        api/v2/job/information-meta-data
   GET|HEAD        api/v2/job/permissions
   GET|HEAD        api/v2/job/published
-  GET|HEAD        api/v2/job/quiz-meta-data
+✅  GET|HEAD        api/v2/job/quiz-meta-data
   GET|HEAD        api/v2/job/screening-meta-data
   POST            api/v2/job/set-preview
   GET|HEAD        api/v2/job/skill

@@ -12,6 +12,7 @@ test.describe("auth and test", async () => {
   });
 
   test("Company API Calls Test", async ({ page, request }) => {
-    //await updateQuestionSet(companyAuthHeaders, 635);
+    const data = await createQuestionSet(companyAuthHeaders);
+    console.log(data);
   });
 });

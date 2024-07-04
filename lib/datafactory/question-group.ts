@@ -6,17 +6,17 @@ export function getRandomTitle() {
     return `${faker.lorem.words({ min: 2, max: 5 })} ${faker.number.int({ min: 1, max: 999999 })}`;
 }
 
-class QuestionType {
+export class QuestionType {
     static TEXT = { "id": 1, "name": "Text" };
     static MCQ = { "id": 2, "name": "Multiple Choice" };
 }
 
-class QuestionSetType {
+export class QuestionSetType {
     static SCREENING = { "id": 1, "name": "Screening" };
     static QUIZ = { "id": 2, "name": "Quiz" };
 }
 
-class Option {
+export class Option {
     id: number;
     title: string;
 
@@ -26,7 +26,7 @@ class Option {
     }
 }
 
-class Question {
+export class Question {
     id: number | null;
     title: string;
     type: { id: number, name: string } | string;
@@ -61,7 +61,7 @@ class Question {
     }
 }
 
-class QuestionSet {
+export class QuestionSet {
     id: number | null;
     set_type: { id: number; name: string };
     set_name: string;
@@ -89,8 +89,8 @@ export function getRandomQuestionSetData(type?: { id: number; name: string }, qu
     return question_set_1;
 }
 
-export async function createQuestionSet(authHeaders: any) {
-    const question_set_data = getRandomQuestionSetData();
+export async function createQuestionSet(authHeaders: any, type?: { id: number; name: string }) {
+    const question_set_data = type ? getRandomQuestionSetData(type) : getRandomQuestionSetData();
 
     const requestContext = await request.newContext();
     const response = await requestContext.post('/api/v2/company/question/group/create', {
@@ -109,7 +109,7 @@ export async function createQuestionSet(authHeaders: any) {
     // Find the body
     let question_set = await getAllQuestionSets(authHeaders);
     let recent_created_set: any;
-    for ( let set of question_set) {
+    for (let set of question_set) {
         if (set.name === question_set_data.set_name) {
             recent_created_set = set;
             break;
@@ -185,7 +185,7 @@ export async function deleteQuestionSetById(authHeaders: any, questionSetId: num
 
 export async function deleteAllQuestionSets(authHeaders: any) {
     let question_set = await getAllQuestionSets(authHeaders);
-    for ( let set of question_set) {
+    for (let set of question_set) {
         await deleteQuestionSetById(authHeaders, set.id);
     }
 }
@@ -254,4 +254,18 @@ export async function updateQuestionSet(authHeaders: any, questionSetId: number)
     expect(updated_set.marks_per_question).toBeNull();
 
     return updated_set;
+}
+
+export async function getQuizMetaData(authHeaders: any) {
+    const requestContext = await request.newContext();
+    const response = await requestContext.get('/api/v2/job/quiz-meta-data', {
+        headers: authHeaders
+    });
+
+    expect(response.status()).toBe(200);
+    const body = await response.json();
+
+    expect(body.quiz_set.length).toBeGreaterThanOrEqual(0);
+
+    return body.quiz_set;
 }
