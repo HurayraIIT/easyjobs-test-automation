@@ -15,12 +15,6 @@ Install dotenv:
 npm install dotenv@latest
 ```
 
-Install playwright-slack-report
-
-```
-npm install playwright-slack-report@latest
-```
-
 To update playwright:
 
 ```
