@@ -70,21 +70,30 @@ test.describe("/api/v2/question-set/{id} GET requests @company", async () => {
         expect(body.message).toBe("Unauthenticated.");
     });
 
-    // TODO: Fixme
     test("GET with valid credentials but invalid id", async ({ request }) => {
         const response = await request.get(`/api/v2/question-set/123`, {
             headers: companyAuthHeaders
         });
 
-        // expect(response.status()).toBe(401);
+        expect(response.status()).toBe(200);
+
+        const body = await response.json();
+        // await createAssertions(body);
+        expect(body.questions).toEqual([]);
     });
 
-    // TODO: Fixme
     test("GET with candidate auth with valid id", async ({ request }) => {
         const response = await request.get(`/api/v2/question-set/${question_set.id}`, {
             headers: candidateAuthHeaders
         });
 
-        //expect(response.status()).toBe(401);
+        expect(response.status()).toBe(480);
+
+        const body = await response.json();
+
+        // await createAssertions(body);
+        expect(body.status).toBe("failed");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("You do not have access permissions.");
     });
 });
