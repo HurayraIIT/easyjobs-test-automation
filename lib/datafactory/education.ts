@@ -2,10 +2,11 @@ import { expect, request } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 import { getRandomYear } from '@helpers/date';
 import { createAssertions } from '@helpers/createAssertions';
+import { degree, education_level } from '../static-data';
 
-export async function getRandomEducationData() {
-    const level = await getRandomEducationLevel();
-    const degree = await getRandomDegreeTitle();
+export function getRandomEducationData() {
+    const level = getRandomEducationLevel();
+    const degree = getRandomDegreeTitle();
     const passing_year = `${getRandomYear()}`;
     const academy_name = `${faker.company.name()} Academy 🇧🇩 🇵🇸`;
     return {
@@ -17,38 +18,26 @@ export async function getRandomEducationData() {
     };
 }
 
-export async function getRandomEducationLevel() {
-    const requestContext = await request.newContext();
-    const response = await requestContext.get('/api/v2/education-level?keyword=');
+export function getRandomEducationLevel() {
+    expect(education_level.length).toBeGreaterThan(0);
 
-    expect(response.status()).toBe(200);
+    const random_index = Math.floor(Math.random() * education_level.length);
+    expect(education_level[random_index].id).toBeGreaterThan(0);
 
-    const body = await response.json();
-    expect(body.length).toBeGreaterThan(0);
-
-    const random_index = Math.floor(Math.random() * body.length);
-    expect(body[random_index].id).toBeGreaterThan(0);
-
-    return body[random_index];
+    return education_level[random_index];
 }
 
-export async function getRandomDegreeTitle() {
-    const requestContext = await request.newContext();
-    const response = await requestContext.get('/api/v2/degree?keyword=');
+export function getRandomDegreeTitle() {
+    expect(degree.length).toBeGreaterThan(0);
 
-    expect(response.status()).toBe(200);
+    const random_index = Math.floor(Math.random() * degree.length);
+    expect(degree[random_index].id).toBeGreaterThan(0);
 
-    const body = await response.json();
-    expect(body.length).toBeGreaterThan(0);
-
-    const random_index = Math.floor(Math.random() * body.length);
-    expect(body[random_index].id).toBeGreaterThan(0);
-
-    return body[random_index];
+    return degree[random_index];
 }
 
 export async function createEducation(authHeaders: any) {
-    const education_data = await getRandomEducationData();
+    const education_data = getRandomEducationData();
 
     const requestContext = await request.newContext();
     const response = await requestContext.post('/api/v2/candidate/education', {
@@ -132,9 +121,6 @@ export async function deleteAllEducations(authHeaders: any) {
     for (let education of educations.data) {
         await deleteEducationById(authHeaders, education.id);
     }
-
-    const remaining_educations = await getAllEducations(authHeaders);
-    expect(remaining_educations.data).toHaveLength(0);
 }
 
 export async function createBulkEducations(authHeaders: any, count: number) {

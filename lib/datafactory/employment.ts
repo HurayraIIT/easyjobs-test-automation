@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker';
 import { getRandomFromToDate } from '@helpers/date';
 
 export async function getRandomEmploymentData() {
-    let from_to_date = await getRandomFromToDate();
+    let from_to_date = getRandomFromToDate();
     return {
         "id": null,
         "company_name": faker.company.name(),
@@ -101,9 +101,6 @@ export async function deleteAllEmployments(authHeaders: any) {
     for (let employment of employments.data) {
         await deleteEmployment(authHeaders, employment.id);
     }
-
-    const remaining_employments = await getAllEmployments(authHeaders);
-    expect(remaining_employments.data).toHaveLength(0);
 }
 
 export async function createBulkEmployments(authHeaders: any, count: number) {

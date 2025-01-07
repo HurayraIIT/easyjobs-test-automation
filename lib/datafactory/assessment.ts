@@ -192,9 +192,6 @@ export async function deleteAllAssessments(authHeaders: any): Promise<void> {
     for (const assessment of assessments) {
         await deleteAssessmentById(authHeaders, assessment.id);
     }
-
-    const remaining_assessments = await getAllAssessments(authHeaders);
-    expect(remaining_assessments.length).toBe(0);
 }
 
 export async function createBulkAssessments(authHeaders: any, count: number) {

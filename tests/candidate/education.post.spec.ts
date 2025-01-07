@@ -17,7 +17,7 @@ test.describe("/api/v2/candidate/education POST requests @candidate", async () =
 
     test("POST can create a new education and edit it @happy", async ({ request }) => {
         // Create a new education
-        let education_data = await getRandomEducationData();
+        let education_data = getRandomEducationData();
         const response = await request.post('/api/v2/candidate/education', {
             data: education_data,
             headers: authHeaders
@@ -41,7 +41,7 @@ test.describe("/api/v2/candidate/education POST requests @candidate", async () =
         expect(body.data.id).toBeGreaterThan(0);
 
         // Edit the education
-        let new_education_data = await getRandomEducationData();
+        let new_education_data = getRandomEducationData();
         new_education_data.id = body.data.id;
         const new_response = await request.post('/api/v2/candidate/education', {
             data: new_education_data,
@@ -102,7 +102,7 @@ test.describe("/api/v2/candidate/education POST requests @candidate", async () =
     });
 
     test("POST with valid data but no auth", async ({ request }) => {
-        const education_data = await getRandomEducationData();
+        const education_data = getRandomEducationData();
 
         const response = await request.post('/api/v2/candidate/education', {
             data: education_data,

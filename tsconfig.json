@@ -4,6 +4,8 @@
     "paths": {
       "@datafactory/*": ["lib/datafactory/*"],
       "@helpers/*": ["lib/helpers/*"]
-    }
+    },
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   }
 }

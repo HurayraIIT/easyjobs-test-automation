@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { format, addDays, subDays } from 'date-fns';
 
-export async function getRandomFromToDate() {
+export function getRandomFromToDate() {
     let from_date = subDays(faker.date.past({ years: 15 }), 365);
 
     let random_days = faker.number.int({ min: 31, max: 2000 });
