@@ -3,7 +3,7 @@
 import { test, expect } from '@playwright/test';
 
 test.describe("/api/v2/forgot-password POST requests @auth", async () => {
-    const companyEmail = process.env.COMPANY_EMAIL;
+    const companyEmail = process.env.COMPANY_ONE_EMAIL;
 
     test("POST with valid email @happy", async ({ request }) => {
         const response = await request.post('/api/v2/forgot-password', {

@@ -3,8 +3,8 @@
 import { test, expect } from '@playwright/test';
 
 test.describe("/api/v2/sign-in POST requests @auth", async () => {
-    const companyEmail = process.env.COMPANY_EMAIL;
-    const companyPassword = process.env.COMPANY_PASSWORD;
+    const companyEmail = process.env.COMPANY_ONE_EMAIL;
+    const companyPassword = process.env.PASSWORD;
 
     let start: any;
     let end: any;
