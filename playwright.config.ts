@@ -27,8 +27,13 @@ export default defineConfig({
   },
   projects: [
     {
+      name: 'authenticate',
+      testMatch: /global\.setup\.ts/,
+    },
+    {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+      dependencies: ['authenticate'],
     },
   ],
 });

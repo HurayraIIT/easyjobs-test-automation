@@ -2,7 +2,6 @@ import { expect, request } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 import { createAssertions } from '@helpers/createAssertions';
 import { createQuestionSet, getQuestionSetById, getQuizQuestionSetQuestions, getRandomTitle, QuestionSetType } from './question-group';
-import { create } from 'domain';
 
 /**
  * Fetches assessment creation data including metadata and questions.

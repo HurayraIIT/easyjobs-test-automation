@@ -5,8 +5,8 @@ import { createAuthHeaders } from '@datafactory/auth';
 import { createAssertions } from "@helpers/createAssertions";
 
 test.describe("/api/v2/job/information-meta-data GET requests @company", async () => {
-    const companyEmail = `${process.env.COMPANY_EMAIL}`;
-    const companyPassword = `${process.env.COMPANY_PASSWORD}`;
+    const companyEmail = `${process.env.COMPANY_ONE_EMAIL}`;
+    const companyPassword = `${process.env.PASSWORD}`;
 
     test("GET with valid credentials @happy", async ({ request }) => {
         let authHeaders = await createAuthHeaders(companyEmail, companyPassword);

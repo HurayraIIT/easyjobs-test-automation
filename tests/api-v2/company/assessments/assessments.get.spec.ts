@@ -7,14 +7,10 @@ import { createQuestionSet, deleteAllQuestionSets, QuestionSetType } from '@data
 import { createAssessmentFromQuiz, deleteAllAssessments, getAllAssessments } from '@datafactory/assessment';
 
 test.describe("/api/v2/company/assessments GET requests @company", async () => {
-    const companyEmail = `${process.env.COMPANY_EMAIL}`;
-    const companyPassword = `${process.env.COMPANY_PASSWORD}`;
-
-    const candidateEmail = `${process.env.CANDIDATE_EMAIL}`;
-    const candidatePassword = `${process.env.CANDIDATE_PASSWORD}`;
-
-    let companyAuthHeaders: any;
-    let candidateAuthHeaders: any;
+    let companyOneAuthHeaders: any;
+    let companyTwoAuthHeaders: any;
+    let candidateOneAuthHeaders: any;
+    let candidateTwoAuthHeaders: any;
 
     let quiz1: any;
     let quiz2: any;
@@ -23,23 +19,27 @@ test.describe("/api/v2/company/assessments GET requests @company", async () => {
     let assessment2: any;
 
     test.beforeAll(async () => {
-        companyAuthHeaders = await createAuthHeaders(companyEmail, companyPassword);
-        candidateAuthHeaders = await createAuthHeaders(candidateEmail, candidatePassword);
+        let authObjects = await createAuthHeaders();
+        //console.log(authObjects);
+        companyOneAuthHeaders = authObjects.companyOneAuthHeaders;
+        companyTwoAuthHeaders = authObjects.companyTwoAuthHeaders;
+        candidateOneAuthHeaders = authObjects.candidateOneAuthHeaders;
+        candidateTwoAuthHeaders = authObjects.candidateTwoAuthHeaders;
 
-        quiz1 = await createQuestionSet(companyAuthHeaders, QuestionSetType.QUIZ);
-        quiz2 = await createQuestionSet(companyAuthHeaders, QuestionSetType.QUIZ);
+        quiz1 = await createQuestionSet(companyOneAuthHeaders, QuestionSetType.QUIZ);
+        quiz2 = await createQuestionSet(companyOneAuthHeaders, QuestionSetType.QUIZ);
 
-        assessment1 = await createAssessmentFromQuiz(companyAuthHeaders, quiz1.id);
-        assessment2 = await createAssessmentFromQuiz(companyAuthHeaders, quiz2.id);
+        assessment1 = await createAssessmentFromQuiz(companyOneAuthHeaders, quiz1.id);
+        assessment2 = await createAssessmentFromQuiz(companyOneAuthHeaders, quiz2.id);
     });
 
     test.afterAll(async () => {
-        await deleteAllQuestionSets(companyAuthHeaders);
-        await deleteAllAssessments(companyAuthHeaders);
+        await deleteAllQuestionSets(companyOneAuthHeaders);
+        await deleteAllAssessments(companyOneAuthHeaders);
     });
 
     test("GET with valid credentials @happy", async ({ request }) => {
-        let all_assessments = await getAllAssessments(companyAuthHeaders);
+        let all_assessments = await getAllAssessments(companyOneAuthHeaders);
 
         let flag = 0;
         for (const assessment of all_assessments) {
@@ -83,7 +83,7 @@ test.describe("/api/v2/company/assessments GET requests @company", async () => {
 
     test("GET with candidates auth token", async ({ request }) => {
         const response = await request.get(`/api/v2/company/assessments`, {
-            headers: candidateAuthHeaders
+            headers: candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(480);

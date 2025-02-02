@@ -6,11 +6,11 @@ import { createAssertions } from "@helpers/createAssertions";
 import { createQuestionSet, getQuizMetaData, QuestionSetType } from '@datafactory/question-group';
 
 test.describe("/api/v2/job/quiz-meta-data GET requests @company", async () => {
-    const companyEmail = `${process.env.COMPANY_EMAIL}`;
-    const companyPassword = `${process.env.COMPANY_PASSWORD}`;
+    const companyEmail = `${process.env.COMPANY_ONE_EMAIL}`;
+    const companyPassword = `${process.env.PASSWORD}`;
 
-    const candidateEmail = `${process.env.CANDIDATE_EMAIL}`;
-    const candidatePassword = `${process.env.CANDIDATE_PASSWORD}`;
+    const candidateEmail = `${process.env.CANDIDATE_ONE_EMAIL}`;
+    const candidatePassword = `${process.env.PASSWORD}`;
 
     test("GET with valid credentials @happy", async ({ request }) => {
         let authHeaders = await createAuthHeaders(companyEmail, companyPassword);
