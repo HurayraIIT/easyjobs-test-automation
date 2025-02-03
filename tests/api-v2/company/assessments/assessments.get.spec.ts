@@ -1,17 +1,12 @@
 // GET: /api/v2/company/assessments
 
 import { test, expect } from '@playwright/test';
-import { createAuthHeaders } from '@datafactory/auth';
+import authObjects from '@datafactory/auth';
 import { createAssertions } from "@helpers/createAssertions";
 import { createQuestionSet, deleteAllQuestionSets, QuestionSetType } from '@datafactory/question-group';
 import { createAssessmentFromQuiz, deleteAllAssessments, getAllAssessments } from '@datafactory/assessment';
 
 test.describe("/api/v2/company/assessments GET requests @company", async () => {
-    let companyOneAuthHeaders: any;
-    let companyTwoAuthHeaders: any;
-    let candidateOneAuthHeaders: any;
-    let candidateTwoAuthHeaders: any;
-
     let quiz1: any;
     let quiz2: any;
 
@@ -19,27 +14,20 @@ test.describe("/api/v2/company/assessments GET requests @company", async () => {
     let assessment2: any;
 
     test.beforeAll(async () => {
-        let authObjects = await createAuthHeaders();
-        //console.log(authObjects);
-        companyOneAuthHeaders = authObjects.companyOneAuthHeaders;
-        companyTwoAuthHeaders = authObjects.companyTwoAuthHeaders;
-        candidateOneAuthHeaders = authObjects.candidateOneAuthHeaders;
-        candidateTwoAuthHeaders = authObjects.candidateTwoAuthHeaders;
+        quiz1 = await createQuestionSet(authObjects.companyOneAuthHeaders, QuestionSetType.QUIZ);
+        quiz2 = await createQuestionSet(authObjects.companyOneAuthHeaders, QuestionSetType.QUIZ);
 
-        quiz1 = await createQuestionSet(companyOneAuthHeaders, QuestionSetType.QUIZ);
-        quiz2 = await createQuestionSet(companyOneAuthHeaders, QuestionSetType.QUIZ);
-
-        assessment1 = await createAssessmentFromQuiz(companyOneAuthHeaders, quiz1.id);
-        assessment2 = await createAssessmentFromQuiz(companyOneAuthHeaders, quiz2.id);
+        assessment1 = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz1.id);
+        assessment2 = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz2.id);
     });
 
     test.afterAll(async () => {
-        await deleteAllQuestionSets(companyOneAuthHeaders);
-        await deleteAllAssessments(companyOneAuthHeaders);
+        await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
+        await deleteAllAssessments(authObjects.companyOneAuthHeaders);
     });
 
     test("GET with valid credentials @happy", async ({ request }) => {
-        let all_assessments = await getAllAssessments(companyOneAuthHeaders);
+        let all_assessments = await getAllAssessments(authObjects.companyOneAuthHeaders);
 
         let flag = 0;
         for (const assessment of all_assessments) {
@@ -83,7 +71,7 @@ test.describe("/api/v2/company/assessments GET requests @company", async () => {
 
     test("GET with candidates auth token", async ({ request }) => {
         const response = await request.get(`/api/v2/company/assessments`, {
-            headers: candidateOneAuthHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(480);

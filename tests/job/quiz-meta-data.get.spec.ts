@@ -1,25 +1,17 @@
 // GET: /api/v2/job/quiz-meta-data
 
 import { test, expect } from '@playwright/test';
-import { createAuthHeaders } from '@datafactory/auth';
+import authObjects from '@datafactory/auth';
 import { createAssertions } from "@helpers/createAssertions";
 import { createQuestionSet, getQuizMetaData, QuestionSetType } from '@datafactory/question-group';
 
 test.describe("/api/v2/job/quiz-meta-data GET requests @company", async () => {
-    const companyEmail = `${process.env.COMPANY_ONE_EMAIL}`;
-    const companyPassword = `${process.env.PASSWORD}`;
-
-    const candidateEmail = `${process.env.CANDIDATE_ONE_EMAIL}`;
-    const candidatePassword = `${process.env.PASSWORD}`;
-
     test("GET with valid credentials @happy", async ({ request }) => {
-        let authHeaders = await createAuthHeaders(companyEmail, companyPassword);
-
         // First create a question set
-        let question_set = await createQuestionSet(authHeaders, QuestionSetType.QUIZ);
+        let question_set = await createQuestionSet(authObjects.companyOneAuthHeaders, QuestionSetType.QUIZ);
 
         // Get the quiz meta data and verify that the response has the question_set
-        const quiz_meta_data = await getQuizMetaData(authHeaders);
+        const quiz_meta_data = await getQuizMetaData(authObjects.companyOneAuthHeaders);
 
         let flag = 0;
         for (let quiz of quiz_meta_data) {
@@ -56,9 +48,8 @@ test.describe("/api/v2/job/quiz-meta-data GET requests @company", async () => {
     });
 
     test("GET with candidates credentials", async ({ request }) => {
-        let authHeaders = await createAuthHeaders(candidateEmail, candidatePassword);
         const response = await request.get(`/api/v2/job/quiz-meta-data`, {
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(480);

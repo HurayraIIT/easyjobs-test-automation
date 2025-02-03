@@ -1,38 +1,28 @@
 // DELETE: /api/v2/company/setting/skill/{id}
 
 import { test, expect } from '@playwright/test';
-import { createAuthHeaders } from '@datafactory/auth';
+import authObjects from '@datafactory/auth';
 import { createAssertions } from '@helpers/createAssertions';
 import { createSkill, deleteAllSkills, deleteSkillById } from '@datafactory/skill';
 
 test.describe("/api/v2/company/setting/skill/{id} DELETE requests @company", async () => {
-    const companyEmail = `${process.env.COMPANY_EMAIL}`;
-    const companyPassword = `${process.env.COMPANY_PASSWORD}`;
-
-    let authHeaders: any;
-
-    test.beforeEach(async () => {
-        authHeaders = await createAuthHeaders(companyEmail, companyPassword);
-    });
-
     test.afterAll(async () => {
-        authHeaders = await createAuthHeaders(companyEmail, companyPassword);
-        await deleteAllSkills(authHeaders);
+        await deleteAllSkills(authObjects.companyOneAuthHeaders);
     });
 
     test("DELETE with valid skill id and valid token @happy", async ({ request }) => {
-        const skill = await createSkill(authHeaders);
-        await deleteSkillById(authHeaders, skill.id);
+        const skill = await createSkill(authObjects.companyOneAuthHeaders);
+        await deleteSkillById(authObjects.companyOneAuthHeaders, skill.id);
     });
 
     test("DELETE with already deleted skill id", async ({ request }) => {
         // First create and delete a skill
-        const skill = await createSkill(authHeaders);
-        await deleteSkillById(authHeaders, skill.id);
+        const skill = await createSkill(authObjects.companyOneAuthHeaders);
+        await deleteSkillById(authObjects.companyOneAuthHeaders, skill.id);
 
         // Now try to delete the same skill again
         const response = await request.delete(`/api/v2/company/setting/skill/${skill.id}`, {
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(499);
@@ -46,7 +36,7 @@ test.describe("/api/v2/company/setting/skill/{id} DELETE requests @company", asy
     });
 
     test("DELETE with valid skill id and invalid token", async ({ request }) => {
-        const skill = await createSkill(authHeaders);
+        const skill = await createSkill(authObjects.companyOneAuthHeaders);
         const response = await request.delete(`/api/v2/company/setting/skill/${skill.id}`, {
             headers: {
                 "ACCEPT": "application/json",
@@ -64,7 +54,7 @@ test.describe("/api/v2/company/setting/skill/{id} DELETE requests @company", asy
     // TODO: Report Issue: Response status should be 400
     test("DELETE with invalid int skill id and valid token", async ({ request }) => {
         const response = await request.delete(`/api/v2/company/setting/skill/123`, {
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(499);
@@ -80,7 +70,7 @@ test.describe("/api/v2/company/setting/skill/{id} DELETE requests @company", asy
     // TODO: Report Issue: Response status should be 400
     test("DELETE with invalid string skill id and valid token", async ({ request }) => {
         const response = await request.delete(`/api/v2/company/setting/skill/abcdef`, {
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(499);

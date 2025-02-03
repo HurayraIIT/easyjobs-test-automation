@@ -1,29 +1,20 @@
 // GET: /api/v2/candidate/education
 
 import { test, expect } from '@playwright/test';
-import { createAuthHeaders } from '@datafactory/auth';
+import authObjects from '@datafactory/auth';
 import { createAssertions } from "@helpers/createAssertions";
 import { createEducation, deleteAllEducations, deleteEducationById } from '@datafactory/education';
 
 test.describe("/api/v2/candidate/education GET requests @candidate", async () => {
-    const candidateEmail = `${process.env.CANDIDATE_EMAIL}`;
-    const candidatePassword = `${process.env.CANDIDATE_PASSWORD}`;
-    let authHeaders: any;
-
     test.beforeAll(async () => {
-        authHeaders = await createAuthHeaders(candidateEmail, candidatePassword);
-        await deleteAllEducations(authHeaders);
-    });
-
-    test.beforeEach(async () => {
-        authHeaders = await createAuthHeaders(candidateEmail, candidatePassword);
+        await deleteAllEducations(authObjects.candidateOneAuthHeaders);
     });
 
     test("GET with valid credentials @happy", async ({ request }) => {
-        const education = await createEducation(authHeaders);
+        const education = await createEducation(authObjects.candidateOneAuthHeaders);
 
         const response = await request.get(`/api/v2/candidate/education?id=${education.data.id}`, {
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(200);
@@ -41,7 +32,7 @@ test.describe("/api/v2/candidate/education GET requests @candidate", async () =>
     });
 
     test("GET without auth token", async ({ request }) => {
-        const education = await createEducation(authHeaders);
+        const education = await createEducation(authObjects.candidateOneAuthHeaders);
 
         const response = await request.get(`/api/v2/candidate/education?id=${education.data.id}`, {
             headers: {
@@ -56,11 +47,11 @@ test.describe("/api/v2/candidate/education GET requests @candidate", async () =>
     });
 
     test("GET after deleting", async ({ request }) => {
-        const education = await createEducation(authHeaders);
-        await deleteEducationById(authHeaders, education.data.id);
+        const education = await createEducation(authObjects.candidateOneAuthHeaders);
+        await deleteEducationById(authObjects.candidateOneAuthHeaders, education.data.id);
 
         const response = await request.get(`/api/v2/candidate/education?id=${education.data.id}`, {
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(400);
@@ -75,13 +66,13 @@ test.describe("/api/v2/candidate/education GET requests @candidate", async () =>
 
     test("GET with empty id", async ({ request }) => {
         const response = await request.get(`/api/v2/candidate/education?id=`, {
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(400);
 
         const body = await response.json();
-        
+
         // await createAssertions(body);
         expect(body.status).toBe("FAILED");
         expect(body.status).toBe("FAILED");
@@ -93,13 +84,13 @@ test.describe("/api/v2/candidate/education GET requests @candidate", async () =>
 
     test("GET with string as id", async ({ request }) => {
         const response = await request.get(`/api/v2/candidate/education?id=asd`, {
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(400);
 
         const body = await response.json();
-        
+
         // await createAssertions(body);
         expect(body.status).toBe("FAILED");
         expect(body.data).toEqual([]);

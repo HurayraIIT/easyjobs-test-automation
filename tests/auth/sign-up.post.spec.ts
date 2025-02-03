@@ -3,16 +3,16 @@
 import { test, expect } from '@playwright/test';
 
 test.describe("/api/v2/sign-up POST requests @auth", async () => {
-    const companyEmail = process.env.COMPANY_ONE_EMAIL;
-    const companyPassword = process.env.PASSWORD;
+    const companyOneEmail = process.env.COMPANY_ONE_EMAIL;
+    const password = process.env.PASSWORD;
 
     test("POST with invalid data", async ({ request }) => {
         const response = await request.post('/api/v2/sign-up', {
             data: {
                 "first_name": "",
                 "last_name": "",
-                "email": companyEmail,
-                "password": companyPassword,
+                "email": companyOneEmail,
+                "password": password,
                 "password_confirmation": "asdasdasd",
                 "time_zone": "Asia/Dhaka"
             }

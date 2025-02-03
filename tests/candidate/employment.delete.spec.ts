@@ -1,28 +1,19 @@
 // DELETE: /api/v2/candidate/employment/{employment}/delete
 
 import { test, expect } from '@playwright/test';
-import { createAuthHeaders } from '@datafactory/auth';
+import authObjects from '@datafactory/auth';
 import { createAssertions } from '@helpers/createAssertions';
 import { createCandidateEmployment, deleteAllEmployments } from '@datafactory/employment';
 
 test.describe("/api/v2/candidate/employment/{employment}/delete DELETE requests @candidate", async () => {
-    const candidateEmail = `${process.env.CANDIDATE_EMAIL}`;
-    const candidatePassword = `${process.env.CANDIDATE_PASSWORD}`;
-    let authHeaders: any;
-
     test.beforeAll(async () => {
-        authHeaders = await createAuthHeaders(candidateEmail, candidatePassword);
-        await deleteAllEmployments(authHeaders);
-    });
-
-    test.beforeEach(async () => {
-        authHeaders = await createAuthHeaders(candidateEmail, candidatePassword);
+        await deleteAllEmployments(authObjects.candidateOneAuthHeaders);
     });
 
     test("DELETE with valid employment id and valid token @happy", async ({ request }) => {
-        const employment = await createCandidateEmployment(authHeaders);
+        const employment = await createCandidateEmployment(authObjects.candidateOneAuthHeaders);
         const response = await request.delete(`/api/v2/candidate/employment/${employment.data.id}/delete`, {
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(200);
@@ -37,16 +28,16 @@ test.describe("/api/v2/candidate/employment/{employment}/delete DELETE requests 
 
     test("DELETE with already deleted employment id", async ({ request }) => {
         // First create and delete an employment
-        const employment = await createCandidateEmployment(authHeaders);
+        const employment = await createCandidateEmployment(authObjects.candidateOneAuthHeaders);
         const response = await request.delete(`/api/v2/candidate/employment/${employment.data.id}/delete`, {
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(200);
 
         // Now try to delete the same employment again
         const response2 = await request.delete(`/api/v2/candidate/employment/${employment.data.id}/delete`, {
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response2.status()).toBe(200);
@@ -60,7 +51,7 @@ test.describe("/api/v2/candidate/employment/{employment}/delete DELETE requests 
     });
 
     test("DELETE with valid employment id and invalid token", async ({ request }) => {
-        const employment = await createCandidateEmployment(authHeaders);
+        const employment = await createCandidateEmployment(authObjects.candidateOneAuthHeaders);
         const response = await request.delete(`/api/v2/candidate/employment/${employment.data.id}/delete`, {
             headers: {
                 "ACCEPT": "application/json",
@@ -76,7 +67,7 @@ test.describe("/api/v2/candidate/employment/{employment}/delete DELETE requests 
     // TODO: Report Issue: Response status should be 400
     test("DELETE with invalid int employment id and valid token", async ({ request }) => {
         const response = await request.delete(`/api/v2/candidate/employment/12345/delete`, {
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(200);
@@ -92,7 +83,7 @@ test.describe("/api/v2/candidate/employment/{employment}/delete DELETE requests 
     // TODO: Report Issue: Response status should be 400
     test("DELETE with invalid string employment id and valid token", async ({ request }) => {
         const response = await request.delete(`/api/v2/candidate/employment/abcdef/delete`, {
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(200);

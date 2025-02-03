@@ -1,46 +1,34 @@
 //POST /api/v2/company/assessments/create
 
 import { test, expect } from "@playwright/test";
-import { createAuthHeaders } from "@datafactory/auth";
+import authObjects from '@datafactory/auth';
 import { createAssertions } from "@helpers/createAssertions";
 import { createQuestionSet, deleteAllQuestionSets, deleteQuestionSetById, getRandomQuestionSetData, QuestionSetType } from "@datafactory/question-group";
 import { createAssessmentFromQuiz, deleteAllAssessments, getAssessmentById, getAssessmentCreationData } from "@datafactory/assessment";
 
 test.describe("/api/v2/company/assessments/create POST requests @company", async () => {
-    const companyEmail = `${process.env.COMPANY_EMAIL}`;
-    const companyPassword = `${process.env.COMPANY_PASSWORD}`;
-
-    const candidateEmail = `${process.env.CANDIDATE_EMAIL}`;
-    const candidatePassword = `${process.env.CANDIDATE_PASSWORD}`;
-
-    let companyAuthHeaders: any;
-    let candidateAuthHeaders: any;
-
     let quiz: any;
 
     test.beforeEach(async () => {
-        companyAuthHeaders = await createAuthHeaders(companyEmail, companyPassword);
-        candidateAuthHeaders = await createAuthHeaders(candidateEmail, candidatePassword);
-
-        quiz = await createQuestionSet(companyAuthHeaders, QuestionSetType.QUIZ);
+        quiz = await createQuestionSet(authObjects.companyOneAuthHeaders, QuestionSetType.QUIZ);
     });
 
     test.afterAll(async () => {
-        await deleteAllQuestionSets(companyAuthHeaders);
-        await deleteAllAssessments(companyAuthHeaders);
+        await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
+        await deleteAllAssessments(authObjects.companyOneAuthHeaders);
     });
 
     test("POST can create a new assessment @happy", async ({ request }) => {
         // Create a new assessment
-        const assessment = await createAssessmentFromQuiz(companyAuthHeaders, quiz.id);
-        const response = await getAssessmentById(companyAuthHeaders, assessment.id);
+        const assessment = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz.id);
+        const response = await getAssessmentById(authObjects.companyOneAuthHeaders, assessment.id);
 
         expect(response.id).toBe(assessment.id);
     });
 
     test("POST with empty data", async ({ request }) => {
         const response = await request.post('/api/v2/company/assessments/create', {
-            headers: companyAuthHeaders,
+            headers: authObjects.companyOneAuthHeaders,
             data: {}
         });
 
@@ -59,7 +47,7 @@ test.describe("/api/v2/company/assessments/create POST requests @company", async
 
     test("POST with no data", async ({ request }) => {
         const response = await request.post('/api/v2/company/assessments/create', {
-            headers: companyAuthHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(422);
@@ -76,7 +64,7 @@ test.describe("/api/v2/company/assessments/create POST requests @company", async
     });
 
     test("POST with valid data but no auth", async ({ request }) => {
-        const assessment_creation_data = await getAssessmentCreationData(companyAuthHeaders, quiz.id);
+        const assessment_creation_data = await getAssessmentCreationData(authObjects.companyOneAuthHeaders, quiz.id);
         const response = await request.post('/api/v2/company/assessments/create', {
             headers: {
                 "Accept": "application/json",
@@ -92,9 +80,9 @@ test.describe("/api/v2/company/assessments/create POST requests @company", async
     });
 
     test("POST with valid data but candidates auth", async ({ request }) => {
-        const assessment_creation_data = await getAssessmentCreationData(companyAuthHeaders, quiz.id);
+        const assessment_creation_data = await getAssessmentCreationData(authObjects.companyOneAuthHeaders, quiz.id);
         const response = await request.post('/api/v2/company/assessments/create', {
-            headers: candidateAuthHeaders,
+            headers: authObjects.candidateOneAuthHeaders,
             data: assessment_creation_data
         });
 

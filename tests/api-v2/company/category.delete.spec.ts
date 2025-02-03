@@ -1,29 +1,19 @@
 // DELETE: /api/v2/company/setting/category/{id}
 
 import { test, expect } from '@playwright/test';
-import { createAuthHeaders } from '@datafactory/auth';
+import authObjects from '@datafactory/auth';
 import { createAssertions } from '@helpers/createAssertions';
 import { createCategory, deleteAllCategories, deleteCategoryById } from '@datafactory/category';
 
 test.describe("/api/v2/company/setting/category/{id} DELETE requests @company", async () => {
-    const companyEmail = `${process.env.COMPANY_EMAIL}`;
-    const companyPassword = `${process.env.COMPANY_PASSWORD}`;
-
-    let authHeaders: any;
-
-    test.beforeEach(async () => {
-        authHeaders = await createAuthHeaders(companyEmail, companyPassword);
-    });
-
     test.afterAll(async () => {
-        authHeaders = await createAuthHeaders(companyEmail, companyPassword);
-        await deleteAllCategories(authHeaders);
+        await deleteAllCategories(authObjects.companyOneAuthHeaders);
     });
 
     test("DELETE with valid category id and valid token @happy", async ({ request }) => {
-        const category = await createCategory(authHeaders);
+        const category = await createCategory(authObjects.companyOneAuthHeaders);
         const response = await request.delete(`/api/v2/company/setting/category/${category.id}`, {
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(200);
@@ -43,9 +33,9 @@ test.describe("/api/v2/company/setting/category/{id} DELETE requests @company", 
 
     test("DELETE with already deleted category id", async ({ request }) => {
         // First create and delete a category
-        const category = await createCategory(authHeaders);
+        const category = await createCategory(authObjects.companyOneAuthHeaders);
         const response = await request.delete(`/api/v2/company/setting/category/${category.id}`, {
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(200);
@@ -58,7 +48,7 @@ test.describe("/api/v2/company/setting/category/{id} DELETE requests @company", 
 
         // Now try to delete the same category again
         const response2 = await request.delete(`/api/v2/company/setting/category/${category.id}`, {
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response2.status()).toBe(499);
@@ -72,7 +62,7 @@ test.describe("/api/v2/company/setting/category/{id} DELETE requests @company", 
     });
 
     test("DELETE with valid category id and invalid token", async ({ request }) => {
-        const category = await createCategory(authHeaders);
+        const category = await createCategory(authObjects.companyOneAuthHeaders);
         const response = await request.delete(`/api/v2/company/setting/category/${category.id}`, {
             headers: {
                 "ACCEPT": "application/json",
@@ -90,7 +80,7 @@ test.describe("/api/v2/company/setting/category/{id} DELETE requests @company", 
     // TODO: Report Issue: Response status should be 400
     test("DELETE with invalid int category id and valid token", async ({ request }) => {
         const response = await request.delete(`/api/v2/company/setting/category/1234`, {
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(499);
@@ -106,7 +96,7 @@ test.describe("/api/v2/company/setting/category/{id} DELETE requests @company", 
     // TODO: Report Issue: Response status should be 400
     test("DELETE with invalid string category id and valid token", async ({ request }) => {
         const response = await request.delete(`/api/v2/company/setting/category/abcdef`, {
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(499);

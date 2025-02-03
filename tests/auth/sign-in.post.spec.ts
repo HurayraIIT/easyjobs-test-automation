@@ -3,8 +3,8 @@
 import { test, expect } from '@playwright/test';
 
 test.describe("/api/v2/sign-in POST requests @auth", async () => {
-    const companyEmail = process.env.COMPANY_ONE_EMAIL;
-    const companyPassword = process.env.PASSWORD;
+    const companyOneEmail = process.env.COMPANY_ONE_EMAIL;
+    const password = process.env.PASSWORD;
 
     let start: any;
     let end: any;
@@ -15,8 +15,8 @@ test.describe("/api/v2/sign-in POST requests @auth", async () => {
         start = Date.now();
         const response = await request.post('/api/v2/sign-in', {
             data: {
-                "email": companyEmail,
-                "password": companyPassword
+                "email": companyOneEmail,
+                "password": password
             }
         });
         end = Date.now();
@@ -26,7 +26,7 @@ test.describe("/api/v2/sign-in POST requests @auth", async () => {
         const body = await response.json();
         expect(body.status).toBe('SUCCESS');
         expect(body.message).toBe('Successfully logged in');
-        expect(body.data.email).toBe(companyEmail);
+        expect(body.data.email).toBe(companyOneEmail);
     });
 
     test("POST with invalid email and password", async ({ request }) => {
@@ -48,7 +48,7 @@ test.describe("/api/v2/sign-in POST requests @auth", async () => {
     test("POST with valid email and invalid password", async ({ request }) => {
         const response = await request.post('/api/v2/sign-in', {
             data: {
-                "email": companyEmail,
+                "email": companyOneEmail,
                 "password": "invalid-password"
             }
         });
@@ -58,14 +58,14 @@ test.describe("/api/v2/sign-in POST requests @auth", async () => {
         const body = await response.json();
         expect(body.status).toBe('FAILED');
         expect(body.message).toBe('Password doesn\'t match.');
-        expect(body.data.email).toBe(companyEmail);
+        expect(body.data.email).toBe(companyOneEmail);
     });
 
     test("POST with invalid email and valid password", async ({ request }) => {
         const response = await request.post('/api/v2/sign-in', {
             data: {
                 "email": "invalid-email@gmail.com",
-                "password": companyPassword
+                "password": password
             }
         });
 
@@ -80,7 +80,7 @@ test.describe("/api/v2/sign-in POST requests @auth", async () => {
     test("POST with no email and valid password", async ({ request }) => {
         const response = await request.post('/api/v2/sign-in', {
             data: {
-                "password": companyPassword
+                "password": password
             }
         });
 

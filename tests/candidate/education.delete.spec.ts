@@ -1,34 +1,25 @@
 // DELETE: /api/v2/candidate/education/{education}/delete
 
 import { test, expect } from '@playwright/test';
-import { createAuthHeaders } from '@datafactory/auth';
+import authObjects from '@datafactory/auth';
 import { createEducation, deleteAllEducations } from '@datafactory/education';
 import { createAssertions } from '@helpers/createAssertions';
 
 test.describe("/api/v2/candidate/education/{education}/delete DELETE requests @candidate", async () => {
-    const candidateEmail = `${process.env.CANDIDATE_EMAIL}`;
-    const candidatePassword = `${process.env.CANDIDATE_PASSWORD}`;
-    let authHeaders: any;
-
     test.beforeAll(async () => {
-        authHeaders = await createAuthHeaders(candidateEmail, candidatePassword);
-        await deleteAllEducations(authHeaders);
-    });
-
-    test.beforeEach(async () => {
-        authHeaders = await createAuthHeaders(candidateEmail, candidatePassword);
+        await deleteAllEducations(authObjects.candidateOneAuthHeaders);
     });
 
     test("DELETE with valid education id and valid token @happy", async ({ request }) => {
-        const education = await createEducation(authHeaders);
+        const education = await createEducation(authObjects.candidateOneAuthHeaders);
         const response = await request.delete(`/api/v2/candidate/education/${education.data.id}/delete`, {
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(200);
 
         const body = await response.json();
-        
+
         // await createAssertions(body);
         expect(body.status).toBe("SUCCESS");
         expect(body.data).toEqual([]);
@@ -37,22 +28,22 @@ test.describe("/api/v2/candidate/education/{education}/delete DELETE requests @c
 
     test("DELETE with already deleted education id", async ({ request }) => {
         // First create and delete an education
-        const education = await createEducation(authHeaders);
+        const education = await createEducation(authObjects.candidateOneAuthHeaders);
         const response = await request.delete(`/api/v2/candidate/education/${education.data.id}/delete`, {
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(200);
 
         // Now try to delete the same education again
         const response2 = await request.delete(`/api/v2/candidate/education/${education.data.id}/delete`, {
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response2.status()).toBe(200);
 
         const body = await response2.json();
-        
+
         // await createAssertions(body);
         expect(body.status).toBe("SUCCESS");
         expect(body.data).toEqual([]);
@@ -60,7 +51,7 @@ test.describe("/api/v2/candidate/education/{education}/delete DELETE requests @c
     });
 
     test("DELETE with valid education id and invalid token", async ({ request }) => {
-        const education = await createEducation(authHeaders);
+        const education = await createEducation(authObjects.candidateOneAuthHeaders);
         const response = await request.delete(`/api/v2/candidate/education/${education.data.id}/delete`, {
             headers: {
                 "ACCEPT": "application/json",
@@ -70,7 +61,7 @@ test.describe("/api/v2/candidate/education/{education}/delete DELETE requests @c
         expect(response.status()).toBe(401);
 
         const body = await response.json();
-        
+
         // await createAssertions(body);
         expect(body.message).toBe("Unauthenticated.");
     });
@@ -78,7 +69,7 @@ test.describe("/api/v2/candidate/education/{education}/delete DELETE requests @c
     // TODO: Report Issue: Response status should be 400
     test("DELETE with invalid int education id and valid token", async ({ request }) => {
         const response = await request.delete(`/api/v2/candidate/education/12345/delete`, {
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(200);
@@ -94,7 +85,7 @@ test.describe("/api/v2/candidate/education/{education}/delete DELETE requests @c
     // TODO: Report Issue: Response status should be 400
     test("DELETE with invalid string education id and valid token", async ({ request }) => {
         const response = await request.delete(`/api/v2/candidate/education/abcdef/delete`, {
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(200);

@@ -1,28 +1,18 @@
 //POST /api/v2/company/question/group/{group}/update
 
 import { test, expect } from "@playwright/test";
-import { createAuthHeaders } from "@datafactory/auth";
+import authObjects from '@datafactory/auth';
 import { createAssertions } from "@helpers/createAssertions";
 import { createQuestionSet, deleteAllQuestionSets, deleteQuestionSetById, getRandomQuestionSetData } from "@datafactory/question-group";
 
 test.describe("/api/v2/company/question/group/{group}/update POST requests @company", async () => {
-    const companyEmail = `${process.env.COMPANY_EMAIL}`;
-    const companyPassword = `${process.env.COMPANY_PASSWORD}`;
-
-    let authHeaders: any;
-
-    test.beforeEach(async () => {
-        authHeaders = await createAuthHeaders(companyEmail, companyPassword);
-    });
-
     test.afterAll(async () => {
-        authHeaders = await createAuthHeaders(companyEmail, companyPassword);
-        await deleteAllQuestionSets(authHeaders);
+        await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
     });
 
     test("POST can update an existing question set @happy", async ({ request }) => {
         // Create a new question set
-        const question_set = await createQuestionSet(authHeaders);
+        const question_set = await createQuestionSet(authObjects.companyOneAuthHeaders);
         expect(question_set.id).toBeGreaterThan(0);
 
         // Update the question set
@@ -30,7 +20,7 @@ test.describe("/api/v2/company/question/group/{group}/update POST requests @comp
         question_set_data.id = question_set.id;
         const response = await request.post(`/api/v2/company/question/group/${question_set.id}/update`, {
             data: question_set_data,
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(200);
@@ -44,10 +34,10 @@ test.describe("/api/v2/company/question/group/{group}/update POST requests @comp
     });
 
     test("POST with empty data", async ({ request }) => {
-        const question_set = await createQuestionSet(authHeaders);
+        const question_set = await createQuestionSet(authObjects.companyOneAuthHeaders);
         const response = await request.post(`/api/v2/company/question/group/${question_set.id}/update`, {
             data: {},
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(422);
@@ -63,9 +53,9 @@ test.describe("/api/v2/company/question/group/{group}/update POST requests @comp
     });
 
     test("POST with no data", async ({ request }) => {
-        const question_set = await createQuestionSet(authHeaders);
+        const question_set = await createQuestionSet(authObjects.companyOneAuthHeaders);
         const response = await request.post(`/api/v2/company/question/group/${question_set.id}/update`, {
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(422);
@@ -81,7 +71,7 @@ test.describe("/api/v2/company/question/group/{group}/update POST requests @comp
     });
 
     test("POST with valid data but no auth", async ({ request }) => {
-        const question_set = await createQuestionSet(authHeaders);
+        const question_set = await createQuestionSet(authObjects.companyOneAuthHeaders);
         const response = await request.post(`/api/v2/company/question/group/${question_set.id}/update`, {
             data: question_set,
             headers: {

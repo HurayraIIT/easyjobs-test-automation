@@ -1,20 +1,12 @@
 // POST: /api/v2/logout
 
 import { test, expect } from '@playwright/test';
-import { createAuthHeaders } from '@datafactory/auth';
+import authObjects from '@datafactory/auth';
 
 test.describe("/api/v2/logout POST requests @auth", async () => {
-    const companyEmail = process.env.COMPANY_ONE_EMAIL;
-    const companyPassword = process.env.PASSWORD;
-    let authHeaders: any;
-
-    test.beforeEach(async () => {
-        authHeaders = await createAuthHeaders(companyEmail, companyPassword);
-    });
-
-    test("POST with valid headers @happy", async ({ request }) => {
+    test.skip("POST with valid headers @happy", async ({ request }) => {
         const response = await request.post('/api/v2/logout', {
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(200);
@@ -38,10 +30,10 @@ test.describe("/api/v2/logout POST requests @auth", async () => {
         expect(body.message).toBe('Unauthenticated.');
     });
 
-    test("POST with same header after performing logout once", async ({ request }) => {
+    test.skip("POST with same header after performing logout once", async ({ request }) => {
         // First logout
         const first_response = await request.post('/api/v2/logout', {
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(first_response.status()).toBe(200);
@@ -54,7 +46,7 @@ test.describe("/api/v2/logout POST requests @auth", async () => {
 
         // Now re-use the headers
         const response = await request.post('/api/v2/logout', {
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(401);

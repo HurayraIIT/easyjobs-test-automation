@@ -1,31 +1,22 @@
 //POST: /api/v2/company/question/group/create
 
 import { test, expect } from "@playwright/test";
-import { createAuthHeaders } from "@datafactory/auth";
+import authObjects from '@datafactory/auth';
 import { createAssertions } from "@helpers/createAssertions";
 import { createQuestionSet, deleteQuestionSetById, getRandomQuestionSetData } from "@datafactory/question-group";
 
 test.describe("/api/v2/company/question/group/create POST requests @company", async () => {
-    const companyEmail = `${process.env.COMPANY_EMAIL}`;
-    const companyPassword = `${process.env.COMPANY_PASSWORD}`;
-
-    let authHeaders: any;
-
-    test.beforeEach(async () => {
-        authHeaders = await createAuthHeaders(companyEmail, companyPassword);
-    });
-
     test("POST can create a new question set @happy", async ({ request }) => {
         // Create a new question set
-        const question_set = await createQuestionSet(authHeaders);
+        const question_set = await createQuestionSet(authObjects.companyOneAuthHeaders);
         expect(question_set.id).toBeGreaterThan(0);
 
-        await deleteQuestionSetById(authHeaders, question_set.id);
+        await deleteQuestionSetById(authObjects.companyOneAuthHeaders, question_set.id);
     });
 
     test("POST with empty data", async ({ request }) => {
         const response = await request.post('/api/v2/company/question/group/create', {
-            headers: authHeaders,
+            headers: authObjects.companyOneAuthHeaders,
             data: {}
         });
 
@@ -42,7 +33,7 @@ test.describe("/api/v2/company/question/group/create POST requests @company", as
 
     test("POST with no data", async ({ request }) => {
         const response = await request.post('/api/v2/company/question/group/create', {
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(422);

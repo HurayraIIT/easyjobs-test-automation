@@ -1,26 +1,17 @@
 // POST: /api/v2/candidate/education
 
 import { test, expect } from "@playwright/test";
-import { createAuthHeaders } from "@datafactory/auth";
+import authObjects from '@datafactory/auth';
 import { getRandomEducationData } from "@datafactory/education";
 import { createAssertions } from "@helpers/createAssertions";
 
 test.describe("/api/v2/candidate/education POST requests @candidate", async () => {
-    const candidateEmail = `${process.env.CANDIDATE_EMAIL}`;
-    const candidatePassword = `${process.env.CANDIDATE_PASSWORD}`;
-
-    let authHeaders: any;
-
-    test.beforeEach(async () => {
-        authHeaders = await createAuthHeaders(candidateEmail, candidatePassword);
-    });
-
     test("POST can create a new education and edit it @happy", async ({ request }) => {
         // Create a new education
         let education_data = getRandomEducationData();
         const response = await request.post('/api/v2/candidate/education', {
             data: education_data,
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(200);
@@ -45,7 +36,7 @@ test.describe("/api/v2/candidate/education POST requests @candidate", async () =
         new_education_data.id = body.data.id;
         const new_response = await request.post('/api/v2/candidate/education', {
             data: new_education_data,
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(new_response.status()).toBe(200);
@@ -69,7 +60,7 @@ test.describe("/api/v2/candidate/education POST requests @candidate", async () =
     test("POST with empty data", async ({ request }) => {
         const response = await request.post('/api/v2/candidate/education', {
             data: {},
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(422);
@@ -86,7 +77,7 @@ test.describe("/api/v2/candidate/education POST requests @candidate", async () =
 
     test("POST with no data", async ({ request }) => {
         const response = await request.post('/api/v2/candidate/education', {
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(422);

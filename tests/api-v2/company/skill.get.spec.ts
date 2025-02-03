@@ -1,23 +1,14 @@
 // GET: /api/v2/company/setting/skill
 
 import { test, expect } from '@playwright/test';
-import { createAuthHeaders } from '@datafactory/auth';
+import authObjects from '@datafactory/auth';
 import { createAssertions } from "@helpers/createAssertions";
 import { createSkill, deleteAllSkills, deleteSkillById, getAllSkills } from '@datafactory/skill';
 
 test.describe("/api/v2/company/setting/skill GET requests @company", async () => {
-    const companyEmail = `${process.env.COMPANY_EMAIL}`;
-    const companyPassword = `${process.env.COMPANY_PASSWORD}`;
-
-    let authHeaders: any;
-
-    test.beforeEach(async () => {
-        authHeaders = await createAuthHeaders(companyEmail, companyPassword);
-    });
-
     test("GET with valid credentials @happy", async ({ request }) => {
-        const new_skill = await createSkill(authHeaders);
-        let all_skills = await getAllSkills(authHeaders);
+        const new_skill = await createSkill(authObjects.companyOneAuthHeaders);
+        let all_skills = await getAllSkills(authObjects.companyOneAuthHeaders);
         let flag = 0;
         for (let skill of all_skills) {
             if (skill.id === new_skill.id) {
@@ -30,7 +21,7 @@ test.describe("/api/v2/company/setting/skill GET requests @company", async () =>
             }
         }
         expect(flag).toBe(1);
-        await deleteSkillById(authHeaders, new_skill.id);
+        await deleteSkillById(authObjects.companyOneAuthHeaders, new_skill.id);
     });
 
     test("GET without auth token", async ({ request }) => {

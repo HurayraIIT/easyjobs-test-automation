@@ -1,17 +1,13 @@
 // GET: /api/v2/country
 
 import { test, expect } from '@playwright/test';
-import { createAuthHeaders } from '@datafactory/auth';
+import authObjects from '@datafactory/auth';
 import { createAssertions } from "@helpers/createAssertions";
 
 test.describe("/api/v2/country GET requests @company", async () => {
-    const companyEmail = `${process.env.COMPANY_ONE_EMAIL}`;
-    const companyPassword = `${process.env.PASSWORD}`;
-
     test("GET with valid credentials @happy", async ({ request }) => {
-        let authHeaders = await createAuthHeaders(companyEmail, companyPassword);
         const response = await request.get(`/api/v2/country`, {
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(200);

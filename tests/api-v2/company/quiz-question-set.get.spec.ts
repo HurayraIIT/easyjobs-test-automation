@@ -1,31 +1,20 @@
 //GET: /api/v2/quiz-question-set/{id}
 
 import { test, expect } from '@playwright/test';
-import { createAuthHeaders } from '@datafactory/auth';
+import authObjects from '@datafactory/auth';
 import { createAssertions } from "@helpers/createAssertions";
 import { createQuestionSet, deleteAllQuestionSets, getQuestionSetById, getQuizQuestionSetQuestions } from '@datafactory/question-group';
 
 test.describe("/api/v2/quiz-question-set/{id} GET requests @company", async () => {
-    const companyEmail = `${process.env.COMPANY_EMAIL}`;
-    const companyPassword = `${process.env.COMPANY_PASSWORD}`;
-
-    const candidateEmail = `${process.env.CANDIDATE_EMAIL}`;
-    const candidatePassword = `${process.env.CANDIDATE_PASSWORD}`;
-
     let question_set: any;
-    let companyAuthHeaders: any;
-    let candidateAuthHeaders: any;
 
     test.beforeAll(async () => {
-        companyAuthHeaders = await createAuthHeaders(companyEmail, companyPassword);
-        candidateAuthHeaders = await createAuthHeaders(candidateEmail, candidatePassword);
-
-        question_set = await createQuestionSet(companyAuthHeaders);
-        question_set = await getQuestionSetById(companyAuthHeaders, question_set.id);
+        question_set = await createQuestionSet(authObjects.companyOneAuthHeaders);
+        question_set = await getQuestionSetById(authObjects.companyOneAuthHeaders, question_set.id);
     });
 
     test.afterAll(async () => {
-        await deleteAllQuestionSets(companyAuthHeaders);
+        await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
     });
 
     test("GET with valid credentials @happy", async () => {
@@ -33,7 +22,7 @@ test.describe("/api/v2/quiz-question-set/{id} GET requests @company", async () =
         let original_questions = question_set.questions;
 
         // Get the questions via the api
-        let response_questions = await getQuizQuestionSetQuestions(companyAuthHeaders, question_set.id);
+        let response_questions = await getQuizQuestionSetQuestions(authObjects.companyOneAuthHeaders, question_set.id);
         response_questions = response_questions.questions;
 
         expect(response_questions.length).toBe(original_questions.length);
@@ -72,7 +61,7 @@ test.describe("/api/v2/quiz-question-set/{id} GET requests @company", async () =
 
     test("GET with valid credentials but invalid id", async ({ request }) => {
         const response = await request.get(`/api/v2/quiz-question-set/123`, {
-            headers: companyAuthHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(200);
@@ -84,7 +73,7 @@ test.describe("/api/v2/quiz-question-set/{id} GET requests @company", async () =
 
     test("GET with candidate auth with valid id", async ({ request }) => {
         const response = await request.get(`/api/v2/quiz-question-set/${question_set.id}`, {
-            headers: candidateAuthHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(480);

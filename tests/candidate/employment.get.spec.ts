@@ -1,29 +1,20 @@
 // GET: /api/v2/candidate/employment
 
 import { test, expect } from '@playwright/test';
-import { createAuthHeaders } from '@datafactory/auth';
+import authObjects from '@datafactory/auth';
 import { createCandidateEmployment, deleteAllEmployments, deleteEmployment } from '@datafactory/employment';
 import { createAssertions } from '@helpers/createAssertions';
 
 test.describe("/api/v2/candidate/employment GET requests @candidate", async () => {
-    const candidateEmail = `${process.env.CANDIDATE_EMAIL}`;
-    const candidatePassword = `${process.env.CANDIDATE_PASSWORD}`;
-    let authHeaders: any;
-
     test.beforeAll(async () => {
-        authHeaders = await createAuthHeaders(candidateEmail, candidatePassword);
-        await deleteAllEmployments(authHeaders);
-    });
-
-    test.beforeEach(async () => {
-        authHeaders = await createAuthHeaders(candidateEmail, candidatePassword);
+        await deleteAllEmployments(authObjects.candidateOneAuthHeaders);
     });
 
     test("GET with valid credentials @happy", async ({ request }) => {
-        const employment = await createCandidateEmployment(authHeaders);
+        const employment = await createCandidateEmployment(authObjects.candidateOneAuthHeaders);
 
         const response = await request.get(`/api/v2/candidate/employment?id=${employment.data.id}`, {
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(200);
@@ -42,7 +33,7 @@ test.describe("/api/v2/candidate/employment GET requests @candidate", async () =
     });
 
     test("GET without auth token", async ({ request }) => {
-        const employment = await createCandidateEmployment(authHeaders);
+        const employment = await createCandidateEmployment(authObjects.candidateOneAuthHeaders);
 
         const response = await request.get(`/api/v2/candidate/employment?id=${employment.data.id}`, {
             headers: {
@@ -57,11 +48,11 @@ test.describe("/api/v2/candidate/employment GET requests @candidate", async () =
     });
 
     test("GET after deleting", async ({ request }) => {
-        const employment = await createCandidateEmployment(authHeaders);
-        await deleteEmployment(authHeaders, employment.data.id);
+        const employment = await createCandidateEmployment(authObjects.candidateOneAuthHeaders);
+        await deleteEmployment(authObjects.candidateOneAuthHeaders, employment.data.id);
 
         const response = await request.get(`/api/v2/candidate/employment?id=${employment.data.id}`, {
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(400);
@@ -76,7 +67,7 @@ test.describe("/api/v2/candidate/employment GET requests @candidate", async () =
 
     test("GET with empty id", async ({ request }) => {
         const response = await request.get(`/api/v2/candidate/employment?id=`, {
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(400);
@@ -91,7 +82,7 @@ test.describe("/api/v2/candidate/employment GET requests @candidate", async () =
 
     test("GET with string as id", async ({ request }) => {
         const response = await request.get(`/api/v2/candidate/employment?id=asd`, {
-            headers: authHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(400);

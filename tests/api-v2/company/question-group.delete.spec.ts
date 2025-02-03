@@ -1,39 +1,25 @@
 // DELETE: /api/v2/company/question/group/{group}
 
 import { test, expect } from '@playwright/test';
-import { createAuthHeaders } from '@datafactory/auth';
+import authObjects from '@datafactory/auth';
 import { createAssertions } from '@helpers/createAssertions';
 import { createQuestionSet, deleteAllQuestionSets, deleteQuestionSetById } from '@datafactory/question-group';
 
 test.describe("/api/v2/company/question/group/{group} DELETE requests @company", async () => {
-    const companyEmail = `${process.env.COMPANY_EMAIL}`;
-    const companyPassword = `${process.env.COMPANY_PASSWORD}`;
-
-    const candidateEmail = `${process.env.CANDIDATE_EMAIL}`;
-    const candidatePassword = `${process.env.CANDIDATE_PASSWORD}`;
-
-    let companyAuthHeaders: any;
-    let candidateAuthHeaders: any;
-
-    test.beforeAll(async () => {
-        companyAuthHeaders = await createAuthHeaders(companyEmail, companyPassword);
-        candidateAuthHeaders = await createAuthHeaders(candidateEmail, candidatePassword);
-    });
-
     test.afterAll(async () => {
-        await deleteAllQuestionSets(companyAuthHeaders);
+        await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
     });
 
     test("DELETE with valid set id and valid token @happy", async ({ request }) => {
         // Create a new question set
-        const new_question_set = await createQuestionSet(companyAuthHeaders);
+        const new_question_set = await createQuestionSet(authObjects.companyOneAuthHeaders);
 
         // Delete the question set
-        await deleteQuestionSetById(companyAuthHeaders, new_question_set.id);
+        await deleteQuestionSetById(authObjects.companyOneAuthHeaders, new_question_set.id);
 
         // Try to get the question set again
         const response = await request.get(`/api/v2/company/question/group/${new_question_set.id}`, {
-            headers: companyAuthHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(480);
@@ -48,7 +34,7 @@ test.describe("/api/v2/company/question/group/{group} DELETE requests @company",
 
     test("DELETE with valid set id and invalid token", async ({ request }) => {
         // Create a new question set
-        const new_question_set = await createQuestionSet(companyAuthHeaders);
+        const new_question_set = await createQuestionSet(authObjects.companyOneAuthHeaders);
 
         // Try to get the question set again
         const response = await request.get(`/api/v2/company/question/group/${new_question_set.id}`, {
@@ -67,7 +53,7 @@ test.describe("/api/v2/company/question/group/{group} DELETE requests @company",
 
     test("DELETE with invalid int set id and valid token", async ({ request }) => {
         const response = await request.get(`/api/v2/company/question/group/123`, {
-            headers: companyAuthHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(480);
@@ -82,7 +68,7 @@ test.describe("/api/v2/company/question/group/{group} DELETE requests @company",
 
     test("DELETE with invalid string set id and valid token", async ({ request }) => {
         const response = await request.get(`/api/v2/company/question/group/abcdef`, {
-            headers: companyAuthHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(480);
@@ -97,11 +83,11 @@ test.describe("/api/v2/company/question/group/{group} DELETE requests @company",
 
     test("DELETE with valid set id and candidate token", async ({ request }) => {
         // Create a new question set
-        const new_question_set = await createQuestionSet(companyAuthHeaders);
+        const new_question_set = await createQuestionSet(authObjects.companyOneAuthHeaders);
 
         // Try to get the question set again
         const response = await request.get(`/api/v2/company/question/group/${new_question_set.id}`, {
-            headers: candidateAuthHeaders
+            headers: authObjects.candidateOneAuthHeaders
         });
 
         expect(response.status()).toBe(480);

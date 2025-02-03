@@ -1,26 +1,17 @@
 // POST: /api/v2/company/setting/skill/save
 
 import { test, expect } from "@playwright/test";
-import { createAuthHeaders } from "@datafactory/auth";
+import authObjects from '@datafactory/auth';
 import { createAssertions } from "@helpers/createAssertions";
 import { deleteSkillById, getRandomSkillData } from "@datafactory/skill";
 
 test.describe("/api/v2/company/setting/skill/save POST requests @company", async () => {
-    const companyEmail = `${process.env.COMPANY_EMAIL}`;
-    const companyPassword = `${process.env.COMPANY_PASSWORD}`;
-
-    let authHeaders: any;
-
-    test.beforeEach(async () => {
-        authHeaders = await createAuthHeaders(companyEmail, companyPassword);
-    });
-
     test("POST can create a new skill and edit it @happy", async ({ request }) => {
         // Create a new skill
         let skill_data = await getRandomSkillData();
         const response = await request.post('/api/v2/company/setting/skill/save', {
             data: skill_data,
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(200);
@@ -35,7 +26,7 @@ test.describe("/api/v2/company/setting/skill/save POST requests @company", async
         new_skill_data.id = body.data.id;
         const new_response = await request.post('/api/v2/company/setting/skill/save', {
             data: new_skill_data,
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(new_response.status()).toBe(200);
@@ -51,13 +42,13 @@ test.describe("/api/v2/company/setting/skill/save POST requests @company", async
         expect(new_body.message).toBe("Skill updated.");
 
         // Delete the skill
-        await deleteSkillById(authHeaders, new_body.data.id);
+        await deleteSkillById(authObjects.companyOneAuthHeaders, new_body.data.id);
     });
 
     test("POST with empty data", async ({ request }) => {
         const response = await request.post('/api/v2/company/setting/skill/save', {
             data: {},
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(422);
@@ -72,7 +63,7 @@ test.describe("/api/v2/company/setting/skill/save POST requests @company", async
 
     test("POST with no data", async ({ request }) => {
         const response = await request.post('/api/v2/company/setting/skill/save', {
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(422);
@@ -111,7 +102,7 @@ test.describe("/api/v2/company/setting/skill/save POST requests @company", async
                 ...skill_data,
                 id: 123
             },
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(499);

@@ -1,32 +1,23 @@
 // POST: /api/v2/candidate/education/re-order
 
 import { test, expect } from '@playwright/test';
-import { createAuthHeaders } from '@datafactory/auth';
+import authObjects from '@datafactory/auth';
 import { createAssertions } from '@helpers/createAssertions';
 import { createEducation, deleteAllEducations, getAllEducations } from '@datafactory/education';
 
 test.describe("/api/v2/candidate/education/re-order POST requests @candidate", async () => {
-    const candidateEmail = `${process.env.CANDIDATE_EMAIL}`;
-    const candidatePassword = `${process.env.CANDIDATE_PASSWORD}`;
-    let authHeaders: any;
-
     test.beforeAll(async () => {
-        authHeaders = await createAuthHeaders(candidateEmail, candidatePassword);
-        await deleteAllEducations(authHeaders);
-    });
-
-    test.beforeEach(async () => {
-        authHeaders = await createAuthHeaders(candidateEmail, candidatePassword);
+        await deleteAllEducations(authObjects.candidateOneAuthHeaders);
     });
 
     test("POST re-order educations with valid token @happy", async ({ request }) => {
         // Create 3 educations
-        const education_0 = await createEducation(authHeaders);
-        const education_1 = await createEducation(authHeaders);
-        const education_2 = await createEducation(authHeaders);
+        const education_0 = await createEducation(authObjects.candidateOneAuthHeaders);
+        const education_1 = await createEducation(authObjects.candidateOneAuthHeaders);
+        const education_2 = await createEducation(authObjects.candidateOneAuthHeaders);
 
         // Verify that the order is 0, 1, 2
-        const all_educations = await getAllEducations(authHeaders);
+        const all_educations = await getAllEducations(authObjects.candidateOneAuthHeaders);
 
         expect(all_educations.data[0].id).toBe(education_0.data.id);
         expect(all_educations.data[1].id).toBe(education_1.data.id);
@@ -34,7 +25,7 @@ test.describe("/api/v2/candidate/education/re-order POST requests @candidate", a
 
         // Re-order the educations
         const response = await request.post(`/api/v2/candidate/education/re-order`, {
-            headers: authHeaders,
+            headers: authObjects.candidateOneAuthHeaders,
             data: {
                 "educations": [
                     education_2.data,
@@ -51,7 +42,7 @@ test.describe("/api/v2/candidate/education/re-order POST requests @candidate", a
         expect(body.message).toBe('Sorted.');
 
         // Verify that the order is 2, 1, 0
-        const sorted_educations = await getAllEducations(authHeaders);
+        const sorted_educations = await getAllEducations(authObjects.candidateOneAuthHeaders);
 
         expect(sorted_educations.data[0].id).toBe(education_2.data.id);
         expect(sorted_educations.data[1].id).toBe(education_1.data.id);
@@ -60,9 +51,9 @@ test.describe("/api/v2/candidate/education/re-order POST requests @candidate", a
 
     test("POST re-order educations with invalid token", async ({ request }) => {
         // Create 3 educations
-        const education_0 = await createEducation(authHeaders);
-        const education_1 = await createEducation(authHeaders);
-        const education_2 = await createEducation(authHeaders);
+        const education_0 = await createEducation(authObjects.candidateOneAuthHeaders);
+        const education_1 = await createEducation(authObjects.candidateOneAuthHeaders);
+        const education_2 = await createEducation(authObjects.candidateOneAuthHeaders);
 
         // Re-order the educations
         const response = await request.post(`/api/v2/candidate/education/re-order`, {
@@ -86,7 +77,7 @@ test.describe("/api/v2/candidate/education/re-order POST requests @candidate", a
 
     test("POST re-order educations with empty educations", async ({ request }) => {
         const response = await request.post(`/api/v2/candidate/education/re-order`, {
-            headers: authHeaders,
+            headers: authObjects.candidateOneAuthHeaders,
             data: {
                 "educations": []
             }
@@ -95,7 +86,7 @@ test.describe("/api/v2/candidate/education/re-order POST requests @candidate", a
         expect(response.status()).toBe(422);
 
         const body = await response.json();
-        
+
         // await createAssertions(body);
         expect(body.status).toBe("FAILED");
         expect(body.data).toEqual([]);
@@ -104,7 +95,7 @@ test.describe("/api/v2/candidate/education/re-order POST requests @candidate", a
 
     test("POST re-order educations with empty data", async ({ request }) => {
         const response = await request.post(`/api/v2/candidate/education/re-order`, {
-            headers: authHeaders,
+            headers: authObjects.candidateOneAuthHeaders,
             data: {}
         });
 

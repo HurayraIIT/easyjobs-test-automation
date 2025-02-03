@@ -1,26 +1,17 @@
 // POST: /api/v2/company/setting/category/save
 
 import { test, expect } from "@playwright/test";
-import { createAuthHeaders } from "@datafactory/auth";
+import authObjects from '@datafactory/auth';
 import { createAssertions } from "@helpers/createAssertions";
 import { deleteCategoryById, getRandomCategoryData } from "@datafactory/category";
 
 test.describe("/api/v2/company/setting/category/save POST requests @company", async () => {
-    const companyEmail = `${process.env.COMPANY_EMAIL}`;
-    const companyPassword = `${process.env.COMPANY_PASSWORD}`;
-
-    let authHeaders: any;
-
-    test.beforeEach(async () => {
-        authHeaders = await createAuthHeaders(companyEmail, companyPassword);
-    });
-
     test("POST can create a new category and edit it @happy", async ({ request }) => {
         // Create a new category
         let category_data = await getRandomCategoryData();
         const response = await request.post('/api/v2/company/setting/category/save', {
             data: category_data,
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(200);
@@ -41,7 +32,7 @@ test.describe("/api/v2/company/setting/category/save POST requests @company", as
         new_category_data.id = body.data.id;
         const new_response = await request.post('/api/v2/company/setting/category/save', {
             data: new_category_data,
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(new_response.status()).toBe(200);
@@ -59,13 +50,13 @@ test.describe("/api/v2/company/setting/category/save POST requests @company", as
         expect(new_body.message).toBe("Category updated.");
 
         // Delete the category
-        await deleteCategoryById(authHeaders, new_body.data.id);
+        await deleteCategoryById(authObjects.companyOneAuthHeaders, new_body.data.id);
     });
 
     test("POST with empty data", async ({ request }) => {
         const response = await request.post('/api/v2/company/setting/category/save', {
             data: {},
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(422);
@@ -80,7 +71,7 @@ test.describe("/api/v2/company/setting/category/save POST requests @company", as
 
     test("POST with no data", async ({ request }) => {
         const response = await request.post('/api/v2/company/setting/category/save', {
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(422);
@@ -119,7 +110,7 @@ test.describe("/api/v2/company/setting/category/save POST requests @company", as
                 ...category_data,
                 id: 1234
             },
-            headers: authHeaders
+            headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(499);
