@@ -419,7 +419,7 @@ GET|HEAD        {company}.easyjobs.test/ .......................................
 ✅ POST > app.{domain}/api/v2/company/question/group/create > store › Api\SpaV2\QuestionSetController@store
 📝 GET|HEAD > app.{domain}/api/v2/company/question/group/{group} > show › Api\SpaV2\QuestionSetController@show
 📝 DELETE > app.{domain}/api/v2/company/question/group/{group} > delete › Api\SpaV2\QuestionSetController@destroy
-📝 GET|HEAD > app.{domain}/api/v2/company/question/group/{group}/duplicate duplicate › Api\SpaV2\QuestionSetController@duplicate
+✅ GET|HEAD > app.{domain}/api/v2/company/question/group/{group}/duplicate duplicate › Api\SpaV2\QuestionSetController@duplicate
 📝 POST > app.{domain}/api/v2/company/question/group/{group}/update > update › Api\SpaV2\QuestionSetController@update
 📝 GET|HEAD > app.{domain}/api/v2/company/question/groups > list › Api\SpaV2\QuestionSetController@index
 
