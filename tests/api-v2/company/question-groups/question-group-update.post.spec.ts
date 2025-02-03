@@ -6,9 +6,9 @@ import { createAssertions } from "@helpers/createAssertions";
 import { createQuestionSet, deleteAllQuestionSets, deleteQuestionSetById, getRandomQuestionSetData } from "@datafactory/question-group";
 
 test.describe("/api/v2/company/question/group/{group}/update POST requests @company", async () => {
-    test.afterAll(async () => {
-        await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
-    });
+    // test.afterAll(async () => {
+    //     await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
+    // });
 
     test("POST can update an existing question set @happy", async ({ request }) => {
         // Create a new question set
@@ -31,6 +31,29 @@ test.describe("/api/v2/company/question/group/{group}/update POST requests @comp
         expect(body.status).toBe("SUCCESS");
         expect(body.data).toEqual([]);
         expect(body.message).toBe("Saved.");
+    });
+
+    test("POST with valid data but another companies auth @security", async ({ request }) => {
+        // Create a new question set
+        const question_set = await createQuestionSet(authObjects.companyOneAuthHeaders);
+        expect(question_set.id).toBeGreaterThan(0);
+
+        // Update the question set
+        const question_set_data = getRandomQuestionSetData();
+        question_set_data.id = question_set.id;
+        const response = await request.post(`/api/v2/company/question/group/${question_set.id}/update`, {
+            data: question_set_data,
+            headers: authObjects.companyTwoAuthHeaders
+        });
+
+        expect(response.status()).toBe(480);
+
+        const body = await response.json();
+
+        // await createAssertions(body);
+        expect(body.status).toBe("FAILED");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("You do not have sufficient permissions.");
     });
 
     test("POST with empty data", async ({ request }) => {
@@ -70,7 +93,7 @@ test.describe("/api/v2/company/question/group/{group}/update POST requests @comp
         expect(body.message.questions).toEqual(["The field is required."]);
     });
 
-    test("POST with valid data but no auth", async ({ request }) => {
+    test("POST with valid data but no auth @security", async ({ request }) => {
         const question_set = await createQuestionSet(authObjects.companyOneAuthHeaders);
         const response = await request.post(`/api/v2/company/question/group/${question_set.id}/update`, {
             data: question_set,
@@ -85,5 +108,22 @@ test.describe("/api/v2/company/question/group/{group}/update POST requests @comp
 
         // await createAssertions(body);
         expect(body.message).toBe('Unauthenticated.');
+    });
+
+    test("POST with valid data but candidates auth @security", async ({ request }) => {
+        const question_set = await createQuestionSet(authObjects.companyOneAuthHeaders);
+        const response = await request.post(`/api/v2/company/question/group/${question_set.id}/update`, {
+            data: question_set,
+            headers: authObjects.candidateOneAuthHeaders
+        });
+
+        expect.soft(response.status()).toBe(480);
+
+        const body = await response.json();
+
+        // await createAssertions(body);
+        expect(body.status).toBe("failed");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("You do not have access permissions.");
     });
 });
