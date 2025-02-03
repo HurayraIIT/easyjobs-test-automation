@@ -299,19 +299,14 @@ GET|HEAD        {company}.easyjobs.test/ .......................................
 
   // Application
 
-  GET|HEAD        app.{domain}/api/v2/app-type ................................................................ Api\SpaV2\GlobalSearchController@getAppTypes
+🚨 GET|HEAD        app.{domain}/api/v2/app-type > Api\SpaV2\GlobalSearchController@getAppTypes
 
-  GET|HEAD        app.{domain}/api/v2/calendly/event-type-list ................................ v2. › Api\SpaV2\Intregation\CalendlyController@eventTypeList
-
-  GET|HEAD        app.{domain}/api/v2/calendly/info .................................................... v2. › Api\SpaV2\Intregation\CalendlyController@info
-
-  POST            app.{domain}/api/v2/calendly/invite-candidate ............................. v2. › Api\SpaV2\Intregation\CalendlyController@inviteCandidate
-
-  POST            app.{domain}/api/v2/calendly/invitee-verify ............................. v2. › Api\SpaV2\Intregation\CalendlyController@inviteeLinkVerify
-
-  POST            app.{domain}/api/v2/calendly/oauth ..................................... v2. › Api\SpaV2\Intregation\CalendlyController@setupCalendlyOauth
-
-  POST            app.{domain}/api/v2/calendly/remove ................................................ v2. › Api\SpaV2\Intregation\CalendlyController@remove
+✅ GET|HEAD        app.{domain}/api/v2/calendly/event-type-list > v2. › Api\SpaV2\Intregation\CalendlyController@eventTypeList
+✅ GET|HEAD        app.{domain}/api/v2/calendly/info > v2. › Api\SpaV2\Intregation\CalendlyController@info
+  POST            app.{domain}/api/v2/calendly/invite-candidate > v2. › Api\SpaV2\Intregation\CalendlyController@inviteCandidate
+  POST            app.{domain}/api/v2/calendly/invitee-verify > v2. › Api\SpaV2\Intregation\CalendlyController@inviteeLinkVerify
+  POST            app.{domain}/api/v2/calendly/oauth > v2. › Api\SpaV2\Intregation\CalendlyController@setupCalendlyOauth
+  POST            app.{domain}/api/v2/calendly/remove > v2. › Api\SpaV2\Intregation\CalendlyController@remove
 
 
   GET|HEAD        app.{domain}/api/v2/candidate ......................................... v2.candidate.info › Api\SpaV2\CandidateController@getCandidateInfo
