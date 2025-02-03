@@ -392,15 +392,11 @@ GET|HEAD        {company}.easyjobs.test/ .......................................
 
   GET|HEAD        app.{domain}/api/v2/company/analytics .................................... v2.company.analytics › Api\SpaV2\CompanyController@getAnalytics
 
-  GET|HEAD        app.{domain}/api/v2/company/assessments ............................. v2.company.assessment.list › Api\SpaV2\QuestionGroupController@index
-
-  POST            app.{domain}/api/v2/company/assessments/create ..................... v2.company.assessment.store › Api\SpaV2\QuestionGroupController@store
-
-  GET|HEAD        app.{domain}/api/v2/company/assessments/{assessment} ................. v2.company.assessment.show › Api\SpaV2\QuestionGroupController@show
-
-  DELETE          app.{domain}/api/v2/company/assessments/{assessment}/delete ..... v2.company.assessment.delete › Api\SpaV2\QuestionGroupController@destroy
-
-  POST            app.{domain}/api/v2/company/assessments/{assessment}/update ...... v2.company.assessment.update › Api\SpaV2\QuestionGroupController@update
+📝 GET|HEAD        app.{domain}/api/v2/company/assessments > list › Api\SpaV2\QuestionGroupController@index
+📝 POST            app.{domain}/api/v2/company/assessments/create > store › Api\SpaV2\QuestionGroupController@store
+📝 GET|HEAD        app.{domain}/api/v2/company/assessments/{assessment} > show › Api\SpaV2\QuestionGroupController@show
+📝 DELETE          app.{domain}/api/v2/company/assessments/{assessment}/delete > delete › Api\SpaV2\QuestionGroupController@destroy
+📝 POST            app.{domain}/api/v2/company/assessments/{assessment}/update > update › Api\SpaV2\QuestionGroupController@update
 
   GET|HEAD        app.{domain}/api/v2/company/candidates ................................. v2.company.candidates › Api\SpaV2\CompanyController@getCandidates
 
@@ -420,17 +416,12 @@ GET|HEAD        {company}.easyjobs.test/ .......................................
 
   GET|HEAD        app.{domain}/api/v2/company/managers ....................................... v2.company.managers › Api\SpaV2\CompanyController@getManagers
 
-  POST            app.{domain}/api/v2/company/question/group/create .................. v2.company.question-set.store › Api\SpaV2\QuestionSetController@store
-
-
-  GET|HEAD        app.{domain}/api/v2/company/question/group/{group} ................... v2.company.question-set.show › Api\SpaV2\QuestionSetController@show
-  DELETE          app.{domain}/api/v2/company/question/group/{group} .............. v2.company.question-set.delete › Api\SpaV2\QuestionSetController@destroy
-
-  GET|HEAD        app.{domain}/api/v2/company/question/group/{group}/duplicate v2.company.question-set.duplicate › Api\SpaV2\QuestionSetController@duplicate
-
-  POST            app.{domain}/api/v2/company/question/group/{group}/update ........ v2.company.question-set.update › Api\SpaV2\QuestionSetController@update
-
-  GET|HEAD        app.{domain}/api/v2/company/question/groups ......................... v2.company.question-set.list › Api\SpaV2\QuestionSetController@index
+✅ POST > app.{domain}/api/v2/company/question/group/create > store › Api\SpaV2\QuestionSetController@store
+📝 GET|HEAD > app.{domain}/api/v2/company/question/group/{group} > show › Api\SpaV2\QuestionSetController@show
+📝 DELETE > app.{domain}/api/v2/company/question/group/{group} > delete › Api\SpaV2\QuestionSetController@destroy
+📝 GET|HEAD > app.{domain}/api/v2/company/question/group/{group}/duplicate duplicate › Api\SpaV2\QuestionSetController@duplicate
+📝 POST > app.{domain}/api/v2/company/question/group/{group}/update > update › Api\SpaV2\QuestionSetController@update
+📝 GET|HEAD > app.{domain}/api/v2/company/question/groups > list › Api\SpaV2\QuestionSetController@index
 
   GET|HEAD        app.{domain}/api/v2/company/recent-applicants ................ v2.company.recent-applicants › Api\SpaV2\CompanyController@recentCandidates
 

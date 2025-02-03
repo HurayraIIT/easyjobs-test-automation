@@ -6,11 +6,12 @@ import { createAssertions } from "@helpers/createAssertions";
 import { createQuestionSet, deleteAllQuestionSets, deleteQuestionSetById, duplicateQuestionSet, getQuestionSetById } from '@datafactory/question-group';
 
 test.describe("/api/v2/company/question/group/{group}/duplicate GET requests @company", async () => {
-    test.afterAll(async () => {
-        await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
-    });
+    // test.afterAll(async () => {
+    //     await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
+    // });
 
     test("GET duplicate with valid credentials @happy", async ({ request }) => {
+        // Company one should be able to duplicate his own question set
         const set = await createQuestionSet(authObjects.companyOneAuthHeaders);
         const question_set = await duplicateQuestionSet(authObjects.companyOneAuthHeaders, set.id);
 
