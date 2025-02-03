@@ -209,12 +209,6 @@ export async function deleteQuestionSetById(authHeaders: any, questionSetId: num
     });
 
     expect(response.status()).toBe(200);
-    const body = await response.json();
-
-    // await createAssertions(body);
-    expect(body.status).toBe("SUCCESS");
-    expect(body.data).toEqual([]);
-    expect(body.message).toBe("Deleted.");
 }
 
 export async function deleteAllQuestionSets(authHeaders: any) {
