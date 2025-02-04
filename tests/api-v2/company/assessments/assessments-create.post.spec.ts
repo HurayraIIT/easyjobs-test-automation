@@ -7,23 +7,23 @@ import { createQuestionSet, deleteAllQuestionSets, deleteQuestionSetById, getRan
 import { createAssessmentFromQuiz, deleteAllAssessments, getAssessmentById, getAssessmentCreationData } from "@datafactory/assessment";
 
 test.describe("/api/v2/company/assessments/create POST requests @company", async () => {
-    let quiz: any;
+    let quiz_id: any;
 
     test.beforeEach(async () => {
-        quiz = await createQuestionSet(authObjects.companyOneAuthHeaders, QuestionSetType.QUIZ);
+        quiz_id = await createQuestionSet(authObjects.companyOneAuthHeaders, QuestionSetType.QUIZ);
     });
 
-    test.afterAll(async () => {
-        await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
-        await deleteAllAssessments(authObjects.companyOneAuthHeaders);
-    });
+    // test.afterAll(async () => {
+    //     await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
+    //     await deleteAllAssessments(authObjects.companyOneAuthHeaders);
+    // });
 
     test("POST can create a new assessment @happy", async ({ request }) => {
         // Create a new assessment
-        const assessment = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz.id);
-        const response = await getAssessmentById(authObjects.companyOneAuthHeaders, assessment.id);
+        const assessment_id = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz_id);
+        const response = await getAssessmentById(authObjects.companyOneAuthHeaders, assessment_id);
 
-        expect(response.id).toBe(assessment.id);
+        expect(response.id).toBe(assessment_id);
     });
 
     test("POST with empty data", async ({ request }) => {
@@ -64,7 +64,7 @@ test.describe("/api/v2/company/assessments/create POST requests @company", async
     });
 
     test("POST with valid data but no auth", async ({ request }) => {
-        const assessment_creation_data = await getAssessmentCreationData(authObjects.companyOneAuthHeaders, quiz.id);
+        const assessment_creation_data = await getAssessmentCreationData(authObjects.companyOneAuthHeaders, quiz_id);
         const response = await request.post('/api/v2/company/assessments/create', {
             headers: {
                 "Accept": "application/json",
@@ -80,7 +80,7 @@ test.describe("/api/v2/company/assessments/create POST requests @company", async
     });
 
     test("POST with valid data but candidates auth", async ({ request }) => {
-        const assessment_creation_data = await getAssessmentCreationData(authObjects.companyOneAuthHeaders, quiz.id);
+        const assessment_creation_data = await getAssessmentCreationData(authObjects.companyOneAuthHeaders, quiz_id);
         const response = await request.post('/api/v2/company/assessments/create', {
             headers: authObjects.candidateOneAuthHeaders,
             data: assessment_creation_data

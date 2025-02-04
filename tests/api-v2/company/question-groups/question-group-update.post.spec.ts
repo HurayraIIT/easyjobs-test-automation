@@ -12,13 +12,13 @@ test.describe("/api/v2/company/question/group/{group}/update POST requests @comp
 
     test("POST can update an existing question set @happy", async ({ request }) => {
         // Create a new question set
-        const question_set = await createQuestionSet(authObjects.companyOneAuthHeaders);
-        expect(question_set.id).toBeGreaterThan(0);
+        const question_set_id = await createQuestionSet(authObjects.companyOneAuthHeaders);
+        expect(question_set_id).toBeGreaterThan(0);
 
         // Update the question set
         const question_set_data = getRandomQuestionSetData();
-        question_set_data.id = question_set.id;
-        const response = await request.post(`/api/v2/company/question/group/${question_set.id}/update`, {
+        question_set_data.id = question_set_id;
+        const response = await request.post(`/api/v2/company/question/group/${question_set_id}/update`, {
             data: question_set_data,
             headers: authObjects.companyOneAuthHeaders
         });
@@ -35,13 +35,13 @@ test.describe("/api/v2/company/question/group/{group}/update POST requests @comp
 
     test("POST with valid data but another companies auth @security", async ({ request }) => {
         // Create a new question set
-        const question_set = await createQuestionSet(authObjects.companyOneAuthHeaders);
-        expect(question_set.id).toBeGreaterThan(0);
+        const question_set_id = await createQuestionSet(authObjects.companyOneAuthHeaders);
+        expect(question_set_id).toBeGreaterThan(0);
 
         // Update the question set
         const question_set_data = getRandomQuestionSetData();
-        question_set_data.id = question_set.id;
-        const response = await request.post(`/api/v2/company/question/group/${question_set.id}/update`, {
+        question_set_data.id = question_set_id;
+        const response = await request.post(`/api/v2/company/question/group/${question_set_id}/update`, {
             data: question_set_data,
             headers: authObjects.companyTwoAuthHeaders
         });

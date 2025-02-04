@@ -3,14 +3,14 @@
 import { test, expect } from '@playwright/test';
 import authObjects from '@datafactory/auth';
 import { createAssertions } from "@helpers/createAssertions";
-import { createQuestionSet, deleteAllQuestionSets, QuestionSetType } from '@datafactory/question-group';
+import { createQuestionSet, deleteAllQuestionSets, getQuestionSetById, QuestionSetType } from '@datafactory/question-group';
 import { createAssessmentFromQuiz, deleteAllAssessments, getAssessmentById } from '@datafactory/assessment';
 
 test.describe("/api/v2/company/assessments/{id} GET requests @company", async () => {
-    let quiz: any;
+    let quiz_id: any;
 
     test.beforeAll(async () => {
-        quiz = await createQuestionSet(authObjects.companyOneAuthHeaders, QuestionSetType.QUIZ);
+        quiz_id = await createQuestionSet(authObjects.companyOneAuthHeaders, QuestionSetType.QUIZ);
     });
 
     // test.afterAll(async () => {
@@ -18,20 +18,23 @@ test.describe("/api/v2/company/assessments/{id} GET requests @company", async ()
     //     await deleteAllAssessments(authObjects.companyOneAuthHeaders);
     // });
 
-    test("GET with valid credentials and valid id @happy", async () => {
-        const new_assessment = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz.id);
+    test("GET with valid credentials and valid id @happy", async ({ request }) => {
+        const new_assessment_id = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz_id);
 
-        const response = await getAssessmentById(authObjects.companyOneAuthHeaders, new_assessment.id);
+        const response = await request.get(`/api/v2/company/assessments/${new_assessment_id}`, {
+            headers: authObjects.companyOneAuthHeaders
+        });
 
-        expect(response.id).toBe(new_assessment.id);
-        expect(response.assessment_name).toBe(new_assessment.name);
-        expect(response.set_type).toEqual(new_assessment.exam_type);
+        expect(response.status()).toBe(200);
 
-        expect(new_assessment.total_questions).toBe(response.questions.length);
+        const data = await response.json();
+        expect(data.status).toBe('SUCCESS');
+        expect(data.message).toBeNull();
+        expect(data.data.id).toBe(new_assessment_id);
     });
 
     test("GET with invalid credentials but valid id", async ({ request }) => {
-        const new_assessment = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz.id);
+        const new_assessment = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz_id);
 
         const response = await request.get(`/api/v2/company/assessments/${new_assessment.id}`, {
             headers: {
@@ -46,7 +49,7 @@ test.describe("/api/v2/company/assessments/{id} GET requests @company", async ()
     });
 
     test("GET with candidates credentials but valid id", async ({ request }) => {
-        const new_assessment = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz.id);
+        const new_assessment = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz_id);
 
         const response = await request.get(`/api/v2/company/assessments/${new_assessment.id}`, {
             headers: authObjects.candidateOneAuthHeaders

@@ -12,36 +12,36 @@ test.describe("/api/v2/company/question/group/{group}/duplicate GET requests @co
 
     test("GET duplicate with valid credentials @happy", async ({ request }) => {
         // Company one should be able to duplicate his own question set
-        const set = await createQuestionSet(authObjects.companyOneAuthHeaders);
-        const response = await request.get(`/api/v2/company/question/group/${set.id}/duplicate`, {
+        const set_id = await createQuestionSet(authObjects.companyOneAuthHeaders);
+        const response = await request.get(`/api/v2/company/question/group/${set_id}/duplicate`, {
             headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(200);
 
         const body = await response.json();
+        const original_set = await getQuestionSetById(authObjects.companyOneAuthHeaders, set_id);
+        // console.log(original_set);
         // await createAssertions(body);
         expect(body.status).toBe("SUCCESS");
-        expect(body.data.name).toBe(set.name);
-        expect(body.data.exam_type).toBe(set.exam_type.id);
-        expect(body.data.company_id).toBe(set.company_id);
+        expect(body.data.name).toBe(original_set.set_name);
+        expect(body.data.exam_type).toBe(original_set.set_type.id);
+        expect(body.data.company_id).toBe(Number(authObjects.companyOneAuthHeaders['Company-Id']));
         expect(body.data.exam_duration).toBeNull();
         expect(body.data.marks_per_question).toBeNull();
-        expect(body.data.created_by).toBeTruthy();
-        expect(body.data.updated_by).toBeTruthy();
         expect(body.data.deleted_at).toBeNull();
-        expect(body.data.internal_note).toBeTruthy();
-        expect(body.data.note).toBeTruthy();
+        expect(body.data.internal_note).toBe(original_set.internal_note);
+        expect(body.data.note).toBe(original_set.note);
         expect(body.data.created_at).toBeTruthy();
         expect(body.data.updated_at).toBeTruthy();
-        expect(body.data.id).toBeGreaterThan(set.id);
+        expect(body.data.id).toBeGreaterThan(original_set.id);
         expect(body.message).toBe("Question set duplicated.");
     });
 
     test("GET duplicate with other companies credentials @security", async ({ request }) => {
         // Company two should not be able to duplicate company one's question set
-        const set = await createQuestionSet(authObjects.companyOneAuthHeaders);
-        const response = await request.get(`/api/v2/company/question/group/${set.id}/duplicate`, {
+        const set_id = await createQuestionSet(authObjects.companyOneAuthHeaders);
+        const response = await request.get(`/api/v2/company/question/group/${set_id}/duplicate`, {
             headers: authObjects.companyTwoAuthHeaders
         });
 

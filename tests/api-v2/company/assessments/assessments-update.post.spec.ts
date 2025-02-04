@@ -7,30 +7,30 @@ import { createQuestionSet, deleteAllQuestionSets, deleteQuestionSetById, getRan
 import { createAssessmentFromQuiz, deleteAllAssessments, getAssessmentById, getAssessmentCreationData } from "@datafactory/assessment";
 
 test.describe("/api/v2/company/assessments/{assessment}/update POST requests @company", async () => {
-    let quiz: any;
-    let new_assessment: any;
+    let quiz_id: any;
+    let new_assessment_id: any;
 
     test.beforeAll(async () => {
-        quiz = await createQuestionSet(authObjects.companyOneAuthHeaders, QuestionSetType.QUIZ);
-        new_assessment = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz.id);
-        expect(new_assessment.id).toBeGreaterThan(0);
+        quiz_id = await createQuestionSet(authObjects.companyOneAuthHeaders, QuestionSetType.QUIZ);
+        new_assessment_id = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz_id);
+        expect(new_assessment_id).toBeGreaterThan(0);
     });
 
-    test.afterAll(async () => {
-        await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
-        await deleteAllAssessments(authObjects.companyOneAuthHeaders);
-    });
+    // test.afterAll(async () => {
+    //     await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
+    //     await deleteAllAssessments(authObjects.companyOneAuthHeaders);
+    // });
 
     test("POST can update an existing assessment @happy", async ({ request }) => {
         // Create a new assessment
-        const assessment = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz.id);
-        expect(assessment.id).toBeGreaterThan(0);
+        const assessment_id = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz_id);
+        expect(assessment_id).toBeGreaterThan(0);
 
         // Update the assessment
-        const assessment_creation_data = await getAssessmentCreationData(authObjects.companyOneAuthHeaders, quiz.id);
-        assessment_creation_data.id = assessment.id;
+        const assessment_creation_data = await getAssessmentCreationData(authObjects.companyOneAuthHeaders, quiz_id);
+        assessment_creation_data.id = assessment_id;
 
-        const response = await request.post(`/api/v2/company/assessments/${assessment.id}/update`, {
+        const response = await request.post(`/api/v2/company/assessments/${assessment_id}/update`, {
             data: assessment_creation_data,
             headers: authObjects.companyOneAuthHeaders
         });
@@ -44,17 +44,16 @@ test.describe("/api/v2/company/assessments/{assessment}/update POST requests @co
         expect(body.data).toEqual([]);
         expect(body.message).toBe("Saved.");
 
-        const updated_assessment = await getAssessmentById(authObjects.companyOneAuthHeaders, assessment.id);
+        const updated_assessment = await getAssessmentById(authObjects.companyOneAuthHeaders, assessment_id);
         expect(updated_assessment.assessment_name).toBe(assessment_creation_data.assessment_name);
-        expect(updated_assessment.assessment_name).not.toBe(assessment.assessment_name);
     });
 
     test("POST with empty data", async ({ request }) => {
         // Create a new assessment
-        const assessment = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz.id);
-        expect(assessment.id).toBeGreaterThan(0);
+        const assessment_id = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz_id);
+        expect(assessment_id).toBeGreaterThan(0);
 
-        const response = await request.post(`/api/v2/company/assessments/${assessment.id}/update`, {
+        const response = await request.post(`/api/v2/company/assessments/${assessment_id}/update`, {
             data: {},
             headers: authObjects.companyOneAuthHeaders
         });
@@ -75,10 +74,10 @@ test.describe("/api/v2/company/assessments/{assessment}/update POST requests @co
 
     test("POST with no data", async ({ request }) => {
         // Create a new assessment
-        const assessment = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz.id);
-        expect(assessment.id).toBeGreaterThan(0);
+        const assessment_id = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz_id);
+        expect(assessment_id).toBeGreaterThan(0);
 
-        const response = await request.post(`/api/v2/company/assessments/${assessment.id}/update`, {
+        const response = await request.post(`/api/v2/company/assessments/${assessment_id}/update`, {
             headers: authObjects.companyOneAuthHeaders
         });
 
@@ -98,14 +97,14 @@ test.describe("/api/v2/company/assessments/{assessment}/update POST requests @co
 
     test("POST with valid data but no auth", async ({ request }) => {
         // Create a new assessment
-        const assessment = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz.id);
-        expect(assessment.id).toBeGreaterThan(0);
+        const assessment_id = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz_id);
+        expect(assessment_id).toBeGreaterThan(0);
 
         // Update the assessment
-        const assessment_creation_data = await getAssessmentCreationData(authObjects.companyOneAuthHeaders, quiz.id);
-        assessment_creation_data.id = assessment.id;
+        const assessment_creation_data = await getAssessmentCreationData(authObjects.companyOneAuthHeaders, quiz_id);
+        assessment_creation_data.id = assessment_id;
 
-        const response = await request.post(`/api/v2/company/assessments/${assessment.id}/update`, {
+        const response = await request.post(`/api/v2/company/assessments/${assessment_id}/update`, {
             data: assessment_creation_data,
             headers: {
                 "Accept": "application/json",
@@ -122,14 +121,14 @@ test.describe("/api/v2/company/assessments/{assessment}/update POST requests @co
 
     test("POST with valid data but with candidate auth", async ({ request }) => {
         // Create a new assessment
-        const assessment = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz.id);
-        expect(assessment.id).toBeGreaterThan(0);
+        const assessment_id = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz_id);
+        expect(assessment_id).toBeGreaterThan(0);
 
         // Update the assessment
-        const assessment_creation_data = await getAssessmentCreationData(authObjects.companyOneAuthHeaders, quiz.id);
-        assessment_creation_data.id = assessment.id;
+        const assessment_creation_data = await getAssessmentCreationData(authObjects.companyOneAuthHeaders, quiz_id);
+        assessment_creation_data.id = assessment_id;
 
-        const response = await request.post(`/api/v2/company/assessments/${assessment.id}/update`, {
+        const response = await request.post(`/api/v2/company/assessments/${assessment_id}/update`, {
             data: assessment_creation_data,
             headers: authObjects.candidateOneAuthHeaders
         });

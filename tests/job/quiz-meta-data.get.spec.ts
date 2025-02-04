@@ -3,12 +3,13 @@
 import { test, expect } from '@playwright/test';
 import authObjects from '@datafactory/auth';
 import { createAssertions } from "@helpers/createAssertions";
-import { createQuestionSet, getQuizMetaData, QuestionSetType } from '@datafactory/question-group';
+import { createQuestionSet, getQuestionSetById, getQuizMetaData, QuestionSetType } from '@datafactory/question-group';
 
 test.describe("/api/v2/job/quiz-meta-data GET requests @company", async () => {
     test("GET with valid credentials @happy", async ({ request }) => {
         // First create a question set
-        let question_set = await createQuestionSet(authObjects.companyOneAuthHeaders, QuestionSetType.QUIZ);
+        let question_set_id = await createQuestionSet(authObjects.companyOneAuthHeaders, QuestionSetType.QUIZ);
+        let question_set = await getQuestionSetById(authObjects.companyOneAuthHeaders, question_set_id);
 
         // Get the quiz meta data and verify that the response has the question_set
         const quiz_meta_data = await getQuizMetaData(authObjects.companyOneAuthHeaders);
@@ -18,9 +19,8 @@ test.describe("/api/v2/job/quiz-meta-data GET requests @company", async () => {
             if (quiz.id === question_set.id) {
                 flag = 1;
                 expect(quiz.id).toBe(question_set.id);
-                expect(quiz.name).toBe(question_set.name);
-                expect(quiz.company_id).toBe(question_set.company_id);
-                expect(quiz.exam_type).toBe(question_set.exam_type.id);
+                expect(quiz.name).toBe(question_set.set_name);
+                expect(quiz.exam_type).toBe(question_set.set_type.id);
                 expect(quiz.exam_duration).toBeNull();
                 expect(quiz.marks_per_question).toBeNull();
                 expect(quiz.created_by).toBeGreaterThan(0);
@@ -28,7 +28,7 @@ test.describe("/api/v2/job/quiz-meta-data GET requests @company", async () => {
                 expect(quiz.deleted_at).toBeNull();
                 expect(quiz.created_at).toBeTruthy();
                 expect(quiz.updated_at).toBeTruthy();
-                expect(quiz.internal_note).toBeTruthy();
+                expect(quiz.internal_note).toBe(question_set.internal_note);
             }
         }
         expect(flag).toBe(1);

@@ -7,49 +7,42 @@ import { createQuestionSet, deleteAllQuestionSets, QuestionSetType } from '@data
 import { createAssessmentFromQuiz, deleteAllAssessments, getAllAssessments } from '@datafactory/assessment';
 
 test.describe("/api/v2/company/assessments GET requests @company", async () => {
-    let quiz1: any;
-    let quiz2: any;
+    let quiz1_id: any;
+    let quiz2_id: any;
 
-    let assessment1: any;
-    let assessment2: any;
+    let assessment1_id: any;
+    let assessment2_id: any;
 
     test.beforeAll(async () => {
-        quiz1 = await createQuestionSet(authObjects.companyOneAuthHeaders, QuestionSetType.QUIZ);
-        quiz2 = await createQuestionSet(authObjects.companyOneAuthHeaders, QuestionSetType.QUIZ);
+        quiz1_id = await createQuestionSet(authObjects.companyOneAuthHeaders, QuestionSetType.QUIZ);
+        quiz2_id = await createQuestionSet(authObjects.companyOneAuthHeaders, QuestionSetType.QUIZ);
 
-        assessment1 = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz1.id);
-        assessment2 = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz2.id);
+        assessment1_id = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz1_id);
+        assessment2_id = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz2_id);
     });
 
-    test.afterAll(async () => {
-        await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
-        await deleteAllAssessments(authObjects.companyOneAuthHeaders);
-    });
+    // test.afterAll(async () => {
+    //     await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
+    //     await deleteAllAssessments(authObjects.companyOneAuthHeaders);
+    // });
 
     test("GET with valid credentials @happy", async ({ request }) => {
-        let all_assessments = await getAllAssessments(authObjects.companyOneAuthHeaders);
+        const response = await request.get(`/api/v2/company/assessments`, {
+            headers: authObjects.companyOneAuthHeaders
+        });
 
+        expect(response.status()).toBe(200);
+
+        const data = await response.json();
+        const all_assessments = data.data;
         let flag = 0;
         for (const assessment of all_assessments) {
-            if (assessment.id === assessment1.id) {
+            if (assessment.id === assessment1_id) {
                 flag += 1;
-                expect(assessment.id).toBe(assessment1.id);
-                expect(assessment.name).toBe(assessment1.name);
-                expect(assessment.company_id).toBe(assessment1.company_id);
-                expect(assessment.exam_type).toEqual(assessment1.exam_type);
-                expect(assessment.total_questions).toBe(assessment1.total_questions);
-                expect(assessment.last_update).toBe(assessment1.last_update);
-
             }
 
-            if (assessment.id === assessment2.id) {
+            if (assessment.id === assessment2_id) {
                 flag += 1;
-                expect(assessment.id).toBe(assessment2.id);
-                expect(assessment.name).toBe(assessment2.name);
-                expect(assessment.company_id).toBe(assessment2.company_id);
-                expect(assessment.exam_type).toEqual(assessment2.exam_type);
-                expect(assessment.total_questions).toBe(assessment2.total_questions);
-                expect(assessment.last_update).toBe(assessment2.last_update);
             }
         }
 

@@ -7,8 +7,8 @@ import { createQuestionSet, deleteAllQuestionSets, deleteQuestionSetById, getQue
 
 test.describe("/api/v2/company/question/group/{group} GET requests @company", async () => {
     test("GET with valid credentials @happy", async ({ request }) => {
-        const set = await createQuestionSet(authObjects.companyOneAuthHeaders);
-        const response = await request.get(`/api/v2/company/question/group/${set.id}`, {
+        const set_id = await createQuestionSet(authObjects.companyOneAuthHeaders);
+        const response = await request.get(`/api/v2/company/question/group/${set_id}`, {
             headers: authObjects.companyOneAuthHeaders
         });
 
@@ -17,7 +17,7 @@ test.describe("/api/v2/company/question/group/{group} GET requests @company", as
 
         // await createAssertions(body);
         expect(body.status).toBe("SUCCESS");
-        expect(body.data.id).toBe(set.id);
+        expect(body.data.id).toBe(set_id);
         expect(body.data.set_type).toBeTruthy();
         expect(body.data.set_name).toBeTruthy();
         expect(body.data.note).toBeTruthy();

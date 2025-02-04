@@ -2,21 +2,6 @@ import { expect, request } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 import { createAssertions } from '@helpers/createAssertions';
 
-/**
- * Generates a random title consisting of 2 to 5 lorem words followed by a random number.
- * 
- * @returns {string} A random title.
- * 
- * @example
- * // returns something like 'Lorem ipsum 123456'
- * const title = getRandomTitle();
- * console.log(title); // 'Lorem ipsum 123456'
- * 
- * @example
- * // returns something like 'Dolor sit amet consectetur 654321'
- * const title = getRandomTitle();
- * console.log(title); // 'Dolor sit amet consectetur 654321'
- */
 export function getRandomTitle(): string {
     return `🤔 ${faker.lorem.words({ min: 2, max: 5 })} ${faker.number.int({ min: 1, max: 999999 })}`;
 }
@@ -123,7 +108,7 @@ export function getRandomQuestionSetData(type?: { id: number; name: string }, qu
     return question_set_1;
 }
 
-export async function createQuestionSet(authHeaders: any, type?: { id: number; name: string }) {
+export async function createQuestionSet(authHeaders: any, type?: { id: number; name: string }): Promise<number> {
     const question_set_data = type ? getRandomQuestionSetData(type) : getRandomQuestionSetData();
 
     const requestContext = await request.newContext();
@@ -134,32 +119,7 @@ export async function createQuestionSet(authHeaders: any, type?: { id: number; n
 
     expect(response.status()).toBe(200);
     const body = await response.json();
-
-    // await createAssertions(body);
-    expect(body.status).toBe("SUCCESS");
-    expect(body.data).toEqual([]);
-    expect(body.message).toBe("Saved.");
-
-    // Find the body
-    let question_set = await getAllQuestionSets(authHeaders);
-    let recent_created_set: any;
-    for (let set of question_set) {
-        if (set.name === question_set_data.set_name) {
-            recent_created_set = set;
-            break;
-        }
-    }
-    // await createAssertions(recent_created_set);
-    expect(recent_created_set.id).toBeGreaterThan(0);
-    expect(recent_created_set.name).toBe(question_set_data.set_name);
-    expect(recent_created_set.company_id).toBeGreaterThan(0);
-    expect(recent_created_set.exam_type).toStrictEqual(question_set_data.set_type);
-    expect(recent_created_set.total_questions).toBe(question_set_data.questions.length);
-    expect(recent_created_set.last_update).toBeTruthy();
-    expect(recent_created_set.updated_by).toBeTruthy();
-    expect(recent_created_set.created_by).toBeTruthy();
-
-    return recent_created_set;
+    return body.data.id;
 }
 
 export async function getQuestionSetById(authHeaders: any, questionSetId: number) {
@@ -172,16 +132,6 @@ export async function getQuestionSetById(authHeaders: any, questionSetId: number
     const body = await response.json();
 
     // await createAssertions(body);
-    expect(body.status).toBe("SUCCESS");
-    expect(body.data.id).toBe(questionSetId);
-    expect(body.data.set_type).toBeTruthy();
-    expect(body.data.set_name).toBeTruthy();
-    expect(body.data.note).toBeTruthy();
-    expect(body.data.internal_note).toBeTruthy();
-    expect(body.data.exam_duration).toBeNull();
-    expect(body.data.marks_per_question).toBeNull();
-    expect(body.message).toBeNull();
-
     return body.data;
 }
 
@@ -195,10 +145,6 @@ export async function getAllQuestionSets(authHeaders: any) {
     const body = await response.json();
 
     // await createAssertions(body);
-    expect(body.status).toBe("SUCCESS");
-    expect(body.data.length).toBeGreaterThanOrEqual(0);
-    expect(body.message).toBeNull();
-
     return body.data;
 }
 

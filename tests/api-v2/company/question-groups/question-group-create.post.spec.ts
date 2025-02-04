@@ -3,7 +3,7 @@
 import { test, expect } from "@playwright/test";
 import authObjects from '@datafactory/auth';
 import { createAssertions } from "@helpers/createAssertions";
-import { createQuestionSet, deleteQuestionSetById, getAllQuestionSets, getRandomQuestionSetData } from "@datafactory/question-group";
+import { createQuestionSet, deleteQuestionSetById, getAllQuestionSets, getQuestionSetById, getRandomQuestionSetData } from "@datafactory/question-group";
 
 test.describe("/api/v2/company/question/group/create POST requests @company", async () => {
     test("POST can create a new question set @happy", async ({ request }) => {
@@ -19,27 +19,16 @@ test.describe("/api/v2/company/question/group/create POST requests @company", as
 
         // await createAssertions(body);
         expect(body.status).toBe("SUCCESS");
-        expect(body.data).toEqual([]);
+        expect(body.data.id).toBeGreaterThan(1);
         expect(body.message).toBe("Saved.");
 
         // Verify that the question set was created
-        let question_set = await getAllQuestionSets(authObjects.companyOneAuthHeaders);
-        let recent_created_set: any;
-        for (let set of question_set) {
-            if (set.name === question_set_data.set_name) {
-                recent_created_set = set;
-                break;
-            }
-        }
-        // await createAssertions(recent_created_set);
-        expect(recent_created_set.id).toBeGreaterThan(0);
-        expect(recent_created_set.name).toBe(question_set_data.set_name);
-        expect(recent_created_set.company_id).toBe(Number(authObjects.companyOneAuthHeaders['Company-Id']));
-        expect(recent_created_set.exam_type).toStrictEqual(question_set_data.set_type);
-        expect(recent_created_set.total_questions).toBe(question_set_data.questions.length);
-        expect(recent_created_set.last_update).toBeTruthy();
-        expect(recent_created_set.updated_by).toBeTruthy();
-        expect(recent_created_set.created_by).toBeTruthy();
+        let recent_created_set = await getQuestionSetById(authObjects.companyOneAuthHeaders, body.data.id);
+        expect(recent_created_set.set_type.id).toBe(question_set_data.set_type.id);
+        expect(recent_created_set.set_type.name).toBe(question_set_data.set_type.name);
+        expect(recent_created_set.set_name).toBe(question_set_data.set_name);
+        expect(recent_created_set.note).toBe(question_set_data.note);
+        expect(recent_created_set.internal_note).toBe(question_set_data.internal_note);
     });
 
     test("POST using company two creds but with company one ID @security", async ({ request }) => {

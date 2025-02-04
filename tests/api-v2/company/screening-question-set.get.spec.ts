@@ -9,13 +9,13 @@ test.describe("/api/v2/screening-question-set/{id} GET requests @company", async
     let question_set: any;
 
     test.beforeAll(async () => {
-        question_set = await createQuestionSet(authObjects.companyOneAuthHeaders);
-        question_set = await getQuestionSetById(authObjects.companyOneAuthHeaders, question_set.id);
+        let question_set_id = await createQuestionSet(authObjects.companyOneAuthHeaders);
+        question_set = await getQuestionSetById(authObjects.companyOneAuthHeaders, question_set_id);
     });
 
-    test.afterAll(async () => {
-        await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
-    });
+    // test.afterAll(async () => {
+    //     await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
+    // });
 
     test("GET with valid credentials @happy", async () => {
         // get the original questions

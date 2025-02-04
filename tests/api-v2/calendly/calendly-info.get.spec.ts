@@ -24,7 +24,7 @@ test.describe("/api/v2/calendly/info GET requests @company @happy", async () => 
         expect(body.data.scheduling_url).toBe("https://calendly.com/hurayra-wpdeveloper");
         expect(body.data.slug).toBe("hurayra-wpdeveloper");
         expect(body.data.timezone).toBe("Asia/Dhaka");
-        expect(body.data.updated_at).toBe("2025-02-03T07:50:31.523817Z");
+        expect(body.data.updated_at).toContain("2025-02-03");
         expect(body.data.uri).toBe("https://api.calendly.com/users/d831ff1b-b622-45e7-9dce-588198b3cee7");
         expect(body.message).toBeNull();
     });

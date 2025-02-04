@@ -299,8 +299,6 @@ GET|HEAD        {company}.easyjobs.test/ .......................................
 
   // Application
 
-🚨 GET|HEAD        app.{domain}/api/v2/app-type > Api\SpaV2\GlobalSearchController@getAppTypes
-
 ✅ GET|HEAD        app.{domain}/api/v2/calendly/event-type-list > v2. › Api\SpaV2\Intregation\CalendlyController@eventTypeList
 ✅ GET|HEAD        app.{domain}/api/v2/calendly/info > v2. › Api\SpaV2\Intregation\CalendlyController@info
   POST            app.{domain}/api/v2/calendly/invite-candidate > v2. › Api\SpaV2\Intregation\CalendlyController@inviteCandidate
@@ -808,31 +806,20 @@ GET|HEAD        {company}.easyjobs.test/ .......................................
 
   DELETE          app.{domain}/api/v2/manager/notification/{notification}/delete v2.manager.notification.delete › Api\SpaV2\ManagerNotificationController@d…
 
-  DELETE          app.{domain}/api/v2/my-account ......................................... v2.user.account.delete › Api\SpaV2\UserController@deleteMyAccount
+✅  DELETE   /api/v2/my-account ......................................... ->delete -> deleteMyAccount
+✅  GET      /api/v2/my-account/billing ................................. ->billing -> billingDetails
+  POST     /api/v2/my-account/billing .................... ->billing.update -> updateBillingDetails
+  PUT      /api/v2/my-account/change-password ............... ->change-password -> changeMyPassword
+  POST     /api/v2/my-account/information .......... ->information.update -> updateBasicInformation
+  POST     /api/v2/my-account/last-seen-version ->last-seen-version.update -> updateLastSeenVersion
+  POST     /api/v2/my-account/new-password-verification ->new-password-verification -> newPassword…
+  PUT      /api/v2/my-account/password-changed-verification ->password-changed-verification -> pas…
+  POST     /api/v2/my-account/payment ....................... ->payment.update -> updatePaymentInfo
+  GET      /api/v2/my-account/payment-action/{transaction} ....... ->payment.action -> getActionUrl
+  GET      /api/v2/my-account/payment-history ......................... ->payment -> paymentHistory
+  GET      /api/v2/my-account/paypal/payment-action/{transaction} ->paypal.payment.action -> getPa…
 
-
-  GET|HEAD        app.{domain}/api/v2/my-account/billing ................................. v2.user.account.billing › Api\SpaV2\UserController@billingDetails
-  POST            app.{domain}/api/v2/my-account/billing .................... v2.user.account.billing.update › Api\SpaV2\UserController@updateBillingDetails
-
-  PUT             app.{domain}/api/v2/my-account/change-password ............... v2.user.account.change-password › Api\SpaV2\UserController@changeMyPassword
-
-  POST            app.{domain}/api/v2/my-account/information .......... v2.user.account.information.update › Api\SpaV2\UserController@updateBasicInformation
-
-  POST            app.{domain}/api/v2/my-account/last-seen-version v2.user.account.last-seen-version.update › Api\SpaV2\UserController@updateLastSeenVersion
-
-  POST            app.{domain}/api/v2/my-account/new-password-verification v2.user.account.new-password-verification › Api\SpaV2\UserController@newPassword…
-
-  PUT             app.{domain}/api/v2/my-account/password-changed-verification v2.user.account.password-changed-verification › Api\SpaV2\UserController@pas…
-
-  POST            app.{domain}/api/v2/my-account/payment ....................... v2.user.account.payment.update › Api\SpaV2\UserController@updatePaymentInfo
-
-  GET|HEAD        app.{domain}/api/v2/my-account/payment-action/{transaction} ....... v2.user.account.payment.action › Api\SpaV2\UserController@getActionUrl
-
-  GET|HEAD        app.{domain}/api/v2/my-account/payment-history ......................... v2.user.account.payment › Api\SpaV2\UserController@paymentHistory
-
-  GET|HEAD        app.{domain}/api/v2/my-account/paypal/payment-action/{transaction} v2.user.account.paypal.payment.action › Api\SpaV2\UserController@getPa…
-
-  GET|HEAD        app.{domain}/api/v2/nationality ....................................................... Api\SpaV2\GlobalSearchController@searchNationality
+  GET        app.{domain}/api/v2/nationality ....................................................... Api\SpaV2\GlobalSearchController@searchNationality
 
   POST            app.{domain}/api/v2/onboard ............................................................................. Api\SpaV2\AuthController@onboard
 

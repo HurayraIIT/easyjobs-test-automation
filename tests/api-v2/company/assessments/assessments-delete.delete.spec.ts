@@ -7,25 +7,25 @@ import { createQuestionSet, deleteAllQuestionSets, deleteQuestionSetById, Questi
 import { createAssessmentFromQuiz, deleteAllAssessments, deleteAssessmentById } from '@datafactory/assessment';
 
 test.describe("/api/v2/company/assessments/{assessment}/delete DELETE requests @company", async () => {
-    let quiz: any;
-    let new_assessment: any;
+    let quiz_id: any;
+    let new_assessment_id: any;
 
     test.beforeAll(async () => {
-        quiz = await createQuestionSet(authObjects.companyOneAuthHeaders, QuestionSetType.QUIZ);
-        new_assessment = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz.id);
-        expect(new_assessment.id).toBeGreaterThan(0);
+        quiz_id = await createQuestionSet(authObjects.companyOneAuthHeaders, QuestionSetType.QUIZ);
+        new_assessment_id = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz_id);
+        expect(new_assessment_id).toBeGreaterThan(0);
     });
 
-    test.afterAll(async () => {
-        await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
-        await deleteAllAssessments(authObjects.companyOneAuthHeaders);
-    });
+    // test.afterAll(async () => {
+    //     await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
+    //     await deleteAllAssessments(authObjects.companyOneAuthHeaders);
+    // });
 
     test("DELETE with deleted assessment id and valid token", async ({ request }) => {
-        await deleteAssessmentById(authObjects.companyOneAuthHeaders, new_assessment.id);
+        await deleteAssessmentById(authObjects.companyOneAuthHeaders, new_assessment_id);
 
         // Try to get the assessment again
-        const response = await request.delete(`/api/v2/company/assessments/${new_assessment.id}/delete`, {
+        const response = await request.delete(`/api/v2/company/assessments/${new_assessment_id}/delete`, {
             headers: authObjects.companyOneAuthHeaders
         });
 
@@ -40,7 +40,7 @@ test.describe("/api/v2/company/assessments/{assessment}/delete DELETE requests @
     });
 
     test("DELETE with valid assessment id and invalid token", async ({ request }) => {
-        const response = await request.delete(`/api/v2/company/assessments/${new_assessment.id}/delete`, {
+        const response = await request.delete(`/api/v2/company/assessments/${new_assessment_id}/delete`, {
             headers: {
                 "Accept": "application/json",
             }
@@ -70,7 +70,7 @@ test.describe("/api/v2/company/assessments/{assessment}/delete DELETE requests @
     });
 
     test("DELETE with valid assessment id and candidate token", async ({ request }) => {
-        const response = await request.delete(`/api/v2/company/assessments/${new_assessment.id}/delete`, {
+        const response = await request.delete(`/api/v2/company/assessments/${new_assessment_id}/delete`, {
             headers: authObjects.candidateOneAuthHeaders
         });
 
