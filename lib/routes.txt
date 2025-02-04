@@ -808,15 +808,15 @@ GET|HEAD        {company}.easyjobs.test/ .......................................
 
 ✅  DELETE   /api/v2/my-account ......................................... ->delete -> deleteMyAccount
 ✅  GET      /api/v2/my-account/billing ................................. ->billing -> billingDetails
-  POST     /api/v2/my-account/billing .................... ->billing.update -> updateBillingDetails
+✅  POST     /api/v2/my-account/billing .................... ->billing.update -> updateBillingDetails
   PUT      /api/v2/my-account/change-password ............... ->change-password -> changeMyPassword
-  POST     /api/v2/my-account/information .......... ->information.update -> updateBasicInformation
+✅  POST     /api/v2/my-account/information .......... ->information.update -> updateBasicInformation
   POST     /api/v2/my-account/last-seen-version ->last-seen-version.update -> updateLastSeenVersion
   POST     /api/v2/my-account/new-password-verification ->new-password-verification -> newPassword…
   PUT      /api/v2/my-account/password-changed-verification ->password-changed-verification -> pas…
   POST     /api/v2/my-account/payment ....................... ->payment.update -> updatePaymentInfo
   GET      /api/v2/my-account/payment-action/{transaction} ....... ->payment.action -> getActionUrl
-  GET      /api/v2/my-account/payment-history ......................... ->payment -> paymentHistory
+✅  GET      /api/v2/my-account/payment-history ......................... ->payment -> paymentHistory
   GET      /api/v2/my-account/paypal/payment-action/{transaction} ->paypal.payment.action -> getPa…
 
   GET        app.{domain}/api/v2/nationality ....................................................... Api\SpaV2\GlobalSearchController@searchNationality
