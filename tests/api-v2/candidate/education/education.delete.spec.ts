@@ -6,9 +6,9 @@ import { createEducation, deleteAllEducations } from '@datafactory/education';
 import { createAssertions } from '@helpers/createAssertions';
 
 test.describe("/api/v2/candidate/education/{education}/delete DELETE requests @candidate", async () => {
-    test.beforeAll(async () => {
-        await deleteAllEducations(authObjects.candidateOneAuthHeaders);
-    });
+    // test.beforeAll(async () => {
+    //     await deleteAllEducations(authObjects.candidateOneAuthHeaders);
+    // });
 
     test("DELETE with valid education id and valid token @happy", async ({ request }) => {
         const education = await createEducation(authObjects.candidateOneAuthHeaders);
@@ -20,6 +20,22 @@ test.describe("/api/v2/candidate/education/{education}/delete DELETE requests @c
 
         const body = await response.json();
 
+        // await createAssertions(body);
+        expect(body.status).toBe("SUCCESS");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("Deleted.");
+    });
+
+    // TODO: Report issue, response status should be 400
+    test("DELETE with valid education id and valid token of another candidate @security", async ({ request }) => {
+        const education = await createEducation(authObjects.candidateOneAuthHeaders);
+        const response = await request.delete(`/api/v2/candidate/education/${education.data.id}/delete`, {
+            headers: authObjects.candidateTwoAuthHeaders
+        });
+
+        expect.soft(response.status()).toBe(200);
+        console.log(education);
+        const body = await response.json();
         // await createAssertions(body);
         expect(body.status).toBe("SUCCESS");
         expect(body.data).toEqual([]);

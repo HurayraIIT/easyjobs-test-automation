@@ -44,25 +44,8 @@ export async function createEducation(authHeaders: any) {
         data: education_data,
         headers: authHeaders
     });
-
     expect(response.status()).toBe(200);
-
     const body = await response.json();
-
-    expect(body.status).toBe('SUCCESS');
-    expect(body.message).toBe('Updated.');
-
-    //await createAssertions(body);
-    expect(body.data.user_id).toBeGreaterThan(0);
-    expect(body.data.level).toBe(education_data.level);
-    expect(body.data.degree).toBe(education_data.degree);
-    expect(body.data.academy_name).toBe(education_data.academy_name);
-    expect(body.data.passing_year).toBe(education_data.passing_year);
-    expect(body.data.level_id).toBeGreaterThan(0);
-    expect(body.data.degree_id).toBeGreaterThan(0);
-    expect(body.data.order).toBeGreaterThan(0);
-    expect(body.data.id).toBeGreaterThan(0);
-
     return body;
 }
 

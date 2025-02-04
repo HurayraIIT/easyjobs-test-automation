@@ -31,12 +31,42 @@ test.describe("/api/v2/candidate/education GET requests @candidate", async () =>
         expect(body.message).toBeNull();
     });
 
-    test("GET without auth token", async ({ request }) => {
+    test("GET with valid credentials from another candidate @security", async ({ request }) => {
         const education = await createEducation(authObjects.candidateOneAuthHeaders);
+        const response = await request.get(`/api/v2/candidate/education?id=${education.data.id}`, {
+            headers: authObjects.candidateTwoAuthHeaders
+        });
 
+        expect(response.status()).toBe(400);
+
+        const body = await response.json();
+        // await createAssertions(body);
+        expect(body.status).toBe("FAILED");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("Education history not found.");
+    });
+
+    test("GET with valid credentials from a company @security", async ({ request }) => {
+        const education = await createEducation(authObjects.candidateOneAuthHeaders);
+        const response = await request.get(`/api/v2/candidate/education?id=${education.data.id}`, {
+            headers: authObjects.companyOneAuthHeaders
+        });
+
+        expect(response.status()).toBe(480);
+
+        const body = await response.json();
+        // await createAssertions(body);
+        expect(body.status).toBe("failed");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("You do not have access permissions.");
+    });
+
+    test("GET without auth token @security", async ({ request }) => {
+        const education = await createEducation(authObjects.candidateOneAuthHeaders);
         const response = await request.get(`/api/v2/candidate/education?id=${education.data.id}`, {
             headers: {
                 "ACCEPT": "application/json",
+                "Company-Id": "2227"
             }
         });
 
@@ -72,13 +102,9 @@ test.describe("/api/v2/candidate/education GET requests @candidate", async () =>
         expect(response.status()).toBe(400);
 
         const body = await response.json();
-
         // await createAssertions(body);
         expect(body.status).toBe("FAILED");
-        expect(body.status).toBe("FAILED");
         expect(body.data).toEqual([]);
-        expect(body.data).toEqual([]);
-        expect(body.message).toBe("Education history not found.");
         expect(body.message).toBe("Education history not found.");
     });
 
