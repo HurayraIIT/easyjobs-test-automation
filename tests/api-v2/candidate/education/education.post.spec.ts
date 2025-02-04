@@ -6,7 +6,7 @@ import { getRandomEducationData } from "@datafactory/education";
 import { createAssertions } from "@helpers/createAssertions";
 
 test.describe("/api/v2/candidate/education POST requests @candidate", async () => {
-    test("POST can create a new education and edit it @happy", async ({ request }) => {
+    test("POST can create a new education and edit it @happy @security", async ({ request }) => {
         // Create a new education
         let education_data = getRandomEducationData();
         const response = await request.post('/api/v2/candidate/education', {
@@ -55,6 +55,19 @@ test.describe("/api/v2/candidate/education POST requests @candidate", async () =
         expect(body.data.degree_id).toBeGreaterThan(0);
         expect(body.data.order).toBeGreaterThan(0);
         expect(new_body.data.id).toBe(body.data.id);
+
+        // Another candidate will try to edit the education
+        const new_response_2 = await request.post('/api/v2/candidate/education', {
+            data: new_education_data,
+            headers: authObjects.candidateTwoAuthHeaders
+        });
+
+        expect.soft(new_response_2.status()).toBe(200);
+
+        const new_body_2 = await new_response_2.json();
+        // await createAssertions(new_body_2);
+        expect(new_body_2.status).toBe('SUCCESS');
+        expect(new_body_2.data.id).not.toBe(body.data.id);
     });
 
     test("POST with empty data", async ({ request }) => {
@@ -106,5 +119,22 @@ test.describe("/api/v2/candidate/education POST requests @candidate", async () =
 
         const body = await response.json();
         expect(body.message).toBe('Unauthenticated.');
+    });
+
+    test("POST with company auth", async ({ request }) => {
+        const education_data = getRandomEducationData();
+
+        const response = await request.post('/api/v2/candidate/education', {
+            data: education_data,
+            headers: authObjects.companyOneAuthHeaders
+        });
+
+        expect(response.status()).toBe(480);
+
+        const body = await response.json();
+        // await createAssertions(body);
+        expect(body.status).toBe("failed");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("You do not have access permissions.");
     });
 });

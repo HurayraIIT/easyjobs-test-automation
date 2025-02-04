@@ -6,9 +6,9 @@ import { createAssertions } from "@helpers/createAssertions";
 import { createEducation, deleteAllEducations, deleteEducationById } from '@datafactory/education';
 
 test.describe("/api/v2/candidate/education GET requests @candidate", async () => {
-    test.beforeAll(async () => {
-        await deleteAllEducations(authObjects.candidateOneAuthHeaders);
-    });
+    // test.beforeAll(async () => {
+    //     await deleteAllEducations(authObjects.candidateOneAuthHeaders);
+    // });
 
     test("GET with valid credentials @happy", async ({ request }) => {
         const education = await createEducation(authObjects.candidateOneAuthHeaders);
