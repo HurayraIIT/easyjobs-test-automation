@@ -55,8 +55,8 @@ test.describe("/api/v2/company/question/group/{group}/duplicate GET requests @co
 
     test("GET duplicate with candidates credentials @security", async ({ request }) => {
         // Candidates should not be able to duplicate question set
-        const set = await createQuestionSet(authObjects.companyOneAuthHeaders);
-        const response = await request.get(`/api/v2/company/question/group/${set.id}/duplicate`, {
+        const set_id = await createQuestionSet(authObjects.companyOneAuthHeaders);
+        const response = await request.get(`/api/v2/company/question/group/${set_id}/duplicate`, {
             headers: authObjects.candidateOneAuthHeaders
         });
         expect.soft(response.status()).toBe(480);
@@ -69,8 +69,8 @@ test.describe("/api/v2/company/question/group/{group}/duplicate GET requests @co
     });
 
     test("GET duplicate without auth token @security", async ({ request }) => {
-        const set = await createQuestionSet(authObjects.companyOneAuthHeaders);
-        const response = await request.get(`/api/v2/company/question/group/${set.id}/duplicate`, {
+        const set_id = await createQuestionSet(authObjects.companyOneAuthHeaders);
+        const response = await request.get(`/api/v2/company/question/group/${set_id}/duplicate`, {
             headers: {
                 "ACCEPT": "application/json",
             }
