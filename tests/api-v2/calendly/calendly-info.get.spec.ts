@@ -34,7 +34,7 @@ test.describe("/api/v2/calendly/info GET requests @company @happy", async () => 
         const response = await request.get(`/api/v2/calendly/info`, {
             headers: authObjects.companyTwoAuthHeaders
         });
-        expect(response.status()).toBe(400);
+        expect.soft(response.status()).toBe(400);
 
         const body = await response.json();
 

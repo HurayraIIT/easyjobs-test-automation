@@ -77,7 +77,6 @@ test.describe("/api/v2/company/setting/category/{id} DELETE requests @company", 
         expect(body.message).toBe("Unauthenticated.");
     });
 
-    // TODO: Report Issue: Response status should be 400
     test("DELETE with invalid int category id and valid token", async ({ request }) => {
         const response = await request.delete(`/api/v2/company/setting/category/1234`, {
             headers: authObjects.companyOneAuthHeaders
@@ -93,7 +92,6 @@ test.describe("/api/v2/company/setting/category/{id} DELETE requests @company", 
         expect(body.message).toBe("Category not found.");
     });
 
-    // TODO: Report Issue: Response status should be 400
     test("DELETE with invalid string category id and valid token", async ({ request }) => {
         const response = await request.delete(`/api/v2/company/setting/category/abcdef`, {
             headers: authObjects.companyOneAuthHeaders

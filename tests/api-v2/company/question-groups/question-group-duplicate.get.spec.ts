@@ -21,7 +21,6 @@ test.describe("/api/v2/company/question/group/{group}/duplicate GET requests @co
 
         const body = await response.json();
         const original_set = await getQuestionSetById(authObjects.companyOneAuthHeaders, set_id);
-        // console.log(original_set);
         // await createAssertions(body);
         expect(body.status).toBe("SUCCESS");
         expect(body.data.name).toBe(original_set.set_name);
@@ -45,7 +44,7 @@ test.describe("/api/v2/company/question/group/{group}/duplicate GET requests @co
             headers: authObjects.companyTwoAuthHeaders
         });
 
-        expect(response.status()).toBe(480);
+        expect.soft(response.status()).toBe(480);
 
         const body = await response.json();
         // await createAssertions(body);

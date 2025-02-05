@@ -51,7 +51,6 @@ test.describe("/api/v2/company/setting/skill/{id} DELETE requests @company", asy
         expect(body.message).toBe("Unauthenticated.");
     });
 
-    // TODO: Report Issue: Response status should be 400
     test("DELETE with invalid int skill id and valid token", async ({ request }) => {
         const response = await request.delete(`/api/v2/company/setting/skill/123`, {
             headers: authObjects.companyOneAuthHeaders
@@ -67,7 +66,6 @@ test.describe("/api/v2/company/setting/skill/{id} DELETE requests @company", asy
         expect(body.message).toBe("Skill not found.");
     });
 
-    // TODO: Report Issue: Response status should be 400
     test("DELETE with invalid string skill id and valid token", async ({ request }) => {
         const response = await request.delete(`/api/v2/company/setting/skill/abcdef`, {
             headers: authObjects.companyOneAuthHeaders

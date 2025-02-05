@@ -32,6 +32,38 @@ test.describe("/api/v2/candidate/employment GET requests @candidate", async () =
         expect(body.data.responsibilities).toBe(employment.data.responsibilities);
     });
 
+    test("GET with another candidates credentials @security", async ({ request }) => {
+        const employment = await createCandidateEmployment(authObjects.candidateOneAuthHeaders);
+
+        const response = await request.get(`/api/v2/candidate/employment?id=${employment.data.id}`, {
+            headers: authObjects.candidateTwoAuthHeaders
+        });
+
+        expect(response.status()).toBe(400);
+
+        const body = await response.json();
+        // await createAssertions(body);
+        expect(body.status).toBe("FAILED");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("responses.employment.not_found");
+    });
+
+    test("GET with company credentials @security", async ({ request }) => {
+        const employment = await createCandidateEmployment(authObjects.candidateOneAuthHeaders);
+
+        const response = await request.get(`/api/v2/candidate/employment?id=${employment.data.id}`, {
+            headers: authObjects.companyOneAuthHeaders
+        });
+
+        expect(response.status()).toBe(480);
+
+        const body = await response.json();
+        // await createAssertions(body);
+        expect(body.status).toBe("failed");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("You do not have access permissions.");
+    });
+
     test("GET without auth token", async ({ request }) => {
         const employment = await createCandidateEmployment(authObjects.candidateOneAuthHeaders);
 

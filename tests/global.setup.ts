@@ -60,8 +60,6 @@ setup('authenticate and save the headers', async ({ }) => {
     authHeaders.candidateOneAuthHeaders = candidateOneAuthHeaders;
     authHeaders.candidateTwoAuthHeaders = candidateTwoAuthHeaders;
 
-    // console.log(authHeaders);
-
     // write the authHeaders to the .auth/auth.json file
     fs.writeFileSync('.auth/auth.json', JSON.stringify(authHeaders, null, 2));
 });

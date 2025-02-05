@@ -75,6 +75,61 @@ test.describe("/api/v2/candidate/education/re-order POST requests @candidate", a
         expect(body.message).toBe('Unauthenticated.');
     });
 
+    // TODO: SECURITY ISSUE Test after it is fixed
+    test.skip("POST re-order educations with another candidate @security", async ({ request }) => {
+        // Create 3 educations
+        const education_0 = await createEducation(authObjects.candidateOneAuthHeaders);
+        const education_1 = await createEducation(authObjects.candidateOneAuthHeaders);
+        const education_2 = await createEducation(authObjects.candidateOneAuthHeaders);
+
+        // Re-order the educations
+        const response = await request.post(`/api/v2/candidate/education/re-order`, {
+            headers: authObjects.candidateTwoAuthHeaders,
+            data: {
+                "educations": [
+                    education_2.data,
+                    education_1.data,
+                    education_0.data
+                ]
+            }
+        });
+
+        expect(response.status()).toBe(480);
+
+        const body = await response.json();
+        // await createAssertions(body);
+        expect(body.status).toBe("failed");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("You do not have access permissions.");
+    });
+
+    test("POST re-order educations with company auth @security", async ({ request }) => {
+        // Create 3 educations
+        const education_0 = await createEducation(authObjects.candidateOneAuthHeaders);
+        const education_1 = await createEducation(authObjects.candidateOneAuthHeaders);
+        const education_2 = await createEducation(authObjects.candidateOneAuthHeaders);
+
+        // Re-order the educations
+        const response = await request.post(`/api/v2/candidate/education/re-order`, {
+            headers: authObjects.companyOneAuthHeaders,
+            data: {
+                "educations": [
+                    education_2.data,
+                    education_1.data,
+                    education_0.data
+                ]
+            }
+        });
+
+        expect(response.status()).toBe(480);
+
+        const body = await response.json();
+        // await createAssertions(body);
+        expect(body.status).toBe("failed");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("You do not have access permissions.");
+    });
+
     test("POST re-order educations with empty educations", async ({ request }) => {
         const response = await request.post(`/api/v2/candidate/education/re-order`, {
             headers: authObjects.candidateOneAuthHeaders,

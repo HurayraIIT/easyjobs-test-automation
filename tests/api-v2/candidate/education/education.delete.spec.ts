@@ -34,12 +34,25 @@ test.describe("/api/v2/candidate/education/{education}/delete DELETE requests @c
         });
 
         expect.soft(response.status()).toBe(200);
-        console.log(education);
         const body = await response.json();
         // await createAssertions(body);
         expect(body.status).toBe("SUCCESS");
         expect(body.data).toEqual([]);
         expect(body.message).toBe("Deleted.");
+    });
+
+    test("DELETE with valid education id and valid token of a company @security", async ({ request }) => {
+        const education = await createEducation(authObjects.candidateOneAuthHeaders);
+        const response = await request.delete(`/api/v2/candidate/education/${education.data.id}/delete`, {
+            headers: authObjects.companyOneAuthHeaders
+        });
+
+        expect.soft(response.status()).toBe(480);
+        const body = await response.json();
+        // await createAssertions(body);
+        expect(body.status).toBe("failed");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("You do not have access permissions.");
     });
 
     test("DELETE with already deleted education id", async ({ request }) => {

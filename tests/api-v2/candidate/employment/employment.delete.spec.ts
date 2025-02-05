@@ -26,6 +26,36 @@ test.describe("/api/v2/candidate/employment/{employment}/delete DELETE requests 
         expect(body.message).toBe("Deleted.");
     });
 
+    // TODO: Report issue, response status should be 400
+    test("DELETE with valid employment id but another candidate @security", async ({ request }) => {
+        const employment = await createCandidateEmployment(authObjects.candidateOneAuthHeaders);
+        const response = await request.delete(`/api/v2/candidate/employment/${employment.data.id}/delete`, {
+            headers: authObjects.candidateTwoAuthHeaders
+        });
+
+        expect.soft(response.status()).toBe(200);
+        const body = await response.json();
+        // await createAssertions(body);
+        expect(body.status).toBe("SUCCESS");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("Deleted.");
+    });
+
+    test("DELETE with valid employment id but company auth @security", async ({ request }) => {
+        const employment = await createCandidateEmployment(authObjects.candidateOneAuthHeaders);
+        const response = await request.delete(`/api/v2/candidate/employment/${employment.data.id}/delete`, {
+            headers: authObjects.companyOneAuthHeaders
+        });
+
+        expect(response.status()).toBe(480);
+
+        const body = await response.json();
+        // await createAssertions(body);
+        expect(body.status).toBe("failed");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("You do not have access permissions.");
+    });
+
     test("DELETE with already deleted employment id", async ({ request }) => {
         // First create and delete an employment
         const employment = await createCandidateEmployment(authObjects.candidateOneAuthHeaders);
