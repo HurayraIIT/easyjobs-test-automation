@@ -1,32 +1,32 @@
 GET        {company}.easyjobs.test/ ...................................................... company.domain.home › Web\Company\SubDomainController@home
   GET        {domain}/ ...................................................................... company.custom-domain › Web\Company\DomainController@home
-  POST            _ignition/execute-solution ................................. ignition.executeSolution › Spatie\LaravelIgnition › ExecuteSolutionController
+  POST    _ignition/execute-solution ................................. ignition.executeSolution › Spatie\LaravelIgnition › ExecuteSolutionController
   GET        _ignition/health-check ............................................. ignition.healthCheck › Spatie\LaravelIgnition › HealthCheckController
-  POST            _ignition/update-config .......................................... ignition.updateConfig › Spatie\LaravelIgnition › UpdateConfigController
-  POST            ajax/assessment/{assessmentId}/answer ajax.company.domain.assessment.answer › EasyJobs\Evaluation\Http\Controllers\Api\V2\AssessmentContr…
+  POST    _ignition/update-config .......................................... ignition.updateConfig › Spatie\LaravelIgnition › UpdateConfigController
+  POST    ajax/assessment/{assessmentId}/answer ajax.company.domain.assessment.answer › EasyJobs\Evaluation\Http\Controllers\Api\V2\AssessmentContr…
   GET        ajax/assessment/{assessmentId}/details ajax.company.domain.assessment.details › EasyJobs\Evaluation\Http\Controllers\Api\V2\AssessmentCon…
   GET        ajax/assessment/{assessmentId}/question/{questionId} ajax.company.domain.assessment.question › EasyJobs\Evaluation\Http\Controllers\Api\V…
-  POST            ajax/assessment/{assessmentId}/start ajax.company.domain.assessment.start › EasyJobs\Evaluation\Http\Controllers\Api\V2\AssessmentControl…
+  POST    ajax/assessment/{assessmentId}/start ajax.company.domain.assessment.start › EasyJobs\Evaluation\Http\Controllers\Api\V2\AssessmentControl…
   GET        ajax/assessment/{assessmentId}/time ajax.company.domain.assessment.time › EasyJobs\Evaluation\Http\Controllers\Api\V2\AssessmentControlle…
-  POST            ajax/candidate-custom-file ....................... save.candidate.custom-file › Web\Company\GlobalSearchController@saveCandidateCustomFile
-  POST            ajax/candidate-custom-file/delete ............ remove.candidate.custom-file › Web\Company\GlobalSearchController@removeCandidateCustomFile
-  POST            ajax/candidate-resume ..................................... save.candidate.resume › Web\Company\GlobalSearchController@saveCandidateResume
-  POST            ajax/candidate/image/update ................................. save.candidate.image › Web\Company\GlobalSearchController@saveCandidateImage
-  POST            ajax/candidate/resume-parse ........................ ajax.candidate.resume.parse › Web\Company\GlobalSearchController@candidateResumeParse
+  POST    ajax/candidate-custom-file ....................... save.candidate.custom-file › Web\Company\GlobalSearchController@saveCandidateCustomFile
+  POST    ajax/candidate-custom-file/delete ............ remove.candidate.custom-file › Web\Company\GlobalSearchController@removeCandidateCustomFile
+  POST    ajax/candidate-resume ..................................... save.candidate.resume › Web\Company\GlobalSearchController@saveCandidateResume
+  POST    ajax/candidate/image/update ................................. save.candidate.image › Web\Company\GlobalSearchController@saveCandidateImage
+  POST    ajax/candidate/resume-parse ........................ ajax.candidate.resume.parse › Web\Company\GlobalSearchController@candidateResumeParse
   GET        ajax/candidate/unique/email ................................... company.domain.check.email › Web\Company\GlobalSearchController@checkEmail
   GET        ajax/company ............................................................. ajax.company › Web\Company\GlobalSearchController@searchCompany
   GET        ajax/degree/{level?} ....................................................... ajax.degree › Web\Company\GlobalSearchController@searchDegree
   GET        ajax/department .................................................... ajax.department › Web\Company\GlobalSearchController@searchDepartment
   GET        ajax/designation ................................................. ajax.designation › Web\Company\GlobalSearchController@searchDesignation
 
-  POST            app.{domain}/ajax/get-coupon-by-code ............................................................ Web\App\CouponController@getCouponByCode
-  POST            ajax/quiz/{job}/answer ......... ajax.company.domain.quiz.answer › EasyJobs\Evaluation\Http\Controllers\Api\V2\QuizController@submitAnswer
+  POST    app.{domain}/ajax/get-coupon-by-code ............................................................ Web\App\CouponController@getCouponByCode
+  POST    ajax/quiz/{job}/answer ......... ajax.company.domain.quiz.answer › EasyJobs\Evaluation\Http\Controllers\Api\V2\QuizController@submitAnswer
   GET        ajax/quiz/{job}/question/{questionId} ajax.company.domain.quiz.question › EasyJobs\Evaluation\Http\Controllers\Api\V2\QuizController@getQ…
-  POST            ajax/quiz/{job}/start .............. ajax.company.domain.quiz.start › EasyJobs\Evaluation\Http\Controllers\Api\V2\QuizController@startQuiz
+  POST    ajax/quiz/{job}/start .............. ajax.company.domain.quiz.start › EasyJobs\Evaluation\Http\Controllers\Api\V2\QuizController@startQuiz
   GET        ajax/quiz/{job}/time .................. ajax.company.domain.quiz.time › EasyJobs\Evaluation\Http\Controllers\Api\V2\QuizController@getTime
   GET        ajax/refresh-csrf ........................................................................................................................ 
-  POST            ajax/remove-candidate-resume .......................... remove.candidate.resume › Web\Company\GlobalSearchController@removeCandidateResume
-  POST            ajax/screening/{job}/answer ajax.company.domain.screening.answer › EasyJobs\Evaluation\Http\Controllers\Api\V2\ScreeningController@submit…
+  POST    ajax/remove-candidate-resume .......................... remove.candidate.resume › Web\Company\GlobalSearchController@removeCandidateResume
+  POST    ajax/screening/{job}/answer ajax.company.domain.screening.answer › EasyJobs\Evaluation\Http\Controllers\Api\V2\ScreeningController@submit…
 
   GET        app.{domain}/allowed-domain ................................................................ Web\App\CustomDomainController@checkDomainTls
   GET        api/admin/v1/analytics/attachment ........................................................ Api\AdminV1\AnalyticsController@attachmentsData
@@ -43,18 +43,18 @@ GET        {company}.easyjobs.test/ ............................................
   GET        api/admin/v1/applications ..................................................................... Api\AdminV1\DashboardController@candidates
   GET        api/admin/v1/candidates ............................................................................ Api\AdminV1\CandidateController@index
   GET        api/admin/v1/candidates/{id} ........................................................................ Api\AdminV1\CandidateController@show
-  PUT             api/admin/v1/candidates/{id} ...................................................................... Api\AdminV1\CandidateController@update
-  POST            api/admin/v1/candidates/{id}/photo ............................................................. Api\AdminV1\CandidateController@savePhoto
+  PUT     api/admin/v1/candidates/{id} ...................................................................... Api\AdminV1\CandidateController@update
+  POST    api/admin/v1/candidates/{id}/photo ............................................................. Api\AdminV1\CandidateController@savePhoto
   DELETE          api/admin/v1/candidates/{id}/photo ........................................................... Api\AdminV1\CandidateController@removePhoto
   GET        api/admin/v1/categories ....................................................................... Api\AdminV1\DashboardController@categories
-  POST            api/admin/v1/categories ................................................................... Api\AdminV1\DashboardController@createCategory
+  POST    api/admin/v1/categories ................................................................... Api\AdminV1\DashboardController@createCategory
   GET        api/admin/v1/categories/{category} ....................................................... Api\AdminV1\DashboardController@categoryDetails
-  PUT             api/admin/v1/categories/{category} ........................................................ Api\AdminV1\DashboardController@updateCategory
+  PUT     api/admin/v1/categories/{category} ........................................................ Api\AdminV1\DashboardController@updateCategory
   DELETE          api/admin/v1/categories/{category} ........................................................ Api\AdminV1\DashboardController@deleteCategory
   GET        api/admin/v1/cities ............................................................................... Api\AdminV1\DashboardController@cities
-  POST            api/admin/v1/cities ........................................................................... Api\AdminV1\DashboardController@createCity
+  POST    api/admin/v1/cities ........................................................................... Api\AdminV1\DashboardController@createCity
   GET        api/admin/v1/cities/{city} ................................................................... Api\AdminV1\DashboardController@cityDetails
-  PUT             api/admin/v1/cities/{city} .................................................................... Api\AdminV1\DashboardController@updateCity
+  PUT     api/admin/v1/cities/{city} .................................................................... Api\AdminV1\DashboardController@updateCity
   DELETE          api/admin/v1/cities/{city} .................................................................... Api\AdminV1\DashboardController@deleteCity
   GET        api/admin/v1/common/city/{country?}/{state?} ................................................. Api\AdminV1\CommonDataController@searchCity
   GET        api/admin/v1/common/country ............................................................... Api\AdminV1\CommonDataController@searchCountry
@@ -66,20 +66,20 @@ GET        {company}.easyjobs.test/ ............................................
   GET        api/admin/v1/companies/counters .......................................................... Api\AdminV1\DashboardController@companyCounters
   GET        api/admin/v1/companies/list .................................................................... Api\AdminV1\DashboardController@companies
   GET        api/admin/v1/companies/{id} ............................................................... Api\AdminV1\DashboardController@companyDetails
-  PUT             api/admin/v1/companies/{id} ................................................................ Api\AdminV1\DashboardController@updateCompany
+  PUT     api/admin/v1/companies/{id} ................................................................ Api\AdminV1\DashboardController@updateCompany
   GET        api/admin/v1/company-email-templates .................... company-email-templates.index › Api\AdminV1\CompanyEmailTemplateController@index
-  POST            api/admin/v1/company-email-templates .................... company-email-templates.store › Api\AdminV1\CompanyEmailTemplateController@store
+  POST    api/admin/v1/company-email-templates .................... company-email-templates.store › Api\AdminV1\CompanyEmailTemplateController@store
   GET        api/admin/v1/company-email-templates/{company_email_template} company-email-templates.show › Api\AdminV1\CompanyEmailTemplateController@s…
   PUT|PATCH       api/admin/v1/company-email-templates/{company_email_template} company-email-templates.update › Api\AdminV1\CompanyEmailTemplateController…
   DELETE          api/admin/v1/company-email-templates/{company_email_template} company-email-templates.destroy › Api\AdminV1\CompanyEmailTemplateControlle…
   GET        api/admin/v1/company-email-types ......................................... Api\AdminV1\CompanyEmailTemplateController@getCompanyEmailTypes
   GET        api/admin/v1/countries ......................................................................... Api\AdminV1\DashboardController@countries
-  POST            api/admin/v1/countries ..................................................................... Api\AdminV1\DashboardController@createCountry
+  POST    api/admin/v1/countries ..................................................................... Api\AdminV1\DashboardController@createCountry
   GET        api/admin/v1/countries/{country} .......................................................... Api\AdminV1\DashboardController@countryDetails
-  PUT             api/admin/v1/countries/{country} ........................................................... Api\AdminV1\DashboardController@updateCountry
+  PUT     api/admin/v1/countries/{country} ........................................................... Api\AdminV1\DashboardController@updateCountry
   DELETE          api/admin/v1/countries/{country} ........................................................... Api\AdminV1\DashboardController@deleteCountry
   GET        api/admin/v1/coupons ................................................................. coupons.index › Api\AdminV1\CouponsController@index
-  POST            api/admin/v1/coupons ................................................................. coupons.store › Api\AdminV1\CouponsController@store
+  POST    api/admin/v1/coupons ................................................................. coupons.store › Api\AdminV1\CouponsController@store
   GET        api/admin/v1/coupons/meta .......................................................................... Api\AdminV1\CouponsController@getMeta
   GET        api/admin/v1/coupons/{coupon} .......................................................... coupons.show › Api\AdminV1\CouponsController@show
   PUT|PATCH       api/admin/v1/coupons/{coupon} ...................................................... coupons.update › Api\AdminV1\CouponsController@update
@@ -87,171 +87,171 @@ GET        {company}.easyjobs.test/ ............................................
   GET        api/admin/v1/customers/counters ......................................................... Api\AdminV1\DashboardController@customerCounters
   GET        api/admin/v1/customers/list .................................................................... Api\AdminV1\DashboardController@customers
   GET        api/admin/v1/customers/meta ............................................................. Api\AdminV1\DashboardController@getCustomersMeta
-  POST            api/admin/v1/customers/paypal/subscriptions/{id}/cancel ........................ Api\AdminV1\DashboardController@cancelPaypalSubscriptions
+  POST    api/admin/v1/customers/paypal/subscriptions/{id}/cancel ........................ Api\AdminV1\DashboardController@cancelPaypalSubscriptions
   GET        api/admin/v1/customers/subscriptions/{id} .......................................... Api\AdminV1\DashboardController@customerSubscriptions
   DELETE          api/admin/v1/customers/subscriptions/{id} .................................... Api\AdminV1\DashboardController@cancelCustomerSubscriptions
-  POST            api/admin/v1/customers/subscriptions/{id}/cancel ..................................... Api\AdminV1\DashboardController@cancelSubscriptions
+  POST    api/admin/v1/customers/subscriptions/{id}/cancel ..................................... Api\AdminV1\DashboardController@cancelSubscriptions
   GET        api/admin/v1/customers/transactions ......................................................... Api\AdminV1\DashboardController@transactions
   GET        api/admin/v1/customers/transactions/report ...................................... Api\AdminV1\DashboardController@getTotalTransactionChart
   GET        api/admin/v1/customers/transactions/{id}/company-info ................................ Api\AdminV1\DashboardController@companyInformations
   GET        api/admin/v1/customers/{id} .............................................................. Api\AdminV1\DashboardController@customerDetails
-  PUT             api/admin/v1/customers/{id} ............................................................... Api\AdminV1\DashboardController@updateCustomer
-  PUT             api/admin/v1/customers/{id}/update-package ......................................... Api\AdminV1\DashboardController@updateCustomerPackage
+  PUT     api/admin/v1/customers/{id} ............................................................... Api\AdminV1\DashboardController@updateCustomer
+  PUT     api/admin/v1/customers/{id}/update-package ......................................... Api\AdminV1\DashboardController@updateCustomerPackage
   GET        api/admin/v1/dashboard/analytics ........................................................... Api\AdminV1\DashboardController@analyticsInfo
   GET        api/admin/v1/dashboard/counter ............................................................... Api\AdminV1\DashboardController@counterInfo
   GET        api/admin/v1/dashboard/financial ........................................................... Api\AdminV1\DashboardController@financialInfo
   GET        api/admin/v1/dashboard/recent-customers .................................................. Api\AdminV1\DashboardController@recentCustomers
   GET        api/admin/v1/dashboard/revenue ............................................................... Api\AdminV1\DashboardController@revenueInfo
   GET        api/admin/v1/degrees .................................................................................. Api\AdminV1\DegreeController@index
-  POST            api/admin/v1/degrees .................................................................................. Api\AdminV1\DegreeController@store
+  POST    api/admin/v1/degrees .................................................................................. Api\AdminV1\DegreeController@store
   GET        api/admin/v1/degrees/{degree} .......................................................................... Api\AdminV1\DegreeController@show
-  PUT             api/admin/v1/degrees/{degree} ........................................................................ Api\AdminV1\DegreeController@update
+  PUT     api/admin/v1/degrees/{degree} ........................................................................ Api\AdminV1\DegreeController@update
   DELETE          api/admin/v1/degrees/{degree} ....................................................................... Api\AdminV1\DegreeController@destroy
   GET        api/admin/v1/departments ...................................................... departments.index › Api\AdminV1\DepartmentController@index
-  POST            api/admin/v1/departments ...................................................... departments.store › Api\AdminV1\DepartmentController@store
+  POST    api/admin/v1/departments ...................................................... departments.store › Api\AdminV1\DepartmentController@store
   GET        api/admin/v1/departments/{department} ........................................... departments.show › Api\AdminV1\DepartmentController@show
   PUT|PATCH       api/admin/v1/departments/{department} ....................................... departments.update › Api\AdminV1\DepartmentController@update
   DELETE          api/admin/v1/departments/{department} ..................................... departments.destroy › Api\AdminV1\DepartmentController@destroy
   GET        api/admin/v1/designations ................................................... designations.index › Api\AdminV1\DesignationController@index
-  POST            api/admin/v1/designations ................................................... designations.store › Api\AdminV1\DesignationController@store
+  POST    api/admin/v1/designations ................................................... designations.store › Api\AdminV1\DesignationController@store
   GET        api/admin/v1/designations/{designation} ....................................... designations.show › Api\AdminV1\DesignationController@show
   PUT|PATCH       api/admin/v1/designations/{designation} ................................... designations.update › Api\AdminV1\DesignationController@update
   DELETE          api/admin/v1/designations/{designation} ................................. designations.destroy › Api\AdminV1\DesignationController@destroy
   GET        api/admin/v1/education-levels ................................................................. Api\AdminV1\EducationLevelController@index
-  POST            api/admin/v1/education-levels ................................................................. Api\AdminV1\EducationLevelController@store
+  POST    api/admin/v1/education-levels ................................................................. Api\AdminV1\EducationLevelController@store
   GET        api/admin/v1/education-levels/{level} .......................................................... Api\AdminV1\EducationLevelController@show
-  PUT             api/admin/v1/education-levels/{level} ........................................................ Api\AdminV1\EducationLevelController@update
+  PUT     api/admin/v1/education-levels/{level} ........................................................ Api\AdminV1\EducationLevelController@update
   DELETE          api/admin/v1/education-levels/{level} ....................................................... Api\AdminV1\EducationLevelController@destroy
   GET        api/admin/v1/job-board ........................................................................... Api\AdminV1\JobBoardController@jobBoard
-  PUT             api/admin/v1/job-board/{job}/update-status ................................................... Api\AdminV1\JobBoardController@updateStatus
+  PUT     api/admin/v1/job-board/{job}/update-status ................................................... Api\AdminV1\JobBoardController@updateStatus
   GET        api/admin/v1/job/category ................................................................... Api\AdminV1\JobPostController@searchCategory
   GET        api/admin/v1/job/information-meta-data ..................................................... Api\AdminV1\JobPostController@jobInfoMetaData
   GET        api/admin/v1/job/skill ......................................................................... Api\AdminV1\JobPostController@searchSkill
   GET        api/admin/v1/jobs ................................................................................... Api\AdminV1\DashboardController@jobs
-  POST            api/admin/v1/login ...................................................................................... Api\AdminV1\AuthController@login
+  POST    api/admin/v1/login ...................................................................................... Api\AdminV1\AuthController@login
   GET        api/admin/v1/logs ....................................................................................... Api\AdminV1\LogsController@index
   DELETE          api/admin/v1/logs ...................................................................................... Api\AdminV1\LogsController@delete
   GET        api/admin/v1/packages .............................................................. packages.index › Api\AdminV1\PackagesController@index
-  POST            api/admin/v1/packages .............................................................. packages.store › Api\AdminV1\PackagesController@store
+  POST    api/admin/v1/packages .............................................................. packages.store › Api\AdminV1\PackagesController@store
   GET        api/admin/v1/packages-list .................................................................. Api\AdminV1\DashboardController@packagesList
   GET        api/admin/v1/packages/meta ........................................................................ Api\AdminV1\PackagesController@getMeta
   GET        api/admin/v1/packages/{package} ...................................................... packages.show › Api\AdminV1\PackagesController@show
   PUT|PATCH       api/admin/v1/packages/{package} .................................................. packages.update › Api\AdminV1\PackagesController@update
   DELETE          api/admin/v1/packages/{package} ................................................ packages.destroy › Api\AdminV1\PackagesController@destroy
   GET        api/admin/v1/question-set ...................................................... question-set.index › Api\AdminV1\QuestionController@index
-  POST            api/admin/v1/question-set ...................................................... question-set.store › Api\AdminV1\QuestionController@store
+  POST    api/admin/v1/question-set ...................................................... question-set.store › Api\AdminV1\QuestionController@store
   GET        api/admin/v1/question-set/{question_set} ......................................... question-set.show › Api\AdminV1\QuestionController@show
   PUT|PATCH       api/admin/v1/question-set/{question_set} ..................................... question-set.update › Api\AdminV1\QuestionController@update
   DELETE          api/admin/v1/question-set/{question_set} ................................... question-set.destroy › Api\AdminV1\QuestionController@destroy
   GET        api/admin/v1/releases .................................................................... Api\AdminV1\ReleaseNotificationController@index
-  POST            api/admin/v1/releases/create ............................................................. Api\AdminV1\ReleaseNotificationController@store
+  POST    api/admin/v1/releases/create ............................................................. Api\AdminV1\ReleaseNotificationController@store
   GET        api/admin/v1/releases/{id} ................................................................ Api\AdminV1\ReleaseNotificationController@show
   DELETE          api/admin/v1/releases/{id} ............................................................. Api\AdminV1\ReleaseNotificationController@destroy
   DELETE          api/admin/v1/releases/{id}/item/{itemId}/delete-image .......................... Api\AdminV1\ReleaseNotificationController@deleteItemImage
-  POST            api/admin/v1/releases/{id}/update ....................................................... Api\AdminV1\ReleaseNotificationController@update
+  POST    api/admin/v1/releases/{id}/update ....................................................... Api\AdminV1\ReleaseNotificationController@update
   GET        api/admin/v1/setting/job-post-template .................................................. Api\AdminV1\JobPostController@getJobPostTemplate
-  POST            api/admin/v1/setting/job-post-template ................................................. Api\AdminV1\JobPostController@saveJobPostTemplate
+  POST    api/admin/v1/setting/job-post-template ................................................. Api\AdminV1\JobPostController@saveJobPostTemplate
   GET        api/admin/v1/setting/job-post-template/{jobPostTemplate}/details ................. Api\AdminV1\JobPostController@getJobPostTemplateDetails
-  POST            api/admin/v1/setting/job-post-template/{jobPostTemplate}/update ...................... Api\AdminV1\JobPostController@updateJobPostTemplate
+  POST    api/admin/v1/setting/job-post-template/{jobPostTemplate}/update ...................... Api\AdminV1\JobPostController@updateJobPostTemplate
   GET        api/admin/v1/setting/reserved-usernames ............................................. Api\AdminV1\AdminSettingController@reservedUsernames
-  POST            api/admin/v1/setting/reserved-usernames .......................................... Api\AdminV1\AdminSettingController@reservedUsernameSave
+  POST    api/admin/v1/setting/reserved-usernames .......................................... Api\AdminV1\AdminSettingController@reservedUsernameSave
   DELETE          api/admin/v1/setting/reserved-usernames/{username} ............................. Api\AdminV1\AdminSettingController@reservedUsernameDelete
-  PUT             api/admin/v1/setting/reserved-usernames/{username}/status ................ Api\AdminV1\AdminSettingController@reservedUsernameStatusUpdate
+  PUT     api/admin/v1/setting/reserved-usernames/{username}/status ................ Api\AdminV1\AdminSettingController@reservedUsernameStatusUpdate
   GET        api/admin/v1/skills ............................................................................... Api\AdminV1\DashboardController@skills
-  POST            api/admin/v1/skills .......................................................................... Api\AdminV1\DashboardController@createSkill
+  POST    api/admin/v1/skills .......................................................................... Api\AdminV1\DashboardController@createSkill
   GET        api/admin/v1/skills/{skill} ................................................................. Api\AdminV1\DashboardController@skillDetails
-  PUT             api/admin/v1/skills/{skill} .................................................................. Api\AdminV1\DashboardController@updateSkill
+  PUT     api/admin/v1/skills/{skill} .................................................................. Api\AdminV1\DashboardController@updateSkill
   DELETE          api/admin/v1/skills/{skill} .................................................................. Api\AdminV1\DashboardController@deleteSkill
   GET        api/admin/v1/states ............................................................................... Api\AdminV1\DashboardController@states
-  POST            api/admin/v1/states .......................................................................... Api\AdminV1\DashboardController@createState
+  POST    api/admin/v1/states .......................................................................... Api\AdminV1\DashboardController@createState
   GET        api/admin/v1/states/{state} ................................................................. Api\AdminV1\DashboardController@stateDetails
-  PUT             api/admin/v1/states/{state} .................................................................. Api\AdminV1\DashboardController@updateState
+  PUT     api/admin/v1/states/{state} .................................................................. Api\AdminV1\DashboardController@updateState
   DELETE          api/admin/v1/states/{state} .................................................................. Api\AdminV1\DashboardController@deleteState
   GET        api/admin/v1/users ..................................................................................... Api\AdminV1\UsersController@index
-  POST            api/admin/v1/users ..................................................................................... Api\AdminV1\UsersController@store
+  POST    api/admin/v1/users ..................................................................................... Api\AdminV1\UsersController@store
   GET        api/admin/v1/users/{admin} ........................................................................... Api\AdminV1\UsersController@details
-  PUT             api/admin/v1/users/{admin} ............................................................................ Api\AdminV1\UsersController@update
+  PUT     api/admin/v1/users/{admin} ............................................................................ Api\AdminV1\UsersController@update
   DELETE          api/admin/v1/users/{admin} ........................................................................... Api\AdminV1\UsersController@destroy
-  PUT             api/admin/v1/users/{admin}/change-password .................................................... Api\AdminV1\UsersController@updatePassword
+  PUT     api/admin/v1/users/{admin}/change-password .................................................... Api\AdminV1\UsersController@updatePassword
   GET        api/v1/agency/featured-jobs ....................................................................... Api\WpV1\AgencyController@featuredJobs
   GET        api/v1/agency/job/categories .................................................................. Api\WpV1\AgencyController@getJobCategories
   GET        api/v1/agency/job/locations .................................................................... Api\WpV1\AgencyController@getJobLocations
   GET        api/v1/agency/job/published ................................................................ Api\WpV1\AgencyController@agencyPublishedJobs
   GET        api/v1/agency/stats ................................................................................. Api\WpV1\AgencyController@agencyInfo
   GET        api/v1/agency/status .............................................................................. Api\WpV1\AgencyController@agencyStatus
-  POST            api/v1/candidate/login-social ................................................................... Api\WpV1\CandidateController@loginSocial
+  POST    api/v1/candidate/login-social ................................................................... Api\WpV1\CandidateController@loginSocial
   GET        api/v1/candidate/navigation/{jobId} ..................................................... Api\WpV1\CandidateController@applicantNavigation
-  POST            api/v1/candidate/sign-in ............................................................................. Api\WpV1\CandidateController@signIn
-  POST            api/v1/candidate/sign-up ............................................................................. Api\WpV1\CandidateController@signUp
+  POST    api/v1/candidate/sign-in ............................................................................. Api\WpV1\CandidateController@signIn
+  POST    api/v1/candidate/sign-up ............................................................................. Api\WpV1\CandidateController@signUp
   GET        api/v1/category/{subcategory?} ..................................................................... Api\WpV1\JobController@searchCategory
   GET        api/v1/city/custom/{country?}/{state?} ............................................... Api\WpV1\GlobalSearchController@searchCityForCustom
-  POST            api/v1/city/{country?}/{state?} .......................................................... Api\WpV1\GlobalSearchController@saveCompanyCity
+  POST    api/v1/city/{country?}/{state?} .......................................................... Api\WpV1\GlobalSearchController@saveCompanyCity
   GET        api/v1/city/{country?}/{state?} ............................................................... Api\WpV1\GlobalSearchController@searchCity
   GET        api/v1/company-meta-data ................................................................. Api\WpV1\CompanyController@getCompanyCreateData
   GET        api/v1/company/analytics ......................................................................... Api\WpV1\CompanyController@getAnalytics
   GET        api/v1/company/assessments .................................................................... Api\WpV1\QuestionController@allAssessments
-  POST            api/v1/company/assessments/create ............................................................. Api\WpV1\QuestionController@saveAssessment
+  POST    api/v1/company/assessments/create ............................................................. Api\WpV1\QuestionController@saveAssessment
   GET        api/v1/company/assessments/{assessment} ....................................................... Api\WpV1\QuestionController@assessmentData
-  POST            api/v1/company/assessments/{assessment}/delete .............................................. Api\WpV1\QuestionController@deleteAssessment
-  POST            api/v1/company/assessments/{assessment}/update .......................................... Api\WpV1\QuestionController@updateAssessmentData
+  POST    api/v1/company/assessments/{assessment}/delete .............................................. Api\WpV1\QuestionController@deleteAssessment
+  POST    api/v1/company/assessments/{assessment}/update .......................................... Api\WpV1\QuestionController@updateAssessmentData
   GET        api/v1/company/candidates ....................................................................... Api\WpV1\CompanyController@getCandidates
   GET        api/v1/company/details ................................................................................ Api\WpV1\CompanyController@details
   GET        api/v1/company/details-info ....................................................................... Api\WpV1\CompanyController@detailsInfo
   GET        api/v1/company/info ...................................................................................... Api\WpV1\CompanyController@info
   GET        api/v1/company/jobs ................................................................................... Api\WpV1\CompanyController@getJobs
-  POST            api/v1/company/question/group/create ....................................................... Api\WpV1\QuestionController@saveQuestionGroup
-  POST            api/v1/company/question/group/{group}/delete ............................................. Api\WpV1\QuestionController@deleteQuestionGroup
+  POST    api/v1/company/question/group/create ....................................................... Api\WpV1\QuestionController@saveQuestionGroup
+  POST    api/v1/company/question/group/{group}/delete ............................................. Api\WpV1\QuestionController@deleteQuestionGroup
   GET        api/v1/company/question/group/{group}/duplicate ....................................... Api\WpV1\QuestionController@duplicateQuestionGroup
   GET        api/v1/company/question/group/{group}/edit ................................................. Api\WpV1\QuestionController@questionGroupData
-  POST            api/v1/company/question/group/{group}/update ............................................. Api\WpV1\QuestionController@updateQuestionGroup
+  POST    api/v1/company/question/group/{group}/update ............................................. Api\WpV1\QuestionController@updateQuestionGroup
   GET        api/v1/company/question/groups ..................................................................... Api\WpV1\QuestionController@allGroups
   GET        api/v1/company/recent-applicants ............................................................. Api\WpV1\CompanyController@recentCandidates
   GET        api/v1/company/recent-jobs ......................................................................... Api\WpV1\CompanyController@recentJobs
   GET        api/v1/company/recent-jobs/analytics ...................................................... Api\WpV1\CompanyController@recentJobsAnalytics
   GET        api/v1/company/setting/ai-setup ............................................................. Api\WpV1\CompanySettingController@getAiSetup
-  POST            api/v1/company/setting/ai-setup .......................................................... Api\WpV1\CompanySettingController@updateAiSetup
-  POST            api/v1/company/setting/analytics-url ......................................... Api\WpV1\CompanySettingController@updateCompanyAnalyticsUrl
+  POST    api/v1/company/setting/ai-setup .......................................................... Api\WpV1\CompanySettingController@updateAiSetup
+  POST    api/v1/company/setting/analytics-url ......................................... Api\WpV1\CompanySettingController@updateCompanyAnalyticsUrl
   GET        api/v1/company/setting/apply-setting ........................................... Api\WpV1\CompanySettingController@getCompanyApplySettings
-  POST            api/v1/company/setting/apply-setting ......................................... Api\WpV1\CompanySettingController@storeCompanyApplySettings
-  POST            api/v1/company/setting/apply-setting/update ................................. Api\WpV1\CompanySettingController@updateCompanyApplySettings
-  POST            api/v1/company/setting/apply-setting/{fieldId}/delete ........... Api\WpV1\CompanySettingController@deleteCompanyApplySettingsCustomFields
+  POST    api/v1/company/setting/apply-setting ......................................... Api\WpV1\CompanySettingController@storeCompanyApplySettings
+  POST    api/v1/company/setting/apply-setting/update ................................. Api\WpV1\CompanySettingController@updateCompanyApplySettings
+  POST    api/v1/company/setting/apply-setting/{fieldId}/delete ........... Api\WpV1\CompanySettingController@deleteCompanyApplySettingsCustomFields
   GET        api/v1/company/setting/basic-info ................................................... Api\WpV1\CompanySettingController@getCompanySettings
-  POST            api/v1/company/setting/basic-info ................................................. Api\WpV1\CompanySettingController@storeCompanySettings
-  POST            api/v1/company/setting/brand-color ............................................. Api\WpV1\CompanySettingController@updateCompanyBrandColor
+  POST    api/v1/company/setting/basic-info ................................................. Api\WpV1\CompanySettingController@storeCompanySettings
+  POST    api/v1/company/setting/brand-color ............................................. Api\WpV1\CompanySettingController@updateCompanyBrandColor
   GET        api/v1/company/setting/category .......................................................... Api\WpV1\CompanySettingController@getCategories
-  POST            api/v1/company/setting/category/save ...................................................... Api\WpV1\CompanySettingController@saveCategory
-  POST            api/v1/company/setting/category/{category}/delete ....................................... Api\WpV1\CompanySettingController@deleteCategory
+  POST    api/v1/company/setting/category/save ...................................................... Api\WpV1\CompanySettingController@saveCategory
+  POST    api/v1/company/setting/category/{category}/delete ....................................... Api\WpV1\CompanySettingController@deleteCategory
   GET        api/v1/company/setting/company-photo ........................................... Api\WpV1\CompanySettingController@getCompanySettingsPhoto
-  POST            api/v1/company/setting/company-photo ......................................... Api\WpV1\CompanySettingController@storeCompanySettingsPhoto
+  POST    api/v1/company/setting/company-photo ......................................... Api\WpV1\CompanySettingController@storeCompanySettingsPhoto
   DELETE          api/v1/company/setting/company-photo ........................................ Api\WpV1\CompanySettingController@removeCompanySettingsPhoto
   GET        api/v1/company/setting/pipeline ......................................................... Api\WpV1\PipelineSetupController@getPipelineList
-  POST            api/v1/company/setting/pipeline ............................................................ Api\WpV1\PipelineSetupController@savePipeline
-  POST            api/v1/company/setting/pipeline/{pipeline}/delete ........................................ Api\WpV1\PipelineSetupController@deletePipeline
-  POST            api/v1/company/setting/pipeline/{pipeline}/update ........................................ Api\WpV1\PipelineSetupController@updatePipeline
-  POST            api/v1/company/setting/remove-cover-photo ............................................. Api\WpV1\CompanySettingController@removeCoverPhoto
-  POST            api/v1/company/setting/remove-powered-by ............................................... Api\WpV1\CompanySettingController@removePoweredBy
-  POST            api/v1/company/setting/show-life ..................................................... Api\WpV1\CompanySettingController@storeShowLifeMeta
+  POST    api/v1/company/setting/pipeline ............................................................ Api\WpV1\PipelineSetupController@savePipeline
+  POST    api/v1/company/setting/pipeline/{pipeline}/delete ........................................ Api\WpV1\PipelineSetupController@deletePipeline
+  POST    api/v1/company/setting/pipeline/{pipeline}/update ........................................ Api\WpV1\PipelineSetupController@updatePipeline
+  POST    api/v1/company/setting/remove-cover-photo ............................................. Api\WpV1\CompanySettingController@removeCoverPhoto
+  POST    api/v1/company/setting/remove-powered-by ............................................... Api\WpV1\CompanySettingController@removePoweredBy
+  POST    api/v1/company/setting/show-life ..................................................... Api\WpV1\CompanySettingController@storeShowLifeMeta
   GET        api/v1/company/setting/skill ................................................................. Api\WpV1\CompanySettingController@getSkills
-  POST            api/v1/company/setting/skill/save ............................................................ Api\WpV1\CompanySettingController@saveSkill
-  POST            api/v1/company/setting/skill/{skill}/delete ................................................ Api\WpV1\CompanySettingController@deleteSkill
+  POST    api/v1/company/setting/skill/save ............................................................ Api\WpV1\CompanySettingController@saveSkill
+  POST    api/v1/company/setting/skill/{skill}/delete ................................................ Api\WpV1\CompanySettingController@deleteSkill
   GET        api/v1/company/setting/templates ................................................... Api\WpV1\CompanySettingController@getCompanyTemplates
-  POST            api/v1/company/setting/templates .................................................. Api\WpV1\CompanySettingController@storeCompanyTemplate
+  POST    api/v1/company/setting/templates .................................................. Api\WpV1\CompanySettingController@storeCompanyTemplate
   GET        api/v1/company/setting/verification-code ........................................... Api\WpV1\CompanySettingController@getVerificationCode
-  POST            api/v1/company/setting/verify ............................................................ Api\WpV1\CompanySettingController@verifyCompany
+  POST    api/v1/company/setting/verify ............................................................ Api\WpV1\CompanySettingController@verifyCompany
   GET        api/v1/company/stats ............................................................................ Api\WpV1\CompanyController@dashboardInfo
   GET        api/v1/country ............................................................................. Api\WpV1\GlobalSearchController@searchCountry
-  POST            api/v1/create-company ........................................................................... Api\WpV1\CompanyController@createCompany
+  POST    api/v1/create-company ........................................................................... Api\WpV1\CompanyController@createCompany
   GET        api/v1/job/active ...................................................................................... Api\WpV1\JobController@activeJobs
   GET        api/v1/job/applicants/{appId} ........................................................... Api\WpV1\CandidateController@getCandidateDetails
-  POST            api/v1/job/applicants/{applicant}/draft-message ............................................ Api\WpV1\CandidateController@saveDraftMessage
+  POST    api/v1/job/applicants/{applicant}/draft-message ............................................ Api\WpV1\CandidateController@saveDraftMessage
   GET        api/v1/job/applicants/{applicant}/message ....................................................... Api\WpV1\CandidateController@getMessages
-  POST            api/v1/job/applicants/{applicant}/message ....................................................... Api\WpV1\CandidateController@saveMessage
+  POST    api/v1/job/applicants/{applicant}/message ....................................................... Api\WpV1\CandidateController@saveMessage
   GET        api/v1/job/applicants/{applicant}/note ............................................................. Api\WpV1\CandidateController@getNotes
-  POST            api/v1/job/applicants/{applicant}/note ............................................................. Api\WpV1\CandidateController@saveNote
-  POST            api/v1/job/applicants/{applicant}/note/{note}/delete ............................................. Api\WpV1\CandidateController@deleteNote
-  POST            api/v1/job/applicants/{applicant}/rating ......................................................... Api\WpV1\CandidateController@saveRating
+  POST    api/v1/job/applicants/{applicant}/note ............................................................. Api\WpV1\CandidateController@saveNote
+  POST    api/v1/job/applicants/{applicant}/note/{note}/delete ............................................. Api\WpV1\CandidateController@deleteNote
+  POST    api/v1/job/applicants/{applicant}/rating ......................................................... Api\WpV1\CandidateController@saveRating
   GET        api/v1/job/archive .................................................................................... Api\WpV1\JobController@archiveJobs
-  POST            api/v1/job/create ....................................................................................... Api\WpV1\JobController@jobCreate
+  POST    api/v1/job/create ....................................................................................... Api\WpV1\JobController@jobCreate
   GET        api/v1/job/draft ........................................................................................ Api\WpV1\JobController@draftJobs
   GET        api/v1/job/locations .............................................................................. Api\WpV1\JobController@getJobLocations
   GET        api/v1/job/meta .......................................................................... Api\WpV1\GlobalSearchController@jobInfoMetaData
@@ -260,42 +260,42 @@ GET        {company}.easyjobs.test/ ............................................
   GET        api/v1/job/screening-meta-data ............................................. Api\WpV1\JobEvaluationController@jobScreeningQuestionMetaData
   GET        api/v1/job/templates .............................................................................. Api\WpV1\JobController@getJobTemplates
   GET        api/v1/job/{job}/basic ............................................................................... Api\WpV1\JobController@jobBasicInfo
-  POST            api/v1/job/{job}/candidate/add .............................................................. Api\WpV1\JobCandidateController@addCandidate
-  POST            api/v1/job/{job}/candidate/delete ........................................................ Api\WpV1\JobCandidateController@deleteCandidate
-  POST            api/v1/job/{job}/candidate/onboard ............................................................... Api\WpV1\JobController@onboardCandidate
+  POST    api/v1/job/{job}/candidate/add .............................................................. Api\WpV1\JobCandidateController@addCandidate
+  POST    api/v1/job/{job}/candidate/delete ........................................................ Api\WpV1\JobCandidateController@deleteCandidate
+  POST    api/v1/job/{job}/candidate/onboard ............................................................... Api\WpV1\JobController@onboardCandidate
   GET        api/v1/job/{job}/candidate/pending ..................................................... Api\WpV1\JobCandidateController@pendingCandidates
-  POST            api/v1/job/{job}/candidate/pending/invite ........................................ Api\WpV1\JobCandidateController@invitePendingCandidates
-  POST            api/v1/job/{job}/candidate/pipeline .................................................... Api\WpV1\JobController@changePipelineForCandidate
+  POST    api/v1/job/{job}/candidate/pending/invite ........................................ Api\WpV1\JobCandidateController@invitePendingCandidates
+  POST    api/v1/job/{job}/candidate/pipeline .................................................... Api\WpV1\JobController@changePipelineForCandidate
   GET        api/v1/job/{job}/candidates ......................................................................... Api\WpV1\JobController@jobCandidates
   GET        api/v1/job/{job}/candidates/export ............................................................ Api\WpV1\JobController@exportCandidateLink
-  POST            api/v1/job/{job}/change-status .................................................................... Api\WpV1\JobController@changeJobStatus
-  POST            api/v1/job/{job}/delete ................................................................................ Api\WpV1\JobController@destroyJob
+  POST    api/v1/job/{job}/change-status .................................................................... Api\WpV1\JobController@changeJobStatus
+  POST    api/v1/job/{job}/delete ................................................................................ Api\WpV1\JobController@destroyJob
   GET        api/v1/job/{job}/details ............................................................................... Api\WpV1\JobController@jobDetails
-  POST            api/v1/job/{job}/duplicate ....................................................... job.duplicate › Api\WpV1\JobPostController@duplicateJob
+  POST    api/v1/job/{job}/duplicate ....................................................... job.duplicate › Api\WpV1\JobPostController@duplicateJob
   GET        api/v1/job/{job}/invitations .............................................................. Api\WpV1\JobCandidateController@getInvitations
-  POST            api/v1/job/{job}/invitations/delete ..................................................... Api\WpV1\JobCandidateController@deleteInvitation
-  POST            api/v1/job/{job}/pinned ........................................................................... Api\WpV1\JobController@updatePinnedJob
+  POST    api/v1/job/{job}/invitations/delete ..................................................... Api\WpV1\JobCandidateController@deleteInvitation
+  POST    api/v1/job/{job}/pinned ........................................................................... Api\WpV1\JobController@updatePinnedJob
   GET        api/v1/job/{job}/pipeline ......................................................................... Api\WpV1\JobController@pipelineDetails
-  POST            api/v1/job/{job}/pipeline/update ................................................................... Api\WpV1\JobController@pipelineUpdate
+  POST    api/v1/job/{job}/pipeline/update ................................................................... Api\WpV1\JobController@pipelineUpdate
   GET        api/v1/job/{job}/quiz ................................................................... Api\WpV1\JobEvaluationController@jobQuizQuestion
-  POST            api/v1/job/{job}/quiz .................................................................. Api\WpV1\JobEvaluationController@saveQuizQuestion
+  POST    api/v1/job/{job}/quiz .................................................................. Api\WpV1\JobEvaluationController@saveQuizQuestion
   DELETE          api/v1/job/{job}/quiz ................................................................ Api\WpV1\JobEvaluationController@deleteQuizQuestion
   GET        api/v1/job/{job}/required-fields ............................................................. Api\WpV1\JobController@jobRequiredFieldData
-  POST            api/v1/job/{job}/required-fields ............................................................... Api\WpV1\JobController@saveRequiredFields
+  POST    api/v1/job/{job}/required-fields ............................................................... Api\WpV1\JobController@saveRequiredFields
   GET        api/v1/job/{job}/screening ......................................................... Api\WpV1\JobEvaluationController@jobScreeningQuestion
-  POST            api/v1/job/{job}/screening ........................................................ Api\WpV1\JobEvaluationController@saveScreeningQuestion
+  POST    api/v1/job/{job}/screening ........................................................ Api\WpV1\JobEvaluationController@saveScreeningQuestion
   DELETE          api/v1/job/{job}/screening ...................................................... Api\WpV1\JobEvaluationController@deleteScreeningQuestion
-  POST            api/v1/job/{job}/update ................................................................................. Api\WpV1\JobController@jobUpdate
+  POST    api/v1/job/{job}/update ................................................................................. Api\WpV1\JobController@jobUpdate
   GET        api/v1/quiz-meta-data ................................................................... Api\WpV1\JobEvaluationController@jobQuizMetaData
   GET        api/v1/screening-meta-data ................................................. Api\WpV1\JobEvaluationController@jobScreeningQuestionMetaData
-  POST            api/v1/sign-in ......................................................................................... Api\WpV1\CompanyController@signIn
-  POST            api/v1/sign-up ......................................................................................... Api\WpV1\CompanyController@signUp
+  POST    api/v1/sign-in ......................................................................................... Api\WpV1\CompanyController@signIn
+  POST    api/v1/sign-up ......................................................................................... Api\WpV1\CompanyController@signUp
   GET        api/v1/skill .......................................................................................... Api\WpV1\JobController@searchSkill
   GET        api/v1/state/custom/{country} ....................................................... Api\WpV1\GlobalSearchController@searchStateForCustom
-  POST            api/v1/state/{country} .................................................................. Api\WpV1\GlobalSearchController@saveCompanyState
+  POST    api/v1/state/{country} .................................................................. Api\WpV1\GlobalSearchController@saveCompanyState
   GET        api/v1/state/{country} ....................................................................... Api\WpV1\GlobalSearchController@searchState
   GET        api/v1/subscription/packages ............................................................. Api\WpV1\CompanyController@subscriptionPackages
-  POST            api/v1/webhook/wpdev/subscription .............................................................. Api\WpV1\AgencyBundleController@subscribe
+  POST    api/v1/webhook/wpdev/subscription .............................................................. Api\WpV1\AgencyBundleController@subscribe
 
 
 
@@ -303,30 +303,30 @@ GET        {company}.easyjobs.test/ ............................................
 
 
 
-✅ GET        app.{domain}/api/v2/calendly/event-type-list > v2. › Api\SpaV2\Intregation\CalendlyController@eventTypeList
-✅ GET        app.{domain}/api/v2/calendly/info > v2. › Api\SpaV2\Intregation\CalendlyController@info
-  POST            app.{domain}/api/v2/calendly/invite-candidate > v2. › Api\SpaV2\Intregation\CalendlyController@inviteCandidate
-  POST            app.{domain}/api/v2/calendly/invitee-verify > v2. › Api\SpaV2\Intregation\CalendlyController@inviteeLinkVerify
-  POST            app.{domain}/api/v2/calendly/oauth > v2. › Api\SpaV2\Intregation\CalendlyController@setupCalendlyOauth
-  POST            app.{domain}/api/v2/calendly/remove > v2. › Api\SpaV2\Intregation\CalendlyController@remove
+✅ GET        /api/v2/calendly/event-type-list > v2. › Api\SpaV2\Intregation\CalendlyController@eventTypeList
+✅ GET        /api/v2/calendly/info > v2. › Api\SpaV2\Intregation\CalendlyController@info
+  POST    /api/v2/calendly/invite-candidate > v2. › Api\SpaV2\Intregation\CalendlyController@inviteCandidate
+  POST    /api/v2/calendly/invitee-verify > v2. › Api\SpaV2\Intregation\CalendlyController@inviteeLinkVerify
+  POST    /api/v2/calendly/oauth > v2. › Api\SpaV2\Intregation\CalendlyController@setupCalendlyOauth
+  POST    /api/v2/calendly/remove > v2. › Api\SpaV2\Intregation\CalendlyController@remove
 
 
-  GET        app.{domain}/api/v2/candidate ......................................... v2.candidate.info › Api\SpaV2\CandidateController@getCandidateInfo
-  POST            app.{domain}/api/v2/candidate ....................................... v2.candidate.save › Api\SpaV2\CandidateController@storeCandidateInfo
+  GET        /api/v2/candidate ......................................... v2.candidate.info › Api\SpaV2\CandidateController@getCandidateInfo
+  POST    /api/v2/candidate ....................................... v2.candidate.save › Api\SpaV2\CandidateController@storeCandidateInfo
 
-  GET        app.{domain}/api/v2/candidate/applied-job ........................ v2.candidate.applied-job › Api\SpaV2\CandidateController@getAppliedJobs
+  GET        /api/v2/candidate/applied-job ........................ v2.candidate.applied-job › Api\SpaV2\CandidateController@getAppliedJobs
 
-  POST            app.{domain}/api/v2/candidate/assessment/{assessment} v2.candidate.assessment.login-url › Api\SpaV2\CandidateController@getAssessmentLogi…
+  POST    /api/v2/candidate/assessment/{assessment} v2.candidate.assessment.login-url › Api\SpaV2\CandidateController@getAssessmentLogi…
 
-  GET        app.{domain}/api/v2/candidate/assessments ........................ v2.candidate.assessments › Api\SpaV2\CandidateController@getAssessments
+  GET        /api/v2/candidate/assessments ........................ v2.candidate.assessments › Api\SpaV2\CandidateController@getAssessments
 
-  GET        app.{domain}/api/v2/candidate/conversation .... v2.candidate.conversationlist › Api\SpaV2\CandidateConversationController@getCandidateList
+  GET        /api/v2/candidate/conversation .... v2.candidate.conversationlist › Api\SpaV2\CandidateConversationController@getCandidateList
 
-  GET        app.{domain}/api/v2/candidate/conversation/notifications v2.candidate.conversationnotification › Api\SpaV2\CandidateConversationControlle…
+  GET        /api/v2/candidate/conversation/notifications v2.candidate.conversationnotification › Api\SpaV2\CandidateConversationControlle…
 
-  GET        app.{domain}/api/v2/candidate/conversation/{id} v2.candidate.conversationmessages.get › Api\SpaV2\CandidateConversationController@getCand…
+  GET        /api/v2/candidate/conversation/{id} v2.candidate.conversationmessages.get › Api\SpaV2\CandidateConversationController@getCand…
 
-  POST            app.{domain}/api/v2/candidate/conversation/{id}/message v2.candidate.conversationmessage.save › Api\SpaV2\CandidateConversationController…
+  POST    /api/v2/candidate/conversation/{id}/message v2.candidate.conversationmessage.save › Api\SpaV2\CandidateConversationController…
 
 
 ✅ GET        /api/v2/candidate/education ..................... -> education -> getCandidateEducation
@@ -339,55 +339,55 @@ GET        {company}.easyjobs.test/ ............................................
 ✅ POST       /api/v2/candidate/employment/re-order -> employment.re_order -> reOrderCandidateEmploy…
 ✅ DELETE     /api/v2/candidate/employment/{education}/delete -> employment.delete -> deleteCandidat…
 
-  DELETE          app.{domain}/api/v2/candidate/job/{job}/delete ......................... v2.candidate.job.delete › Api\SpaV2\CandidateController@deleteJob
+  DELETE          /api/v2/candidate/job/{job}/delete ......................... v2.candidate.job.delete › Api\SpaV2\CandidateController@deleteJob
 
-  GET        app.{domain}/api/v2/candidate/notification ........... v2.candidate.notification › Api\SpaV2\CandidateNotificationController@notifications
+  GET        /api/v2/candidate/notification ........... v2.candidate.notification › Api\SpaV2\CandidateNotificationController@notifications
 
-  POST            app.{domain}/api/v2/candidate/notification/clear-all v2.candidate.notification.clear.all › Api\SpaV2\CandidateNotificationController@clea…
+  POST    /api/v2/candidate/notification/clear-all v2.candidate.notification.clear.all › Api\SpaV2\CandidateNotificationController@clea…
 
-  DELETE          app.{domain}/api/v2/candidate/notification/delete-all v2.candidate.notification.delete.all › Api\SpaV2\CandidateNotificationController@de…
+  DELETE          /api/v2/candidate/notification/delete-all v2.candidate.notification.delete.all › Api\SpaV2\CandidateNotificationController@de…
 
-  GET        app.{domain}/api/v2/candidate/notification/{notification}/clear v2.candidate.notification.clear › Api\SpaV2\CandidateNotificationControll…
+  GET        /api/v2/candidate/notification/{notification}/clear v2.candidate.notification.clear › Api\SpaV2\CandidateNotificationControll…
 
-  DELETE          app.{domain}/api/v2/candidate/notification/{notification}/delete v2.candidate.notification.delete › Api\SpaV2\CandidateNotificationContro…
-
-
-  POST            app.{domain}/api/v2/candidate/photo ........................... v2.candidate.photo.save › Api\SpaV2\CandidateController@saveCandidatePhoto
-  DELETE          app.{domain}/api/v2/candidate/photo ....................... v2.candidate.photo.remove › Api\SpaV2\CandidateController@removeCandidatePhoto
+  DELETE          /api/v2/candidate/notification/{notification}/delete v2.candidate.notification.delete › Api\SpaV2\CandidateNotificationContro…
 
 
-
-  GET        app.{domain}/api/v2/candidate/resume ....................................... v2.candidate.resume › Api\SpaV2\CandidateController@getResume
-  POST            app.{domain}/api/v2/candidate/resume ................................. v2.candidate.resume.save › Api\SpaV2\CandidateController@saveResume
-  DELETE          app.{domain}/api/v2/candidate/resume ............................. v2.candidate.resume.remove › Api\SpaV2\CandidateController@removeResume
+  POST    /api/v2/candidate/photo ........................... v2.candidate.photo.save › Api\SpaV2\CandidateController@saveCandidatePhoto
+  DELETE          /api/v2/candidate/photo ....................... v2.candidate.photo.remove › Api\SpaV2\CandidateController@removeCandidatePhoto
 
 
-  GET        app.{domain}/api/v2/candidate/selected-job ................. v2.candidate.selected-job › Api\SpaV2\Candidate\JobController@getSelectedJobs
-  POST            app.{domain}/api/v2/candidate/selected-job .. v2.candidate.job.update-selected-jobs › Api\SpaV2\Candidate\JobController@updateSelectedJobs
 
-  GET        app.{domain}/api/v2/candidate/stats ................................. v2.candidate.stats › Api\SpaV2\CandidateController@getCandidateStats
-
-  GET        app.{domain}/api/v2/candidate/unfinished-job ............... v2.candidate.unfinished-job › Api\SpaV2\CandidateController@getUnfinishedJobs
-
-  DELETE          app.{domain}/api/v2/candidate/{applicant}/delete ................... v2.candidate.delete › Api\SpaV2\CandidateController@deleteApplication
-
-  POST            app.{domain}/api/v2/checkout ............................................................... v2. › Api\SpaV2\UserController@submitCheckout
-
-  GET        app.{domain}/api/v2/checkout/cancel/{slug} ................................... v2.checkout.cancel › Api\SpaV2\UserController@cancelSuccess
-
-  GET        app.{domain}/api/v2/checkout/success/{slug} ............................... v2.checkout.success › Api\SpaV2\UserController@checkoutSuccess
+  GET        /api/v2/candidate/resume ....................................... v2.candidate.resume › Api\SpaV2\CandidateController@getResume
+  POST    /api/v2/candidate/resume ................................. v2.candidate.resume.save › Api\SpaV2\CandidateController@saveResume
+  DELETE          /api/v2/candidate/resume ............................. v2.candidate.resume.remove › Api\SpaV2\CandidateController@removeResume
 
 
-  GET        app.{domain}/api/v2/city/{country?}/{state?} ..................................... ajax.city › Api\SpaV2\GlobalSearchController@searchCity
-  POST            app.{domain}/api/v2/city/{country?}/{state?} ........................... ajax.city.save › Api\SpaV2\GlobalSearchController@saveCompanyCity
+  GET        /api/v2/candidate/selected-job ................. v2.candidate.selected-job › Api\SpaV2\Candidate\JobController@getSelectedJobs
+  POST    /api/v2/candidate/selected-job .. v2.candidate.job.update-selected-jobs › Api\SpaV2\Candidate\JobController@updateSelectedJobs
+
+  GET        /api/v2/candidate/stats ................................. v2.candidate.stats › Api\SpaV2\CandidateController@getCandidateStats
+
+  GET        /api/v2/candidate/unfinished-job ............... v2.candidate.unfinished-job › Api\SpaV2\CandidateController@getUnfinishedJobs
+
+  DELETE          /api/v2/candidate/{applicant}/delete ................... v2.candidate.delete › Api\SpaV2\CandidateController@deleteApplication
+
+  POST    /api/v2/checkout ............................................................... v2. › Api\SpaV2\UserController@submitCheckout
+
+  GET        /api/v2/checkout/cancel/{slug} ................................... v2.checkout.cancel › Api\SpaV2\UserController@cancelSuccess
+
+  GET        /api/v2/checkout/success/{slug} ............................... v2.checkout.success › Api\SpaV2\UserController@checkoutSuccess
 
 
-  POST            app.{domain}/api/v2/company ................................................... v2.company.save › Api\SpaV2\CompanyController@storeCompany
-  GET        app.{domain}/api/v2/company ............................................................... Api\SpaV2\GlobalSearchController@searchCompany
+  GET        /api/v2/city/{country?}/{state?} ..................................... ajax.city › Api\SpaV2\GlobalSearchController@searchCity
+  POST    /api/v2/city/{country?}/{state?} ........................... ajax.city.save › Api\SpaV2\GlobalSearchController@saveCompanyCity
 
-  GET        app.{domain}/api/v2/company-config ..................................................... Api\SpaV2\GlobalSearchController@getCompanyConfig
 
-  GET        app.{domain}/api/v2/company/analytics .................................... v2.company.analytics › Api\SpaV2\CompanyController@getAnalytics
+  POST    /api/v2/company ................................................... v2.company.save › Api\SpaV2\CompanyController@storeCompany
+  GET        /api/v2/company ............................................................... Api\SpaV2\GlobalSearchController@searchCompany
+
+  GET        /api/v2/company-config ..................................................... Api\SpaV2\GlobalSearchController@getCompanyConfig
+
+  GET        /api/v2/company/analytics .................................... v2.company.analytics › Api\SpaV2\CompanyController@getAnalytics
 
 ✅ GET        /api/v2/company/assessments > list -> index
 ✅ POST       /api/v2/company/assessments/create > store -> store
@@ -395,23 +395,23 @@ GET        {company}.easyjobs.test/ ............................................
 ✅ DELETE     /api/v2/company/assessments/{assessment}/delete > delete -> destroy
 ✅ POST       /api/v2/company/assessments/{assessment}/update > update -> update
 
-  GET        app.{domain}/api/v2/company/candidates ................................. v2.company.candidates › Api\SpaV2\CompanyController@getCandidates
+  GET        /api/v2/company/candidates ................................. v2.company.candidates › Api\SpaV2\CompanyController@getCandidates
 
-  GET        app.{domain}/api/v2/company/collaborator/stats .......... v2.company.collaborator.stats › Api\SpaV2\CompanyController@getCollaboratorStats
+  GET        /api/v2/company/collaborator/stats .......... v2.company.collaborator.stats › Api\SpaV2\CompanyController@getCollaboratorStats
 
-  GET        app.{domain}/api/v2/company/company-types ............................................... v2. › Api\SpaV2\CompanyController@getCompanyType
+  GET        /api/v2/company/company-types ............................................... v2. › Api\SpaV2\CompanyController@getCompanyType
 
-  POST            app.{domain}/api/v2/company/conversation-template .................. v2. › Api\SpaV2\ConversationTemplateController@insertOrUpdateTemplate
+  POST    /api/v2/company/conversation-template .................. v2. › Api\SpaV2\ConversationTemplateController@insertOrUpdateTemplate
 
-  POST            app.{domain}/api/v2/company/conversation-template-message .................. v2. › Api\SpaV2\ConversationTemplateController@convertMessage
+  POST    /api/v2/company/conversation-template-message .................. v2. › Api\SpaV2\ConversationTemplateController@convertMessage
 
-  GET        app.{domain}/api/v2/company/country-phonecode .................................. v2. › Api\SpaV2\CompanyController@getCountryWithPhoneCode
+  GET        /api/v2/company/country-phonecode .................................. v2. › Api\SpaV2\CompanyController@getCountryWithPhoneCode
 
-  DELETE          app.{domain}/api/v2/company/delete ......................................... v2.company.delete › Api\SpaV2\CompanyController@deleteCompany
+  DELETE          /api/v2/company/delete ......................................... v2.company.delete › Api\SpaV2\CompanyController@deleteCompany
 
-  GET        app.{domain}/api/v2/company/jobs ................................................... v2.company.jobs › Api\SpaV2\CompanyController@getJobs
+  GET        /api/v2/company/jobs ................................................... v2.company.jobs › Api\SpaV2\CompanyController@getJobs
 
-  GET        app.{domain}/api/v2/company/managers ....................................... v2.company.managers › Api\SpaV2\CompanyController@getManagers
+  GET        /api/v2/company/managers ....................................... v2.company.managers › Api\SpaV2\CompanyController@getManagers
 
 ✅ POST        /api/v2/company/question/group/create > store -> store
 ✅ GET         /api/v2/company/question/group/{group} > show -> show
@@ -420,30 +420,30 @@ GET        {company}.easyjobs.test/ ............................................
 ✅ POST        /api/v2/company/question/group/{group}/update > update -> update
 ✅ GET         /api/v2/company/question/groups > list -> index
 
-  GET        app.{domain}/api/v2/company/recent-applicants ................ v2.company.recent-applicants › Api\SpaV2\CompanyController@recentCandidates
+  GET        /api/v2/company/recent-applicants ................ v2.company.recent-applicants › Api\SpaV2\CompanyController@recentCandidates
 
-  GET        app.{domain}/api/v2/company/recent-jobs .................................. v2.company.recent-jobs › Api\SpaV2\CompanyController@recentJobs
+  GET        /api/v2/company/recent-jobs .................................. v2.company.recent-jobs › Api\SpaV2\CompanyController@recentJobs
 
-  GET        app.{domain}/api/v2/company/recent-jobs/analytics ..... v2.company.recent-jobs.analytics › Api\SpaV2\CompanyController@recentJobsAnalytics
+  GET        /api/v2/company/recent-jobs/analytics ..... v2.company.recent-jobs.analytics › Api\SpaV2\CompanyController@recentJobsAnalytics
 
-  POST            app.{domain}/api/v2/company/remote-interview/client-token/save ........... v2. › Api\SpaV2\CompanyController@saveRmoteInterviewClientToken
+  POST    /api/v2/company/remote-interview/client-token/save ........... v2. › Api\SpaV2\CompanyController@saveRmoteInterviewClientToken
 
-  GET        app.{domain}/api/v2/company/setting/activity-log ..... v2.company.setting.activity-log › Api\SpaV2\CompanySettingController@getActivityLog
+✅ GET        /api/v2/company/setting/activity-log -> activity-log -> getActivityLog
 
-  GET        app.{domain}/api/v2/company/setting/admin .................. v2.company.setting.admin › Api\SpaV2\CompanySettingController@getAdminSetting
-  POST            app.{domain}/api/v2/company/setting/admin ........... v2.company.setting.admin.save › Api\SpaV2\CompanySettingController@storeAdminSetting
+  GET        /api/v2/company/setting/admin .................. v2.company.setting.admin -> getAdminSetting
+  POST    /api/v2/company/setting/admin ........... v2.company.setting.admin.save -> storeAdminSetting
 
-  GET        app.{domain}/api/v2/company/setting/ai-setup ......................................... v2. › Api\SpaV2\CompanySettingController@getAiSetup
-  PUT             app.{domain}/api/v2/company/setting/ai-setup ......... v2.company.setting.ai-setup.save › Api\SpaV2\CompanySettingController@updateAiSetup
+  GET        /api/v2/company/setting/ai-setup ......................................... v2. -> getAiSetup
+  PUT     /api/v2/company/setting/ai-setup ......... v2.company.setting.ai-setup.save -> updateAiSetup
 
-  GET        app.{domain}/api/v2/company/setting/application-setting v2.company.setting.job-settings-setting › Api\SpaV2\CompanySettingController@getC…
+  GET        /api/v2/company/setting/application-setting v2.company.setting.job-settings-setting -> getC…
 
-  POST            app.{domain}/api/v2/company/setting/application-setting/update v2.company.setting.job-settings-setting.update › Api\SpaV2\CompanySettingC…
+  POST    /api/v2/company/setting/application-setting/update v2.company.setting.job-settings-setting.update › Api\SpaV2\CompanySettingC…
 
-  GET        app.{domain}/api/v2/company/setting/apply-setting v2.company.setting.apply-setting › Api\SpaV2\CompanySettingController@getCompanyApplySe…
-  POST            app.{domain}/api/v2/company/setting/apply-setting v2.company.setting.apply-setting.save › Api\SpaV2\CompanySettingController@storeCompany…
+  GET        /api/v2/company/setting/apply-setting v2.company.setting.apply-setting -> getCompanyApplySe…
+  POST    /api/v2/company/setting/apply-setting v2.company.setting.apply-setting.save -> storeCompany…
 
-  POST            app.{domain}/api/v2/company/setting/apply-setting/update v2.company.setting.apply-setting.update › Api\SpaV2\CompanySettingController@upd…
+  POST    /api/v2/company/setting/apply-setting/update v2.company.setting.apply-setting.update -> upd…
 
 ✅ GET   /api/v2/company/setting/basic-description -> description -> getCompan…
 ✅ POST  /api/v2/company/setting/basic-description -> description.save -> stor…
@@ -459,351 +459,346 @@ GET        {company}.easyjobs.test/ ............................................
 ✅ GET   /api/v2/company/setting/beta-feature -> getBetaFeature
 ✅ PUT   /api/v2/company/setting/beta-feature -> updateBetaFeat…
 
-  POST            app.{domain}/api/v2/company/setting/brand-color v2.company.setting.update.brand-color › Api\SpaV2\CompanySettingController@updateCompanyB…
+  POST    /api/v2/company/setting/brand-color v2.company.setting.update.brand-color -> updateCompanyB…
 
-  GET        app.{domain}/api/v2/company/setting/brand-info .... v2.company.setting.brand-info › Api\SpaV2\CompanySettingController@getCompanyBrandInfo
+  GET        /api/v2/company/setting/brand-info .... v2.company.setting.brand-info -> getCompanyBrandInfo
 
-  GET        app.{domain}/api/v2/company/setting/category .............. v2.company.setting.category › Api\SpaV2\CompanySettingController@getCategories
+  GET        /api/v2/company/setting/category .............. v2.company.setting.category -> getCategories
 
-  POST            app.{domain}/api/v2/company/setting/category/save ..... v2.company.setting.category.save › Api\SpaV2\CompanySettingController@saveCategory
+  POST    /api/v2/company/setting/category/save ..... v2.company.setting.category.save -> saveCategory
 
-  DELETE          app.{domain}/api/v2/company/setting/category/{category} v2.company.setting.category.delete › Api\SpaV2\CompanySettingController@deleteCat…
+  DELETE          /api/v2/company/setting/category/{category} v2.company.setting.category.delete -> deleteCat…
 
-  POST            app.{domain}/api/v2/company/setting/change-onboard-template v2.company.setting.change-onboard-template › Api\SpaV2\CompanySettingControll…
+  POST    /api/v2/company/setting/change-onboard-template v2.company.setting.change-onboard-template › Api\SpaV2\CompanySettingControll…
 
-  GET        app.{domain}/api/v2/company/setting/collaborator v2.company.setting.collaborator › Api\SpaV2\CompanySettingController@getCompanyCollabora…
+  GET        /api/v2/company/setting/collaborator v2.company.setting.collaborator -> getCompanyCollabora…
 
-  DELETE          app.{domain}/api/v2/company/setting/collaborator/{userId}/delete v2.company.setting.collaborator.delete › Api\SpaV2\JobPermissionControll…
+  DELETE          /api/v2/company/setting/collaborator/{userId}/delete v2.company.setting.collaborator.delete › Api\SpaV2\JobPermissionControll…
 
 
-  GET        app.{domain}/api/v2/company/setting/company-config/google ................ v2. › Api\SpaV2\CompanySettingController@getCompanyGoogleConfig
-  POST            app.{domain}/api/v2/company/setting/company-config/google .............. v2. › Api\SpaV2\CompanySettingController@saveCompanyGoogleSetting
+  GET        /api/v2/company/setting/company-config/google ................ v2. -> getCompanyGoogleConfig
+  POST    /api/v2/company/setting/company-config/google .............. v2. -> saveCompanyGoogleSetting
 
 
-  GET        app.{domain}/api/v2/company/setting/company-config/linkedin ............ v2. › Api\SpaV2\CompanySettingController@getCompanyLinkedinConfig
-  POST            app.{domain}/api/v2/company/setting/company-config/linkedin .......... v2. › Api\SpaV2\CompanySettingController@saveCompanyLinkedinSetting
+  GET        /api/v2/company/setting/company-config/linkedin ............ v2. -> getCompanyLinkedinConfig
+  POST    /api/v2/company/setting/company-config/linkedin .......... v2. -> saveCompanyLinkedinSetting
 
-  GET        app.{domain}/api/v2/company/setting/company-image v2.company.setting.custom-image › Api\SpaV2\CompanySettingController@getCompanySettings…
+  GET        /api/v2/company/setting/company-image v2.company.setting.custom-image -> getCompanySettings…
 
-  GET        app.{domain}/api/v2/company/setting/company-photo v2.company.setting.custom-photo › Api\SpaV2\CompanySettingController@getCompanySettings…
-  POST            app.{domain}/api/v2/company/setting/company-photo v2.company.setting.custom-photo.save › Api\SpaV2\CompanySettingController@storeCompanyS…
-  DELETE          app.{domain}/api/v2/company/setting/company-photo v2.company.setting.custom-photo.remove › Api\SpaV2\CompanySettingController@removeCompa…
+  GET        /api/v2/company/setting/company-photo v2.company.setting.custom-photo -> getCompanySettings…
+  POST    /api/v2/company/setting/company-photo v2.company.setting.custom-photo.save -> storeCompanyS…
+  DELETE          /api/v2/company/setting/company-photo v2.company.setting.custom-photo.remove -> removeCompa…
 
 
-  GET        app.{domain}/api/v2/company/setting/custom-apply-field v2.company.setting.custom-apply-field › Api\SpaV2\CompanySettingController@getComp…
-  POST            app.{domain}/api/v2/company/setting/custom-apply-field v2.company.setting.custom-apply-field.save › Api\SpaV2\CompanySettingController@st…
+  GET        /api/v2/company/setting/custom-apply-field v2.company.setting.custom-apply-field -> getComp…
+  POST    /api/v2/company/setting/custom-apply-field v2.company.setting.custom-apply-field.save -> st…
 
-  GET        app.{domain}/api/v2/company/setting/custom-apply-field/jobs/{field} v2.company.setting.custom-apply-field.jobs › Api\SpaV2\CompanySetting…
+  GET        /api/v2/company/setting/custom-apply-field/jobs/{field} v2.company.setting.custom-apply-field.jobs › Api\SpaV2\CompanySetting…
 
 
-  GET        app.{domain}/api/v2/company/setting/custom-domain .. v2.company.setting.custom-domain › Api\SpaV2\CompanySettingController@getCustomDomain
-  POST            app.{domain}/api/v2/company/setting/custom-domain v2.company.setting.custom-domain.save › Api\SpaV2\CompanySettingController@saveCustomDo…
+  GET        /api/v2/company/setting/custom-domain .. v2.company.setting.custom-domain -> getCustomDomain
+  POST    /api/v2/company/setting/custom-domain v2.company.setting.custom-domain.save -> saveCustomDo…
 
 
-  GET        app.{domain}/api/v2/company/setting/custom-domain/admin v2.company.setting.custom-domain.admin › Api\SpaV2\CompanySettingController@getAd…
-  POST            app.{domain}/api/v2/company/setting/custom-domain/admin v2.company.setting.custom-domain.save.admin › Api\SpaV2\CompanySettingController@…
+  GET        /api/v2/company/setting/custom-domain/admin v2.company.setting.custom-domain.admin -> getAd…
+  POST    /api/v2/company/setting/custom-domain/admin v2.company.setting.custom-domain.save.admin -> …
 
-  GET        app.{domain}/api/v2/company/setting/email .................... v2.company.setting.email › Api\SpaV2\CompanySettingController@emailSettings
+  GET        /api/v2/company/setting/email .................... v2.company.setting.email -> emailSettings
 
-  POST            app.{domain}/api/v2/company/setting/email/reset-smtp-settings v2.company.setting.reset.smtp-settings › Api\SpaV2\CompanySettingController…
+  POST    /api/v2/company/setting/email/reset-smtp-settings v2.company.setting.reset.smtp-settings › Api\SpaV2\CompanySettingController…
 
 
-  GET        app.{domain}/api/v2/company/setting/email/sender-email v2.company.setting.get.sender-email › Api\SpaV2\CompanySettingController@getCompan…
-  POST            app.{domain}/api/v2/company/setting/email/sender-email v2.company.setting.update.sender-email › Api\SpaV2\CompanySettingController@update…
+  GET        /api/v2/company/setting/email/sender-email v2.company.setting.get.sender-email -> getCompan…
+  POST    /api/v2/company/setting/email/sender-email v2.company.setting.update.sender-email -> update…
 
-  POST            app.{domain}/api/v2/company/setting/email/smtp-settings v2.company.setting.update.smtp-settings › Api\SpaV2\CompanySettingController@upda…
+  POST    /api/v2/company/setting/email/smtp-settings v2.company.setting.update.smtp-settings -> upda…
 
-  GET        app.{domain}/api/v2/company/setting/email/type/{type} .... v2.company.setting.email.type › Api\SpaV2\CompanySettingController@emailSetting
+  GET        /api/v2/company/setting/email/type/{type} .... v2.company.setting.email.type -> emailSetting
 
-  PUT             app.{domain}/api/v2/company/setting/email/{type} v2.company.setting.email.update › Api\SpaV2\CompanySettingController@emailSettingsUpdate
+  PUT     /api/v2/company/setting/email/{type} v2.company.setting.email.update -> emailSettingsUpdate
 
-  PUT             app.{domain}/api/v2/company/setting/email/{type}/notify v2.company.setting.email.update-notification › Api\SpaV2\CompanySettingController…
+  PUT     /api/v2/company/setting/email/{type}/notify v2.company.setting.email.update-notification › Api\SpaV2\CompanySettingController…
 
-  POST            app.{domain}/api/v2/company/setting/hackerrank/key/delete v2.company.setting.hackerrank.key.delete › Api\SpaV2\CompanySettingController@d…
+  POST    /api/v2/company/setting/hackerrank/key/delete v2.company.setting.hackerrank.key.delete -> d…
 
 
-  GET        app.{domain}/api/v2/company/setting/integrations v2.company.setting.integrations › Api\SpaV2\CompanySettingController@getCompanyIntegrati…
-  POST            app.{domain}/api/v2/company/setting/integrations v2.company.setting.integrations.save › Api\SpaV2\CompanySettingController@updateIntegrat…
+✅ GET        /api/v2/company/setting/integrations v2.company.setting.integrations -> getCompanyIntegrati…
+✅ POST    /api/v2/company/setting/integrations v2.company.setting.integrations.save -> updateIntegrat…
 
-  GET        app.{domain}/api/v2/company/setting/key ........................... v2.company.setting.key › Api\SpaV2\CompanySettingController@getAppKeys
+📝 GET        /api/v2/company/setting/key -> setting.key -> getAppKeys
+📝 POST    /api/v2/company/setting/key/create -> setting.key.create -> generateAppKey
+📝 DELETE          /api/v2/company/setting/key/{key}/delete -> setting.key.delete -> deleteAppKey
 
-  POST            app.{domain}/api/v2/company/setting/key/create ......... v2.company.setting.key.create › Api\SpaV2\CompanySettingController@generateAppKey
 
-  DELETE          app.{domain}/api/v2/company/setting/key/{key}/delete ..... v2.company.setting.key.delete › Api\SpaV2\CompanySettingController@deleteAppKey
+  GET        /api/v2/company/setting/meta-info ... v2.company.setting.meta-info -> getCompanyMetaSettings
+  POST    /api/v2/company/setting/meta-info v2.company.setting.meta-info.save -> storeCompanyMetaSett…
 
 
-  GET        app.{domain}/api/v2/company/setting/meta-info ... v2.company.setting.meta-info › Api\SpaV2\CompanySettingController@getCompanyMetaSettings
-  POST            app.{domain}/api/v2/company/setting/meta-info v2.company.setting.meta-info.save › Api\SpaV2\CompanySettingController@storeCompanyMetaSett…
+  GET        /api/v2/company/setting/pipeline ............... v2.company.setting.pipeline -> getPipelines
+  POST    /api/v2/company/setting/pipeline .......... v2.company.setting.pipeline.save -> savePipeline
 
+  DELETE          /api/v2/company/setting/pipeline/{pipeline}/delete v2.company.setting.pipeline.delete -> de…
 
-  GET        app.{domain}/api/v2/company/setting/pipeline ............... v2.company.setting.pipeline › Api\SpaV2\CompanySettingController@getPipelines
-  POST            app.{domain}/api/v2/company/setting/pipeline .......... v2.company.setting.pipeline.save › Api\SpaV2\CompanySettingController@savePipeline
+  POST    /api/v2/company/setting/pipeline/{pipeline}/update v2.company.setting.pipeline.update -> up…
 
-  DELETE          app.{domain}/api/v2/company/setting/pipeline/{pipeline}/delete v2.company.setting.pipeline.delete › Api\SpaV2\CompanySettingController@de…
+  PUT     /api/v2/company/setting/remove-cover-photo v2.company.setting.remove-cover-photo -> removeC…
 
-  POST            app.{domain}/api/v2/company/setting/pipeline/{pipeline}/update v2.company.setting.pipeline.update › Api\SpaV2\CompanySettingController@up…
+  PUT     /api/v2/company/setting/remove-powered-by v2.company.setting.remove-powered-by -> removePow…
 
-  PUT             app.{domain}/api/v2/company/setting/remove-cover-photo v2.company.setting.remove-cover-photo › Api\SpaV2\CompanySettingController@removeC…
+  POST    /api/v2/company/setting/show-life ... v2.company.setting.show-life-at -> updateShowAtSetting
 
-  PUT             app.{domain}/api/v2/company/setting/remove-powered-by v2.company.setting.remove-powered-by › Api\SpaV2\CompanySettingController@removePow…
+✅ GET /api/v2/company/setting/skill -> skill -> getSkills
+✅ POST     /api/v2/company/setting/skill/save -> skill.save -> saveSkill
+✅ DELETE   /api/v2/company/setting/skill/{skill} -> skill.delete -> deleteSkill
 
-  POST            app.{domain}/api/v2/company/setting/show-life ... v2.company.setting.show-life-at › Api\SpaV2\CompanySettingController@updateShowAtSetting
+  POST    /api/v2/company/setting/slack/integration/disconnect v2.company.settings.integration.slack.disconnect › Api\SpaV2\CompanySett…
 
-  GET        app.{domain}/api/v2/company/setting/skill ........................ v2.company.setting.skill › Api\SpaV2\CompanySettingController@getSkills
 
-  POST            app.{domain}/api/v2/company/setting/skill/save .............. v2.company.setting.skill.save › Api\SpaV2\CompanySettingController@saveSkill
+  GET        /api/v2/company/setting/slack/notifications v2.company.setting.slack.notifications -> getCo…
+  POST    /api/v2/company/setting/slack/notifications v2.company.setting.slack.notifications.save -> …
 
-  DELETE          app.{domain}/api/v2/company/setting/skill/{skill} ....... v2.company.setting.skill.delete › Api\SpaV2\CompanySettingController@deleteSkill
+  POST    /api/v2/company/setting/slack/redirect v2.company.settings.integration.slack -> slackRedire…
 
-  POST            app.{domain}/api/v2/company/setting/slack/integration/disconnect v2.company.settings.integration.slack.disconnect › Api\SpaV2\CompanySett…
 
+  GET        /api/v2/company/setting/template-menus v2.company.setting.template-menus › Api\SpaV2\CompanyTemplateController@getMenuCompany…
+  POST    /api/v2/company/setting/template-menus v2.company.setting.template-menus.save › Api\SpaV2\CompanyTemplateController@insertOrU…
 
-  GET        app.{domain}/api/v2/company/setting/slack/notifications v2.company.setting.slack.notifications › Api\SpaV2\CompanySettingController@getCo…
-  POST            app.{domain}/api/v2/company/setting/slack/notifications v2.company.setting.slack.notifications.save › Api\SpaV2\CompanySettingController@…
 
-  POST            app.{domain}/api/v2/company/setting/slack/redirect v2.company.settings.integration.slack › Api\SpaV2\CompanySettingController@slackRedire…
+  GET        /api/v2/company/setting/templates ...... v2.company.setting.templates -> getCompanyTemplates
+  POST    /api/v2/company/setting/templates v2.company.setting.templates.save -> storeCompanyTemplate
 
+  GET        /api/v2/company/setting/user .................... v2.company.setting.user -> getCompanyUsers
 
-  GET        app.{domain}/api/v2/company/setting/template-menus v2.company.setting.template-menus › Api\SpaV2\CompanyTemplateController@getMenuCompany…
-  POST            app.{domain}/api/v2/company/setting/template-menus v2.company.setting.template-menus.save › Api\SpaV2\CompanyTemplateController@insertOrU…
+✅ GET     /api/v2/company/setting/user-app -> v2. -> getUserApp
+✅ POST    /api/v2/company/setting/user-app/update -> v2. -> updateUserApp
 
+  POST    /api/v2/company/setting/user/add ............. v2.company.setting.user.add -> addCompanyUser
 
-  GET        app.{domain}/api/v2/company/setting/templates ...... v2.company.setting.templates › Api\SpaV2\CompanySettingController@getCompanyTemplates
-  POST            app.{domain}/api/v2/company/setting/templates v2.company.setting.templates.save › Api\SpaV2\CompanySettingController@storeCompanyTemplate
 
-  GET        app.{domain}/api/v2/company/setting/user .................... v2.company.setting.user › Api\SpaV2\CompanySettingController@getCompanyUsers
+  GET        /api/v2/company/setting/user/notifications v2.company.setting.user.notifications -> getUser…
+  POST    /api/v2/company/setting/user/notifications v2.company.setting.user.notifications.save -> sa…
 
-  GET        app.{domain}/api/v2/company/setting/user-app ......................................... v2. › Api\SpaV2\CompanySettingController@getUserApp
+  DELETE          /api/v2/company/setting/user/{user}/delete v2.company.setting.user.delete -> deleteCompanyU…
 
-  POST            app.{domain}/api/v2/company/setting/user-app/update ............................... v2. › Api\SpaV2\CompanySettingController@updateUserApp
+  GET        /api/v2/company/setting/user/{user}/send-invitation/{jobPostId?} v2.company.setting.user.invite › Api\SpaV2\CompanySettingCon…
 
-  POST            app.{domain}/api/v2/company/setting/user/add ............. v2.company.setting.user.add › Api\SpaV2\CompanySettingController@addCompanyUser
+  POST    /api/v2/company/setting/user/{user}/update v2.company.setting.user.update -> updateCompanyU…
 
+  DELETE          /api/v2/company/setting/{fieldId}/apply-setting v2.company.setting.apply-setting.delete -> …
 
-  GET        app.{domain}/api/v2/company/setting/user/notifications v2.company.setting.user.notifications › Api\SpaV2\CompanySettingController@getUser…
-  POST            app.{domain}/api/v2/company/setting/user/notifications v2.company.setting.user.notifications.save › Api\SpaV2\CompanySettingController@sa…
+  DELETE          /api/v2/company/setting/{fieldId}/custom-apply-field v2.company.setting.custom-apply-field.delete › Api\SpaV2\CompanySettingC…
 
-  DELETE          app.{domain}/api/v2/company/setting/user/{user}/delete v2.company.setting.user.delete › Api\SpaV2\CompanySettingController@deleteCompanyU…
+  GET        /api/v2/company/stats ......................................... v2.company.stats › Api\SpaV2\CompanyController@getCompanyStats
 
-  GET        app.{domain}/api/v2/company/setting/user/{user}/send-invitation/{jobPostId?} v2.company.setting.user.invite › Api\SpaV2\CompanySettingCon…
+  POST    /api/v2/company/verify .................................. v2.company.domain-verify › Api\SpaV2\CompanyController@verifyCompany
 
-  POST            app.{domain}/api/v2/company/setting/user/{user}/update v2.company.setting.user.update › Api\SpaV2\CompanySettingController@updateCompanyU…
+  GET        /api/v2/continue/candidate ......... v2.user.subscription.continue-as-candidate › Api\SpaV2\UserController@continueAsCandidate
 
-  DELETE          app.{domain}/api/v2/company/setting/{fieldId}/apply-setting v2.company.setting.apply-setting.delete › Api\SpaV2\CompanySettingController@…
+  GET        /api/v2/conversation/applicants .... v2.conversation.applicant.list › Api\SpaV2\CompanyConversationController@getApplicantList
 
-  DELETE          app.{domain}/api/v2/company/setting/{fieldId}/custom-apply-field v2.company.setting.custom-apply-field.delete › Api\SpaV2\CompanySettingC…
+  GET        /api/v2/conversation/applicants/{id} v2.conversation.applicant.messages.get › Api\SpaV2\CompanyConversationController@getAppl…
 
-  GET        app.{domain}/api/v2/company/stats ......................................... v2.company.stats › Api\SpaV2\CompanyController@getCompanyStats
+  POST    /api/v2/conversation/applicants/{id}/message v2.conversation.applicant.message.save › Api\SpaV2\CompanyConversationController…
 
-  POST            app.{domain}/api/v2/company/verify .................................. v2.company.domain-verify › Api\SpaV2\CompanyController@verifyCompany
+  POST    /api/v2/conversation/applicants/{id}/message/status v2.conversation.applicant.message.status.update › Api\SpaV2\CompanyConver…
 
-  GET        app.{domain}/api/v2/continue/candidate ......... v2.user.subscription.continue-as-candidate › Api\SpaV2\UserController@continueAsCandidate
-
-  GET        app.{domain}/api/v2/conversation/applicants .... v2.conversation.applicant.list › Api\SpaV2\CompanyConversationController@getApplicantList
-
-  GET        app.{domain}/api/v2/conversation/applicants/{id} v2.conversation.applicant.messages.get › Api\SpaV2\CompanyConversationController@getAppl…
-
-  POST            app.{domain}/api/v2/conversation/applicants/{id}/message v2.conversation.applicant.message.save › Api\SpaV2\CompanyConversationController…
-
-  POST            app.{domain}/api/v2/conversation/applicants/{id}/message/status v2.conversation.applicant.message.status.update › Api\SpaV2\CompanyConver…
-
-  GET        app.{domain}/api/v2/conversation/notifications v2.conversation.applicant.notification › Api\SpaV2\CompanyConversationController@messageNo…
+  GET        /api/v2/conversation/notifications v2.conversation.applicant.notification › Api\SpaV2\CompanyConversationController@messageNo…
 
 ✅  GET    -> /api/v2/country -> country -> searchCountry
 
-  POST            app.{domain}/api/v2/coupon .................................................................... v2. › Api\SpaV2\UserController@applyCoupon
+  POST    /api/v2/coupon .................................................................... v2. › Api\SpaV2\UserController@applyCoupon
 
-  GET        app.{domain}/api/v2/coupon/{plan}/{code} ................................................... v2. › Api\SpaV2\UserController@couponDiscount
+  GET        /api/v2/coupon/{plan}/{code} ................................................... v2. › Api\SpaV2\UserController@couponDiscount
 
-  GET        app.{domain}/api/v2/degree/{level?} ........................................................ Api\SpaV2\GlobalSearchController@searchDegree
+  GET        /api/v2/degree/{level?} ........................................................ Api\SpaV2\GlobalSearchController@searchDegree
 
-  GET        app.{domain}/api/v2/department ......................................................... Api\SpaV2\GlobalSearchController@searchDepartment
+  GET        /api/v2/department ......................................................... Api\SpaV2\GlobalSearchController@searchDepartment
 
-  GET        app.{domain}/api/v2/designation ....................................................... Api\SpaV2\GlobalSearchController@searchDesignation
+  GET        /api/v2/designation ....................................................... Api\SpaV2\GlobalSearchController@searchDesignation
 
-  GET        app.{domain}/api/v2/docusign/authorization .................................. v2. › Api\SpaV2\Intregation\DocuSignController@authorization
+  GET        /api/v2/docusign/authorization .................................. v2. › Api\SpaV2\Intregation\DocuSignController@authorization
 
-  GET        app.{domain}/api/v2/docusign/check-authentication ..................... v2. › Api\SpaV2\Intregation\DocuSignController@checkAuthentication
+  GET        /api/v2/docusign/check-authentication ..................... v2. › Api\SpaV2\Intregation\DocuSignController@checkAuthentication
 
-  POST            app.{domain}/api/v2/docusign/credentials .................................. v2. › Api\SpaV2\Intregation\DocuSignController@saveCredentials
+  POST    /api/v2/docusign/credentials .................................. v2. › Api\SpaV2\Intregation\DocuSignController@saveCredentials
 
-  POST            app.{domain}/api/v2/docusign/disconnect ........................................ v2. › Api\SpaV2\Intregation\DocuSignController@disconnect
+  POST    /api/v2/docusign/disconnect ........................................ v2. › Api\SpaV2\Intregation\DocuSignController@disconnect
 
-  GET        app.{domain}/api/v2/docusign/oauth/initiate .................... v2.initiateOAuth › Api\SpaV2\Intregation\DocuSignController@initiateOAuth
+  GET        /api/v2/docusign/oauth/initiate .................... v2.initiateOAuth › Api\SpaV2\Intregation\DocuSignController@initiateOAuth
 
-  GET        app.{domain}/api/v2/docusign/templates ....................................... v2. › Api\SpaV2\Intregation\DocuSignController@getTemplates
+  GET        /api/v2/docusign/templates ....................................... v2. › Api\SpaV2\Intregation\DocuSignController@getTemplates
 
-  GET        app.{domain}/api/v2/education-level ......................... ajax.education_level › Api\SpaV2\GlobalSearchController@searchEducationLevel
+  GET        /api/v2/education-level ......................... ajax.education_level › Api\SpaV2\GlobalSearchController@searchEducationLevel
 
-  POST            app.{domain}/api/v2/forgot-password .............................................................. Api\SpaV2\AuthController@forgotPassword
+  POST    /api/v2/forgot-password .............................................................. Api\SpaV2\AuthController@forgotPassword
 
-  POST            app.{domain}/api/v2/google-sign-in ................................................................. Api\SpaV2\AuthController@googleSignIn
+  POST    /api/v2/google-sign-in ................................................................. Api\SpaV2\AuthController@googleSignIn
 
-  POST            app.{domain}/api/v2/hackerrank/assign-assessment v2.hackerrank.candidate.invite › Api\SpaV2\Intregation\HackerRankController@assignAssess…
+  POST    /api/v2/hackerrank/assign-assessment v2.hackerrank.candidate.invite › Api\SpaV2\Intregation\HackerRankController@assignAssess…
 
-  POST            app.{domain}/api/v2/hackerrank/candidate-cancel-invite v2.hackerrank.candidate.assessment.cancel › Api\SpaV2\Intregation\HackerRankContro…
+  POST    /api/v2/hackerrank/candidate-cancel-invite v2.hackerrank.candidate.assessment.cancel › Api\SpaV2\Intregation\HackerRankContro…
 
-  POST            app.{domain}/api/v2/hackerrank/candidate-details v2.hackerrank.candidate.assessment.details › Api\SpaV2\Intregation\HackerRankController@…
+  POST    /api/v2/hackerrank/candidate-details v2.hackerrank.candidate.assessment.details › Api\SpaV2\Intregation\HackerRankController@…
 
-  GET        app.{domain}/api/v2/hackerrank/candidate-test . v2.hackerrank.candidate.test › Api\SpaV2\Intregation\HackerRankController@getCandidateTest
+  GET        /api/v2/hackerrank/candidate-test . v2.hackerrank.candidate.test › Api\SpaV2\Intregation\HackerRankController@getCandidateTest
 
-  POST            app.{domain}/api/v2/hackerrank/candidate-test/update v2.hackerrank.candidate.test.update › Api\SpaV2\Intregation\HackerRankController@upd…
+  POST    /api/v2/hackerrank/candidate-test/update v2.hackerrank.candidate.test.update › Api\SpaV2\Intregation\HackerRankController@upd…
 
-  GET        app.{domain}/api/v2/hackerrank/tests/{applicantId?} .............. v2.hackerrank. › Api\SpaV2\Intregation\HackerRankController@getAllTests
+  GET        /api/v2/hackerrank/tests/{applicantId?} .............. v2.hackerrank. › Api\SpaV2\Intregation\HackerRankController@getAllTests
 
-  GET        app.{domain}/api/v2/job/active .................................................... v2.job.active › Api\SpaV2\JobPostController@activeJobs
+  GET        /api/v2/job/active .................................................... v2.job.active › Api\SpaV2\JobPostController@activeJobs
 
-  POST            app.{domain}/api/v2/job/ai-generate .............................. v2.job.ai-generate-post › Api\SpaV2\JobPostController@aiJobPostGenerate
+  POST    /api/v2/job/ai-generate .............................. v2.job.ai-generate-post › Api\SpaV2\JobPostController@aiJobPostGenerate
 
-  GET        app.{domain}/api/v2/job/all ............................................................. v2.job.all › Api\SpaV2\JobPostController@allList
+  GET        /api/v2/job/all ............................................................. v2.job.all › Api\SpaV2\JobPostController@allList
 
-  GET        app.{domain}/api/v2/job/applicant/navigation/{jobId} ..... v2.job.applicant.navigation › Api\SpaV2\ApplicantController@applicantNavigation
+  GET        /api/v2/job/applicant/navigation/{jobId} ..... v2.job.applicant.navigation › Api\SpaV2\ApplicantController@applicantNavigation
 
-  GET        app.{domain}/api/v2/job/applicant/{applicant} ..................... v2.job.applicant.show › Api\SpaV2\ApplicantController@applicantDetails
+  GET        /api/v2/job/applicant/{applicant} ..................... v2.job.applicant.show › Api\SpaV2\ApplicantController@applicantDetails
 
-  POST            app.{domain}/api/v2/job/applicant/{applicant}/attachment ...... v2.job.applicant.attachment › Api\SpaV2\ApplicantController@saveAttachment
+  POST    /api/v2/job/applicant/{applicant}/attachment ...... v2.job.applicant.attachment › Api\SpaV2\ApplicantController@saveAttachment
 
-  DELETE          app.{domain}/api/v2/job/applicant/{applicant}/attachment/{attachment}/delete v2.job.applicant.attachment.delete › Api\SpaV2\ApplicantCont…
+  DELETE          /api/v2/job/applicant/{applicant}/attachment/{attachment}/delete v2.job.applicant.attachment.delete › Api\SpaV2\ApplicantCont…
 
-  POST            app.{domain}/api/v2/job/applicant/{applicant}/attachment/{attachment}/update v2.job.applicant.attachment.update › Api\SpaV2\ApplicantCont…
+  POST    /api/v2/job/applicant/{applicant}/attachment/{attachment}/update v2.job.applicant.attachment.update › Api\SpaV2\ApplicantCont…
 
-  GET        app.{domain}/api/v2/job/applicant/{applicant}/attachments .... v2.job.applicant.attachments › Api\SpaV2\ApplicantController@getAttachments
+  GET        /api/v2/job/applicant/{applicant}/attachments .... v2.job.applicant.attachments › Api\SpaV2\ApplicantController@getAttachments
 
-  POST            app.{domain}/api/v2/job/applicant/{applicant}/draft-message v2.job.applicant.message.draft › Api\SpaV2\ApplicantController@saveDraftMessa…
+  POST    /api/v2/job/applicant/{applicant}/draft-message v2.job.applicant.message.draft › Api\SpaV2\ApplicantController@saveDraftMessa…
 
-  POST            app.{domain}/api/v2/job/applicant/{applicant}/draft-note ....... v2.job.applicant.note.draft › Api\SpaV2\ApplicantController@saveDraftNote
+  POST    /api/v2/job/applicant/{applicant}/draft-note ....... v2.job.applicant.note.draft › Api\SpaV2\ApplicantController@saveDraftNote
 
-  GET        app.{domain}/api/v2/job/applicant/{applicant}/evaluation/ai-score v2.job.applicant.evaluation.ai.score › Api\SpaV2\ApplicantController@ap…
+  GET        /api/v2/job/applicant/{applicant}/evaluation/ai-score v2.job.applicant.evaluation.ai.score › Api\SpaV2\ApplicantController@ap…
 
-  GET        app.{domain}/api/v2/job/applicant/{applicant}/evaluation/questions v2.job.applicant.evaluation.questions › Api\SpaV2\ApplicantController@…
+  GET        /api/v2/job/applicant/{applicant}/evaluation/questions v2.job.applicant.evaluation.questions › Api\SpaV2\ApplicantController@…
 
-  GET        app.{domain}/api/v2/job/applicant/{applicant}/exists ............. v2.job.applicant.exists › Api\SpaV2\ApplicantController@applicantExists
+  GET        /api/v2/job/applicant/{applicant}/exists ............. v2.job.applicant.exists › Api\SpaV2\ApplicantController@applicantExists
 
 
-  GET        app.{domain}/api/v2/job/applicant/{applicant}/note ........................ v2.job.applicant.note › Api\SpaV2\ApplicantController@getNotes
-  POST            app.{domain}/api/v2/job/applicant/{applicant}/note ................... v2.job.applicant.note.save › Api\SpaV2\ApplicantController@saveNote
+  GET        /api/v2/job/applicant/{applicant}/note ........................ v2.job.applicant.note › Api\SpaV2\ApplicantController@getNotes
+  POST    /api/v2/job/applicant/{applicant}/note ................... v2.job.applicant.note.save › Api\SpaV2\ApplicantController@saveNote
 
-  DELETE          app.{domain}/api/v2/job/applicant/{applicant}/note/{note}/delete . v2.job.applicant.note.delete › Api\SpaV2\ApplicantController@deleteNote
+  DELETE          /api/v2/job/applicant/{applicant}/note/{note}/delete . v2.job.applicant.note.delete › Api\SpaV2\ApplicantController@deleteNote
 
-  PUT             app.{domain}/api/v2/job/applicant/{applicant}/rating .................. v2.job.applicant.rating › Api\SpaV2\ApplicantController@saveRating
+  PUT     /api/v2/job/applicant/{applicant}/rating .................. v2.job.applicant.rating › Api\SpaV2\ApplicantController@saveRating
 
-  GET        app.{domain}/api/v2/job/archived .............................................. v2.job.archived › Api\SpaV2\JobPostController@archivedList
+  GET        /api/v2/job/archived .............................................. v2.job.archived › Api\SpaV2\JobPostController@archivedList
 
 ✅  GET    /api/v2/job/category/{subcategory?} -> category -> searchCategory
 
   POST    /api/v2/job/create -> v2.job.create › Api\SpaV2\JobPostController@create
 
-  GET        app.{domain}/api/v2/job/draft ....................................................... v2.job.draft › Api\SpaV2\JobPostController@draftList
+  GET        /api/v2/job/draft ....................................................... v2.job.draft › Api\SpaV2\JobPostController@draftList
 
 ✅  GET    -> /api/v2/job/information-meta-data -> job.information.meta.data -> jobInfoMetaData
 
-  GET        app.{domain}/api/v2/job/permissions ...................................................... Api\SpaV2\GlobalSearchController@jobPermissions
+  GET        /api/v2/job/permissions ...................................................... Api\SpaV2\GlobalSearchController@jobPermissions
 
-  GET        app.{domain}/api/v2/job/published ........................................... v2.job.published › Api\SpaV2\JobPostController@publishedList
+  GET        /api/v2/job/published ........................................... v2.job.published › Api\SpaV2\JobPostController@publishedList
 
 ✅  GET    -> /api/v2/job/quiz-meta-data -> quiz.meta.data -> jobQuizMetaData
 
-  GET        app.{domain}/api/v2/job/screening-meta-data .. v2.job.screening.meta.data › Api\SpaV2\JobEvaluationController@jobScreeningQuestionMetaData
+  GET        /api/v2/job/screening-meta-data .. v2.job.screening.meta.data › Api\SpaV2\JobEvaluationController@jobScreeningQuestionMetaData
 
-  POST            app.{domain}/api/v2/job/set-preview .............................................. v2.job.preview › Api\SpaV2\JobPostController@setPreview
+  POST    /api/v2/job/set-preview .............................................. v2.job.preview › Api\SpaV2\JobPostController@setPreview
 
 ✅  GET    /api/v2/job/skill -> skill -> searchSkill
 
-  GET        app.{domain}/api/v2/job/templates ...................................................... v2. › Api\SpaV2\JobPostController@getJobTemplates
+  GET        /api/v2/job/templates ...................................................... v2. › Api\SpaV2\JobPostController@getJobTemplates
 
-  GET        app.{domain}/api/v2/job/{applicant}/exists-test ................... v2.job.applicant.exists-test › Api\SpaV2\JobController@applicantExists
+  GET        /api/v2/job/{applicant}/exists-test ................... v2.job.applicant.exists-test › Api\SpaV2\JobController@applicantExists
 
-  DELETE          app.{domain}/api/v2/job/{job}/assessment/{assessment}/delete v2.job.delete-assessment › Api\SpaV2\JobEvaluationController@deleteAssessment
+  DELETE          /api/v2/job/{job}/assessment/{assessment}/delete v2.job.delete-assessment › Api\SpaV2\JobEvaluationController@deleteAssessment
 
-  POST            app.{domain}/api/v2/job/{job}/assessment/{assessment}/update v2.job.update-assessment › Api\SpaV2\JobEvaluationController@updateAssessment
+  POST    /api/v2/job/{job}/assessment/{assessment}/update v2.job.update-assessment › Api\SpaV2\JobEvaluationController@updateAssessment
 
-  POST            app.{domain}/api/v2/job/{job}/assign-assessment ............ v2.job.assign-assessment › Api\SpaV2\JobEvaluationController@assignAssessment
+  POST    /api/v2/job/{job}/assign-assessment ............ v2.job.assign-assessment › Api\SpaV2\JobEvaluationController@assignAssessment
 
-  GET        app.{domain}/api/v2/job/{job}/basic ....................................................... v2. › Api\SpaV2\JobPostController@jobBasicInfo
+  GET        /api/v2/job/{job}/basic ....................................................... v2. › Api\SpaV2\JobPostController@jobBasicInfo
 
-  POST            app.{domain}/api/v2/job/{job}/candidate/add ......................... v2.job.candidate.add › Api\SpaV2\JobCandidateController@addCandidate
+  POST    /api/v2/job/{job}/candidate/add ......................... v2.job.candidate.add › Api\SpaV2\JobCandidateController@addCandidate
 
-  POST            app.{domain}/api/v2/job/{job}/candidate/delete ................ v2.job.candidate.delete › Api\SpaV2\JobCandidateController@deleteCandidate
+  POST    /api/v2/job/{job}/candidate/delete ................ v2.job.candidate.delete › Api\SpaV2\JobCandidateController@deleteCandidate
 
-  POST            app.{domain}/api/v2/job/{job}/candidate/onboard .............. v2.job.candidate.onboard › Api\SpaV2\JobPipelineController@onboardCandidate
+  POST    /api/v2/job/{job}/candidate/onboard .............. v2.job.candidate.onboard › Api\SpaV2\JobPipelineController@onboardCandidate
 
-  GET        app.{domain}/api/v2/job/{job}/candidate/pending ............ v2.job.candidate.pending › Api\SpaV2\JobCandidateController@pendingCandidates
+  GET        /api/v2/job/{job}/candidate/pending ............ v2.job.candidate.pending › Api\SpaV2\JobCandidateController@pendingCandidates
 
-  POST            app.{domain}/api/v2/job/{job}/candidate/pending/invite v2.job.candidate.pending.invite › Api\SpaV2\JobCandidateController@invitePendingCa…
+  POST    /api/v2/job/{job}/candidate/pending/invite v2.job.candidate.pending.invite › Api\SpaV2\JobCandidateController@invitePendingCa…
 
-  POST            app.{domain}/api/v2/job/{job}/candidate/reject ................. v2.job.candidate.reject › Api\SpaV2\JobPipelineController@rejectCandidate
+  POST    /api/v2/job/{job}/candidate/reject ................. v2.job.candidate.reject › Api\SpaV2\JobPipelineController@rejectCandidate
 
-  GET        app.{domain}/api/v2/job/{job}/candidates .............................. v2.job.candidates › Api\SpaV2\JobCandidateController@getCandidates
+  GET        /api/v2/job/{job}/candidates .............................. v2.job.candidates › Api\SpaV2\JobCandidateController@getCandidates
 
-  POST            app.{domain}/api/v2/job/{job}/change-status ........................... v2.job.change-status › Api\SpaV2\JobPostController@changeJobStatus
-
-
-  POST            app.{domain}/api/v2/job/{job}/collaborators ............. v2.job.collaborators.create › Api\SpaV2\JobPermissionController@createPermission
-  GET        app.{domain}/api/v2/job/{job}/collaborators .................... v2.job.collaborators › Api\SpaV2\JobPermissionController@getCollaborators
-
-  DELETE          app.{domain}/api/v2/job/{job}/collaborators/{collaborator}/delete v2.job.collaborators.delete › Api\SpaV2\JobPermissionController@deleteJ…
-
-  POST            app.{domain}/api/v2/job/{job}/collaborators/{collaborator}/update v2.job.collaborators.update › Api\SpaV2\JobPermissionController@updateP…
-
-  DELETE          app.{domain}/api/v2/job/{job}/delete ................................................. v2.job.delete › Api\SpaV2\JobPostController@destroy
-
-  GET        app.{domain}/api/v2/job/{job}/duplicate ...................................... v2.job.duplicate › Api\SpaV2\JobPostController@duplicateJob
-
-  POST            app.{domain}/api/v2/job/{job}/image ............................................ v2.job.save-image › Api\SpaV2\JobPostController@saveImage
-
-  POST            app.{domain}/api/v2/job/{job}/invitation/delete ............. v2.job.invitation.delete › Api\SpaV2\JobCandidateController@deleteInvitation
-
-  GET        app.{domain}/api/v2/job/{job}/invitations ........................... v2.job.invitations › Api\SpaV2\JobCandidateController@getInvitations
-
-  POST            app.{domain}/api/v2/job/{job}/notification .................................... v2. › Api\SpaV2\JobPermissionController@manageNotification
-
-  PUT             app.{domain}/api/v2/job/{job}/pinned ............................................ v2.job.pinned › Api\SpaV2\JobPostController@updatePinned
-
-  GET        app.{domain}/api/v2/job/{job}/pipeline ..................................... v2.job.pipeline › Api\SpaV2\JobPipelineController@getPipeline
-
-  POST            app.{domain}/api/v2/job/{job}/pipeline/candidate ...... v2.job.candidate.pipeline › Api\SpaV2\JobPipelineController@addCandidateToPipeline
-
-  POST            app.{domain}/api/v2/job/{job}/pipeline/candidate/re-order v2.job.pipeline.candidate.re-order › Api\SpaV2\JobPipelineController@candidateR…
-
-  POST            app.{domain}/api/v2/job/{job}/pipeline/remote-interview v2.job.pipeline.remote-interview › Api\SpaV2\JobPipelineController@createRemoteIn…
-
-  POST            app.{domain}/api/v2/job/{job}/pipeline/remote-interview-client v2.job.pipeline.remote-interview-client › Api\SpaV2\JobPipelineController@…
-
-  GET        app.{domain}/api/v2/job/{job}/pipeline/select ................. v2.job.pipeline.select › Api\SpaV2\JobPipelineController@selectJobPipeline
-
-  POST            app.{domain}/api/v2/job/{job}/pipeline/update ................... v2.job.pipeline.edit › Api\SpaV2\JobPipelineController@updateJobPipeline
-
-  POST            app.{domain}/api/v2/job/{job}/pipeline/update-view-mode v2.job.pipeline.update-view-mode › Api\SpaV2\JobPipelineController@updatePipeline…
+  POST    /api/v2/job/{job}/change-status ........................... v2.job.change-status › Api\SpaV2\JobPostController@changeJobStatus
 
 
+  POST    /api/v2/job/{job}/collaborators ............. v2.job.collaborators.create › Api\SpaV2\JobPermissionController@createPermission
+  GET        /api/v2/job/{job}/collaborators .................... v2.job.collaborators › Api\SpaV2\JobPermissionController@getCollaborators
 
-  GET        app.{domain}/api/v2/job/{job}/quiz ................................. v2.job.quiz-question › Api\SpaV2\JobEvaluationController@quizQuestion
-  POST            app.{domain}/api/v2/job/{job}/quiz ........................ v2.job.quiz-question.save › Api\SpaV2\JobEvaluationController@saveQuizQuestion
-  DELETE          app.{domain}/api/v2/job/{job}/quiz .................... v2.job.quiz-question.delete › Api\SpaV2\JobEvaluationController@deleteQuizQuestion
+  DELETE          /api/v2/job/{job}/collaborators/{collaborator}/delete v2.job.collaborators.delete › Api\SpaV2\JobPermissionController@deleteJ…
 
+  POST    /api/v2/job/{job}/collaborators/{collaborator}/update v2.job.collaborators.update › Api\SpaV2\JobPermissionController@updateP…
 
-  GET        app.{domain}/api/v2/job/{job}/required-fields ..................... v2.job.required.data › Api\SpaV2\JobPostController@getJobRequiredField
-  POST            app.{domain}/api/v2/job/{job}/required-fields ............ v2.job.save.required-fields › Api\SpaV2\JobPostController@saveJobRequiredFields
+  DELETE          /api/v2/job/{job}/delete ................................................. v2.job.delete › Api\SpaV2\JobPostController@destroy
+
+  GET        /api/v2/job/{job}/duplicate ...................................... v2.job.duplicate › Api\SpaV2\JobPostController@duplicateJob
+
+  POST    /api/v2/job/{job}/image ............................................ v2.job.save-image › Api\SpaV2\JobPostController@saveImage
+
+  POST    /api/v2/job/{job}/invitation/delete ............. v2.job.invitation.delete › Api\SpaV2\JobCandidateController@deleteInvitation
+
+  GET        /api/v2/job/{job}/invitations ........................... v2.job.invitations › Api\SpaV2\JobCandidateController@getInvitations
+
+  POST    /api/v2/job/{job}/notification .................................... v2. › Api\SpaV2\JobPermissionController@manageNotification
+
+  PUT     /api/v2/job/{job}/pinned ............................................ v2.job.pinned › Api\SpaV2\JobPostController@updatePinned
+
+  GET        /api/v2/job/{job}/pipeline ..................................... v2.job.pipeline › Api\SpaV2\JobPipelineController@getPipeline
+
+  POST    /api/v2/job/{job}/pipeline/candidate ...... v2.job.candidate.pipeline › Api\SpaV2\JobPipelineController@addCandidateToPipeline
+
+  POST    /api/v2/job/{job}/pipeline/candidate/re-order v2.job.pipeline.candidate.re-order › Api\SpaV2\JobPipelineController@candidateR…
+
+  POST    /api/v2/job/{job}/pipeline/remote-interview v2.job.pipeline.remote-interview › Api\SpaV2\JobPipelineController@createRemoteIn…
+
+  POST    /api/v2/job/{job}/pipeline/remote-interview-client v2.job.pipeline.remote-interview-client › Api\SpaV2\JobPipelineController@…
+
+  GET        /api/v2/job/{job}/pipeline/select ................. v2.job.pipeline.select › Api\SpaV2\JobPipelineController@selectJobPipeline
+
+  POST    /api/v2/job/{job}/pipeline/update ................... v2.job.pipeline.edit › Api\SpaV2\JobPipelineController@updateJobPipeline
+
+  POST    /api/v2/job/{job}/pipeline/update-view-mode v2.job.pipeline.update-view-mode › Api\SpaV2\JobPipelineController@updatePipeline…
 
 
 
-  GET        app.{domain}/api/v2/job/{job}/screening .................. v2.job.screening-question › Api\SpaV2\JobEvaluationController@screeningQuestion
-  POST            app.{domain}/api/v2/job/{job}/screening ......... v2.job.screening-question.save › Api\SpaV2\JobEvaluationController@saveScreeningQuestion
-  DELETE          app.{domain}/api/v2/job/{job}/screening ..... v2.job.screening-question.delete › Api\SpaV2\JobEvaluationController@deleteScreeningQuestion
+  GET        /api/v2/job/{job}/quiz ................................. v2.job.quiz-question › Api\SpaV2\JobEvaluationController@quizQuestion
+  POST    /api/v2/job/{job}/quiz ........................ v2.job.quiz-question.save › Api\SpaV2\JobEvaluationController@saveQuizQuestion
+  DELETE          /api/v2/job/{job}/quiz .................... v2.job.quiz-question.delete › Api\SpaV2\JobEvaluationController@deleteQuizQuestion
 
-  PUT             app.{domain}/api/v2/job/{job}/update .................................................. v2.job.update › Api\SpaV2\JobPostController@update
 
-  POST            app.{domain}/api/v2/logout ......................................................................... v2. › Api\SpaV2\AuthController@logout
+  GET        /api/v2/job/{job}/required-fields ..................... v2.job.required.data › Api\SpaV2\JobPostController@getJobRequiredField
+  POST    /api/v2/job/{job}/required-fields ............ v2.job.save.required-fields › Api\SpaV2\JobPostController@saveJobRequiredFields
 
-  GET        app.{domain}/api/v2/manager/notification ................. v2.manager.notification › Api\SpaV2\ManagerNotificationController@notifications
 
-  POST            app.{domain}/api/v2/manager/notification/clear-all v2.manager.notification.clear.all › Api\SpaV2\ManagerNotificationController@clearAllNo…
 
-  DELETE          app.{domain}/api/v2/manager/notification/delete-all v2.manager.notification.delete.all › Api\SpaV2\ManagerNotificationController@deleteAl…
+  GET        /api/v2/job/{job}/screening .................. v2.job.screening-question › Api\SpaV2\JobEvaluationController@screeningQuestion
+  POST    /api/v2/job/{job}/screening ......... v2.job.screening-question.save › Api\SpaV2\JobEvaluationController@saveScreeningQuestion
+  DELETE          /api/v2/job/{job}/screening ..... v2.job.screening-question.delete › Api\SpaV2\JobEvaluationController@deleteScreeningQuestion
 
-  GET        app.{domain}/api/v2/manager/notification/{notification}/clear v2.manager.notification.clear › Api\SpaV2\ManagerNotificationController@cle…
+  PUT     /api/v2/job/{job}/update .................................................. v2.job.update › Api\SpaV2\JobPostController@update
 
-  DELETE          app.{domain}/api/v2/manager/notification/{notification}/delete v2.manager.notification.delete › Api\SpaV2\ManagerNotificationController@d…
+  POST    /api/v2/logout ......................................................................... v2. › Api\SpaV2\AuthController@logout
+
+  GET        /api/v2/manager/notification ................. v2.manager.notification › Api\SpaV2\ManagerNotificationController@notifications
+
+  POST    /api/v2/manager/notification/clear-all v2.manager.notification.clear.all › Api\SpaV2\ManagerNotificationController@clearAllNo…
+
+  DELETE          /api/v2/manager/notification/delete-all v2.manager.notification.delete.all › Api\SpaV2\ManagerNotificationController@deleteAl…
+
+  GET        /api/v2/manager/notification/{notification}/clear v2.manager.notification.clear › Api\SpaV2\ManagerNotificationController@cle…
+
+  DELETE          /api/v2/manager/notification/{notification}/delete v2.manager.notification.delete › Api\SpaV2\ManagerNotificationController@d…
 
 ✅  DELETE   /api/v2/my-account -> delete -> deleteMyAccount
 ✅  GET      /api/v2/my-account/billing -> billing -> billingDetails
@@ -818,107 +813,107 @@ GET        {company}.easyjobs.test/ ............................................
 ✅  GET      /api/v2/my-account/payment-history ......................... ->payment -> paymentHistory
   GET      /api/v2/my-account/paypal/payment-action/{transaction} ->paypal.payment.action -> getPa…
 
-  GET        app.{domain}/api/v2/nationality ....................................................... Api\SpaV2\GlobalSearchController@searchNationality
+  GET        /api/v2/nationality ....................................................... Api\SpaV2\GlobalSearchController@searchNationality
 
-  POST            app.{domain}/api/v2/onboard ............................................................................. Api\SpaV2\AuthController@onboard
+  POST    /api/v2/onboard ............................................................................. Api\SpaV2\AuthController@onboard
 
-  POST            app.{domain}/api/v2/onboard/email ............................................................ Api\SpaV2\AuthController@getInvitationEmail
+  POST    /api/v2/onboard/email ............................................................ Api\SpaV2\AuthController@getInvitationEmail
 
-  POST            app.{domain}/api/v2/onboard/status ............................................... onboard.status › Api\SpaV2\AuthController@onboardStatus
+  POST    /api/v2/onboard/status ............................................... onboard.status › Api\SpaV2\AuthController@onboardStatus
 
-  POST            app.{domain}/api/v2/password/reset ................................................................ Api\SpaV2\AuthController@passwordReset
+  POST    /api/v2/password/reset ................................................................ Api\SpaV2\AuthController@passwordReset
 
-  POST            app.{domain}/api/v2/password/set .................................................................... Api\SpaV2\AuthController@passwordSet
+  POST    /api/v2/password/set .................................................................... Api\SpaV2\AuthController@passwordSet
 
-  POST            app.{domain}/api/v2/paypal/subscription ........................... v2.user.paypal.subscription › Api\SpaV2\UserController@paypalSubscribe
+  POST    /api/v2/paypal/subscription ........................... v2.user.paypal.subscription › Api\SpaV2\UserController@paypalSubscribe
 
-  POST            app.{domain}/api/v2/paypal/subscription/update .... v2.user.paypal.subscription.update › Api\SpaV2\UserController@updatePaypalSubscription
+  POST    /api/v2/paypal/subscription/update .... v2.user.paypal.subscription.update › Api\SpaV2\UserController@updatePaypalSubscription
 
-  GET        app.{domain}/api/v2/question-set/{id} ............ v2.job-evaluation.question-set-data › Api\SpaV2\JobEvaluationController@questionSetData
+  GET        /api/v2/question-set/{id} ............ v2.job-evaluation.question-set-data › Api\SpaV2\JobEvaluationController@questionSetData
 
-  GET        app.{domain}/api/v2/quiz-question-set/{id} v2.job-evaluation.quiz-question-set-data › Api\SpaV2\JobEvaluationController@quizQuestionSetDa…
+  GET        /api/v2/quiz-question-set/{id} v2.job-evaluation.quiz-question-set-data › Api\SpaV2\JobEvaluationController@quizQuestionSetDa…
 
-  POST            app.{domain}/api/v2/redirect-to-dashboard ................................................... Api\SpaV2\AuthController@redirectToDashboard
+  POST    /api/v2/redirect-to-dashboard ................................................... Api\SpaV2\AuthController@redirectToDashboard
 
-  GET        app.{domain}/api/v2/release-notification/notify/{version} ........................... v2. › Api\SpaV2\ReleaseNotificationController@notify
+  GET        /api/v2/release-notification/notify/{version} ........................... v2. › Api\SpaV2\ReleaseNotificationController@notify
 
-  GET        app.{domain}/api/v2/remote-interview-pipeline ................................ Api\SpaV2\GlobalSearchController@getRemoteInterviewPipeline
+  GET        /api/v2/remote-interview-pipeline ................................ Api\SpaV2\GlobalSearchController@getRemoteInterviewPipeline
 
-  GET        app.{domain}/api/v2/screening-question-set/{id} v2.job-evaluation.screening-question-set-data › Api\SpaV2\JobEvaluationController@screeni…
+  GET        /api/v2/screening-question-set/{id} v2.job-evaluation.screening-question-set-data › Api\SpaV2\JobEvaluationController@screeni…
 
-  GET        app.{domain}/api/v2/setting/role-permissions ..................................... Api\SpaV2\GlobalSearchController@getRolesAndPermissions
+  GET        /api/v2/setting/role-permissions ..................................... Api\SpaV2\GlobalSearchController@getRolesAndPermissions
 
-  POST            app.{domain}/api/v2/sign-in ............................................................................... Api\SpaV2\AuthController@login
+  POST    /api/v2/sign-in ............................................................................... Api\SpaV2\AuthController@login
 
-  POST            app.{domain}/api/v2/sign-in-oauth/{provider} ........................................................ Api\SpaV2\AuthController@loginSocial
+  POST    /api/v2/sign-in-oauth/{provider} ........................................................ Api\SpaV2\AuthController@loginSocial
 
-  GET        app.{domain}/api/v2/sign-in-oauth/{provider}/callback ......................................... Web\App\Sso\LoginController@loginSocialGet
+  GET        /api/v2/sign-in-oauth/{provider}/callback ......................................... Web\App\Sso\LoginController@loginSocialGet
 
-  POST            app.{domain}/api/v2/sign-up ........................................................................ Api\SpaV2\AuthController@registration
+  POST    /api/v2/sign-up ........................................................................ Api\SpaV2\AuthController@registration
 
 
-  GET        app.{domain}/api/v2/state/{country} ............................................ ajax.state › Api\SpaV2\GlobalSearchController@searchState
-  POST            app.{domain}/api/v2/state/{country} .................................. ajax.state.save › Api\SpaV2\GlobalSearchController@saveCompanyState
+  GET        /api/v2/state/{country} ............................................ ajax.state › Api\SpaV2\GlobalSearchController@searchState
+  POST    /api/v2/state/{country} .................................. ajax.state.save › Api\SpaV2\GlobalSearchController@saveCompanyState
 
-  POST            app.{domain}/api/v2/subscribe ........................ v2.user.subscription.free-package › Api\SpaV2\UserController@subscribeToFreePackage
+  POST    /api/v2/subscribe ........................ v2.user.subscription.free-package › Api\SpaV2\UserController@subscribeToFreePackage
 
-  POST            app.{domain}/api/v2/subscribe/session-create .... v2.user.subscription.session-create › Api\SpaV2\UserController@subscriptionSessionCreate
+  POST    /api/v2/subscribe/session-create .... v2.user.subscription.session-create › Api\SpaV2\UserController@subscriptionSessionCreate
 
-  PUT             app.{domain}/api/v2/subscription/cancel ................ v2.user.subscription.cancel › Api\SpaV2\UserController@cancelSubscriptionPackages
+  PUT     /api/v2/subscription/cancel ................ v2.user.subscription.cancel › Api\SpaV2\UserController@cancelSubscriptionPackages
 
-  POST            app.{domain}/api/v2/subscription/move-to-free ................ v2.user.subscription.move.free › Api\SpaV2\UserController@moveToFreePackage
+  POST    /api/v2/subscription/move-to-free ................ v2.user.subscription.move.free › Api\SpaV2\UserController@moveToFreePackage
 
-  GET        app.{domain}/api/v2/subscription/packages ............ v2.user.subscription.packages › Api\SpaV2\UserController@getAllSubscriptionPackages
+  GET        /api/v2/subscription/packages ............ v2.user.subscription.packages › Api\SpaV2\UserController@getAllSubscriptionPackages
 
-  GET        app.{domain}/api/v2/subscription/packages/{slug} ...... v2.user.subscription.get-package › Api\SpaV2\UserController@getSubscriptionPackage
+  GET        /api/v2/subscription/packages/{slug} ...... v2.user.subscription.get-package › Api\SpaV2\UserController@getSubscriptionPackage
 
-  PUT             app.{domain}/api/v2/subscription/pause ................... v2.user.subscription.pause › Api\SpaV2\UserController@pauseSubscriptionPackages
+  PUT     /api/v2/subscription/pause ................... v2.user.subscription.pause › Api\SpaV2\UserController@pauseSubscriptionPackages
 
-  GET        app.{domain}/api/v2/subscription/public-packages v2.user.subscription.public-packages › Api\SpaV2\UserController@getPublicSubscriptionPac…
+  GET        /api/v2/subscription/public-packages v2.user.subscription.public-packages › Api\SpaV2\UserController@getPublicSubscriptionPac…
 
-  PUT             app.{domain}/api/v2/subscription/resume ................ v2.user.subscription.resume › Api\SpaV2\UserController@resumeSubscriptionPackages
+  PUT     /api/v2/subscription/resume ................ v2.user.subscription.resume › Api\SpaV2\UserController@resumeSubscriptionPackages
 
-  POST            app.{domain}/api/v2/subscription/verify ........................ v2.user.subscription.verify › Api\SpaV2\UserController@subscriptionVerify
+  POST    /api/v2/subscription/verify ........................ v2.user.subscription.verify › Api\SpaV2\UserController@subscriptionVerify
 
-  DELETE          app.{domain}/api/v2/testlify/assessment/{assessment}/delete v2.assessment.delete › Api\SpaV2\Intregation\TestlifyController@deleteAssessm…
+  DELETE          /api/v2/testlify/assessment/{assessment}/delete v2.assessment.delete › Api\SpaV2\Intregation\TestlifyController@deleteAssessm…
 
-  GET        app.{domain}/api/v2/testlify/assessments/{applicantId?} ...... v2.assessments › Api\SpaV2\Intregation\TestlifyController@getAssessmentList
+  GET        /api/v2/testlify/assessments/{applicantId?} ...... v2.assessments › Api\SpaV2\Intregation\TestlifyController@getAssessmentList
 
-  POST            app.{domain}/api/v2/testlify/disconnect .............................. v2.disconnect › Api\SpaV2\Intregation\TestlifyController@disconnect
+  POST    /api/v2/testlify/disconnect .............................. v2.disconnect › Api\SpaV2\Intregation\TestlifyController@disconnect
 
-  POST            app.{domain}/api/v2/testlify/send-assessment-invite v2.send.assessment.invite › Api\SpaV2\Intregation\TestlifyController@sendAssessmentIn…
+  POST    /api/v2/testlify/send-assessment-invite v2.send.assessment.invite › Api\SpaV2\Intregation\TestlifyController@sendAssessmentIn…
 
-  POST            app.{domain}/api/v2/testlify/send/otp ..................................... v2.send.otp › Api\SpaV2\Intregation\TestlifyController@sendOTP
+  POST    /api/v2/testlify/send/otp ..................................... v2.send.otp › Api\SpaV2\Intregation\TestlifyController@sendOTP
 
-  POST            app.{domain}/api/v2/testlify/verify/otp ............................... v2.verify.otp › Api\SpaV2\Intregation\TestlifyController@verifyOTP
+  POST    /api/v2/testlify/verify/otp ............................... v2.verify.otp › Api\SpaV2\Intregation\TestlifyController@verifyOTP
 
-  GET        app.{domain}/api/v2/testlify/webhook ................................. v2.webhook › Api\SpaV2\Intregation\TestlifyController@handleWebhook
+  GET        /api/v2/testlify/webhook ................................. v2.webhook › Api\SpaV2\Intregation\TestlifyController@handleWebhook
 
-  GET        app.{domain}/api/v2/timezones .............................................................. Api\SpaV2\GlobalSearchController@getTimeZones
+  GET        /api/v2/timezones .............................................................. Api\SpaV2\GlobalSearchController@getTimeZones
 
-  GET        app.{domain}/api/v2/user ............................................................. v2.user.info › Api\SpaV2\UserController@getUserInfo
+  GET        /api/v2/user ............................................................. v2.user.info › Api\SpaV2\UserController@getUserInfo
 
-  PATCH           app.{domain}/api/v2/user/change-company ........................... v2.user.company.change › Api\SpaV2\UserController@changeCurrentCompany
+  PATCH           /api/v2/user/change-company ........................... v2.user.company.change › Api\SpaV2\UserController@changeCurrentCompany
 
-  GET        app.{domain}/api/v2/user/id ..................................................................... v2. › Api\SpaV2\UserController@getUserId
+  GET        /api/v2/user/id ..................................................................... v2. › Api\SpaV2\UserController@getUserId
 
-  GET        app.{domain}/api/v2/user/package ........................................................ v2. › Api\SpaV2\UserController@getPackageDetails
+  GET        /api/v2/user/package ........................................................ v2. › Api\SpaV2\UserController@getPackageDetails
 
-  POST            app.{domain}/api/v2/verification/email/resend .................. v2.verification.resend › Api\SpaV2\AuthController@resendVerificationEmail
+  POST    /api/v2/verification/email/resend .................. v2.verification.resend › Api\SpaV2\AuthController@resendVerificationEmail
 
-  POST            app.{domain}/api/v2/verify/email .............................................................. v2. › Api\SpaV2\AuthController@verifyEmail
+  POST    /api/v2/verify/email .............................................................. v2. › Api\SpaV2\AuthController@verifyEmail
   GET        {company}.easyjobs.test/auth/logout .................................... company.domain.logout › Web\Company\SubDomainController@ssoLogout
   GET        {domain}/auth/logout ............................................... company.custom-domain.logout › Web\Company\DomainController@ssoLogout
 
 
   GET        app.{domain}/auth/sso/candidate ..................................... easyjobs.login › Web\App\Sso\LoginController@ssoLoginForCustomDomain
-  POST            app.{domain}/auth/sso/candidate .................................................. Web\App\Sso\LoginController@ssoPostLoginForCustomDomain
+  POST    app.{domain}/auth/sso/candidate .................................................. Web\App\Sso\LoginController@ssoPostLoginForCustomDomain
 
 
   GET        app.{domain}/auth/sso/candidate/registration .......... easyjobs.registration › Web\App\Sso\LoginController@ssoRegistrationForCustomDomain
-  POST            app.{domain}/auth/sso/candidate/registration .............................. Web\App\Sso\LoginController@ssoPostRegistrationForCustomDomain
+  POST    app.{domain}/auth/sso/candidate/registration .............................. Web\App\Sso\LoginController@ssoPostRegistrationForCustomDomain
 
-  POST            app.{domain}/calendly/hooks ................................................... calendly.hooks › Web\App\WebhookController@calendlyWebHook
+  POST    app.{domain}/calendly/hooks ................................................... calendly.hooks › Web\App\WebhookController@calendlyWebHook
 
   GET        app.{domain}/calendly/invite/{uuid} ............................................................................. calendly.invitation.link
 
@@ -927,9 +922,9 @@ GET        {company}.easyjobs.test/ ............................................
   GET        app.{domain}/candidate/assessment/{assessment} ................................................................ candidate.assessment.login
 
   GET        app.{domain}/company-report ..................................................... Api\AdminV1\Report\CompanyReportController@companyReport
-  POST            integration/v1/zapier/api-key/verify ..................................................... Api\IntegrationV1\ZapierController@verifyApiKey
-  POST            integration/v1/zapier/trigger/pooling .............................................. Api\IntegrationV1\ZapierController@triggerPerformList
-  POST            integration/v1/zapier/trigger/subscribe .............................................. Api\IntegrationV1\ZapierController@triggerSubscribe
+  POST    integration/v1/zapier/api-key/verify ..................................................... Api\IntegrationV1\ZapierController@verifyApiKey
+  POST    integration/v1/zapier/trigger/pooling .............................................. Api\IntegrationV1\ZapierController@triggerPerformList
+  POST    integration/v1/zapier/trigger/subscribe .............................................. Api\IntegrationV1\ZapierController@triggerSubscribe
   DELETE          integration/v1/zapier/trigger/un-subscribe ......................................... Api\IntegrationV1\ZapierController@triggerUnSubscribe
 
   GET        app.{domain}/job/applicant/{applicant}/attachment/{attachment}/download ................. Api\SpaV2\ApplicantController@downloadAttachment
@@ -946,34 +941,34 @@ GET        {company}.easyjobs.test/ ............................................
 
   GET        app.{domain}/login ................................................................................................................. login
   GET        oauth/authorize ................................. passport.authorizations.authorize › Laravel\Passport › AuthorizationController@authorize
-  POST            oauth/authorize .............................. passport.authorizations.approve › Laravel\Passport › ApproveAuthorizationController@approve
+  POST    oauth/authorize .............................. passport.authorizations.approve › Laravel\Passport › ApproveAuthorizationController@approve
   DELETE          oauth/authorize ....................................... passport.authorizations.deny › Laravel\Passport › DenyAuthorizationController@deny
   GET        oauth/clients ....................................................... passport.clients.index › Laravel\Passport › ClientController@forUser
-  POST            oauth/clients ......................................................... passport.clients.store › Laravel\Passport › ClientController@store
-  PUT             oauth/clients/{client_id} ........................................... passport.clients.update › Laravel\Passport › ClientController@update
+  POST    oauth/clients ......................................................... passport.clients.store › Laravel\Passport › ClientController@store
+  PUT     oauth/clients/{client_id} ........................................... passport.clients.update › Laravel\Passport › ClientController@update
   DELETE          oauth/clients/{client_id} ......................................... passport.clients.destroy › Laravel\Passport › ClientController@destroy
   GET        oauth/personal-access-tokens ................... passport.personal.tokens.index › Laravel\Passport › PersonalAccessTokenController@forUser
-  POST            oauth/personal-access-tokens ..................... passport.personal.tokens.store › Laravel\Passport › PersonalAccessTokenController@store
+  POST    oauth/personal-access-tokens ..................... passport.personal.tokens.store › Laravel\Passport › PersonalAccessTokenController@store
   DELETE          oauth/personal-access-tokens/{token_id} ...... passport.personal.tokens.destroy › Laravel\Passport › PersonalAccessTokenController@destroy
   GET        oauth/scopes .............................................................. passport.scopes.index › Laravel\Passport › ScopeController@all
-  POST            oauth/token ......................................................... passport.token › Laravel\Passport › AccessTokenController@issueToken
-  POST            oauth/token/refresh ......................................... passport.token.refresh › Laravel\Passport › TransientTokenController@refresh
+  POST    oauth/token ......................................................... passport.token › Laravel\Passport › AccessTokenController@issueToken
+  POST    oauth/token/refresh ......................................... passport.token.refresh › Laravel\Passport › TransientTokenController@refresh
   GET        oauth/tokens .......................................... passport.tokens.index › Laravel\Passport › AuthorizedAccessTokenController@forUser
   DELETE          oauth/tokens/{token_id} ............................. passport.tokens.destroy › Laravel\Passport › AuthorizedAccessTokenController@destroy
 
-  POST            app.{domain}/password/email ........................................................ Web\App\Sso\VerificationController@sendResetLinkEmail
+  POST    app.{domain}/password/email ........................................................ Web\App\Sso\VerificationController@sendResetLinkEmail
 
-  POST            app.{domain}/password/reset ..................................................................... Web\App\Sso\VerificationController@reset
+  POST    app.{domain}/password/reset ..................................................................... Web\App\Sso\VerificationController@reset
 
   GET        app.{domain}/password/reset/{token?} ................................... password.reset › Web\App\Sso\VerificationController@showResetForm
 
   GET        app.{domain}/payment/complete ............................................... payment.complete › Web\App\PaymentController@paymentComplete
 
-  POST            app.{domain}/paypal/hooks ......................................................... paypal.hooks › Web\App\PaymentController@paypalWebHook
+  POST    app.{domain}/paypal/hooks ......................................................... paypal.hooks › Web\App\PaymentController@paypalWebHook
   GET        {company}.easyjobs.test/preview ......................................... company.domain.preview › Web\Company\SubDomainController@preview
   GET        {domain}/preview .................................................... company.custom-domain.preview › Web\Company\DomainController@preview
 
-  POST            app.{domain}/redeem-coupons ......................................................................... Web\App\AppSumoUserController@redeem
+  POST    app.{domain}/redeem-coupons ......................................................................... Web\App\AppSumoUserController@redeem
 
   GET        app.{domain}/sign-in-oauth/{provider} ........................................ sign-in-social › Web\App\Sso\LoginController@loginViaSocial
   GET        {company}.easyjobs.test/sitemap.xml ............................. company.domain.sitemap › Web\Company\SubDomainController@generateSiteMap
@@ -983,13 +978,13 @@ GET        {company}.easyjobs.test/ ............................................
 
   GET        app.{domain}/sitemap_index.xml .............................................. app.sitemap › Web\App\UtilityController@generateSiteMapIndex
 
-  POST            app.{domain}/slack/hooks .............................................................. slack.hooks › Web\App\SlackController@slackWebhook
+  POST    app.{domain}/slack/hooks .............................................................. slack.hooks › Web\App\SlackController@slackWebhook
 
-  POST            app.{domain}/slack/interactive-action ..................................................... Web\App\SlackController@slackInteractiveAction
+  POST    app.{domain}/slack/interactive-action ..................................................... Web\App\SlackController@slackInteractiveAction
 
   GET        app.{domain}/sso/locale/{locale?} ............................................ easyjobs.set-locale › Web\App\Sso\LoginController@setLocale
 
-  POST            app.{domain}/stripe/hooks ......................................................... stripe.hooks › Web\App\PaymentController@stripeWebHook
+  POST    app.{domain}/stripe/hooks ......................................................... stripe.hooks › Web\App\PaymentController@stripeWebHook
 
   GET        app.{domain}/talent/jobs.xml ............................................................. Web\App\UtilityController@generateTalentXMLFeed
 
@@ -1011,9 +1006,9 @@ GET        {company}.easyjobs.test/ ............................................
   GET        {company}.easyjobs.test/{slug} ...................................... company.domain.job.open › Web\Company\SubDomainController@jobPreview
   GET        {domain}/{slug} ................................................. company.custom-domain.job.open › Web\Company\DomainController@jobPreview
   GET        {company}.easyjobs.test/{slug}/apply ................................. company.domain.job.apply › Web\Company\SubDomainController@jobApply
-  POST            {company}.easyjobs.test/{slug}/apply ...................... company.domain.job.apply.store › Web\Company\SubDomainController@jobApplyStore
+  POST    {company}.easyjobs.test/{slug}/apply ...................... company.domain.job.apply.store › Web\Company\SubDomainController@jobApplyStore
   GET        {domain}/{slug}/apply ............................................ company.custom-domain.job.apply › Web\Company\DomainController@jobApply
-  POST            {domain}/{slug}/apply ................................. company.custom-domain.job.apply.store › Web\Company\DomainController@jobApplyStore
+  POST    {domain}/{slug}/apply ................................. company.custom-domain.job.apply.store › Web\Company\DomainController@jobApplyStore
   GET        {company}.easyjobs.test/{slug}/apply/preview .......... company.domain.job.apply.preview › Web\Company\SubDomainController@jobApplyPreview
   GET        {domain}/{slug}/apply/preview ..................... company.custom-domain.job.apply.preview › Web\Company\DomainController@jobApplyPreview
   GET        {company}.easyjobs.test/{slug}/apply/{applicant}/assessment-test/{assessment} company.domain.job.apply.assessment › Web\Company\SubDomain…
