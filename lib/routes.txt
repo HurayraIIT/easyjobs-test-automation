@@ -525,9 +525,9 @@ GET        {company}.easyjobs.test/ ............................................
 ✅ GET        /api/v2/company/setting/integrations v2.company.setting.integrations -> getCompanyIntegrati…
 ✅ POST    /api/v2/company/setting/integrations v2.company.setting.integrations.save -> updateIntegrat…
 
-📝 GET        /api/v2/company/setting/key -> setting.key -> getAppKeys
-📝 POST    /api/v2/company/setting/key/create -> setting.key.create -> generateAppKey
-📝 DELETE          /api/v2/company/setting/key/{key}/delete -> setting.key.delete -> deleteAppKey
+✅ GET      /api/v2/company/setting/key -> setting.key -> getAppKeys
+✅ POST     /api/v2/company/setting/key/create -> setting.key.create -> generateAppKey
+✅ DELETE   /api/v2/company/setting/key/{key}/delete -> setting.key.delete -> deleteAppKey
 
 
   GET        /api/v2/company/setting/meta-info ... v2.company.setting.meta-info -> getCompanyMetaSettings
