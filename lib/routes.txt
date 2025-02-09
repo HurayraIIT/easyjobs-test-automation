@@ -433,8 +433,8 @@ GET        {company}.easyjobs.test/ ............................................
   GET        /api/v2/company/setting/admin .................. v2.company.setting.admin -> getAdminSetting
   POST    /api/v2/company/setting/admin ........... v2.company.setting.admin.save -> storeAdminSetting
 
-📝  GET     /api/v2/company/setting/ai-setup -> v2. -> getAiSetup
-📝  PUT     /api/v2/company/setting/ai-setup -> ai-setup.save -> updateAiSetup
+✅ GET     /api/v2/company/setting/ai-setup -> v2. -> getAiSetup
+✅ PUT     /api/v2/company/setting/ai-setup -> ai-setup.save -> updateAiSetup
 
   GET        /api/v2/company/setting/application-setting v2.company.setting.job-settings-setting -> getC…
 
