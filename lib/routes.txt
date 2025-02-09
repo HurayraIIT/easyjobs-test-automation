@@ -329,18 +329,15 @@ GET        {company}.easyjobs.test/ ............................................
   POST            app.{domain}/api/v2/candidate/conversation/{id}/message v2.candidate.conversationmessage.save › Api\SpaV2\CandidateConversationController…
 
 
-  GET        /api/v2/candidate/education ..................... -> education -> getCandidateEducation
-  POST       /api/v2/candidate/education .............. -> education.save -> storeCandidateEducation
-  POST       /api/v2/candidate/education/re-order -> education.re_order -> reOrderCandidateEducation
-  DELETE     /api/v2/candidate/education/{education}/delete -> education.delete -> deleteCandidateE…
+✅ GET        /api/v2/candidate/education ..................... -> education -> getCandidateEducation
+✅ POST       /api/v2/candidate/education .............. -> education.save -> storeCandidateEducation
+✅ POST       /api/v2/candidate/education/re-order -> education.re_order -> reOrderCandidateEducation
+✅ DELETE     /api/v2/candidate/education/{education}/delete -> education.delete -> deleteCandidateE…
 
-
-  GET        app.{domain}/api/v2/candidate/employment .................. v2.candidate.employment › Api\SpaV2\CandidateController@getCandidateEmployment
-  POST            app.{domain}/api/v2/candidate/employment ........... v2.candidate.employment.save › Api\SpaV2\CandidateController@storeCandidateEmployment
-
-  POST            app.{domain}/api/v2/candidate/employment/re-order v2.candidate.employment.re_order › Api\SpaV2\CandidateController@reOrderCandidateEmploy…
-
-  DELETE          app.{domain}/api/v2/candidate/employment/{education}/delete v2.candidate.employment.delete › Api\SpaV2\CandidateController@deleteCandidat…
+✅ GET        /api/v2/candidate/employment -> employment -> getCandidateEmployment
+✅ POST       /api/v2/candidate/employment -> employment.save -> storeCandidateEmployment
+✅ POST       /api/v2/candidate/employment/re-order -> employment.re_order -> reOrderCandidateEmploy…
+✅ DELETE     /api/v2/candidate/employment/{education}/delete -> employment.delete -> deleteCandidat…
 
   DELETE          app.{domain}/api/v2/candidate/job/{job}/delete ......................... v2.candidate.job.delete › Api\SpaV2\CandidateController@deleteJob
 
@@ -392,11 +389,11 @@ GET        {company}.easyjobs.test/ ............................................
 
   GET        app.{domain}/api/v2/company/analytics .................................... v2.company.analytics › Api\SpaV2\CompanyController@getAnalytics
 
-📝 GET        app.{domain}/api/v2/company/assessments > list › Api\SpaV2\QuestionGroupController@index
-📝 POST            app.{domain}/api/v2/company/assessments/create > store › Api\SpaV2\QuestionGroupController@store
-📝 GET        app.{domain}/api/v2/company/assessments/{assessment} > show › Api\SpaV2\QuestionGroupController@show
-📝 DELETE          app.{domain}/api/v2/company/assessments/{assessment}/delete > delete › Api\SpaV2\QuestionGroupController@destroy
-📝 POST            app.{domain}/api/v2/company/assessments/{assessment}/update > update › Api\SpaV2\QuestionGroupController@update
+✅ GET        /api/v2/company/assessments > list -> index
+✅ POST       /api/v2/company/assessments/create > store -> store
+✅ GET        /api/v2/company/assessments/{assessment} > show -> show
+✅ DELETE     /api/v2/company/assessments/{assessment}/delete > delete -> destroy
+✅ POST       /api/v2/company/assessments/{assessment}/update > update -> update
 
   GET        app.{domain}/api/v2/company/candidates ................................. v2.company.candidates › Api\SpaV2\CompanyController@getCandidates
 
@@ -416,12 +413,12 @@ GET        {company}.easyjobs.test/ ............................................
 
   GET        app.{domain}/api/v2/company/managers ....................................... v2.company.managers › Api\SpaV2\CompanyController@getManagers
 
-✅ POST > app.{domain}/api/v2/company/question/group/create > store › Api\SpaV2\QuestionSetController@store
-✅ GET > app.{domain}/api/v2/company/question/group/{group} > show › Api\SpaV2\QuestionSetController@show
-✅ DELETE > app.{domain}/api/v2/company/question/group/{group} > delete › Api\SpaV2\QuestionSetController@destroy
-✅ GET > app.{domain}/api/v2/company/question/group/{group}/duplicate duplicate › Api\SpaV2\QuestionSetController@duplicate
-✅ POST > app.{domain}/api/v2/company/question/group/{group}/update > update › Api\SpaV2\QuestionSetController@update
-✅ GET > app.{domain}/api/v2/company/question/groups > list › Api\SpaV2\QuestionSetController@index
+✅ POST        /api/v2/company/question/group/create > store -> store
+✅ GET         /api/v2/company/question/group/{group} > show -> show
+✅ DELETE      /api/v2/company/question/group/{group} > delete -> destroy
+✅ GET         /api/v2/company/question/group/{group}/duplicate duplicate -> duplicate
+✅ POST        /api/v2/company/question/group/{group}/update > update -> update
+✅ GET         /api/v2/company/question/groups > list -> index
 
   GET        app.{domain}/api/v2/company/recent-applicants ................ v2.company.recent-applicants › Api\SpaV2\CompanyController@recentCandidates
 
@@ -612,7 +609,7 @@ GET        {company}.easyjobs.test/ ............................................
 
   GET        app.{domain}/api/v2/conversation/notifications v2.conversation.applicant.notification › Api\SpaV2\CompanyConversationController@messageNo…
 
-  GET        app.{domain}/api/v2/country ................................................ ajax.country › Api\SpaV2\GlobalSearchController@searchCountry
+✅  GET    -> /api/v2/country -> country -> searchCountry
 
   POST            app.{domain}/api/v2/coupon .................................................................... v2. › Api\SpaV2\UserController@applyCoupon
 
@@ -692,25 +689,25 @@ GET        {company}.easyjobs.test/ ............................................
 
   GET        app.{domain}/api/v2/job/archived .............................................. v2.job.archived › Api\SpaV2\JobPostController@archivedList
 
-  GET        app.{domain}/api/v2/job/category/{subcategory?} ............................. v2.job.category › Api\SpaV2\JobPostController@searchCategory
+✅  GET    /api/v2/job/category/{subcategory?} -> category -> searchCategory
 
   POST            app.{domain}/api/v2/job/create ........................................................ v2.job.create › Api\SpaV2\JobPostController@create
 
   GET        app.{domain}/api/v2/job/draft ....................................................... v2.job.draft › Api\SpaV2\JobPostController@draftList
 
-  GET        app.{domain}/api/v2/job/information-meta-data ........................ job.information.meta.data › Api\SpaV2\JobController@jobInfoMetaData
+✅  GET    -> /api/v2/job/information-meta-data -> job.information.meta.data -> jobInfoMetaData
 
   GET        app.{domain}/api/v2/job/permissions ...................................................... Api\SpaV2\GlobalSearchController@jobPermissions
 
   GET        app.{domain}/api/v2/job/published ........................................... v2.job.published › Api\SpaV2\JobPostController@publishedList
 
-  GET        app.{domain}/api/v2/job/quiz-meta-data ......................... v2.job.quiz.meta.data › Api\SpaV2\JobEvaluationController@jobQuizMetaData
+✅  GET    -> /api/v2/job/quiz-meta-data -> quiz.meta.data -> jobQuizMetaData
 
   GET        app.{domain}/api/v2/job/screening-meta-data .. v2.job.screening.meta.data › Api\SpaV2\JobEvaluationController@jobScreeningQuestionMetaData
 
   POST            app.{domain}/api/v2/job/set-preview .............................................. v2.job.preview › Api\SpaV2\JobPostController@setPreview
 
-  GET        app.{domain}/api/v2/job/skill ..................................................... v2.job.skill › Api\SpaV2\JobPostController@searchSkill
+✅  GET    /api/v2/job/skill -> skill -> searchSkill
 
   GET        app.{domain}/api/v2/job/templates ...................................................... v2. › Api\SpaV2\JobPostController@getJobTemplates
 
