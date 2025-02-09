@@ -4,18 +4,19 @@ import { test, expect } from '@playwright/test';
 import authObjects from '@datafactory/auth';
 import { createAssertions } from "@helpers/createAssertions";
 
+const data = {
+    "company": {
+        "description": `<p>Test Company Description:</p><p>&nbsp;</p><p><strong>Bold Text.</strong></p><p><i>Italic text.</i></p><p><u>Underlined Text.</u></p><p>This is <a href=\"https://hurayraiit.com\">a link</a>.</p><p>&nbsp;</p><p>OL</p><p>&nbsp;</p><ol style=\"list-style-type:decimal-leading-zero;\"><li>list one ol one</li><li>list one ol two</li></ol><p>&nbsp;</p><p>UL</p><p>&nbsp;</p><ul><li>list one ul one</li><li>list one ul two</li></ul>`,
+        "benefits": `<p>Test Company Benefits:</p><p>&nbsp;</p><p><strong>Bold Text.</strong></p><p><i>Italic text.</i></p><p><u>Underlined Text.</u></p><p>This is <a href=\"https://hurayraiit.com\">a link</a>.</p><p>&nbsp;</p><p>OL</p><p>&nbsp;</p><ol style=\"list-style-type:decimal-leading-zero;\"><li>list one ol one</li><li>list one ol two</li></ol><p>&nbsp;</p><p>UL</p><p>&nbsp;</p><ul><li>list one ul one</li><li>list one ul two</li></ul>`
+    }
+};
+
 test.describe("/api/v2/company/setting/basic-description POST requests @company", async () => {
     test("POST with valid credentials @happy", async ({ request }) => {
         // POST the basic description
         const response = await request.post(`/api/v2/company/setting/basic-description`, {
             headers: authObjects.companyOneAuthHeaders,
-            data: {
-                "company":
-                {
-                    "description": `<p>Test Company Description:</p><p>&nbsp;</p><p><strong>Bold Text.</strong></p><p><i>Italic text.</i></p><p><u>Underlined Text.</u></p><p>This is <a href=\"https://hurayraiit.com\">a link</a>.</p><p>&nbsp;</p><p>OL</p><p>&nbsp;</p><ol style=\"list-style-type:decimal-leading-zero;\"><li>list one ol one</li><li>list one ol two</li></ol><p>&nbsp;</p><p>UL</p><p>&nbsp;</p><ul><li>list one ul one</li><li>list one ul two</li></ul>`,
-                    "benefits": `<p>Test Company Benefits:</p><p>&nbsp;</p><p><strong>Bold Text.</strong></p><p><i>Italic text.</i></p><p><u>Underlined Text.</u></p><p>This is <a href=\"https://hurayraiit.com\">a link</a>.</p><p>&nbsp;</p><p>OL</p><p>&nbsp;</p><ol style=\"list-style-type:decimal-leading-zero;\"><li>list one ol one</li><li>list one ol two</li></ol><p>&nbsp;</p><p>UL</p><p>&nbsp;</p><ul><li>list one ul one</li><li>list one ul two</li></ul>`
-                }
-            }
+            data: data
         });
 
         expect(response.status()).toBe(200);
@@ -31,13 +32,7 @@ test.describe("/api/v2/company/setting/basic-description POST requests @company"
             headers: {
                 "Accept": "application/json"
             },
-            data: {
-                "company":
-                {
-                    "description": `<p>Test Company Description:</p><p>&nbsp;</p><p><strong>Bold Text.</strong></p><p><i>Italic text.</i></p><p><u>Underlined Text.</u></p><p>This is <a href=\"https://hurayraiit.com\">a link</a>.</p><p>&nbsp;</p><p>OL</p><p>&nbsp;</p><ol style=\"list-style-type:decimal-leading-zero;\"><li>list one ol one</li><li>list one ol two</li></ol><p>&nbsp;</p><p>UL</p><p>&nbsp;</p><ul><li>list one ul one</li><li>list one ul two</li></ul>`,
-                    "benefits": `<p>Test Company Benefits:</p><p>&nbsp;</p><p><strong>Bold Text.</strong></p><p><i>Italic text.</i></p><p><u>Underlined Text.</u></p><p>This is <a href=\"https://hurayraiit.com\">a link</a>.</p><p>&nbsp;</p><p>OL</p><p>&nbsp;</p><ol style=\"list-style-type:decimal-leading-zero;\"><li>list one ol one</li><li>list one ol two</li></ol><p>&nbsp;</p><p>UL</p><p>&nbsp;</p><ul><li>list one ul one</li><li>list one ul two</li></ul>`
-                }
-            }
+            data: data
         });
 
         expect(response.status()).toBe(401);
@@ -54,13 +49,7 @@ test.describe("/api/v2/company/setting/basic-description POST requests @company"
 
         const response = await request.post(`/api/v2/company/setting/basic-description`, {
             headers: maliciousHeaders,
-            data: {
-                "company":
-                {
-                    "description": `<p>Test Company Description:</p><p>&nbsp;</p><p><strong>Bold Text.</strong></p><p><i>Italic text.</i></p><p><u>Underlined Text.</u></p><p>This is <a href=\"https://hurayraiit.com\">a link</a>.</p><p>&nbsp;</p><p>OL</p><p>&nbsp;</p><ol style=\"list-style-type:decimal-leading-zero;\"><li>list one ol one</li><li>list one ol two</li></ol><p>&nbsp;</p><p>UL</p><p>&nbsp;</p><ul><li>list one ul one</li><li>list one ul two</li></ul>`,
-                    "benefits": `<p>Test Company Benefits:</p><p>&nbsp;</p><p><strong>Bold Text.</strong></p><p><i>Italic text.</i></p><p><u>Underlined Text.</u></p><p>This is <a href=\"https://hurayraiit.com\">a link</a>.</p><p>&nbsp;</p><p>OL</p><p>&nbsp;</p><ol style=\"list-style-type:decimal-leading-zero;\"><li>list one ol one</li><li>list one ol two</li></ol><p>&nbsp;</p><p>UL</p><p>&nbsp;</p><ul><li>list one ul one</li><li>list one ul two</li></ul>`
-                }
-            }
+            data: data
         });
 
         expect(response.status()).toBe(400);
@@ -75,13 +64,7 @@ test.describe("/api/v2/company/setting/basic-description POST requests @company"
     test("POST with candidate auth", async ({ request }) => {
         const response = await request.post(`/api/v2/company/setting/basic-description`, {
             headers: authObjects.candidateOneAuthHeaders,
-            data: {
-                "company":
-                {
-                    "description": `<p>Test Company Description:</p><p>&nbsp;</p><p><strong>Bold Text.</strong></p><p><i>Italic text.</i></p><p><u>Underlined Text.</u></p><p>This is <a href=\"https://hurayraiit.com\">a link</a>.</p><p>&nbsp;</p><p>OL</p><p>&nbsp;</p><ol style=\"list-style-type:decimal-leading-zero;\"><li>list one ol one</li><li>list one ol two</li></ol><p>&nbsp;</p><p>UL</p><p>&nbsp;</p><ul><li>list one ul one</li><li>list one ul two</li></ul>`,
-                    "benefits": `<p>Test Company Benefits:</p><p>&nbsp;</p><p><strong>Bold Text.</strong></p><p><i>Italic text.</i></p><p><u>Underlined Text.</u></p><p>This is <a href=\"https://hurayraiit.com\">a link</a>.</p><p>&nbsp;</p><p>OL</p><p>&nbsp;</p><ol style=\"list-style-type:decimal-leading-zero;\"><li>list one ol one</li><li>list one ol two</li></ol><p>&nbsp;</p><p>UL</p><p>&nbsp;</p><ul><li>list one ul one</li><li>list one ul two</li></ul>`
-                }
-            }
+            data: data
         });
 
         expect(response.status()).toBe(480);
