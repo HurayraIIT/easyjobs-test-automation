@@ -433,8 +433,8 @@ GET        {company}.easyjobs.test/ ............................................
   GET        /api/v2/company/setting/admin .................. v2.company.setting.admin -> getAdminSetting
   POST    /api/v2/company/setting/admin ........... v2.company.setting.admin.save -> storeAdminSetting
 
-  GET        /api/v2/company/setting/ai-setup ......................................... v2. -> getAiSetup
-  PUT     /api/v2/company/setting/ai-setup ......... v2.company.setting.ai-setup.save -> updateAiSetup
+📝  GET     /api/v2/company/setting/ai-setup -> v2. -> getAiSetup
+📝  PUT     /api/v2/company/setting/ai-setup -> ai-setup.save -> updateAiSetup
 
   GET        /api/v2/company/setting/application-setting v2.company.setting.job-settings-setting -> getC…
 
@@ -496,12 +496,12 @@ GET        {company}.easyjobs.test/ ............................................
   GET        /api/v2/company/setting/custom-apply-field/jobs/{field} v2.company.setting.custom-apply-field.jobs › Api\SpaV2\CompanySetting…
 
 
-  GET        /api/v2/company/setting/custom-domain .. v2.company.setting.custom-domain -> getCustomDomain
-  POST    /api/v2/company/setting/custom-domain v2.company.setting.custom-domain.save -> saveCustomDo…
+✅ GET        /api/v2/company/setting/custom-domain -> custom-domain -> getCustomDomain
+✅ POST    /api/v2/company/setting/custom-domain -> custom-domain.save -> saveCustomDo…
 
 
-  GET        /api/v2/company/setting/custom-domain/admin v2.company.setting.custom-domain.admin -> getAd…
-  POST    /api/v2/company/setting/custom-domain/admin v2.company.setting.custom-domain.save.admin -> …
+✅ GET        /api/v2/company/setting/custom-domain/admin -> custom-domain.admin -> getAd…
+✅ POST    /api/v2/company/setting/custom-domain/admin -> custom-domain.save.admin -> …
 
   GET        /api/v2/company/setting/email .................... v2.company.setting.email -> emailSettings
 

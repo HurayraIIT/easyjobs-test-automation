@@ -1,49 +1,27 @@
-//GET: /api/v2/company/setting/activity-log
+//GET: /api/v2/company/setting/custom-domain/admin
 
 import { test, expect } from '@playwright/test';
 import authObjects from '@datafactory/auth';
 import { createAssertions } from "@helpers/createAssertions";
+import { createCompanySettingsKey, deleteAllCompanySettingsKeys } from '@datafactory/company-settings-key';
 
-test.describe("/api/v2/company/setting/activity-log GET requests @company", async () => {
-    test("GET with valid credentials and without filters @happy", async ({ request }) => {
-        // Get the activity log
-        const response = await request.get(`/api/v2/company/setting/activity-log`, {
+test.describe("/api/v2/company/setting/custom-domain/admin GET requests @company", async () => {
+    test("GET with valid credentials @happy", async ({ request }) => {
+        const response = await request.get(`/api/v2/company/setting/custom-domain/admin`, {
             headers: authObjects.companyOneAuthHeaders
         });
 
         expect(response.status()).toBe(200);
 
         const body = await response.json();
-        // await createAssertions(body.data);
+        // await createAssertions(body);
         expect(body.status).toBe("SUCCESS");
+        expect(body.data.cname).toBe("");
         expect(body.message).toBeNull();
-    });
-
-    test("GET with valid credentials and filters @happy", async ({ request }) => {
-        // Get the activity log
-        const response = await request.get(`/api/v2/company/setting/activity-log?log_type=COMPANY&search_query=updated&page=2`, {
-            headers: authObjects.companyOneAuthHeaders
-        });
-
-        expect(response.status()).toBe(200);
-
-        const body = await response.json();
-        // await createAssertions(body.data);
-        expect(body.status).toBe("SUCCESS");
-        expect(body.message).toBeNull();
-
-        expect(body.data.current_page).toBe(2);
-        expect(body.data.data[0].logname).toBe("updated");
-        expect(body.data.data[0].user_name).toBe("Company One");
-        expect(body.data.data[0].log_class).toBe("warning");
-        expect(body.data.data[0].description).toBe("activity_company_user_updated_basic_info");
-        expect(body.data.data[0].keys.USER_NAME).toBe("Company One");
-        // expect(body.data.data[0].fields).toEqual([]);
-        expect(body.data.data[0].model).toBe("COMPANY");
     });
 
     test("GET with invalid credentials", async ({ request }) => {
-        const response = await request.get(`/api/v2/company/setting/activity-log`, {
+        const response = await request.get(`/api/v2/company/setting/custom-domain/admin`, {
             headers: {
                 "Accept": "application/json",
             }
@@ -61,7 +39,7 @@ test.describe("/api/v2/company/setting/activity-log GET requests @company", asyn
         maliciousHeaders['Company-Id'] = authObjects.companyOneAuthHeaders['Company-Id'];
         maliciousHeaders['State-Version'] = authObjects.companyOneAuthHeaders['State-Version'];
 
-        const response = await request.get(`/api/v2/company/setting/activity-log`, {
+        const response = await request.get(`/api/v2/company/setting/custom-domain/admin`, {
             headers: maliciousHeaders
         });
 
@@ -75,7 +53,7 @@ test.describe("/api/v2/company/setting/activity-log GET requests @company", asyn
     });
 
     test("GET with candidate auth", async ({ request }) => {
-        const response = await request.get(`/api/v2/company/setting/activity-log`, {
+        const response = await request.get(`/api/v2/company/setting/custom-domain/admin`, {
             headers: authObjects.candidateOneAuthHeaders
         });
 
