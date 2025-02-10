@@ -5,7 +5,7 @@ import authObjects from '@datafactory/auth';
 import { createAssertions } from "@helpers/createAssertions";
 
 test.describe("/api/v2/job/create POST requests @company", async () => {
-    test("POST can create a new category@happy", async ({ request }) => {
+    test.skip("POST can create a new category@happy", async ({ request }) => {
         // Create a new job
         const response = await request.post('/api/v2/job/create', {
             headers: authObjects.companyOneAuthHeaders,

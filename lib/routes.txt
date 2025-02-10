@@ -9,7 +9,7 @@ GET        {company}.easyjobs.test/ ............................................
   POST    ajax/assessment/{assessmentId}/start ajax.company.domain.assessment.start › EasyJobs\Evaluation\Http\Controllers\Api\V2\AssessmentControl…
   GET        ajax/assessment/{assessmentId}/time ajax.company.domain.assessment.time › EasyJobs\Evaluation\Http\Controllers\Api\V2\AssessmentControlle…
   POST    ajax/candidate-custom-file ....................... save.candidate.custom-file › Web\Company\GlobalSearchController@saveCandidateCustomFile
-  POST    ajax/candidate-custom-file/delete ............ remove.candidate.custom-file › Web\Company\GlobalSearchController@removeCandidateCustomFile
+  POST    ajax/candidate-custom-file/delete -> remove.candidate.custom-file › Web\Company\GlobalSearchController@removeCandidateCustomFile
   POST    ajax/candidate-resume ..................................... save.candidate.resume › Web\Company\GlobalSearchController@saveCandidateResume
   POST    ajax/candidate/image/update ................................. save.candidate.image › Web\Company\GlobalSearchController@saveCandidateImage
   POST    ajax/candidate/resume-parse ........................ ajax.candidate.resume.parse › Web\Company\GlobalSearchController@candidateResumeParse
@@ -480,7 +480,7 @@ GET        {company}.easyjobs.test/ ............................................
   POST    /api/v2/company/setting/company-config/google .............. v2. -> saveCompanyGoogleSetting
 
 
-  GET        /api/v2/company/setting/company-config/linkedin ............ v2. -> getCompanyLinkedinConfig
+  GET        /api/v2/company/setting/company-config/linkedin -> v2. -> getCompanyLinkedinConfig
   POST    /api/v2/company/setting/company-config/linkedin .......... v2. -> saveCompanyLinkedinSetting
 
   GET        /api/v2/company/setting/company-image v2.company.setting.custom-image -> getCompanySettings…
@@ -712,7 +712,7 @@ GET        {company}.easyjobs.test/ ............................................
 
   POST    /api/v2/job/{job}/assessment/{assessment}/update v2.job.update-assessment › Api\SpaV2\JobEvaluationController@updateAssessment
 
-  POST    /api/v2/job/{job}/assign-assessment ............ v2.job.assign-assessment › Api\SpaV2\JobEvaluationController@assignAssessment
+  POST    /api/v2/job/{job}/assign-assessment -> v2.job.assign-assessment › Api\SpaV2\JobEvaluationController@assignAssessment
 
   GET        /api/v2/job/{job}/basic ....................................................... v2. › Api\SpaV2\JobPostController@jobBasicInfo
 
@@ -722,7 +722,7 @@ GET        {company}.easyjobs.test/ ............................................
 
   POST    /api/v2/job/{job}/candidate/onboard .............. v2.job.candidate.onboard › Api\SpaV2\JobPipelineController@onboardCandidate
 
-  GET        /api/v2/job/{job}/candidate/pending ............ v2.job.candidate.pending › Api\SpaV2\JobCandidateController@pendingCandidates
+  GET        /api/v2/job/{job}/candidate/pending -> v2.job.candidate.pending › Api\SpaV2\JobCandidateController@pendingCandidates
 
   POST    /api/v2/job/{job}/candidate/pending/invite v2.job.candidate.pending.invite › Api\SpaV2\JobCandidateController@invitePendingCa…
 
@@ -778,7 +778,7 @@ GET        {company}.easyjobs.test/ ............................................
 
 
   GET        /api/v2/job/{job}/required-fields ..................... v2.job.required.data › Api\SpaV2\JobPostController@getJobRequiredField
-  POST    /api/v2/job/{job}/required-fields ............ v2.job.save.required-fields › Api\SpaV2\JobPostController@saveJobRequiredFields
+  POST    /api/v2/job/{job}/required-fields -> v2.job.save.required-fields › Api\SpaV2\JobPostController@saveJobRequiredFields
 
 
 
@@ -829,7 +829,7 @@ GET        {company}.easyjobs.test/ ............................................
 
   POST    /api/v2/paypal/subscription/update .... v2.user.paypal.subscription.update › Api\SpaV2\UserController@updatePaypalSubscription
 
-  GET        /api/v2/question-set/{id} ............ v2.job-evaluation.question-set-data › Api\SpaV2\JobEvaluationController@questionSetData
+  GET        /api/v2/question-set/{id} -> v2.job-evaluation.question-set-data › Api\SpaV2\JobEvaluationController@questionSetData
 
   GET        /api/v2/quiz-question-set/{id} v2.job-evaluation.quiz-question-set-data › Api\SpaV2\JobEvaluationController@quizQuestionSetDa…
 
@@ -863,7 +863,7 @@ GET        {company}.easyjobs.test/ ............................................
 
   POST    /api/v2/subscription/move-to-free ................ v2.user.subscription.move.free › Api\SpaV2\UserController@moveToFreePackage
 
-  GET        /api/v2/subscription/packages ............ v2.user.subscription.packages › Api\SpaV2\UserController@getAllSubscriptionPackages
+  GET        /api/v2/subscription/packages -> v2.user.subscription.packages › Api\SpaV2\UserController@getAllSubscriptionPackages
 
   GET        /api/v2/subscription/packages/{slug} ...... v2.user.subscription.get-package › Api\SpaV2\UserController@getSubscriptionPackage
 
