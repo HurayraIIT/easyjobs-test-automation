@@ -399,9 +399,11 @@ GET /api/v2/company/setting/brand-info  brand-info -> getCompanyBrandInfo
 GET /api/v2/company/setting/category  category -> getCategories
 POST /api/v2/company/setting/category/save -> category.save -> saveCategory
 DELETE /api/v2/company/setting/category/{category} category.delete -> deleteCat…
-POST /api/v2/company/setting/change-onboard-template change-onboard-template › Api\SpaV2\CompanySettingControll…
-GET /api/v2/company/setting/collaborator collaborator -> getCompanyCollabora…
-DELETE /api/v2/company/setting/collaborator/{userId}/delete collaborator.delete › Api\SpaV2\JobPermissionControll…
+POST /api/v2/company/setting/change-onboard-template change-onboard-template
+
+📝 GET /api/v2/company/setting/collaborator collaborator -> getCompanyCollabora…
+📝 DELETE /api/v2/company/setting/collaborator/{userId}/delete collaborator.delete
+
 GET /api/v2/company/setting/company-config/google  v2. -> getCompanyGoogleConfig
 POST /api/v2/company/setting/company-config/google  v2. -> saveCompanyGoogleSetting
 GET /api/v2/company/setting/company-config/linkedin -> v2. -> getCompanyLinkedinConfig
@@ -451,6 +453,7 @@ GET /api/v2/company/setting/template-menus template-menus -> getMenuCompany…
 POST /api/v2/company/setting/template-menus template-menus.save -> insertOrU…
 GET /api/v2/company/setting/templates  templates -> getCompanyTemplates
 POST /api/v2/company/setting/templates templates.save -> storeCompanyTemplate
+
 GET /api/v2/company/setting/user  user -> getCompanyUsers
 ✅ GET /api/v2/company/setting/user-app -> v2. -> getUserApp
 ✅ POST /api/v2/company/setting/user-app/update -> v2. -> updateUserApp
@@ -460,6 +463,7 @@ POST /api/v2/company/setting/user/notifications user.notifications.save -> sa…
 DELETE /api/v2/company/setting/user/{user}/delete user.delete -> deleteCompanyU…
 GET /api/v2/company/setting/user/{user}/send-invitation/{jobPostId?} user.invite 
 POST /api/v2/company/setting/user/{user}/update user.update -> updateCompanyU…
+
 DELETE /api/v2/company/setting/{fieldId}/apply-setting apply-setting.delete -> …
 DELETE /api/v2/company/setting/{fieldId}/custom-apply-field custom-apply-field.delete
 

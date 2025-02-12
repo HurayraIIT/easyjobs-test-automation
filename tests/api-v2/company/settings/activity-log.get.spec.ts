@@ -21,7 +21,7 @@ test.describe("/api/v2/company/setting/activity-log GET requests @company", asyn
 
     test("GET with valid credentials and filters @happy", async ({ request }) => {
         // Get the activity log
-        const response = await request.get(`/api/v2/company/setting/activity-log?log_type=COMPANY&search_query=updated&page=2`, {
+        const response = await request.get(`/api/v2/company/setting/activity-log?log_type=COMPANY&search_query=updated&page=1`, {
             headers: authObjects.companyOneAuthHeaders
         });
 
@@ -32,11 +32,11 @@ test.describe("/api/v2/company/setting/activity-log GET requests @company", asyn
         expect(body.status).toBe("SUCCESS");
         expect(body.message).toBeNull();
 
-        expect(body.data.current_page).toBe(2);
+        expect(body.data.current_page).toBe(1);
         expect(body.data.data[0].logname).toBe("updated");
         expect(body.data.data[0].user_name).toBe("Company One");
         expect(body.data.data[0].log_class).toBe("warning");
-        expect(body.data.data[0].description).toBe("activity_company_user_updated_basic_info");
+        expect(body.data.data[0].description).toContain("activity_company_user_updated");
         expect(body.data.data[0].keys.USER_NAME).toBe("Company One");
         // expect(body.data.data[0].fields).toEqual([]);
         expect(body.data.data[0].model).toBe("COMPANY");

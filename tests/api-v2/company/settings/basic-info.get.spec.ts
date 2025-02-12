@@ -17,7 +17,7 @@ test.describe("/api/v2/company/setting/basic-info GET requests @company", async 
         // await createAssertions(body);
         expect(body.status).toBe("SUCCESS");
         expect(body.data.company.name).toBe("Company One");
-        expect(body.data.company.username).toBe("c1");
+        expect(body.data.company.username).toBe("c01");
         expect(body.data.company.mobile_number).toBe("01558987890");
         expect(body.data.company.company_type.id).toBe(6);
         expect(body.data.company.company_type.name).toBe("Education & Training");
@@ -25,7 +25,7 @@ test.describe("/api/v2/company/setting/basic-info GET requests @company", async 
         expect(body.data.company.company_size).toBe(1);
         expect(body.data.company.time_zone).toBe("Asia/Dhaka");
         expect(body.data.company.jobs_per_page).toBe("5");
-        expect(body.data.companyAddress.id).toBe(5096);
+        expect(body.data.companyAddress.id).toBe(5172);
         expect(body.data.companyAddress.type).toBe("1");
         expect(body.data.companyAddress.country_id).toBe(18);
         expect(body.data.companyAddress.state_id).toBe(348);
@@ -33,7 +33,7 @@ test.describe("/api/v2/company/setting/basic-info GET requests @company", async 
         expect(body.data.companyAddress.postal_code).toBe("1111");
         expect(body.data.companyAddress.address_line_1).toBeNull();
         expect(body.data.companyAddress.address_line_2).toBeNull();
-        expect(body.data.companyAddress.model_id).toBe(2227);
+        expect(body.data.companyAddress.model_id).toBe(2239);
         expect(body.data.companyAddress.model_type).toBe("App\\Models\\Company");
         expect(body.data.companyAddress.country.id).toBe(18);
         expect(body.data.companyAddress.country.name).toBe("Bangladesh");

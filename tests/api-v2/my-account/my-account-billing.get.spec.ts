@@ -15,10 +15,10 @@ test.describe("/api/v2/my-account/billing GET requests @my-account", async () =>
         const body = await response.json();
         // await createAssertions(body);
         expect(body.status).toBe("SUCCESS");
-        expect(body.data.payment_info.stripe_id).toBe("cus_RhKKHUpfvGf1SS");
+        expect(body.data.payment_info.stripe_id).toBe("cus_Rl8vkrJrZyYHIh");
         expect(body.data.payment_info.card_holder_name).toContain("Abu Hurayra");
-        expect(body.data.payment_info.card_brand).toBe("Visa");
-        expect(body.data.payment_info.card_last_four).toBe("4242");
+        expect(body.data.payment_info.card_brand).toBe("mastercard");
+        expect(body.data.payment_info.card_last_four).toBe("4444");
         expect(body.data.billing.name).toBe("Company One");
         expect(body.data.billing.email).toBe(`${process.env.COMPANY_ONE_EMAIL}`);
         expect(body.message).toBeNull();

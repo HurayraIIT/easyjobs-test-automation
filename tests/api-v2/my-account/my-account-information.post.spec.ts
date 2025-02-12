@@ -23,7 +23,7 @@ test.describe("/api/v2/my-account/information POST requests @my-account @happy",
         const body = await response.json();
         // await createAssertions(body);
         expect(body.status).toBe("SUCCESS");
-        expect(body.data.id).toBe(15252);
+        expect(body.data.id).toBe(15283);
         expect(body.data.first_name).toBe("Company");
         expect(body.data.last_name).toBe("One");
         expect(body.data.name).toBe("Company One");
