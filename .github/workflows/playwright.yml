@@ -18,11 +18,12 @@ jobs:
           node-version: 20
       - name: Install dependencies
         run: npm ci
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+      # - name: Install Playwright Browsers
+      #   run: npx playwright install --with-deps
 
       - name: Set up environment variables
         run: |
+          mkdir .auth && echo "{}" >> .auth/auth.json
           echo "LIVE_URL=${{ secrets.LIVE_URL }}" >> .env
           echo "DEV_URL=${{ secrets.DEV_URL }}" >> .env
           echo "BASE_URL=${{ secrets.BASE_URL }}" >> .env
