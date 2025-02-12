@@ -11,14 +11,14 @@ export default defineConfig({
   workers: process.env.CI ? 1 : 1,
   timeout: 30 * 1000,
 
-  reporter: [["dot"], ["list"], ["html"]],
+  reporter: [["dot"]],
 
   use: {
     baseURL: process.env.BASE_URL,
 
-    screenshot: "on",
+    // screenshot: "on",
     trace: "retain-on-failure",
-    video: "retain-on-failure",
+    // video: "retain-on-failure",
 
     ignoreHTTPSErrors: true,
     extraHTTPHeaders: {
