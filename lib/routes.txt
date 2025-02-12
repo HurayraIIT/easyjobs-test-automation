@@ -435,10 +435,10 @@ POST /api/v2/company/setting/hackerrank/key/delete hackerrank.key.delete -> d…
 ✅ DELETE /api/v2/company/setting/key/{key}/delete -> setting.key.delete -> deleteAppKey
 GET /api/v2/company/setting/meta-info -> meta-info -> getCompanyMetaSettings
 POST /api/v2/company/setting/meta-info meta-info.save -> storeCompanyMetaSett…
-GET /api/v2/company/setting/pipeline -> pipeline -> getPipelines
-POST /api/v2/company/setting/pipeline  pipeline.save -> savePipeline
-DELETE /api/v2/company/setting/pipeline/{pipeline}/delete pipeline.delete -> de…
-POST /api/v2/company/setting/pipeline/{pipeline}/update pipeline.update -> up…
+✅ GET /api/v2/company/setting/pipeline -> pipeline -> getPipelines
+📝 POST /api/v2/company/setting/pipeline  pipeline.save -> savePipeline
+📝 DELETE /api/v2/company/setting/pipeline/{pipeline}/delete pipeline.delete -> de…
+✅ POST /api/v2/company/setting/pipeline/{pipeline}/update pipeline.update -> up…
 PUT /api/v2/company/setting/remove-cover-photo remove-cover-photo -> removeC…
 PUT /api/v2/company/setting/remove-powered-by remove-powered-by -> removePow…
 POST /api/v2/company/setting/show-life -> show-life-at -> updateShowAtSetting
