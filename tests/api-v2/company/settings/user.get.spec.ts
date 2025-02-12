@@ -70,7 +70,7 @@ test.describe("/api/v2/company/setting/user GET requests @company", async () => 
 
         const body = await response.json();
 
-        await createAssertions(body);
+        // await createAssertions(body);
         expect(body.status).toBe("failed");
         expect(body.data).toEqual([]);
         expect(body.message).toBe("You do not have access permissions.");
