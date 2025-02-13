@@ -58,7 +58,7 @@ test.describe("/api/v2/company/setting/basic-information GET requests @company",
         expect(body.message).toBe("Unauthenticated.");
     });
 
-    test("GET with valid credentials but another company ID", async ({ request }) => {
+    test("GET with valid credentials but another company ID @security", async ({ request }) => {
         // Company two should not be able to access data from company one
         const maliciousHeaders = authObjects.companyTwoAuthHeaders;
         maliciousHeaders['Company-Id'] = authObjects.companyOneAuthHeaders['Company-Id'];
@@ -77,7 +77,7 @@ test.describe("/api/v2/company/setting/basic-information GET requests @company",
         expect(body.message).toBe("Something went wrong.");
     });
 
-    test("GET with candidate auth", async ({ request }) => {
+    test("GET with candidate auth @security", async ({ request }) => {
         const response = await request.get(`/api/v2/company/setting/basic-information`, {
             headers: authObjects.candidateOneAuthHeaders
         });

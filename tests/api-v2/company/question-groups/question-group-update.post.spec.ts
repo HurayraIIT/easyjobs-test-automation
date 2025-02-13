@@ -57,8 +57,8 @@ test.describe("/api/v2/company/question/group/{group}/update POST requests @comp
     });
 
     test("POST with empty data", async ({ request }) => {
-        const question_set = await createQuestionSet(authObjects.companyOneAuthHeaders);
-        const response = await request.post(`/api/v2/company/question/group/${question_set.id}/update`, {
+        const question_set_id = await createQuestionSet(authObjects.companyOneAuthHeaders);
+        const response = await request.post(`/api/v2/company/question/group/${question_set_id}/update`, {
             data: {},
             headers: authObjects.companyOneAuthHeaders
         });
@@ -76,8 +76,8 @@ test.describe("/api/v2/company/question/group/{group}/update POST requests @comp
     });
 
     test("POST with no data", async ({ request }) => {
-        const question_set = await createQuestionSet(authObjects.companyOneAuthHeaders);
-        const response = await request.post(`/api/v2/company/question/group/${question_set.id}/update`, {
+        const question_set_id = await createQuestionSet(authObjects.companyOneAuthHeaders);
+        const response = await request.post(`/api/v2/company/question/group/${question_set_id}/update`, {
             headers: authObjects.companyOneAuthHeaders
         });
 
@@ -94,9 +94,9 @@ test.describe("/api/v2/company/question/group/{group}/update POST requests @comp
     });
 
     test("POST with valid data but no auth @security", async ({ request }) => {
-        const question_set = await createQuestionSet(authObjects.companyOneAuthHeaders);
-        const response = await request.post(`/api/v2/company/question/group/${question_set.id}/update`, {
-            data: question_set,
+        const question_set_id = await createQuestionSet(authObjects.companyOneAuthHeaders);
+        const response = await request.post(`/api/v2/company/question/group/${question_set_id}/update`, {
+            data: question_set_id,
             headers: {
                 "Accept": "application/json",
             }

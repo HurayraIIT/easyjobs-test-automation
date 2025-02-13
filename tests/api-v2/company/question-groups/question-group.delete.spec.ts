@@ -30,10 +30,10 @@ test.describe("/api/v2/company/question/group/{group} DELETE requests @company",
 
     test("DELETE with valid set id and another company token @security", async ({ request }) => {
         // Create a new question set
-        const new_question_set = await createQuestionSet(authObjects.companyOneAuthHeaders);
+        const new_question_set_id = await createQuestionSet(authObjects.companyOneAuthHeaders);
 
         // Delete the question set
-        const response = await request.delete(`/api/v2/company/question/group/${new_question_set.id}`, {
+        const response = await request.delete(`/api/v2/company/question/group/${new_question_set_id}`, {
             headers: authObjects.companyTwoAuthHeaders
         });
 
@@ -51,7 +51,7 @@ test.describe("/api/v2/company/question/group/{group} DELETE requests @company",
         const new_question_set = await createQuestionSet(authObjects.companyOneAuthHeaders);
 
         // Try to get the question set again
-        const response = await request.get(`/api/v2/company/question/group/${new_question_set.id}`, {
+        const response = await request.get(`/api/v2/company/question/group/${new_question_set}`, {
             headers: {
                 "Accept": "application/json",
             }
@@ -100,7 +100,7 @@ test.describe("/api/v2/company/question/group/{group} DELETE requests @company",
         const new_question_set = await createQuestionSet(authObjects.companyOneAuthHeaders);
 
         // Try to get the question set again
-        const response = await request.get(`/api/v2/company/question/group/${new_question_set.id}`, {
+        const response = await request.get(`/api/v2/company/question/group/${new_question_set}`, {
             headers: authObjects.candidateOneAuthHeaders
         });
 

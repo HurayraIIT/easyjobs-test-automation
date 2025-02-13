@@ -11,7 +11,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : 1,
   timeout: 30 * 1000,
 
-  reporter: [["dot"]],
+  reporter: [["dot"], ["list"], ["html"]],
 
   use: {
     baseURL: process.env.BASE_URL,

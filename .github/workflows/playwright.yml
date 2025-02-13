@@ -11,7 +11,7 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -49,7 +49,7 @@ jobs:
           echo "CANDIDATE_ONE_EMAIL=${{ secrets.CANDIDATE_ONE_EMAIL }}" >> .env
           echo "CANDIDATE_TWO_EMAIL=${{ secrets.CANDIDATE_TWO_EMAIL }}" >> .env
           echo "PASSWORD=${{ secrets.PASSWORD }}" >> .env
-          
+
       - name: Run Playwright tests
         run: npx playwright test
 
@@ -61,12 +61,12 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
-      - name: Publish HTML report to GitHub Pages (https://hurayraiit.github.io/essential-addons-demopage-test-automation)
+      - name: Publish HTML report to GitHub Pages (https://hurayraiit.github.io/easyjobs-test-automation/)
         if: always()
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           publish_dir: playwright-report/
           keep_files: true
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
+          user_name: "github-actions[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"
