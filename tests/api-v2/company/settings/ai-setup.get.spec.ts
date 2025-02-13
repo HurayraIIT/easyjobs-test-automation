@@ -36,16 +36,16 @@ test.describe("/api/v2/company/setting/ai-setup GET requests @company", async ()
         // Company two should not be able to access data from company one
         const maliciousHeaders = authObjects.companyTwoAuthHeaders;
         maliciousHeaders['Company-Id'] = authObjects.companyOneAuthHeaders['Company-Id'];
-        maliciousHeaders['State-Version'] = authObjects.companyOneAuthHeaders['State-Version'];
+        // maliciousHeaders['State-Version'] = authObjects.companyOneAuthHeaders['State-Version'];
 
         const response = await request.get(`/api/v2/company/setting/ai-setup`, {
             headers: maliciousHeaders
         });
 
-        expect(response.status()).toBe(471);
+        expect.soft(response.status()).toBe(471);
 
         const body = await response.json();
-        // await createAssertions(body);
+        await createAssertions(body);
         expect(body.status).toBe("FAILED");
         expect(body.data).toEqual([]);
         expect(body.message).toBe("Something went wrong.");

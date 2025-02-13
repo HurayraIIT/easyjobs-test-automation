@@ -46,7 +46,7 @@ test.describe("/api/v2/company/setting/apply-setting/update POST requests @compa
         // Company two should not be able to modify data from company one
         const maliciousHeaders = authObjects.companyTwoAuthHeaders;
         maliciousHeaders['Company-Id'] = authObjects.companyOneAuthHeaders['Company-Id'];
-        maliciousHeaders['State-Version'] = authObjects.companyOneAuthHeaders['State-Version'];
+        // maliciousHeaders['State-Version'] = authObjects.companyOneAuthHeaders['State-Version'];
 
         const response = await request.post(`/api/v2/company/setting/apply-setting/update`, {
             headers: maliciousHeaders,
