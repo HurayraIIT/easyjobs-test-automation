@@ -394,7 +394,7 @@ POST /api/v2/company/setting/admin -> admin.save -> storeAdminSetting
 ✅ POST /api/v2/company/setting/basic-information -> basic.information.save -> stor…
 ✅ GET /api/v2/company/setting/beta-feature -> getBetaFeature
 ✅ PUT   /api/v2/company/setting/beta-feature -> updateBetaFeat…
-POST /api/v2/company/setting/brand-color update.brand-color -> updateCompanyB…
+✅ POST /api/v2/company/setting/brand-color update.brand-color -> updateCompanyB…
 GET /api/v2/company/setting/brand-info  brand-info -> getCompanyBrandInfo
 GET /api/v2/company/setting/category  category -> getCategories
 POST /api/v2/company/setting/category/save -> category.save -> saveCategory
@@ -409,9 +409,9 @@ POST /api/v2/company/setting/company-config/google  v2. -> saveCompanyGoogleSett
 GET /api/v2/company/setting/company-config/linkedin -> v2. -> getCompanyLinkedinConfig
 POST /api/v2/company/setting/company-config/linkedin  v2. -> saveCompanyLinkedinSetting
 GET /api/v2/company/setting/company-image custom-image -> getCompanySettings…
-GET /api/v2/company/setting/company-photo custom-photo -> getCompanySettings…
-POST /api/v2/company/setting/company-photo custom-photo.save -> storeCompanyS…
-DELETE /api/v2/company/setting/company-photo custom-photo.remove -> removeCompa…
+✅ GET /api/v2/company/setting/company-photo custom-photo -> getCompanySettings…
+✅ POST /api/v2/company/setting/company-photo custom-photo.save -> storeCompanyS…
+✅ DELETE /api/v2/company/setting/company-photo custom-photo.remove -> removeCompa…
 GET /api/v2/company/setting/custom-apply-field custom-apply-field -> getComp…
 POST /api/v2/company/setting/custom-apply-field custom-apply-field.save -> st…
 GET /api/v2/company/setting/custom-apply-field/jobs/{field} custom-apply-field.jobs › Api\SpaV2\CompanySetting…
@@ -436,23 +436,23 @@ POST /api/v2/company/setting/hackerrank/key/delete hackerrank.key.delete -> d…
 GET /api/v2/company/setting/meta-info -> meta-info -> getCompanyMetaSettings
 POST /api/v2/company/setting/meta-info meta-info.save -> storeCompanyMetaSett…
 ✅ GET /api/v2/company/setting/pipeline -> pipeline -> getPipelines
-📝 POST /api/v2/company/setting/pipeline  pipeline.save -> savePipeline
-📝 DELETE /api/v2/company/setting/pipeline/{pipeline}/delete pipeline.delete -> de…
-✅ POST /api/v2/company/setting/pipeline/{pipeline}/update pipeline.update -> up…
-PUT /api/v2/company/setting/remove-cover-photo remove-cover-photo -> removeC…
-PUT /api/v2/company/setting/remove-powered-by remove-powered-by -> removePow…
-POST /api/v2/company/setting/show-life -> show-life-at -> updateShowAtSetting
+✅ POST /api/v2/company/setting/pipeline  pipeline.save -> savePipeline
+✅ DELETE /api/v2/company/setting/pipeline/{pipeline}/delete pipeline.delete
+✅ POST /api/v2/company/setting/pipeline/{pipeline}/update pipeline.update
+✅ PUT /api/v2/company/setting/remove-cover-photo remove-cover-photo
+✅ PUT /api/v2/company/setting/remove-powered-by remove-powered-by
+✅ POST /api/v2/company/setting/show-life -> show-life-at -> updateShowAtSetting
 ✅ GET /api/v2/company/setting/skill -> skill -> getSkills
 ✅ POST /api/v2/company/setting/skill/save -> skill.save -> saveSkill
 ✅ DELETE /api/v2/company/setting/skill/{skill} -> skill.delete -> deleteSkill
-POST /api/v2/company/setting/slack/integration/disconnect v2.company.settings.integration.slack.disconnect
-GET /api/v2/company/setting/slack/notifications slack.notifications -> getCo…
-POST /api/v2/company/setting/slack/notifications slack.notifications.save -> …
-POST /api/v2/company/setting/slack/redirect v2.company.settings.integration.slack -> slackRedire…
-GET /api/v2/company/setting/template-menus template-menus -> getMenuCompany…
-POST /api/v2/company/setting/template-menus template-menus.save -> insertOrU…
-GET /api/v2/company/setting/templates  templates -> getCompanyTemplates
-POST /api/v2/company/setting/templates templates.save -> storeCompanyTemplate
+POST /api/v2/company/setting/slack/integration/disconnect integration.slack.disconnect
+GET /api/v2/company/setting/slack/notifications slack.notifications 
+POST /api/v2/company/setting/slack/notifications slack.notifications.save 
+POST /api/v2/company/setting/slack/redirect v2.company.settings.integration.slack
+✅ GET /api/v2/company/setting/template-menus template-menus -> getMenuCompany…
+✅ POST /api/v2/company/setting/template-menus template-menus.save -> insertOrU…
+✅ GET /api/v2/company/setting/templates  templates -> getCompanyTemplates
+✅ POST /api/v2/company/setting/templates templates.save -> storeCompanyTemplate
 
 ✅ GET /api/v2/company/setting/user  user -> getCompanyUsers
 ✅ GET /api/v2/company/setting/user-app -> v2. -> getUserApp
