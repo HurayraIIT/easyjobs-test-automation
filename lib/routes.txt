@@ -624,7 +624,7 @@ POST /api/v2/testlify/send-assessment-invite v2.send.assessment.invite -> sendAs
 POST /api/v2/testlify/send/otp -> v2.send.otp -> sendOTP
 POST /api/v2/testlify/verify/otp -> v2.verify.otp -> verifyOTP
 GET /api/v2/testlify/webhook -> v2.webhook -> handleWebhook
-GET /api/v2/timezones  Api\SpaV2\GlobalSearchController@getTimeZones
+✅ GET /api/v2/timezones  Api\SpaV2\GlobalSearchController@getTimeZones
 GET /api/v2/user -> v2.user.info -> getUserInfo
 PATCH /api/v2/user/change-company -> v2.user.company.change -> changeCurrentCompany
 GET /api/v2/user/id -> v2. -> getUserId

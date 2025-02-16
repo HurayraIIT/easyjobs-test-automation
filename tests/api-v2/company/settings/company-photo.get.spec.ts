@@ -25,7 +25,7 @@ test.describe("/api/v2/company/setting/company-photo GET requests @company", asy
         expect(body.data.showcase_photos_3).toContain("/app-easy-jobs/img/720x525.png");
         expect(body.data.showcase_photos_4).toContain("/app-easy-jobs/img/720x525.png");
         expect(body.data.showcase_photos_5).toContain("/app-easy-jobs/img/720x525.png");
-        expect(body.data.brand_color).toContain("#597dfc");
+        expect(body.data.brand_color).toContain("#f36c29");
         expect(body.data.meta_img).toContain("/app-easy-jobs/img/98x98.png");
         expect(body.message).toBeNull();
     });
