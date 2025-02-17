@@ -6,7 +6,7 @@ import { createAssertions } from '@helpers/createAssertions';
 import { createEducation, deleteAllEducations, getAllEducations } from '@datafactory/education';
 
 test.describe("/api/v2/candidate/education/re-order POST requests @candidate", async () => {
-    test.beforeAll(async () => {
+    test.beforeEach(async () => {
         await deleteAllEducations(authObjects.candidateOneAuthHeaders);
     });
 
@@ -75,8 +75,7 @@ test.describe("/api/v2/candidate/education/re-order POST requests @candidate", a
         expect(body.message).toBe('Unauthenticated.');
     });
 
-    // TODO: SECURITY ISSUE Test after it is fixed
-    test.skip("POST re-order educations with another candidate @security", async ({ request }) => {
+    test("POST re-order educations with another candidate @security", async ({ request }) => {
         // Create 3 educations
         const education_0 = await createEducation(authObjects.candidateOneAuthHeaders);
         const education_1 = await createEducation(authObjects.candidateOneAuthHeaders);
@@ -94,13 +93,13 @@ test.describe("/api/v2/candidate/education/re-order POST requests @candidate", a
             }
         });
 
-        expect(response.status()).toBe(480);
+        expect(response.status()).toBe(400);
 
         const body = await response.json();
         // await createAssertions(body);
-        expect(body.status).toBe("failed");
+        expect(body.status).toBe("FAILED");
         expect(body.data).toEqual([]);
-        expect(body.message).toBe("You do not have access permissions.");
+        expect(body.message).toBe("Unauthorized Access");
     });
 
     test("POST re-order educations with company auth @security", async ({ request }) => {
