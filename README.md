@@ -1,40 +1,72 @@
 # easyjobs-test-automation
-Automation testing app.easy.jobs using playwright.
 
-## Getting Started
+[![Playwright Tests](https://github.com/HurayraIIT/easyjobs-test-automation/actions/workflows/playwright.yml/badge.svg)](https://github.com/HurayraIIT/easyjobs-test-automation/actions/workflows/playwright.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![GitHub last commit](https://img.shields.io/github/last-commit/HurayraIIT/easyjobs-test-automation)
 
-Install playwright using the following command:
+End-to-end API test automation for Rasy Jobs using playwright node.js
 
-```
-npm init playwright@latest
-```
+## 🚀 Installation
 
-Install dotenv:
+_Follow the steps below to setup and run the project locally on your machine._
 
-```
-npm install dotenv@latest
-```
+1. Clone the repo
 
-To update playwright:
-
-```
-npm install -D @playwright/test@latest
+```sh
+git clone git@github.com:HurayraIIT/easyjobs-test-automation.git
 ```
 
-Usually after Playwright update, browsers need to be updated with command:
+2. Install NPM packages
 
+```sh
+npm install
 ```
+
+3. Create the `.env` file and provide necessary details
+
+```sh
+cp .env.example .env
+```
+
+4. Update/Install playwright browsers. (optional)
+
+```sh
 npx playwright install --with-deps
 ```
 
-Might need this:
+5. Create storage state file.
 
-```
-npm install @wordpress/e2e-test-utils-playwright
+```sh
+mkdir .auth && echo "{}" >> .auth/auth.json
 ```
 
-Faker: https://fakerjs.dev/guide/
+## 🧪 Running Tests
 
+To run the tests:
+
+```sh
+npx playwright test
 ```
-npm install @faker-js/faker --save-dev
+
+_For more examples, please refer to the [ Official Documentation](https://playwright.dev)_
+
+## How to update playwright
+
+By keeping the Playwright version up to date we will be able to use new features and test our app on the latest browser versions and catch failures before the latest browser version is released to the public.
+
+```sh
+# Update playwright
+npm install -D @playwright/test@latest
 ```
+
+See what version of Playwright we have by running the following command:
+
+```sh
+npx playwright --version
+```
+
+## Top contributors:
+
+<a href="https://github.com/HurayraIIT/easyjobs-test-automation/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=HurayraIIT/easyjobs-test-automation" alt="contrib.rocks image" />
+</a>

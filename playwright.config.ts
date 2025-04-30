@@ -6,12 +6,30 @@ config();
 export default defineConfig({
   testDir: './tests',
 
-  fullyParallel: true,
-  retries: process.env.CI ? 2 : 1,
+  // fullyParallel: true,
+  retries: process.env.CI ? 1 : 1,
   workers: process.env.CI ? 1 : 1,
   timeout: 30 * 1000,
 
-  reporter: [["dot"], ["list"], ["html"]],
+  reporter: process.env.CI
+    ? [
+      [
+        "./node_modules/playwright-slack-report/dist/src/SlackReporter.js",
+        {
+          slackWebHookUrl: process.env.SLACK_WEBHOOK_URL,
+          sendResults: "always", // "always" , "on-failure", "off"
+          maxNumberOfFailuresToShow: 0,
+          meta: [
+            {
+              key: ":easyjobs: EasyJobs - Test Results",
+              value: "<https://reports.hurayraiit.com/ | 📂 DETAILED REPORT!>",
+            },
+          ],
+        },
+      ],
+      ["html"],
+    ]
+    : [["dot"], ["list"], ["html"]],
 
   use: {
     baseURL: process.env.BASE_URL,

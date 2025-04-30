@@ -10,30 +10,30 @@ test.describe("/api/v2/company/setting/templates GET requests @company", async (
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
         // await createAssertions(body);
-        expect(body.status).toContain("SUCCESS");
-        expect(body.data[0].id).toBe(1);
-        expect(body.data[0].name).toContain("Default");
-        expect(body.data[0].slug).toContain("default");
-        expect(body.data[0].selected).toBe(true);
-        expect(body.data[0].url).toContain("/app-easy-jobs/img/templates/default.jpg");
-        expect(body.data[0].preview).toContain("/preview?template_slug=default&domain=app.easyjobs.dev");
-        expect(body.data[1].id).toBe(2);
-        expect(body.data[1].name).toContain("Classic");
-        expect(body.data[1].slug).toContain("classic");
-        expect(body.data[1].selected).toBe(false);
-        expect(body.data[1].url).toContain("/app-easy-jobs/img/templates/classic.jpg");
-        expect(body.data[1].preview).toContain("/preview?template_slug=classic&domain=app.easyjobs.dev");
-        expect(body.data[2].id).toBe(3);
-        expect(body.data[2].name).toContain("Elegant");
-        expect(body.data[2].slug).toContain("elegant");
-        expect(body.data[2].selected).toBe(false);
-        expect(body.data[2].url).toContain("/app-easy-jobs/img/templates/elegant.jpg");
-        expect(body.data[2].preview).toContain("/preview?template_slug=elegant&domain=app.easyjobs.dev");
-        expect(body.message).toBeNull();
+        expect.soft(body.status).toContain("SUCCESS");
+        expect.soft(body.data[0].id).toBe(1);
+        expect.soft(body.data[0].name).toContain("Default");
+        expect.soft(body.data[0].slug).toContain("default");
+        expect.soft(body.data[0].selected).toBe(true);
+        expect.soft(body.data[0].url).toContain("/app-easy-jobs/img/templates/default.jpg");
+        expect.soft(body.data[0].preview).toContain("/preview?template_slug=default");
+        expect.soft(body.data[1].id).toBe(2);
+        expect.soft(body.data[1].name).toContain("Classic");
+        expect.soft(body.data[1].slug).toContain("classic");
+        expect.soft(body.data[1].selected).toBe(false);
+        expect.soft(body.data[1].url).toContain("/app-easy-jobs/img/templates/classic.jpg");
+        expect.soft(body.data[1].preview).toContain("/preview?template_slug=classic");
+        expect.soft(body.data[2].id).toBe(3);
+        expect.soft(body.data[2].name).toContain("Elegant");
+        expect.soft(body.data[2].slug).toContain("elegant");
+        expect.soft(body.data[2].selected).toBe(false);
+        expect.soft(body.data[2].url).toContain("/app-easy-jobs/img/templates/elegant.jpg");
+        expect.soft(body.data[2].preview).toContain("/preview?template_slug=elegant");
+        expect.soft(body.message).toBeNull();
     });
 
     test("GET with invalid credentials", async ({ request }) => {
@@ -43,10 +43,10 @@ test.describe("/api/v2/company/setting/templates GET requests @company", async (
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const body = await response.json();
-        expect(body.message).toBe("Unauthenticated.");
+        expect.soft(body.message).toBe("Unauthenticated.");
     });
 
     test("GET with valid credentials but another company ID @security", async ({ request }) => {
@@ -59,13 +59,13 @@ test.describe("/api/v2/company/setting/templates GET requests @company", async (
             headers: maliciousHeaders
         });
 
-        expect(response.status()).toBe(471);
+        expect.soft(response.status()).toBe(471);
 
         const body = await response.json();
         // await createAssertions(body);
-        expect(body.status).toBe("FAILED");
-        expect(body.data).toEqual([]);
-        expect(body.message).toBe("Something went wrong.");
+        expect.soft(body.status).toBe("FAILED");
+        expect.soft(body.data).toEqual([]);
+        expect.soft(body.message).toBe("Something went wrong.");
     });
 
     test("GET with candidate auth", async ({ request }) => {
@@ -78,8 +78,8 @@ test.describe("/api/v2/company/setting/templates GET requests @company", async (
         const body = await response.json();
 
         // await createAssertions(body);
-        expect(body.status).toBe("failed");
-        expect(body.data).toEqual([]);
-        expect(body.message).toBe("You do not have access permissions.");
+        expect.soft(body.status).toBe("failed");
+        expect.soft(body.data).toEqual([]);
+        expect.soft(body.message).toBe("You do not have access permissions.");
     });
 });

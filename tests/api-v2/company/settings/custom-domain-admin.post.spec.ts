@@ -8,7 +8,7 @@ import { deleteAllCompanySettingsKeys } from '@datafactory/company-settings-key'
 test.describe("/api/v2/company/setting/custom-domain/admin POST requests @company", async () => {
     test("POST with valid credentials @happy", async ({ request }) => {
         const response = await request.post('/api/v2/company/setting/custom-domain/admin', {
-            data: { "cname": "test.qa1.site", "script": "" },
+            data: { "cname": "ejtest.hurayraiit.com", "script": "" },
             headers: authObjects.companyOneAuthHeaders
         });
 
@@ -23,7 +23,7 @@ test.describe("/api/v2/company/setting/custom-domain/admin POST requests @compan
 
     test("POST with invalid credentials", async ({ request }) => {
         const response = await request.post('/api/v2/company/setting/custom-domain/admin', {
-            data: { "cname": "test.qa1.site", "script": "" },
+            data: { "cname": "ejtest.hurayraiit.com", "script": "" },
             headers: {
                 "Accept": "application/json",
             }
@@ -42,7 +42,7 @@ test.describe("/api/v2/company/setting/custom-domain/admin POST requests @compan
         maliciousHeaders['State-Version'] = authObjects.companyOneAuthHeaders['State-Version'];
 
         const response = await request.post('/api/v2/company/setting/custom-domain/admin', {
-            data: { "cname": "test.qa1.site", "script": "" },
+            data: { "cname": "ejtest.hurayraiit.com", "script": "" },
             headers: maliciousHeaders
         });
 
@@ -57,7 +57,7 @@ test.describe("/api/v2/company/setting/custom-domain/admin POST requests @compan
 
     test("POST with candidate auth", async ({ request }) => {
         const response = await request.post('/api/v2/company/setting/custom-domain/admin', {
-            data: { "cname": "test.qa1.site", "script": "" },
+            data: { "cname": "ejtest.hurayraiit.com", "script": "" },
             headers: authObjects.candidateOneAuthHeaders
         });
 

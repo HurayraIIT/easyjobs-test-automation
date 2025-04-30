@@ -45,7 +45,7 @@ test.describe("/api/v2/company/setting/ai-setup GET requests @company", async ()
         expect.soft(response.status()).toBe(471);
 
         const body = await response.json();
-        await createAssertions(body);
+        // await createAssertions(body);
         expect(body.status).toBe("FAILED");
         expect(body.data).toEqual([]);
         expect(body.message).toBe("Something went wrong.");

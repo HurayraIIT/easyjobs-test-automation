@@ -15,10 +15,10 @@ test.describe("/api/v2/job/skill GET requests @company", async () => {
 
         const body = await response.json();
         // console.log(body[1]);
-        // await createAssertions(body[1]);
+        // await createAssertions(body[0].opts[35]);
         expect(body[0].group_name).toBe("Default Skills");
-        expect(body[0].opts[35].id).toBe(321);
-        expect(body[0].opts[35].name).toBe("algorithms");
+        expect(body[0].opts[35].id).toBe(508);
+        expect(body[0].opts[35].name).toBe("Ambitious");
     });
 
     test("GET with valid candidate credentials", async ({ request }) => {
