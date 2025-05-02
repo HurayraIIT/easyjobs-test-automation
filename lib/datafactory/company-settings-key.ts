@@ -1,6 +1,10 @@
 import { expect, request } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 
+/**
+ * Key = WordPress App Key here: https://app.easyjobs.dev/company/setting/others/integration
+ */
+
 export async function createCompanySettingsKey(authHeaders: any) {
     const requestContext = await request.newContext();
     const response = await requestContext.post('/api/v2/company/setting/key/create', {

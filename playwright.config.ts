@@ -21,8 +21,8 @@ export default defineConfig({
           maxNumberOfFailuresToShow: 0,
           meta: [
             {
-              key: ":easyjobs: EasyJobs - Test Results",
-              value: "<https://reports.hurayraiit.com/ | 📂 DETAILED REPORT!>",
+              key: ":easyjobs: EasyJobs - 🧪 Test Results",
+              value: "<https://easyjobs.hurayraiit.com/ | 📂 May a few mins to update!>",
             },
           ],
         },
