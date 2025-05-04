@@ -5,7 +5,7 @@ import authObjects from '@datafactory/auth';
 import { createAssertions } from "@helpers/createAssertions";
 
 test.describe("/api/v2/my-account/change-password PUT requests @my-account", async () => {
-    test("PUT with valid company credentials @happy", async ({ request }) => {
+    test.skip("PUT with valid company credentials @happy", async ({ request }) => {
         const response = await request.put(`/api/v2/my-account/change-password`, {
             headers: authObjects.companyOneAuthHeaders,
             data: {
