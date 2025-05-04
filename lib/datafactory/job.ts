@@ -53,3 +53,58 @@ export async function createJob(authHeaders: any, job_data: any = null) {
     expect(body.message).toBe("Job created.");
     return body.data;
 }
+
+export async function getAllDraftJobs(authHeaders: any) {
+    let draft_jobs = [];
+
+    const requestContext = await request.newContext();
+    const response = await requestContext.get('/api/v2/job/draft', {
+        headers: authHeaders
+    });
+
+    expect(response.status()).toBe(200);
+    const body = await response.json();
+
+    // await createAssertions(body);
+    expect(body.status).toBe("SUCCESS");
+    expect(body.message).toBe(null);
+
+    // run a for loop and get data from https://app.easyjobs.dev/api/v2/job/draft?page=1 to page=last_page and put into draft_jobs
+    for (let i = 1; i <= body.data.last_page; i++) {
+        const response = await requestContext.get(`/api/v2/job/draft?page=${i}`, {
+            headers: authHeaders
+        });
+
+        expect(response.status()).toBe(200);
+        const body = await response.json();
+
+        // await createAssertions(body);
+        expect(body.status).toBe("SUCCESS");
+        expect(body.message).toBe(null);
+
+        draft_jobs = draft_jobs.concat(body.data.data);
+    }
+
+    return draft_jobs;
+}
+
+export async function deleteJobBySlug(authHeaders: any, job_slug: string) {
+    const requestContext = await request.newContext();
+    const response = await requestContext.delete(`/api/v2/job/${job_slug}/delete`, {
+        headers: authHeaders
+    });
+
+    expect(response.status()).toBe(200);
+    const body = await response.json();
+
+    // await createAssertions(body);
+    expect(body.status).toBe("SUCCESS");
+    expect(body.message).toBe("Job deleted.");
+}
+
+export async function deleteAllDraftJobs(authHeaders: any, jobs: any = null) {
+    const draft_jobs = jobs || await getAllDraftJobs(authHeaders);
+    for (const job of draft_jobs) {
+        await deleteJobBySlug(authHeaders, job.slug);
+    }
+}

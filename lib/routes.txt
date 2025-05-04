@@ -518,7 +518,7 @@ PUT /api/v2/job/applicant/{applicant}/rating  v2.job.applicant.rating -> saveRat
 GET /api/v2/job/archived  v2.job.archived -> archivedList
 ✅ GET /api/v2/job/category/{subcategory?} -> category -> searchCategory
 ✅ POST /api/v2/job/create -> v2.job.create -> create
-GET /api/v2/job/draft -> v2.job.draft -> draftList
+✅ GET /api/v2/job/draft -> v2.job.draft -> draftList
 ✅ GET -> /api/v2/job/information-meta-data -> job.information.meta.data -> jobInfoMetaData
 GET /api/v2/job/permissions  Api\SpaV2\GlobalSearchController@jobPermissions
 GET /api/v2/job/published -> v2.job.published -> publishedList
@@ -544,8 +544,8 @@ POST /api/v2/job/{job}/collaborators -> v2.job.collaborators.create -> createPer
 GET /api/v2/job/{job}/collaborators  v2.job.collaborators -> getCollaborators
 DELETE /api/v2/job/{job}/collaborators/{collaborator}/delete v2.job.collaborators.delete -> deleteJ…
 POST /api/v2/job/{job}/collaborators/{collaborator}/update v2.job.collaborators.update -> updateP…
-DELETE /api/v2/job/{job}/delete -> v2.job.delete -> destroy
-GET /api/v2/job/{job}/duplicate  v2.job.duplicate -> duplicateJob
+✅ DELETE /api/v2/job/{job}/delete -> v2.job.delete -> destroy
+✅ GET /api/v2/job/{job}/duplicate  v2.job.duplicate -> duplicateJob
 POST /api/v2/job/{job}/image  v2.job.save-image -> saveImage
 POST /api/v2/job/{job}/invitation/delete -> v2.job.invitation.delete -> deleteInvitation
 GET /api/v2/job/{job}/invitations -> v2.job.invitations -> getInvitations

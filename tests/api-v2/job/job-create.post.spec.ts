@@ -3,9 +3,13 @@
 import { test, expect } from "@playwright/test";
 import authObjects from '@datafactory/auth';
 import { createAssertions } from "@helpers/createAssertions";
-import { getDataForJobCreate, createJob } from "@datafactory/job";
+import { getDataForJobCreate, createJob, deleteAllDraftJobs } from "@datafactory/job";
 
 test.describe("/api/v2/job/create POST requests @company", async () => {
+    test.afterAll(async () => {
+        await deleteAllDraftJobs(authObjects.companyOneAuthHeaders);
+    });
+
     test("POST can create a new job @happy", async ({ request }) => {
         const job_data = await getDataForJobCreate();
         const response = await request.post('/api/v2/job/create', {
