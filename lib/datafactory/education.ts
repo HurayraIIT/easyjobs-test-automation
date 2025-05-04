@@ -2,38 +2,20 @@ import { expect, request } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 import { getRandomYear } from '@helpers/date';
 import { createAssertions } from '@helpers/createAssertions';
-import { degree, education_level } from '../static-data';
+import { degree, education_level } from '../helpers/static-data';
 
 export function getRandomEducationData() {
-    const level = getRandomEducationLevel();
-    const degree = getRandomDegreeTitle();
+    const level = education_level;
+    const degree_data = degree;
     const passing_year = `${getRandomYear()}`;
     const academy_name = `${faker.company.name()} Academy 🇧🇩 🇵🇸`;
     return {
         "id": null,
         "level": level.name,
-        "degree": degree.name,
+        "degree": degree_data.name,
         "passing_year": passing_year,
         "academy_name": academy_name
     };
-}
-
-export function getRandomEducationLevel() {
-    expect(education_level.length).toBeGreaterThan(0);
-
-    const random_index = Math.floor(Math.random() * education_level.length);
-    expect(education_level[random_index].id).toBeGreaterThan(0);
-
-    return education_level[random_index];
-}
-
-export function getRandomDegreeTitle() {
-    expect(degree.length).toBeGreaterThan(0);
-
-    const random_index = Math.floor(Math.random() * degree.length);
-    expect(degree[random_index].id).toBeGreaterThan(0);
-
-    return degree[random_index];
 }
 
 export async function createEducation(authHeaders: any) {

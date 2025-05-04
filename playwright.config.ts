@@ -22,7 +22,7 @@ export default defineConfig({
           meta: [
             {
               key: ":easyjobs: EasyJobs - 🧪 Test Results",
-              value: "<https://easyjobs.hurayraiit.com/ | 📂 May a few mins to update!>",
+              value: "<https://easyjobs.hurayraiit.com/ | 📂 Click me!> | May take a few mins to update.",
             },
           ],
         },

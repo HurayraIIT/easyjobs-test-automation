@@ -476,7 +476,7 @@ GET /api/v2/conversation/applicants/{id} v2.conversation.applicant.messages.get 
 POST /api/v2/conversation/applicants/{id}/message v2.conversation.applicant.message.save
 POST /api/v2/conversation/applicants/{id}/message/status v2.conversation.applicant.message.status.update
 GET /api/v2/conversation/notifications v2.conversation.applicant.notification -> messageNo…
-✅GET -> /api/v2/country -> country -> searchCountry
+✅ GET -> /api/v2/country -> country -> searchCountry
 POST /api/v2/coupon  v2. -> applyCoupon
 GET /api/v2/coupon/{plan}/{code} -> v2. -> couponDiscount
 GET /api/v2/degree/{level?}  Api\SpaV2\GlobalSearchController@searchDegree
@@ -516,16 +516,16 @@ POST /api/v2/job/applicant/{applicant}/note -> v2.job.applicant.note.save -> sav
 DELETE /api/v2/job/applicant/{applicant}/note/{note}/delete -> applicant.note.delete -> deleteNote
 PUT /api/v2/job/applicant/{applicant}/rating  v2.job.applicant.rating -> saveRating
 GET /api/v2/job/archived  v2.job.archived -> archivedList
-✅GET /api/v2/job/category/{subcategory?} -> category -> searchCategory
-POST /api/v2/job/create -> v2.job.create -> create
+✅ GET /api/v2/job/category/{subcategory?} -> category -> searchCategory
+✅ POST /api/v2/job/create -> v2.job.create -> create
 GET /api/v2/job/draft -> v2.job.draft -> draftList
-✅GET -> /api/v2/job/information-meta-data -> job.information.meta.data -> jobInfoMetaData
+✅ GET -> /api/v2/job/information-meta-data -> job.information.meta.data -> jobInfoMetaData
 GET /api/v2/job/permissions  Api\SpaV2\GlobalSearchController@jobPermissions
 GET /api/v2/job/published -> v2.job.published -> publishedList
-✅GET -> /api/v2/job/quiz-meta-data -> quiz.meta.data -> jobQuizMetaData
+✅ GET -> /api/v2/job/quiz-meta-data -> quiz.meta.data -> jobQuizMetaData
 GET /api/v2/job/screening-meta-data  v2.job.screening.meta.data -> jobScreeningQuestionMetaData
 POST /api/v2/job/set-preview  v2.job.preview -> setPreview
-✅GET /api/v2/job/skill -> skill -> searchSkill
+✅ GET /api/v2/job/skill -> skill -> searchSkill
 GET /api/v2/job/templates  v2. -> getJobTemplates
 GET /api/v2/job/{applicant}/exists-test -> v2.job.applicant.exists-test -> applicantExists
 DELETE /api/v2/job/{job}/assessment/{assessment}/delete v2.job.delete-assessment -> deleteAssessment
@@ -575,16 +575,16 @@ DELETE /api/v2/manager/notification/delete-all v2.manager.notification.delete.al
 GET /api/v2/manager/notification/{notification}/clear v2.manager.notification.clear -> cle…
 DELETE /api/v2/manager/notification/{notification}/delete v2.manager.notification.delete -> d…
 ✅DELETE /api/v2/my-account -> delete -> deleteMyAccount
-✅GET /api/v2/my-account/billing -> billing -> billingDetails
-✅POST /api/v2/my-account/billing -> billing.update -> updateBillingDetails
+✅ GET /api/v2/my-account/billing -> billing -> billingDetails
+✅ POST /api/v2/my-account/billing -> billing.update -> updateBillingDetails
 ✅PUT  /api/v2/my-account/change-password -> ->change-password -> changeMyPassword
-✅POST /api/v2/my-account/information  ->information.update -> updateBasicInformation
+✅ POST /api/v2/my-account/information  ->information.update -> updateBasicInformation
 POST /api/v2/my-account/last-seen-version ->last-seen-version.update -> updateLastSeenVersion
 POST /api/v2/my-account/new-password-verification ->new-password-verification -> newPassword…
 PUT  /api/v2/my-account/password-changed-verification ->password-changed-verification -> pas…
 POST /api/v2/my-account/payment -> ->payment.update -> updatePaymentInfo
 GET /api/v2/my-account/payment-action/{transaction} -> ->payment.action -> getActionUrl
-✅GET /api/v2/my-account/payment-history -> ->payment -> paymentHistory
+✅ GET /api/v2/my-account/payment-history -> ->payment -> paymentHistory
 GET /api/v2/my-account/paypal/payment-action/{transaction} ->paypal.payment.action -> getPa…
 GET /api/v2/nationality -> Api\SpaV2\GlobalSearchController@searchNationality
 POST /api/v2/onboard -> Api\SpaV2\AuthController@onboard

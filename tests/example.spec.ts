@@ -1,14 +1,11 @@
 import { test, expect } from '@playwright/test';
 import authObjects from '@datafactory/auth';
-import { createSkill } from '@datafactory/skill';
+import { createJob } from '@datafactory/job';
 
 test.describe("auth and test", async () => {
-  test.skip("API Calls Test", async ({ request }) => {
-    const response = await request.get(`/api/v2/calendly/event-type-list`, {
-      headers: authObjects.companyOneAuthHeaders
-    });
+  test.skip("create job", async ({ request }) => {
+    const job = await createJob(authObjects.companyOneAuthHeaders);
 
-    const body = await response.json();
-    // console.log(body);
+    console.log(job);
   });
 });
