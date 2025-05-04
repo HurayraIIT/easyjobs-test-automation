@@ -531,7 +531,7 @@ GET /api/v2/job/{applicant}/exists-test -> v2.job.applicant.exists-test -> appli
 DELETE /api/v2/job/{job}/assessment/{assessment}/delete v2.job.delete-assessment -> deleteAssessment
 POST /api/v2/job/{job}/assessment/{assessment}/update v2.job.update-assessment -> updateAssessment
 POST /api/v2/job/{job}/assign-assessment -> v2.job.assign-assessment -> assignAssessment
-GET /api/v2/job/{job}/basic -> v2. -> jobBasicInfo
+✅ GET /api/v2/job/{job}/basic -> v2. -> jobBasicInfo
 POST /api/v2/job/{job}/candidate/add -> v2.job.candidate.add -> addCandidate
 POST /api/v2/job/{job}/candidate/delete  v2.job.candidate.delete -> deleteCandidate
 POST /api/v2/job/{job}/candidate/onboard  v2.job.candidate.onboard -> onboardCandidate
@@ -594,8 +594,8 @@ POST /api/v2/password/reset  Api\SpaV2\AuthController@passwordReset
 POST /api/v2/password/set  Api\SpaV2\AuthController@passwordSet
 POST /api/v2/paypal/subscription -> v2.user.paypal.subscription -> paypalSubscribe
 POST /api/v2/paypal/subscription/update  v2.user.paypal.subscription.update -> updatePaypalSubscription
-GET /api/v2/question-set/{id} -> v2.job-evaluation.question-set-data -> questionSetData
-GET /api/v2/quiz-question-set/{id} v2.job-evaluation.quiz-question-set-data -> quizQuestionSetDa…
+✅ GET /api/v2/question-set/{id} -> v2.job-evaluation.question-set-data -> questionSetData
+✅ GET /api/v2/quiz-question-set/{id} v2.job-evaluation.quiz-question-set-data -> quizQuestionSetDa…
 POST /api/v2/redirect-to-dashboard -> Api\SpaV2\AuthController@redirectToDashboard
 GET /api/v2/release-notification/notify/{version} -> v2. -> notify
 GET /api/v2/remote-interview-pipeline  Api\SpaV2\GlobalSearchController@getRemoteInterviewPipeline
