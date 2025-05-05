@@ -30,7 +30,7 @@ test.describe("/api/v2/calendly/info GET requests @company @happy", async () => 
     });
 
     // FLAKY TEST
-    test.skip("GET with valid credentials and integration off @happy", async ({ request }) => {
+    test("GET with valid credentials and integration off @happy", async ({ request }) => {
         // Company two should have empty calendly information
         const response = await request.get(`/api/v2/calendly/info`, {
             headers: authObjects.companyTwoAuthHeaders

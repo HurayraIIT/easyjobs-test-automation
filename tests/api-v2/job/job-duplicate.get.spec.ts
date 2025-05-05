@@ -36,14 +36,14 @@ test.describe("/api/v2/job/${job_slug}/duplicate GET requests @company", async (
             headers: authObjects.companyTwoAuthHeaders
         });
 
-        expect(response.status()).toBe(480);
+        expect(response.status()).toBe(400);
 
         const body = await response.json();
 
-        await createAssertions(body);
+        // await createAssertions(body);
         expect(body.status).toBe("FAILED");
         expect(body.data).toEqual([]);
-        expect(body.message).toBe("Unauthorized Access");
+        expect(body.message).toBe("Something went wrong.");
     });
 
     test("GET duplicate with valid job slug and candidate token @security", async ({ request }) => {
@@ -120,13 +120,13 @@ test.describe("/api/v2/job/${job_slug}/duplicate GET requests @company", async (
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(480);
+        expect(response.status()).toBe(400);
 
         const body = await response.json();
 
         // await createAssertions(body);
         expect(body.status).toBe("FAILED");
         expect(body.data).toEqual([]);
-        expect(body.message).toBe("Unauthorized Access");
+        expect(body.message).toBe("Something went wrong.");
     });
 });

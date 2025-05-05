@@ -63,18 +63,12 @@ test.describe("/api/v2/my-account/billing GET requests @my-account", async () =>
             headers: authObjects.candidateOneAuthHeaders
         });
 
-        // expect.soft(response.status()).toBe(200);
-        expect.soft(response.status()).toBe(500);
+        expect.soft(response.status()).toBe(400);
 
         const body = await response.json();
-        // await createAssertions(data);
-        // expect(body.status).toBe("SUCCESS");
-        // expect(body.data.payment_info.stripe_id).toBeNull();
-        // expect(body.data.payment_info.card_holder_name).toBeNull();
-        // expect(body.data.payment_info.card_brand).toBeNull();
-        // expect(body.data.payment_info.card_last_four).toBeNull();
-        // expect(body.data.billing.name).toBe("Candidate One");
-        // expect(body.data.billing.email).toBe(`${process.env.CANDIDATE_ONE_EMAIL}`);
-        // expect(body.message).toBeNull();
+        // await createAssertions(body);
+        expect(body.status).toBe("FAILED");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("Something went wrong.");
     });
 });

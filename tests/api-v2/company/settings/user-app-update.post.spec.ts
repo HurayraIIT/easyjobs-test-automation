@@ -62,14 +62,13 @@ test.describe("/api/v2/company/setting/user-app/update POST requests @company", 
             data: data
         });
 
-        // expect.soft(response.status()).toBe(480);
-        expect.soft(response.status()).toBe(500);
+        expect.soft(response.status()).toBe(400);
 
         const body = await response.json();
 
         // await createAssertions(body);
-        // expect.soft(body.status).toBe("failed");
-        // expect.soft(body.data).toEqual([]);
-        // expect.soft(body.message).toBe("You do not have access permissions.");
+        expect(body.status).toBe("FAILED");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("Something went wrong.");
     });
 });

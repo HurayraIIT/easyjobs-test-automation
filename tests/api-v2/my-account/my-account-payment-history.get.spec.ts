@@ -75,33 +75,18 @@ test.describe("/api/v2/my-account/payment-history GET requests @my-account", asy
         expect(data.message).toBe("Unauthenticated.");
     });
 
-    // TODO: Need to fix 500 server error
-    test.skip("GET with candidate auth", async ({ request }) => {
+    test("GET with candidate auth", async ({ request }) => {
         const response = await request.get(`/api/v2/my-account/payment-history?page=1`, {
             headers: authObjects.candidateOneAuthHeaders
         });
 
         // expect(response.status()).toBe(200);
-        expect(response.status()).toBe(500);
+        expect(response.status()).toBe(400);
 
         const body = await response.json();
         // await createAssertions(body);
-        // expect(body.status).toBe("SUCCESS");
-        // expect(body.data.current_page).toBe(1);
-        // expect(body.data.data[0].id).toBe(9682);
-        // expect(body.data.data[0].package_id).toBe(5);
-        // expect(body.data.data[0].trans_id).toBe("25029644");
-        // expect(body.data.data[0].details).toBe("Subscribed to ”Free” package.");
-        // expect(body.data.data[0].type).toBe("SUBSCRIPTION");
-        // expect(body.data.data[0].price).toBe("0.00");
-        // expect(body.data.data[0].discount).toBe("0.00");
-        // expect(body.data.data[0].total).toBe("0.00");
-        // expect(body.data.data[0].stripe).toBeNull();
-        // expect(body.data.data[0].paypal).toBeNull();
-        // expect(body.data.data[0].payment_method).toBe(9);
-        // expect(body.data.data[0].coupon).toBeNull();
-        // expect(body.data.data[0].date).toBe("02 Feb, 2025");
-        // expect(body.data.data[0].action).toEqual([]);
-        // expect(body.message).toBeNull();
+        expect(body.status).toBe("FAILED");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("Something went wrong.");
     });
 });

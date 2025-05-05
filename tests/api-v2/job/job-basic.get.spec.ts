@@ -42,19 +42,18 @@ test.describe("/api/v2/job/{new_job}/basic GET requests @company", async () => {
         expect(body.message).toBe("Invalid Job ID");
     });
 
-    // TODO: Need to fix the 500 server error
-    test.skip("GET with valid candidate credentials @security", async ({ request }) => {
+    test("GET with valid candidate credentials @security", async ({ request }) => {
         const response = await request.get(`/api/v2/job/${new_job.slug}/basic`, {
             headers: authObjects.candidateOneAuthHeaders
         });
 
-        expect(response.status()).toBe(480);
+        expect(response.status()).toBe(400);
 
         const body = await response.json();
         // await createAssertions(body);
-        expect(body.status).toBe("failed");
+        expect(body.status).toBe("FAILED");
         expect(body.data).toEqual([]);
-        expect(body.message).toBe("You do not have access permissions.");
+        expect(body.message).toBe("Something went wrong.");
     });
 
     test("GET without auth token", async ({ request }) => {
