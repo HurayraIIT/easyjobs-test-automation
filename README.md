@@ -1,72 +1,107 @@
-# easyjobs-test-automation
+# EasyJobs Test Automation 🤖
+
+<div align="center">
 
 [![Playwright Tests](https://github.com/HurayraIIT/easyjobs-test-automation/actions/workflows/playwright.yml/badge.svg)](https://github.com/HurayraIIT/easyjobs-test-automation/actions/workflows/playwright.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![GitHub last commit](https://img.shields.io/github/last-commit/HurayraIIT/easyjobs-test-automation)
+[![Powered by Playwright](https://img.shields.io/badge/Powered%20by-Playwright-45ba4b.svg)](https://playwright.dev)
+[![Node.js CI](https://img.shields.io/badge/CI-Node.js-43853d.svg)](https://nodejs.org)
 
-End-to-end API test automation for Rasy Jobs using playwright node.js
+</div>
 
-## 🚀 Installation
+## 📝 Overview
 
-_Follow the steps below to setup and run the project locally on your machine._
+End-to-end API test automation suite for EasyJobs platform built with Playwright. This project provides comprehensive API testing coverage with automated CI/CD integration.
 
-1. Clone the repo
+### Key Features
 
-```sh
-git clone git@github.com:HurayraIIT/easyjobs-test-automation.git
-```
+- 🔄 Automated CI/CD pipeline
+- 📊 HTML test reports
+- 🔔 Slack notifications
+- ⚡ Super fast test execution
+- 🔑 Environment-based configuration
 
-2. Install NPM packages
+## 🚀 Getting Started
 
-```sh
-npm install
-```
+### Prerequisites
 
-3. Create the `.env` file and provide necessary details
+- Node.js 18+ installed
+- Git
+- A code editor (VS Code recommended)
 
-```sh
-cp .env.example .env
-```
+### Installation
 
-4. Update/Install playwright browsers. (optional)
+1. **Clone the repository**
+   ```bash
+   git clone git@github.com:HurayraIIT/easyjobs-test-automation.git
+   cd easyjobs-test-automation
+   ```
 
-```sh
-npx playwright install --with-deps
-```
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-5. Create storage state file.
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your configuration
+   ```
 
-```sh
-mkdir .auth && echo "{}" >> .auth/auth.json
-```
+4. **Set up authentication storage**
+   ```bash
+   mkdir .auth && echo "{}" >> .auth/auth.json
+   ```
+
+5. **Install Playwright browsers** (optional)
+   ```bash
+   npx playwright install --with-deps
+   ```
 
 ## 🧪 Running Tests
 
-To run the tests:
-
-```sh
+### Run all tests
+```bash
 npx playwright test
 ```
 
-_For more examples, please refer to the [ Official Documentation](https://playwright.dev)_
+### Run specific test file
+```bash
+npx playwright test tests/example.spec.ts
+```
 
-## How to update playwright
+### View last HTML report
+```bash
+npx playwright show-report
+```
 
-By keeping the Playwright version up to date we will be able to use new features and test our app on the latest browser versions and catch failures before the latest browser version is released to the public.
+## 🔄 Keeping Playwright Updated
 
-```sh
-# Update playwright
+Stay up to date with the latest Playwright features and browser versions:
+
+```bash
+# Check current version
+npx playwright --version
+
+# Update Playwright
 npm install -D @playwright/test@latest
 ```
 
-See what version of Playwright we have by running the following command:
+## 👥 Contributors
 
-```sh
-npx playwright --version
-```
+<div align="center">
+  <a href="https://github.com/HurayraIIT/easyjobs-test-automation/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=HurayraIIT/easyjobs-test-automation" alt="contributors" />
+  </a>
+</div>
 
-## Top contributors:
+## 📄 License
 
-<a href="https://github.com/HurayraIIT/easyjobs-test-automation/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=HurayraIIT/easyjobs-test-automation" alt="contrib.rocks image" />
-</a>
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+  Made with ❤️ by the EasyJobs Test Automation Team
+</div>
