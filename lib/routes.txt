@@ -567,7 +567,7 @@ POST /api/v2/job/{job}/required-fields -> v2.job.save.required-fields -> saveJob
 GET /api/v2/job/{job}/screening  v2.job.screening-question -> screeningQuestion
 POST /api/v2/job/{job}/screening -> v2.job.screening-question.save -> saveScreeningQuestion
 DELETE /api/v2/job/{job}/screening -> v2.job.screening-question.delete -> deleteScreeningQuestion
-PUT /api/v2/job/{job}/update  v2.job.update -> update
+✅ PUT /api/v2/job/{job}/update  v2.job.update -> update
 POST /api/v2/logout -> v2. -> logout
 GET /api/v2/manager/notification -> v2.manager.notification -> notifications
 POST /api/v2/manager/notification/clear-all v2.manager.notification.clear.all -> clearAllNo…
