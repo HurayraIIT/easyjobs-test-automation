@@ -586,7 +586,7 @@ POST /api/v2/my-account/payment -> ->payment.update -> updatePaymentInfo
 GET /api/v2/my-account/payment-action/{transaction} -> ->payment.action -> getActionUrl
 ✅ GET /api/v2/my-account/payment-history -> ->payment -> paymentHistory
 GET /api/v2/my-account/paypal/payment-action/{transaction} ->paypal.payment.action -> getPa…
-GET /api/v2/nationality -> Api\SpaV2\GlobalSearchController@searchNationality
+✅ GET /api/v2/nationality -> Api\SpaV2\GlobalSearchController@searchNationality
 POST /api/v2/onboard -> Api\SpaV2\AuthController@onboard
 POST /api/v2/onboard/email  Api\SpaV2\AuthController@getInvitationEmail
 POST /api/v2/onboard/status -> onboard.status -> onboardStatus
@@ -605,7 +605,7 @@ POST /api/v2/sign-in -> Api\SpaV2\AuthController@login
 POST /api/v2/sign-in-oauth/{provider}  Api\SpaV2\AuthController@loginSocial
 GET /api/v2/sign-in-oauth/{provider}/callback -> Web\App\Sso\LoginController@loginSocialGet
 POST /api/v2/sign-up  Api\SpaV2\AuthController@registration
-GET /api/v2/state/{country}  ajax.state -> searchState
+✅ GET /api/v2/state/{country}  ajax.state -> searchState
 POST /api/v2/state/{country}  ajax.state.save -> saveCompanyState
 POST /api/v2/subscribe  v2.user.subscription.free-package -> subscribeToFreePackage
 POST /api/v2/subscribe/session-create  v2.user.subscription.session-create -> subscriptionSessionCreate
@@ -627,10 +627,15 @@ GET /api/v2/testlify/webhook -> v2.webhook -> handleWebhook
 ✅ GET /api/v2/timezones  Api\SpaV2\GlobalSearchController@getTimeZones
 GET /api/v2/user -> v2.user.info -> getUserInfo
 PATCH /api/v2/user/change-company -> v2.user.company.change -> changeCurrentCompany
-GET /api/v2/user/id -> v2. -> getUserId
-GET /api/v2/user/package  v2. -> getPackageDetails
+✅ GET /api/v2/user/id -> v2. -> getUserId
+✅ GET /api/v2/user/package  v2. -> getPackageDetails
 POST /api/v2/verification/email/resend  v2.verification.resend -> resendVerificationEmail
 POST /api/v2/verify/email  v2. -> verifyEmail
+
+
+
+
+
 GET {company}.easyjobs.test/auth/logout  company.domain.logout -> ssoLogout
 GET {domain}/auth/logout -> company.custom-domain.logout -> ssoLogout
 GET app.{domain}/auth/sso/candidate -> easyjobs.login -> ssoLoginForCustomDomain
