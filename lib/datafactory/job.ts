@@ -2,6 +2,7 @@ import { expect, request } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 import { createAssertions } from '@helpers/createAssertions';
 import { category, skills, country, state, city } from '@helpers/static-data';
+import { createQuestionSet, getQuestionSetById } from './question-group';
 
 export async function getDataForJobCreate() {
     return {
@@ -107,4 +108,33 @@ export async function deleteAllDraftJobs(authHeaders: any, jobs: any = null) {
     for (const job of draft_jobs) {
         await deleteJobBySlug(authHeaders, job.slug);
     }
+}
+
+export async function addScreeningToJob(authHeaders: any, job_slug: string, screening_data: any = null) {
+    if (!screening_data) {
+        let first_job = await createJob(authHeaders);
+        let new_question_set_id = await createQuestionSet(authHeaders);
+        let questions = await getQuestionSetById(authHeaders, new_question_set_id);
+        // console.log(questions);
+        screening_data = {
+            "job_id": first_job.id,
+            "note": questions.note,
+            "internal_note": questions.internal_note,
+            "questions": questions.questions
+        };
+    }
+
+    const requestContext = await request.newContext();
+    const response = await requestContext.post(`/api/v2/job/${job_slug}/screening`, {
+        headers: authHeaders,
+        data: screening_data
+    });
+
+    expect(response.status()).toBe(200);
+    const body = await response.json();
+
+    // await createAssertions(body);
+    expect(body.status).toBe("SUCCESS");
+    expect(body.message).toBe("Job updated.");
+    return body.data;
 }
