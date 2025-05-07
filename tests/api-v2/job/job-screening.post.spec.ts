@@ -4,7 +4,7 @@ import { test, expect } from "@playwright/test";
 import authObjects from '@datafactory/auth';
 import { createAssertions } from "@helpers/createAssertions";
 import { getDataForJobCreate, createJob, deleteAllDraftJobs } from "@datafactory/job";
-import { createQuestionSet, getQuestionSetById } from "@datafactory/question-group";
+import { createQuestionSet, deleteAllQuestionSets, getQuestionSetById } from "@datafactory/question-group";
 
 test.describe("/api/v2/job/${first_job.slug}/screening POST requests @company", async () => {
     let first_job = null;
@@ -26,10 +26,11 @@ test.describe("/api/v2/job/${first_job.slug}/screening POST requests @company", 
     });
 
     test.afterAll(async () => {
-        // await deleteAllDraftJobs(authObjects.companyOneAuthHeaders);
+        await deleteAllDraftJobs(authObjects.companyOneAuthHeaders);
+        await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
     });
 
-    test("POST can attach screening questions to a job @happy", async ({ request }) => {
+    test("POST should be able to attach screening questions to a job @happy", async ({ request }) => {
         // console.log(screening_data);
         const response = await request.post(`/api/v2/job/${first_job.slug}/screening`, {
             headers: authObjects.companyOneAuthHeaders,
@@ -69,5 +70,74 @@ test.describe("/api/v2/job/${first_job.slug}/screening POST requests @company", 
         expect(body3.status).toBe("FAILED");
         expect(body3.data).toEqual([]);
         expect(body3.message).toBe("Unauthorized Access");
+    });
+
+    test("POST should not be able to attach screening questions to a job by another company @security", async ({ request }) => {
+        // console.log(screening_data);
+        const response = await request.post(`/api/v2/job/${first_job.slug}/screening`, {
+            headers: authObjects.companyTwoAuthHeaders,
+            data: screening_data
+        });
+
+        expect.soft(response.status()).toBe(480);
+
+        const body = await response.json();
+        // console.log(body);
+        // await createAssertions(body);
+        expect(body.status).toBe("FAILED");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("Unauthorized Access");
+    });
+
+    test("POST should not be able to attach screening questions to a job by a candidate @security", async ({ request }) => {
+        // console.log(screening_data);
+        const response = await request.post(`/api/v2/job/${first_job.slug}/screening`, {
+            headers: authObjects.candidateOneAuthHeaders,
+            data: screening_data
+        });
+
+        expect.soft(response.status()).toBe(480);
+
+        const body = await response.json();
+        // console.log(body);
+        // await createAssertions(body);
+        expect(body.status).toBe("failed");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("You do not have access permissions.");
+    });
+
+    test("POST attach screening questions empty data", async ({ request }) => {
+        // console.log(screening_data);
+        const response = await request.post(`/api/v2/job/${first_job.slug}/screening`, {
+            headers: authObjects.companyOneAuthHeaders,
+            data: {}
+        });
+
+        expect.soft(response.status()).toBe(422);
+
+        const body = await response.json();
+        // console.log(body);
+        // await createAssertions(body);
+        expect(body.status).toBe("FAILED");
+        expect(body.data).toEqual([]);
+        expect(body.message.job_id).toEqual(["The field is required."]);
+        expect(body.message.questions).toEqual(["The field is required."]);
+    });
+
+    test("POST attach screening questions without auth", async ({ request }) => {
+        // console.log(screening_data);
+        const response = await request.post(`/api/v2/job/${first_job.slug}/screening`, {
+            headers: {
+                "Accept": "application/json",
+            },
+            data: screening_data
+        });
+
+        expect.soft(response.status()).toBe(401);
+
+        const body = await response.json();
+        // console.log(body);
+        // await createAssertions(body);
+        expect(body.message).toBe("Unauthenticated.");
     });
 });
