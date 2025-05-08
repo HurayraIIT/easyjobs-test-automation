@@ -37,7 +37,7 @@ test.describe("/api/v2/my-account/information POST requests @my-account @happy",
 
     test("POST with valid candidate credentials @happy", async ({ request }) => {
         const response = await request.post(`/api/v2/my-account/information`, {
-            headers: authObjects.candidateOneAuthHeaders,
+            headers: authObjects.candidateTwoAuthHeaders,
             data: {
                 "first_name": "Candidate",
                 "last_name": "One",
@@ -53,11 +53,11 @@ test.describe("/api/v2/my-account/information POST requests @my-account @happy",
         const body = await response.json();
         // await createAssertions(body);
         expect(body.status).toBe("SUCCESS");
-        expect(body.data.id).toBe(15256);
+        expect(body.data.id).toBe(15257);
         expect(body.data.first_name).toBe("Candidate");
         expect(body.data.last_name).toBe("One");
         expect(body.data.name).toBe("Candidate One");
-        expect(body.data.email).toBe(`${process.env.CANDIDATE_ONE_EMAIL}`);
+        expect(body.data.email).toBe(`${process.env.CANDIDATE_TWO_EMAIL}`);
         expect(body.data.status).toBe("Active");
         expect(body.data.type).toBe("candidate");
         expect(body.message).toBe("Account information updated.");

@@ -77,7 +77,7 @@ test.describe("/api/v2/my-account/payment-history GET requests @my-account", asy
 
     test("GET with candidate auth", async ({ request }) => {
         const response = await request.get(`/api/v2/my-account/payment-history?page=1`, {
-            headers: authObjects.candidateOneAuthHeaders
+            headers: authObjects.candidateTwoAuthHeaders
         });
 
         // expect.soft(response.status()).toBe(200);
