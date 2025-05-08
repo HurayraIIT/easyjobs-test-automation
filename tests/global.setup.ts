@@ -25,7 +25,7 @@ async function authenticateUser(email: string, password: string): Promise<{ Auth
         },
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
 
     const body = await response.json();
     expect(body.message).toBe('Successfully logged in');

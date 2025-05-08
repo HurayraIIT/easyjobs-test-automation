@@ -39,7 +39,7 @@ test.describe("/api/v2/calendly/info GET requests @company @happy", async () => 
 
         const body = await response.json();
 
-        expect.soft(body.status).toBe("FAILED");
+        expect.soft(body.status, `Body Contains: ${JSON.stringify(body, null, 2)}`).toBe("FAILED");
         expect.soft(body.data).toEqual([]);
         expect.soft(body.message).toBe("Calendly Refresh Token Missing!");
     });
@@ -53,7 +53,7 @@ test.describe("/api/v2/calendly/info GET requests @company @happy", async () => 
         const response = await request.get(`/api/v2/calendly/info`, {
             headers: authObjects.companyTwoAuthHeaders
         });
-        expect(response.status()).toBe(471);
+        expect.soft(response.status()).toBe(471);
 
         const body = await response.json();
         // await createAssertions(body);
@@ -69,7 +69,7 @@ test.describe("/api/v2/calendly/info GET requests @company @happy", async () => 
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const body = await response.json();
         expect(body.message).toBe('Unauthenticated.');

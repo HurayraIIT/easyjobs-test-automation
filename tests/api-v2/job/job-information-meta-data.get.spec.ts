@@ -10,7 +10,7 @@ test.describe("/api/v2/job/information-meta-data GET requests @company", async (
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
 
@@ -64,7 +64,7 @@ test.describe("/api/v2/job/information-meta-data GET requests @company", async (
             headers: authObjects.candidateOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
 
@@ -120,7 +120,7 @@ test.describe("/api/v2/job/information-meta-data GET requests @company", async (
             }
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
 

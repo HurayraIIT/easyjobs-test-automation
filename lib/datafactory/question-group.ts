@@ -117,7 +117,7 @@ export async function createQuestionSet(authHeaders: any, type?: { id: number; n
         data: question_set_data
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
     const body = await response.json();
     return body.data.id;
 }
@@ -128,7 +128,7 @@ export async function getQuestionSetById(authHeaders: any, questionSetId: number
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
     const body = await response.json();
 
     // await createAssertions(body);
@@ -141,7 +141,7 @@ export async function getAllQuestionSets(authHeaders: any) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
     const body = await response.json();
 
     // await createAssertions(body);
@@ -154,7 +154,7 @@ export async function deleteQuestionSetById(authHeaders: any, questionSetId: num
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
 }
 
 export async function deleteAllQuestionSets(authHeaders: any) {
@@ -176,7 +176,7 @@ export async function duplicateQuestionSet(authHeaders: any, questionSetId: numb
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
     const body = await response.json();
 
     let original_set = await getQuestionSetById(authHeaders, questionSetId);
@@ -208,7 +208,7 @@ export async function updateQuestionSet(authHeaders: any, questionSetId: number)
         data: question_set_data
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
     const body = await response.json();
 
     // await createAssertions(body);
@@ -236,7 +236,7 @@ export async function getQuizMetaData(authHeaders: any) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
     const body = await response.json();
 
     expect(body.quiz_set.length).toBeGreaterThanOrEqual(0);
@@ -250,7 +250,7 @@ export async function getQuestionSetQuestions(authHeaders: any, id: number) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
     const questions = await response.json();
 
     return questions;
@@ -262,7 +262,7 @@ export async function getQuizQuestionSetQuestions(authHeaders: any, id: number) 
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
     const questions = await response.json();
 
     return questions;
@@ -274,7 +274,7 @@ export async function getScreeningQuestionSetQuestions(authHeaders: any, id: num
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
     const questions = await response.json();
 
     return questions;

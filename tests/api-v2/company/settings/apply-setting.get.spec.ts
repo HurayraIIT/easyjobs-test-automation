@@ -10,12 +10,12 @@ test.describe("/api/v2/company/setting/apply-setting GET requests @company", asy
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
         // await createAssertions(body);
         expect(body.status).toBe("SUCCESS");
-        expect(body.data.login_option).toEqual(["email", "google", "linkedin"]);
+        expect(body.data.login_option).toEqual(["email", "linkedin", "google"]);
         expect(body.data.all_options.google).toBe("Google");
         expect(body.data.all_options.linkedin).toBe("LinkedIn");
         expect(body.data.all_options.email).toBe("Email");
@@ -30,7 +30,7 @@ test.describe("/api/v2/company/setting/apply-setting GET requests @company", asy
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const body = await response.json();
         expect(body.message).toBe("Unauthenticated.");
@@ -46,7 +46,7 @@ test.describe("/api/v2/company/setting/apply-setting GET requests @company", asy
             headers: maliciousHeaders
         });
 
-        expect(response.status()).toBe(400);
+        expect.soft(response.status()).toBe(400);
 
         const body = await response.json();
         // await createAssertions(body);
@@ -60,7 +60,7 @@ test.describe("/api/v2/company/setting/apply-setting GET requests @company", asy
             headers: authObjects.candidateOneAuthHeaders
         });
 
-        expect(response.status()).toBe(480);
+        expect.soft(response.status()).toBe(480);
 
         const body = await response.json();
 

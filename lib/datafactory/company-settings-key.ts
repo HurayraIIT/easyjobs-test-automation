@@ -12,7 +12,7 @@ export async function createCompanySettingsKey(authHeaders: any) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
     const body = await response.json();
     expect(body.status).toBe("SUCCESS");
     return body.data;
@@ -24,7 +24,7 @@ export async function deleteCompanySettingsKeyById(authHeaders: any, id: number)
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
     const body = await response.json();
     expect(body.status).toBe("SUCCESS");
 }
@@ -35,7 +35,7 @@ export async function deleteAllCompanySettingsKeys(authHeaders: any) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
     const body = await response.json();
     expect(body.status).toBe("SUCCESS");
 

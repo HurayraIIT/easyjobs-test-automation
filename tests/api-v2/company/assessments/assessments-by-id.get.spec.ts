@@ -25,7 +25,7 @@ test.describe("/api/v2/company/assessments/{id} GET requests @company", async ()
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const data = await response.json();
         expect(data.status).toBe('SUCCESS');
@@ -42,7 +42,7 @@ test.describe("/api/v2/company/assessments/{id} GET requests @company", async ()
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const body = await response.json();
         expect(body.message).toBe("Unauthenticated.");
@@ -55,7 +55,7 @@ test.describe("/api/v2/company/assessments/{id} GET requests @company", async ()
             headers: authObjects.candidateOneAuthHeaders
         });
 
-        expect(response.status()).toBe(480);
+        expect.soft(response.status()).toBe(480);
 
         const body = await response.json();
 
@@ -70,7 +70,7 @@ test.describe("/api/v2/company/assessments/{id} GET requests @company", async ()
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(480);
+        expect.soft(response.status()).toBe(480);
 
         const body = await response.json();
 

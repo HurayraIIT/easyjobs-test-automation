@@ -15,7 +15,7 @@ test.describe("/api/v2/my-account/change-password PUT requests @my-account", asy
             }
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
         // await createAssertions(body);
@@ -33,7 +33,7 @@ test.describe("/api/v2/my-account/change-password PUT requests @my-account", asy
             }
         });
 
-        expect(response.status()).toBe(422);
+        expect.soft(response.status()).toBe(422);
 
         const body = await response.json();
         // await createAssertions(body);
@@ -52,7 +52,7 @@ test.describe("/api/v2/my-account/change-password PUT requests @my-account", asy
             }
         });
 
-        expect(response.status()).toBe(422);
+        expect.soft(response.status()).toBe(422);
 
         const body = await response.json();
         // await createAssertions(body);
@@ -73,7 +73,7 @@ test.describe("/api/v2/my-account/change-password PUT requests @my-account", asy
             }
         });
 
-        expect(response.status()).toBe(422);
+        expect.soft(response.status()).toBe(422);
 
         const body = await response.json();
         // await createAssertions(body);
@@ -97,7 +97,7 @@ test.describe("/api/v2/my-account/change-password PUT requests @my-account", asy
             }
         });
 
-        expect(response.status()).toBe(471);
+        expect.soft(response.status()).toBe(471);
 
         const data = await response.json();
         // await createAssertions(data);
@@ -119,7 +119,7 @@ test.describe("/api/v2/my-account/change-password PUT requests @my-account", asy
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const data = await response.json();
         // await createAssertions(data);
@@ -136,7 +136,7 @@ test.describe("/api/v2/my-account/change-password PUT requests @my-account", asy
             }
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
         // await createAssertions(body);

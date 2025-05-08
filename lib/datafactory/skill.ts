@@ -23,7 +23,7 @@ export async function createSkill(authHeaders: any) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
     const body = await response.json();
 
     // await createAssertions(body);
@@ -44,7 +44,7 @@ export async function getAllSkills(authHeaders: any) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
 
     let body = await response.json();
     all_skills = body.data.data;
@@ -54,7 +54,7 @@ export async function getAllSkills(authHeaders: any) {
         const response = await requestContext.get(`/api/v2/company/setting/skill?page=${current_page}`, {
             headers: authHeaders
         });
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
         let body2 = await response.json();
         all_skills = all_skills.concat(body2.data.data);
     }
@@ -69,7 +69,7 @@ export async function deleteSkillById(authHeaders: any, id: number) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
     const body = await response.json();
 
     // await createAssertions(body);

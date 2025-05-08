@@ -51,7 +51,7 @@ test.describe("/api/v2/my-account/payment-history GET requests @my-account", asy
             headers: maliciousHeaders
         });
 
-        expect(response.status()).toBe(471);
+        expect.soft(response.status()).toBe(471);
 
         const data = await response.json();
         // await createAssertions(data);
@@ -68,7 +68,7 @@ test.describe("/api/v2/my-account/payment-history GET requests @my-account", asy
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const data = await response.json();
         // await createAssertions(data);
@@ -80,12 +80,12 @@ test.describe("/api/v2/my-account/payment-history GET requests @my-account", asy
             headers: authObjects.candidateOneAuthHeaders
         });
 
-        // expect(response.status()).toBe(200);
-        expect(response.status()).toBe(400);
+        // expect.soft(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(400);
 
         const body = await response.json();
         // await createAssertions(body);
-        expect(body.status).toBe("FAILED");
+        expect(body.status, `Body Contains: ${JSON.stringify(body, null, 2)}`).toBe("FAILED");
         expect(body.data).toEqual([]);
         expect(body.message).toBe("Something went wrong.");
     });

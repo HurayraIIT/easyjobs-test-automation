@@ -12,7 +12,7 @@ test.describe("/api/v2/forgot-password POST requests @auth", async () => {
             }
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
         const body = await response.json();
         expect(body.status).toBe('SUCCESS');
         expect(body.message).toBe('A fresh verification link has been sent to your email address.');
@@ -25,7 +25,7 @@ test.describe("/api/v2/forgot-password POST requests @auth", async () => {
             }
         });
 
-        expect(response.status()).toBe(400);
+        expect.soft(response.status()).toBe(400);
         const body = await response.json();
         expect(body.status).toBe('FAILED');
         expect(body.message).toBe('Email not exists.');
@@ -38,7 +38,7 @@ test.describe("/api/v2/forgot-password POST requests @auth", async () => {
             }
         });
 
-        expect(response.status()).toBe(422);
+        expect.soft(response.status()).toBe(422);
         const body = await response.json();
         expect(body.status).toBe('FAILED');
         expect(body.message.email[0]).toBe('The email field is required.');
@@ -49,7 +49,7 @@ test.describe("/api/v2/forgot-password POST requests @auth", async () => {
             data: {}
         });
 
-        expect(response.status()).toBe(422);
+        expect.soft(response.status()).toBe(422);
         const body = await response.json();
         expect(body.status).toBe('FAILED');
         expect(body.message.email[0]).toBe('The email field is required.');
@@ -58,7 +58,7 @@ test.describe("/api/v2/forgot-password POST requests @auth", async () => {
     test("POST with no body", async ({ request }) => {
         const response = await request.post('/api/v2/forgot-password');
 
-        expect(response.status()).toBe(422);
+        expect.soft(response.status()).toBe(422);
         const body = await response.json();
         expect(body.status).toBe('FAILED');
         expect(body.message.email[0]).toBe('The email field is required.');

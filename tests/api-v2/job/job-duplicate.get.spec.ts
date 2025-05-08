@@ -17,13 +17,13 @@ test.describe("/api/v2/job/${job_slug}/duplicate GET requests @company", async (
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
 
         // await createAssertions(body);
         expect(body.status).toBe("SUCCESS");
-        expect(body.data.id).toBe(new_job.id+1);
+        expect(body.data.id).toBe(new_job.id + 1);
         expect(body.data.slug).toContain(job_slug);
         expect(body.message).toBe("Job duplicated.");
     });
@@ -36,7 +36,7 @@ test.describe("/api/v2/job/${job_slug}/duplicate GET requests @company", async (
             headers: authObjects.companyTwoAuthHeaders
         });
 
-        expect(response.status()).toBe(400);
+        expect.soft(response.status()).toBe(400);
 
         const body = await response.json();
 
@@ -53,7 +53,7 @@ test.describe("/api/v2/job/${job_slug}/duplicate GET requests @company", async (
             headers: authObjects.candidateOneAuthHeaders
         });
 
-        expect(response.status()).toBe(480);
+        expect.soft(response.status()).toBe(480);
 
         const body = await response.json();
 
@@ -73,7 +73,7 @@ test.describe("/api/v2/job/${job_slug}/duplicate GET requests @company", async (
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
 
@@ -106,7 +106,7 @@ test.describe("/api/v2/job/${job_slug}/duplicate GET requests @company", async (
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const body = await response.json();
 
@@ -120,7 +120,7 @@ test.describe("/api/v2/job/${job_slug}/duplicate GET requests @company", async (
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(400);
+        expect.soft(response.status()).toBe(400);
 
         const body = await response.json();
 

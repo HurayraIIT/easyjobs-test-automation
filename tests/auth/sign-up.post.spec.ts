@@ -18,7 +18,7 @@ test.describe("/api/v2/sign-up POST requests @auth", async () => {
             }
         });
 
-        expect(response.status()).toBe(422);
+        expect.soft(response.status()).toBe(422);
         const body = await response.json();
         expect(body.status).toBe('FAILED');
         expect(body.message.email[0]).toBe('The email has already been taken.');
@@ -32,7 +32,7 @@ test.describe("/api/v2/sign-up POST requests @auth", async () => {
             data: {}
         });
 
-        expect(response.status()).toBe(422);
+        expect.soft(response.status()).toBe(422);
         const body = await response.json();
         expect(body.status).toBe('FAILED');
         expect(body.message.email[0]).toBe('The email field is required.');
@@ -44,7 +44,7 @@ test.describe("/api/v2/sign-up POST requests @auth", async () => {
     test("POST with no data", async ({ request }) => {
         const response = await request.post('/api/v2/sign-up');
 
-        expect(response.status()).toBe(422);
+        expect.soft(response.status()).toBe(422);
         const body = await response.json();
         expect(body.status).toBe('FAILED');
         expect(body.message.email[0]).toBe('The email field is required.');

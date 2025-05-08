@@ -10,7 +10,7 @@ test.describe("/api/v2/user/package GET requests @company", async () => {
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
         // await createAssertions(body);
@@ -26,11 +26,11 @@ test.describe("/api/v2/user/package GET requests @company", async () => {
             headers: authObjects.candidateOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
         // await createAssertions(body);
-        expect(body.status).toBe("SUCCESS");
+        expect(body.status, `Body Contains: ${JSON.stringify(body, null, 2)}`).toBe("SUCCESS");
         expect(body.data.id).toBe(5);
         expect(body.data.name).toBe("Free");
         expect(body.data.slug).toBe("free");
@@ -44,7 +44,7 @@ test.describe("/api/v2/user/package GET requests @company", async () => {
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const body = await response.json();
         // await createAssertions(body);

@@ -32,7 +32,7 @@ test.describe("/api/v2/company/assessments/create POST requests @company", async
             data: {}
         });
 
-        expect(response.status()).toBe(422);
+        expect.soft(response.status()).toBe(422);
         const body = await response.json();
 
         // await createAssertions(body);
@@ -50,7 +50,7 @@ test.describe("/api/v2/company/assessments/create POST requests @company", async
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(422);
+        expect.soft(response.status()).toBe(422);
         const body = await response.json();
 
         // await createAssertions(body);
@@ -72,7 +72,7 @@ test.describe("/api/v2/company/assessments/create POST requests @company", async
             data: assessment_creation_data
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
         const body = await response.json();
 
         // await createAssertions(body);
@@ -86,7 +86,7 @@ test.describe("/api/v2/company/assessments/create POST requests @company", async
             data: assessment_creation_data
         });
 
-        expect(response.status()).toBe(480);
+        expect.soft(response.status()).toBe(480);
         const body = await response.json();
 
         // await createAssertions(body);

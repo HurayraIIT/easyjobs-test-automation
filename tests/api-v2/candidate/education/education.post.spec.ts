@@ -14,7 +14,7 @@ test.describe("/api/v2/candidate/education POST requests @candidate", async () =
             headers: authObjects.candidateOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
 
@@ -76,7 +76,7 @@ test.describe("/api/v2/candidate/education POST requests @candidate", async () =
             headers: authObjects.candidateOneAuthHeaders
         });
 
-        expect(response.status()).toBe(422);
+        expect.soft(response.status()).toBe(422);
 
         const body = await response.json();
 
@@ -93,7 +93,7 @@ test.describe("/api/v2/candidate/education POST requests @candidate", async () =
             headers: authObjects.candidateOneAuthHeaders
         });
 
-        expect(response.status()).toBe(422);
+        expect.soft(response.status()).toBe(422);
 
         const body = await response.json();
 
@@ -115,7 +115,7 @@ test.describe("/api/v2/candidate/education POST requests @candidate", async () =
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const body = await response.json();
         expect(body.message).toBe('Unauthenticated.');
@@ -129,7 +129,7 @@ test.describe("/api/v2/candidate/education POST requests @candidate", async () =
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(480);
+        expect.soft(response.status()).toBe(480);
 
         const body = await response.json();
         // await createAssertions(body);

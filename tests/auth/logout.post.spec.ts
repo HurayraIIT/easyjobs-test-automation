@@ -9,7 +9,7 @@ test.describe("/api/v2/logout POST requests @auth", async () => {
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
         const body = await response.json();
         expect(body.status).toBe('SUCCESS');
         expect(body.message).toBe('Success');
@@ -25,7 +25,7 @@ test.describe("/api/v2/logout POST requests @auth", async () => {
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
         const body = await response.json();
         expect(body.message).toBe('Unauthenticated.');
     });
@@ -49,7 +49,7 @@ test.describe("/api/v2/logout POST requests @auth", async () => {
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
         const body = await response.json();
         expect(body.message).toBe('Unauthenticated.');
     });

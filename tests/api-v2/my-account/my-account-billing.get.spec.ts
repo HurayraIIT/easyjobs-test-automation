@@ -10,7 +10,7 @@ test.describe("/api/v2/my-account/billing GET requests @my-account", async () =>
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
         // await createAssertions(body);
@@ -34,7 +34,7 @@ test.describe("/api/v2/my-account/billing GET requests @my-account", async () =>
             headers: maliciousHeaders
         });
 
-        expect(response.status()).toBe(471);
+        expect.soft(response.status()).toBe(471);
 
         const data = await response.json();
         // await createAssertions(data);
@@ -51,7 +51,7 @@ test.describe("/api/v2/my-account/billing GET requests @my-account", async () =>
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const data = await response.json();
         // await createAssertions(data);

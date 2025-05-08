@@ -11,7 +11,7 @@ test.describe("/api/v2/company/setting/user-app GET requests @company", async ()
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
         // await createAssertions(body);
@@ -29,7 +29,7 @@ test.describe("/api/v2/company/setting/user-app GET requests @company", async ()
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const body = await response.json();
         expect(body.message).toBe("Unauthenticated.");
@@ -45,7 +45,7 @@ test.describe("/api/v2/company/setting/user-app GET requests @company", async ()
             headers: maliciousHeaders
         });
 
-        expect(response.status()).toBe(471);
+        expect.soft(response.status()).toBe(471);
 
         const body = await response.json();
         // await createAssertions(body);

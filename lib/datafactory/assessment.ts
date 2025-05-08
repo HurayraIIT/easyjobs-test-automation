@@ -37,7 +37,7 @@ export async function createAssessmentFromQuiz(authHeaders: any, id: number) {
         data: assessment_creation_data,
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
 
     const data = await response.json();
     return data.data.id;
@@ -49,7 +49,7 @@ export async function getAllAssessments(authHeaders: any) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
 
     const data = await response.json();
     return data.data;
@@ -61,7 +61,7 @@ export async function getAssessmentById(authHeaders: any, id: number) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
 
     const data = await response.json();
     return data.data;
@@ -81,7 +81,7 @@ export async function updateAssessment(authHeaders: any, assessment_id: number, 
         data: data,
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
 }
 
 /**
@@ -96,7 +96,7 @@ export async function deleteAssessmentById(authHeaders: any, assessment_id: numb
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
 
     const data = await response.json();
 }

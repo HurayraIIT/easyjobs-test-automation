@@ -16,7 +16,7 @@ test.describe("/api/v2/company/setting/category/{id} DELETE requests @company", 
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
 
@@ -38,7 +38,7 @@ test.describe("/api/v2/company/setting/category/{id} DELETE requests @company", 
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
 
@@ -69,7 +69,7 @@ test.describe("/api/v2/company/setting/category/{id} DELETE requests @company", 
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const body = await response.json();
 
@@ -82,7 +82,7 @@ test.describe("/api/v2/company/setting/category/{id} DELETE requests @company", 
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(499);
+        expect.soft(response.status()).toBe(499);
 
         const body = await response.json();
 
@@ -97,7 +97,7 @@ test.describe("/api/v2/company/setting/category/{id} DELETE requests @company", 
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(499);
+        expect.soft(response.status()).toBe(499);
 
         const body = await response.json();
 

@@ -12,7 +12,7 @@ test.describe("/api/v2/company/setting/show-life POST requests @company", async 
     //         data: { "show_life": true }
     //     });
 
-    //     expect(response.status()).toBe(200);
+    //     expect.soft(response.status()).toBe(200);
     //     const body = await response.json();
     //     await createAssertions(body);
     // });
@@ -25,7 +25,7 @@ test.describe("/api/v2/company/setting/show-life POST requests @company", async 
             data: { "show_life": true }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const body = await response.json();
         // await createAssertions(body);
@@ -57,7 +57,7 @@ test.describe("/api/v2/company/setting/show-life POST requests @company", async 
             data: { "show_life": true }
         });
 
-        expect(response.status()).toBe(480);
+        expect.soft(response.status()).toBe(480);
 
         const body = await response.json();
 

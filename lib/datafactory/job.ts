@@ -46,7 +46,7 @@ export async function createJob(authHeaders: any, job_data: any = null) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
     const body = await response.json();
 
     // await createAssertions(body);
@@ -63,7 +63,7 @@ export async function getAllDraftJobs(authHeaders: any) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
     const body = await response.json();
 
     // await createAssertions(body);
@@ -76,7 +76,7 @@ export async function getAllDraftJobs(authHeaders: any) {
             headers: authHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
         const body = await response.json();
 
         // await createAssertions(body);
@@ -95,7 +95,7 @@ export async function deleteJobBySlug(authHeaders: any, job_slug: string) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
     const body = await response.json();
 
     // await createAssertions(body);
@@ -130,7 +130,7 @@ export async function addScreeningToJob(authHeaders: any, job_slug: string, scre
         data: screening_data
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
     const body = await response.json();
 
     // await createAssertions(body);

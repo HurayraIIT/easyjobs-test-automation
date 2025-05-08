@@ -25,7 +25,7 @@ export async function createCandidateEmployment(authHeaders: any) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
 
     const body = await response.json();
 
@@ -54,7 +54,7 @@ export async function getAllEmployments(authHeaders: any) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
 
     const body = await response.json();
     expect(body.status).toBe('SUCCESS');
@@ -69,7 +69,7 @@ export async function getEmployment(authHeaders: any, employment_id: any) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
 
     const body = await response.json();
     expect(body.status).toBe('SUCCESS');
@@ -89,7 +89,7 @@ export async function deleteEmployment(authHeaders: any, employment_id: any) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
 
     const body = await response.json();
     expect(body.status).toBe('SUCCESS');

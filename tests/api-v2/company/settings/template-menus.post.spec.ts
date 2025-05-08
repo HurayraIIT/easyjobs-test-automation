@@ -13,7 +13,7 @@ test.describe("/api/v2/company/setting/template-menus POST requests @company", a
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
         // await createAssertions(body);
@@ -30,7 +30,7 @@ test.describe("/api/v2/company/setting/template-menus POST requests @company", a
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const body = await response.json();
         expect(body.message).toBe("Unauthenticated.");
@@ -47,7 +47,7 @@ test.describe("/api/v2/company/setting/template-menus POST requests @company", a
             headers: maliciousHeaders
         });
 
-        expect(response.status()).toBe(471);
+        expect.soft(response.status()).toBe(471);
 
         const body = await response.json();
         // await createAssertions(body);
@@ -62,7 +62,7 @@ test.describe("/api/v2/company/setting/template-menus POST requests @company", a
             headers: authObjects.candidateOneAuthHeaders
         });
 
-        expect(response.status()).toBe(480);
+        expect.soft(response.status()).toBe(480);
 
         const body = await response.json();
 

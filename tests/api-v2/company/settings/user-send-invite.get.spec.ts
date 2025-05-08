@@ -19,7 +19,7 @@ test.describe("/api/v2/company/setting/user/${user.id}/send-invitation/{jobPostI
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
         // await createAssertions(body);
@@ -35,7 +35,7 @@ test.describe("/api/v2/company/setting/user/${user.id}/send-invitation/{jobPostI
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const body = await response.json();
         expect(body.message).toBe("Unauthenticated.");
@@ -51,7 +51,7 @@ test.describe("/api/v2/company/setting/user/${user.id}/send-invitation/{jobPostI
             headers: maliciousHeaders
         });
 
-        expect(response.status()).toBe(400);
+        expect.soft(response.status()).toBe(400);
 
         const body = await response.json();
         // await createAssertions(body);

@@ -4,7 +4,7 @@ import { test, expect } from '@playwright/test';
 import authObjects from '@datafactory/auth';
 import { createAssertions } from "@helpers/createAssertions";
 
-const data = {"_method":"DELETE","target":"company_logo","order":null};
+const data = { "_method": "DELETE", "target": "company_logo", "order": null };
 
 test.describe("/api/v2/company/setting/company-photo DELETE requests @company", async () => {
     test("DELETE with valid credentials @happy", async ({ request }) => {
@@ -13,7 +13,7 @@ test.describe("/api/v2/company/setting/company-photo DELETE requests @company", 
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(400);
+        expect.soft(response.status()).toBe(400);
 
         const body = await response.json();
         // await createAssertions(body);
@@ -28,7 +28,7 @@ test.describe("/api/v2/company/setting/company-photo DELETE requests @company", 
             headers: authObjects.candidateOneAuthHeaders
         });
 
-        expect(response.status()).toBe(480);
+        expect.soft(response.status()).toBe(480);
 
         const body = await response.json();
 
@@ -46,7 +46,7 @@ test.describe("/api/v2/company/setting/company-photo DELETE requests @company", 
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const body = await response.json();
         // await createAssertions(body);

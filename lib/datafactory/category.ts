@@ -22,7 +22,7 @@ export async function createCategory(authHeaders: any) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
     const body = await response.json();
     //await createAssertions(body);
     expect(body.status).toBe("SUCCESS");
@@ -38,7 +38,7 @@ export async function getAllCategories(authHeaders: any) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
 
     let body = await response.json();
     all_categories = body.data.data;
@@ -48,7 +48,7 @@ export async function getAllCategories(authHeaders: any) {
         const response = await requestContext.get(`/api/v2/company/setting/category?page=${current_page}`, {
             headers: authHeaders
         });
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
         let body2 = await response.json();
         all_categories = all_categories.concat(body2.data.data);
     }
@@ -63,7 +63,7 @@ export async function deleteCategoryById(authHeaders: any, id: number) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
     const body = await response.json();
     //await createAssertions(body);
     expect(body.status).toBe("SUCCESS");

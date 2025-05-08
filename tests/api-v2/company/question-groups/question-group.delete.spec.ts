@@ -19,7 +19,7 @@ test.describe("/api/v2/company/question/group/{group} DELETE requests @company",
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
         const body = await response.json();
 
         // await createAssertions(body);
@@ -37,7 +37,7 @@ test.describe("/api/v2/company/question/group/{group} DELETE requests @company",
             headers: authObjects.companyTwoAuthHeaders
         });
 
-        expect(response.status()).toBe(480);
+        expect.soft(response.status()).toBe(480);
         const body = await response.json();
 
         // await createAssertions(body);
@@ -57,7 +57,7 @@ test.describe("/api/v2/company/question/group/{group} DELETE requests @company",
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const body = await response.json();
 
@@ -70,7 +70,7 @@ test.describe("/api/v2/company/question/group/{group} DELETE requests @company",
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(480);
+        expect.soft(response.status()).toBe(480);
 
         const body = await response.json();
 
@@ -85,7 +85,7 @@ test.describe("/api/v2/company/question/group/{group} DELETE requests @company",
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(480);
+        expect.soft(response.status()).toBe(480);
 
         const body = await response.json();
 
@@ -104,7 +104,7 @@ test.describe("/api/v2/company/question/group/{group} DELETE requests @company",
             headers: authObjects.candidateOneAuthHeaders
         });
 
-        expect(response.status()).toBe(480);
+        expect.soft(response.status()).toBe(480);
 
         const body = await response.json();
 

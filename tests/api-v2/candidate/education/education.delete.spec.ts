@@ -16,7 +16,7 @@ test.describe("/api/v2/candidate/education/{education}/delete DELETE requests @c
             headers: authObjects.candidateOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
 
@@ -62,7 +62,7 @@ test.describe("/api/v2/candidate/education/{education}/delete DELETE requests @c
             headers: authObjects.candidateOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         // Now try to delete the same education again
         const response2 = await request.delete(`/api/v2/candidate/education/${education.data.id}/delete`, {
@@ -87,7 +87,7 @@ test.describe("/api/v2/candidate/education/{education}/delete DELETE requests @c
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const body = await response.json();
 
@@ -101,7 +101,7 @@ test.describe("/api/v2/candidate/education/{education}/delete DELETE requests @c
             headers: authObjects.candidateOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
 
@@ -117,7 +117,7 @@ test.describe("/api/v2/candidate/education/{education}/delete DELETE requests @c
             headers: authObjects.candidateOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
 

@@ -11,7 +11,7 @@ test.describe("/api/v2/company/setting/custom-domain/admin GET requests @company
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
         // await createAssertions(body);
@@ -27,7 +27,7 @@ test.describe("/api/v2/company/setting/custom-domain/admin GET requests @company
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const body = await response.json();
         expect(body.message).toBe("Unauthenticated.");
@@ -43,7 +43,7 @@ test.describe("/api/v2/company/setting/custom-domain/admin GET requests @company
             headers: maliciousHeaders
         });
 
-        expect(response.status()).toBe(400);
+        expect.soft(response.status()).toBe(400);
 
         const body = await response.json();
         // await createAssertions(body);

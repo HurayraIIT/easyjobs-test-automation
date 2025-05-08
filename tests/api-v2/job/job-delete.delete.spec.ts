@@ -13,7 +13,7 @@ test.describe("/api/v2/job/${job_slug}/delete DELETE requests @company", async (
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
 
@@ -30,7 +30,7 @@ test.describe("/api/v2/job/${job_slug}/delete DELETE requests @company", async (
             headers: authObjects.companyTwoAuthHeaders
         });
 
-        expect(response.status()).toBe(480);
+        expect.soft(response.status()).toBe(480);
 
         const body = await response.json();
 
@@ -47,7 +47,7 @@ test.describe("/api/v2/job/${job_slug}/delete DELETE requests @company", async (
             headers: authObjects.candidateOneAuthHeaders
         });
 
-        expect(response.status()).toBe(480);
+        expect.soft(response.status()).toBe(480);
 
         const body = await response.json();
 
@@ -66,7 +66,7 @@ test.describe("/api/v2/job/${job_slug}/delete DELETE requests @company", async (
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
 
@@ -99,7 +99,7 @@ test.describe("/api/v2/job/${job_slug}/delete DELETE requests @company", async (
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const body = await response.json();
 
@@ -112,7 +112,7 @@ test.describe("/api/v2/job/${job_slug}/delete DELETE requests @company", async (
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(480);
+        expect.soft(response.status()).toBe(480);
 
         const body = await response.json();
 

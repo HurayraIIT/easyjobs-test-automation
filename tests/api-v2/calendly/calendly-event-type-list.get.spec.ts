@@ -10,7 +10,7 @@ test.describe("/api/v2/calendly/event-type-list GET requests @company @happy", a
         const response = await request.get(`/api/v2/calendly/event-type-list`, {
             headers: authObjects.companyOneAuthHeaders
         });
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
         // await createAssertions(body);
@@ -27,7 +27,7 @@ test.describe("/api/v2/calendly/event-type-list GET requests @company @happy", a
         const response = await request.get(`/api/v2/calendly/event-type-list`, {
             headers: authObjects.companyTwoAuthHeaders
         });
-        expect(response.status()).toBe(400);
+        expect.soft(response.status()).toBe(400);
 
         const body = await response.json();
         // await createAssertions(body);
@@ -45,7 +45,7 @@ test.describe("/api/v2/calendly/event-type-list GET requests @company @happy", a
         const response = await request.get(`/api/v2/calendly/event-type-list`, {
             headers: authObjects.companyTwoAuthHeaders
         });
-        expect(response.status()).toBe(471);
+        expect.soft(response.status()).toBe(471);
 
         const body = await response.json();
         // await createAssertions(body);
@@ -61,7 +61,7 @@ test.describe("/api/v2/calendly/event-type-list GET requests @company @happy", a
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const body = await response.json();
         // await createAssertions(body);

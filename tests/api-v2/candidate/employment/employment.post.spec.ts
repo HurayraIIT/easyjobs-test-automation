@@ -14,7 +14,7 @@ test.describe("/api/v2/candidate/employment POST requests @candidate", async () 
       headers: authObjects.candidateOneAuthHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
 
     const body = await response.json();
 
@@ -74,7 +74,7 @@ test.describe("/api/v2/candidate/employment POST requests @candidate", async () 
     // await createAssertions(new_body_2);
     expect(new_body_2.status).toBe('SUCCESS');
     // This actually creates a new employment for candidate 2, weird behavior
-    expect(new_body_2.data.id).not.toBe(body.data.id); 
+    expect(new_body_2.data.id).not.toBe(body.data.id);
   });
 
   test("POST with empty data", async ({ request }) => {
@@ -83,7 +83,7 @@ test.describe("/api/v2/candidate/employment POST requests @candidate", async () 
       headers: authObjects.candidateOneAuthHeaders
     });
 
-    expect(response.status()).toBe(422);
+    expect.soft(response.status()).toBe(422);
 
     const body = await response.json();
 
@@ -101,7 +101,7 @@ test.describe("/api/v2/candidate/employment POST requests @candidate", async () 
       headers: authObjects.candidateOneAuthHeaders
     });
 
-    expect(response.status()).toBe(422);
+    expect.soft(response.status()).toBe(422);
 
     const body = await response.json();
 
@@ -124,7 +124,7 @@ test.describe("/api/v2/candidate/employment POST requests @candidate", async () 
       }
     });
 
-    expect(response.status()).toBe(401);
+    expect.soft(response.status()).toBe(401);
 
     const body = await response.json();
     expect(body.message).toBe('Unauthenticated.');
@@ -138,7 +138,7 @@ test.describe("/api/v2/candidate/employment POST requests @candidate", async () 
       headers: authObjects.companyOneAuthHeaders
     });
 
-    expect(response.status()).toBe(480);
+    expect.soft(response.status()).toBe(480);
 
     const body = await response.json();
     // await createAssertions(body);

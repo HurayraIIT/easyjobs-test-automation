@@ -17,7 +17,7 @@ test.describe("/api/v2/company/question/group/{group}/duplicate GET requests @co
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
         const original_set = await getQuestionSetById(authObjects.companyOneAuthHeaders, set_id);
@@ -77,7 +77,7 @@ test.describe("/api/v2/company/question/group/{group}/duplicate GET requests @co
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const body = await response.json();
         expect(body.message).toBe('Unauthenticated.');
@@ -88,7 +88,7 @@ test.describe("/api/v2/company/question/group/{group}/duplicate GET requests @co
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(480);
+        expect.soft(response.status()).toBe(480);
 
         const body = await response.json();
 

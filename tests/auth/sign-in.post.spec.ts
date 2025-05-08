@@ -22,7 +22,7 @@ test.describe("/api/v2/sign-in POST requests @auth", async () => {
         end = Date.now();
         duration = end - start;
         expect.soft(duration).toBeLessThan(1000);
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
         const body = await response.json();
         expect(body.status).toBe('SUCCESS');
         expect(body.message).toBe('Successfully logged in');
@@ -37,7 +37,7 @@ test.describe("/api/v2/sign-in POST requests @auth", async () => {
             }
         });
 
-        expect(response.status()).toBe(404);
+        expect.soft(response.status()).toBe(404);
 
         const body = await response.json();
         expect(body.status).toBe('FAILED');
@@ -53,7 +53,7 @@ test.describe("/api/v2/sign-in POST requests @auth", async () => {
             }
         });
 
-        expect(response.status()).toBe(400);
+        expect.soft(response.status()).toBe(400);
 
         const body = await response.json();
         expect(body.status).toBe('FAILED');
@@ -69,7 +69,7 @@ test.describe("/api/v2/sign-in POST requests @auth", async () => {
             }
         });
 
-        expect(response.status()).toBe(404);
+        expect.soft(response.status()).toBe(404);
 
         const body = await response.json();
         expect(body.status).toBe('FAILED');
@@ -84,7 +84,7 @@ test.describe("/api/v2/sign-in POST requests @auth", async () => {
             }
         });
 
-        expect(response.status()).toBe(422);
+        expect.soft(response.status()).toBe(422);
 
         const body = await response.json();
         expect(body.status).toBe('FAILED');
@@ -96,7 +96,7 @@ test.describe("/api/v2/sign-in POST requests @auth", async () => {
             data: {}
         });
 
-        expect(response.status()).toBe(422);
+        expect.soft(response.status()).toBe(422);
 
         const body = await response.json();
         expect(body.status).toBe('FAILED');
@@ -109,7 +109,7 @@ test.describe("/api/v2/sign-in POST requests @auth", async () => {
             data: {}
         });
 
-        expect(response.status()).toBe(422);
+        expect.soft(response.status()).toBe(422);
 
         const body = await response.json();
         expect(body.status).toBe('FAILED');

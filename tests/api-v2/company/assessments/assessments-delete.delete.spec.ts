@@ -29,7 +29,7 @@ test.describe("/api/v2/company/assessments/{assessment}/delete DELETE requests @
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(480);
+        expect.soft(response.status()).toBe(480);
 
         const body = await response.json();
 
@@ -46,7 +46,7 @@ test.describe("/api/v2/company/assessments/{assessment}/delete DELETE requests @
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const body = await response.json();
 
@@ -59,7 +59,7 @@ test.describe("/api/v2/company/assessments/{assessment}/delete DELETE requests @
             headers: authObjects.companyOneAuthHeaders
         });
 
-        expect(response.status()).toBe(480);
+        expect.soft(response.status()).toBe(480);
 
         const body = await response.json();
 
@@ -74,7 +74,7 @@ test.describe("/api/v2/company/assessments/{assessment}/delete DELETE requests @
             headers: authObjects.candidateOneAuthHeaders
         });
 
-        expect(response.status()).toBe(480);
+        expect.soft(response.status()).toBe(480);
 
         const body = await response.json();
 

@@ -18,11 +18,11 @@ test.describe("/api/v2/my-account/information POST requests @my-account @happy",
             }
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
         // await createAssertions(body);
-        expect(body.status).toBe("SUCCESS");
+        expect(body.status, `Body Contains: ${JSON.stringify(body, null, 2)}`).toBe("SUCCESS");
         expect(body.data.id).toBe(15283);
         expect(body.data.first_name).toBe("Company");
         expect(body.data.last_name).toBe("One");
@@ -48,7 +48,7 @@ test.describe("/api/v2/my-account/information POST requests @my-account @happy",
             }
         });
 
-        expect(response.status()).toBe(200);
+        expect.soft(response.status()).toBe(200);
 
         const body = await response.json();
         // await createAssertions(body);
@@ -68,7 +68,7 @@ test.describe("/api/v2/my-account/information POST requests @my-account @happy",
             headers: authObjects.companyOneAuthHeaders,
         });
 
-        expect(response.status()).toBe(422);
+        expect.soft(response.status()).toBe(422);
 
         const body = await response.json();
         // await createAssertions(body);
@@ -95,7 +95,7 @@ test.describe("/api/v2/my-account/information POST requests @my-account @happy",
             }
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const body = await response.json();
         // await createAssertions(body);

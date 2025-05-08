@@ -26,7 +26,7 @@ export async function createEducation(authHeaders: any) {
         data: education_data,
         headers: authHeaders
     });
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
     const body = await response.json();
     return body;
 }
@@ -37,7 +37,7 @@ export async function getAllEducations(authHeaders: any) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
 
     const body = await response.json();
     expect(body.status).toBe('SUCCESS');
@@ -52,7 +52,7 @@ export async function getEducationById(authHeaders: any, education_id: any) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
 
     const body = await response.json();
     expect(body.status).toBe('SUCCESS');
@@ -74,7 +74,7 @@ export async function deleteEducationById(authHeaders: any, education_id: any) {
         headers: authHeaders
     });
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
 
     const body = await response.json();
     expect(body.status).toBe('SUCCESS');

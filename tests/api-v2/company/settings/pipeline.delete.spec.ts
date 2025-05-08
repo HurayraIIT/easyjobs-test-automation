@@ -10,7 +10,7 @@ test.describe("/api/v2/company/setting/pipeline/${pipeline_id}/delete DELETE req
     test("DELETE with valid credentials @happy", async ({ request }) => {
         let new_pipeline = await createNewPipeline(authObjects.companyOneAuthHeaders);
         let all_pipelines = await getAllPipelines(authObjects.companyOneAuthHeaders);
-        expect(new_pipeline.name).toBe(all_pipelines[all_pipelines.length-1].name);
+        expect(new_pipeline.name).toBe(all_pipelines[all_pipelines.length - 1].name);
 
         const response = await request.delete(`/api/v2/company/setting/pipeline/${all_pipelines.length - 1}/delete`, {
             headers: authObjects.companyOneAuthHeaders,
@@ -39,7 +39,7 @@ test.describe("/api/v2/company/setting/pipeline/${pipeline_id}/delete DELETE req
             },
         });
 
-        expect(response.status()).toBe(401);
+        expect.soft(response.status()).toBe(401);
 
         const body = await response.json();
         // await createAssertions(body);
@@ -60,7 +60,7 @@ test.describe("/api/v2/company/setting/pipeline/${pipeline_id}/delete DELETE req
             headers: maliciousHeaders,
         });
 
-        expect(response.status()).toBe(400);
+        expect.soft(response.status()).toBe(400);
 
         const body = await response.json();
         // await createAssertions(body);
@@ -78,7 +78,7 @@ test.describe("/api/v2/company/setting/pipeline/${pipeline_id}/delete DELETE req
             headers: authObjects.candidateOneAuthHeaders,
         });
 
-        expect(response.status()).toBe(480);
+        expect.soft(response.status()).toBe(480);
 
         const body = await response.json();
 
@@ -97,7 +97,7 @@ test.describe("/api/v2/company/setting/pipeline/${pipeline_id}/delete DELETE req
             headers: authObjects.companyOneAuthHeaders,
         });
 
-        expect(response.status()).toBe(400);
+        expect.soft(response.status()).toBe(400);
 
         const body = await response.json();
         // await createAssertions(body);
