@@ -13,9 +13,9 @@ test.describe("/api/v2/screening-question-set/{id} GET requests @company", async
         question_set = await getQuestionSetById(authObjects.companyOneAuthHeaders, question_set_id);
     });
 
-    // test.afterAll(async () => {
-    //     await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
-    // });
+    test.afterAll(async () => {
+        await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
+    });
 
     test("GET with valid credentials @happy", async () => {
         // get the original questions
@@ -46,7 +46,7 @@ test.describe("/api/v2/screening-question-set/{id} GET requests @company", async
         }
     });
 
-    test("GET with invalid credentials but valid id", async ({ request }) => {
+    test("GET without credentials but valid id", async ({ request }) => {
         const response = await request.get(`/api/v2/screening-question-set/${question_set.id}`, {
             headers: {
                 "Accept": "application/json",
@@ -57,6 +57,23 @@ test.describe("/api/v2/screening-question-set/{id} GET requests @company", async
 
         const body = await response.json();
         expect(body.message).toBe("Unauthenticated.");
+    });
+
+    test("GET with invalid credentials but valid id", async ({ request }) => {
+        const maliciousHeaders = authObjects.companyTwoAuthHeaders;
+        maliciousHeaders['Company-Id'] = authObjects.companyOneAuthHeaders['Company-Id'];
+        maliciousHeaders['State-Version'] = authObjects.companyOneAuthHeaders['State-Version'];
+        const response = await request.get(`/api/v2/screening-question-set/${question_set.id}`, {
+            headers: maliciousHeaders
+        });
+
+        expect.soft(response.status()).toBe(471);
+
+        const body = await response.json();
+        // await createAssertions(body);
+        expect(body.status).toBe("FAILED");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("Something went wrong.");
     });
 
     test("GET with valid credentials but invalid id", async ({ request }) => {

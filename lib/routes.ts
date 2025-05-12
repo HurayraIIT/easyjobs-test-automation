@@ -2025,7 +2025,7 @@ export const routes = [
     {
         "method": "GET", 
         "path": "/api/v2/screening-question-set/{id}",
-        "automated": false,
+        "automated": true,
         "flaky": false,
         "description": ""
     },
