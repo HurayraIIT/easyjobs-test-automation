@@ -1487,13 +1487,13 @@ export const routes = [
         "method": "GET", 
         "path": "/api/v2/job/quiz-meta-data",
         "automated": true,
-        "flaky": false,
+        "flaky": true,
         "description": ""
     },
     {
         "method": "GET", 
         "path": "/api/v2/job/screening-meta-data",
-        "automated": false,
+        "automated": true,
         "flaky": false,
         "description": ""
     },

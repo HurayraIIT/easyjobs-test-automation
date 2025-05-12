@@ -34,7 +34,7 @@ test.describe("/api/v2/job/quiz-meta-data GET requests @company", async () => {
         expect(flag).toBe(1);
     });
 
-    test("GET with invalid credentials", async ({ request }) => {
+    test("GET without credentials", async ({ request }) => {
         const response = await request.get(`/api/v2/job/quiz-meta-data`, {
             headers: {
                 "Accept": "application/json",
@@ -45,6 +45,25 @@ test.describe("/api/v2/job/quiz-meta-data GET requests @company", async () => {
 
         const body = await response.json();
         expect(body.message).toBe("Unauthenticated.");
+    });
+
+    test("GET with invalid credentials @security", async ({ request }) => {
+        const maliciousHeaders = authObjects.companyTwoAuthHeaders;
+        maliciousHeaders['Company-Id'] = authObjects.companyOneAuthHeaders['Company-Id'];
+        // maliciousHeaders['State-Version'] = authObjects.companyOneAuthHeaders['State-Version'];
+
+        const response = await request.get(`/api/v2/job/quiz-meta-data`, {
+            headers: maliciousHeaders
+        });
+
+        expect.soft(response.status()).toBe(471);
+
+        const body = await response.json();
+        // await createAssertions(body);
+        // expect(body.message).toBe("Unauthenticated.");
+        expect(body.status).toBe("FAILED");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("Something went wrong.");
     });
 
     test("GET with candidates credentials", async ({ request }) => {

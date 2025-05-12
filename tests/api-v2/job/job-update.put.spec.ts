@@ -93,4 +93,26 @@ test.describe("/api/v2/job/${job_slug}/update PUT requests @company", async () =
         // await createAssertions(body);
         expect(body.message).toBe("Unauthenticated.");
     });
+
+    test("PUT update with invalid credentials", async ({ request }) => {
+        const maliciousHeaders = authObjects.companyTwoAuthHeaders;
+        maliciousHeaders['Company-Id'] = authObjects.companyOneAuthHeaders['Company-Id'];
+        maliciousHeaders['State-Version'] = authObjects.companyOneAuthHeaders['State-Version'];
+
+        let changed_job_data = await getDataForJobCreate();
+        changed_job_data.vacancies = '8';
+        // console.log(changed_job_data);
+        const response = await request.put(`/api/v2/job/${first_job.slug}/update`, {
+            headers: maliciousHeaders,
+            data: changed_job_data
+        });
+
+        expect.soft(response.status()).toBe(400);
+
+        const body = await response.json();
+        // await createAssertions(body);
+        expect(body.status).toBe("FAILED");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("Something went wrong.");
+    });
 });
