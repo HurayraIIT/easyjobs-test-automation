@@ -140,4 +140,25 @@ test.describe("/api/v2/job/${first_job.slug}/screening POST requests @company", 
         // await createAssertions(body);
         expect(body.message).toBe("Unauthenticated.");
     });
+
+    test("POST attach screening questions with invalid auth", async ({ request }) => {
+        // console.log(screening_data);
+        const maliciousHeaders = authObjects.companyTwoAuthHeaders;
+        maliciousHeaders['Company-Id'] = authObjects.companyOneAuthHeaders['Company-Id'];
+        // maliciousHeaders['State-Version'] = authObjects.companyOneAuthHeaders['State-Version'];
+
+        const response = await request.post(`/api/v2/job/${first_job.slug}/screening`, {
+            headers: maliciousHeaders,
+            data: screening_data
+        });
+
+        expect.soft(response.status()).toBe(400);
+
+        const body = await response.json();
+        // console.log(body);
+        // await createAssertions(body);
+        expect(body.status).toBe("FAILED");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("Something went wrong.");
+    });
 });
