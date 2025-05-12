@@ -2,7 +2,7 @@ import { expect, request } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 import { createAssertions } from '@helpers/createAssertions';
 import { category, skills, country, state, city } from '@helpers/static-data';
-import { createQuestionSet, getQuestionSetById } from './question-group';
+import { createQuestionSet, getQuestionSetById, QuestionSetType } from './question-group';
 
 export async function getDataForJobCreate() {
     return {
@@ -113,7 +113,7 @@ export async function deleteAllDraftJobs(authHeaders: any, jobs: any = null) {
 export async function addScreeningToJob(authHeaders: any, job_slug: string, screening_data: any = null) {
     if (!screening_data) {
         let first_job = await createJob(authHeaders);
-        let new_question_set_id = await createQuestionSet(authHeaders);
+        let new_question_set_id = await createQuestionSet(authHeaders, QuestionSetType.SCREENING);
         let questions = await getQuestionSetById(authHeaders, new_question_set_id);
         // console.log(questions);
         screening_data = {
@@ -128,6 +128,37 @@ export async function addScreeningToJob(authHeaders: any, job_slug: string, scre
     const response = await requestContext.post(`/api/v2/job/${job_slug}/screening`, {
         headers: authHeaders,
         data: screening_data
+    });
+
+    expect.soft(response.status()).toBe(200);
+    const body = await response.json();
+
+    // await createAssertions(body);
+    expect(body.status).toBe("SUCCESS");
+    expect(body.message).toBe("Job updated.");
+    return body.data;
+}
+
+export async function addQuizToJob(authHeaders: any, job_slug: string, quiz_data: any = null) {
+    if (!quiz_data) {
+        let first_job = await createJob(authHeaders);
+        let new_question_set_id = await createQuestionSet(authHeaders, QuestionSetType.QUIZ);
+        let questions = await getQuestionSetById(authHeaders, new_question_set_id);
+        // console.log(questions);
+        quiz_data = {
+            "job_id": first_job.id,
+            "note": questions.note,
+            "internal_note": questions.internal_note,
+            "exam_duration": "31",
+            "marks_per_question": "11",
+            "questions": questions.questions,
+        };
+    }
+
+    const requestContext = await request.newContext();
+    const response = await requestContext.post(`/api/v2/job/${job_slug}/quiz`, {
+        headers: authHeaders,
+        data: quiz_data
     });
 
     expect.soft(response.status()).toBe(200);

@@ -21,10 +21,10 @@ test.describe("/api/v2/company/assessments GET requests @company", async () => {
         assessment2_id = await createAssessmentFromQuiz(authObjects.companyOneAuthHeaders, quiz2_id);
     });
 
-    // test.afterAll(async () => {
-    //     await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
-    //     await deleteAllAssessments(authObjects.companyOneAuthHeaders);
-    // });
+    test.afterAll(async () => {
+        await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
+        await deleteAllAssessments(authObjects.companyOneAuthHeaders);
+    });
 
     test("GET with valid credentials @happy", async ({ request }) => {
         const response = await request.get(`/api/v2/company/assessments`, {

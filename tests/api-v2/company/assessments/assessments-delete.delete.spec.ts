@@ -16,10 +16,10 @@ test.describe("/api/v2/company/assessments/{assessment}/delete DELETE requests @
         expect(new_assessment_id).toBeGreaterThan(0);
     });
 
-    // test.afterAll(async () => {
-    //     await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
-    //     await deleteAllAssessments(authObjects.companyOneAuthHeaders);
-    // });
+    test.afterAll(async () => {
+        await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
+        await deleteAllAssessments(authObjects.companyOneAuthHeaders);
+    });
 
     test("DELETE with deleted assessment id and valid token", async ({ request }) => {
         await deleteAssessmentById(authObjects.companyOneAuthHeaders, new_assessment_id);

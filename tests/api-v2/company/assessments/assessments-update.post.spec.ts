@@ -16,10 +16,10 @@ test.describe("/api/v2/company/assessments/{assessment}/update POST requests @co
         expect(new_assessment_id).toBeGreaterThan(0);
     });
 
-    // test.afterAll(async () => {
-    //     await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
-    //     await deleteAllAssessments(authObjects.companyOneAuthHeaders);
-    // });
+    test.afterAll(async () => {
+        await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
+        await deleteAllAssessments(authObjects.companyOneAuthHeaders);
+    });
 
     test("POST can update an existing assessment @happy", async ({ request }) => {
         // Create a new assessment

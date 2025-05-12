@@ -13,10 +13,10 @@ test.describe("/api/v2/company/assessments/create POST requests @company", async
         quiz_id = await createQuestionSet(authObjects.companyOneAuthHeaders, QuestionSetType.QUIZ);
     });
 
-    // test.afterAll(async () => {
-    //     await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
-    //     await deleteAllAssessments(authObjects.companyOneAuthHeaders);
-    // });
+    test.afterAll(async () => {
+        await deleteAllQuestionSets(authObjects.companyOneAuthHeaders);
+        await deleteAllAssessments(authObjects.companyOneAuthHeaders);
+    });
 
     test("POST can create a new assessment @happy", async ({ request }) => {
         // Create a new assessment

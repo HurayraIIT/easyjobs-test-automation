@@ -1745,21 +1745,21 @@ export const routes = [
     {
         "method": "GET", 
         "path": "/api/v2/job/{job}/quiz",
-        "automated": false,
+        "automated": true,
         "flaky": false,
         "description": ""
     },
     {
         "method": "POST", 
         "path": "/api/v2/job/{job}/quiz",
-        "automated": false,
+        "automated": true,
         "flaky": false,
         "description": ""
     },
     {
         "method": "DELETE", 
         "path": "/api/v2/job/{job}/quiz",
-        "automated": false,
+        "automated": true,
         "flaky": false,
         "description": ""
     },
@@ -1795,7 +1795,7 @@ export const routes = [
         "method": "DELETE", 
         "path": "/api/v2/job/{job}/screening",
         "automated": true,
-        "flaky": false,
+        "flaky": true,
         "description": ""
     },
     {
