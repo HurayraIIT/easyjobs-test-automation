@@ -43,7 +43,7 @@ test.describe("/api/v2/calendly/event-type-list GET requests @company @happy", a
         maliciousHeaders['State-Version'] = authObjects.companyOneAuthHeaders['State-Version'];
 
         const response = await request.get(`/api/v2/calendly/event-type-list`, {
-            headers: authObjects.companyTwoAuthHeaders
+            headers: maliciousHeaders
         });
         expect.soft(response.status()).toBe(471);
 

@@ -2179,21 +2179,21 @@ export const routes = [
     {
         "method": "POST", 
         "path": "/api/v2/testlify/send/otp",
-        "automated": false,
+        "automated": true,
         "flaky": false,
         "description": ""
     },
     {
         "method": "POST", 
         "path": "/api/v2/testlify/verify/otp",
-        "automated": false,
+        "automated": true,
         "flaky": false,
         "description": ""
     },
     {
         "method": "GET", 
         "path": "/api/v2/testlify/webhook",
-        "automated": false,
+        "automated": true,
         "flaky": false,
         "description": ""
     },
