@@ -1101,7 +1101,7 @@ export const routes = [
     {
         "method": "DELETE", 
         "path": "/api/v2/company/setting/{fieldId}/custom-apply-field",
-        "automated": false,
+        "automated": true,
         "flaky": false,
         "description": ""
     },
