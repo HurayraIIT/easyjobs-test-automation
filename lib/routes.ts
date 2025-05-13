@@ -758,8 +758,8 @@ export const routes = [
     {
         "method": "GET", 
         "path": "/api/v2/company/setting/custom-apply-field/jobs/{field}",
-        "automated": false,
-        "flaky": false,
+        "automated": true,
+        "flaky": true,
         "description": ""
     },
     {
