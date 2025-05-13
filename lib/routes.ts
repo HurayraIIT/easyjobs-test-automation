@@ -751,7 +751,7 @@ export const routes = [
     {
         "method": "POST", 
         "path": "/api/v2/company/setting/custom-apply-field",
-        "automated": false,
+        "automated": true,
         "flaky": false,
         "description": ""
     },
