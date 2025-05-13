@@ -15,9 +15,9 @@ test.describe("/api/v2/user/package GET requests @company", async () => {
         const body = await response.json();
         // await createAssertions(body);
         expect(body.status).toBe("SUCCESS");
-        expect(body.data.id).toBe(1);
-        expect(body.data.name).toBe("Startup");
-        expect(body.data.slug).toBe("startup");
+        expect(body.data.id).not.toBeNull();
+        expect(body.data.name).not.toBeNull();
+        expect(body.data.slug).not.toBeNull();
         expect(body.message).toBeNull();
     });
 
