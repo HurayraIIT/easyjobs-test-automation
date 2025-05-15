@@ -2,14 +2,18 @@
 
 import { test, expect } from '@playwright/test';
 import authObjects from '@datafactory/auth';
-import { deleteAllDraftJobs, createJob } from '@datafactory/job';
+import { deleteAllDraftJobs, createDraftJob } from '@datafactory/job';
 import { createAssertions } from "@helpers/createAssertions";
 
 test.describe("/api/v2/job/{new_job}/basic GET requests @company", async () => {
     let new_job = null;
     test.beforeAll(async () => {
-        new_job = await createJob(authObjects.companyOneAuthHeaders);
+        new_job = await createDraftJob(authObjects.companyOneAuthHeaders);
         // console.log(new_job);
+    });
+
+    test.afterAll(async () => {
+        await deleteAllDraftJobs(authObjects.companyOneAuthHeaders);
     });
 
     test("GET with valid company credentials @happy", async ({ request }) => {
