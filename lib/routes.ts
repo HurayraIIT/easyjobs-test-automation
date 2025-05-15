@@ -1472,7 +1472,7 @@ export const routes = [
     {
         "method": "GET", 
         "path": "/api/v2/job/permissions",
-        "automated": false,
+        "automated": true,
         "flaky": false,
         "description": ""
     },
