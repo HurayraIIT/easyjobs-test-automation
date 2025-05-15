@@ -1,185 +1,28 @@
-import { expect, request } from '@playwright/test';
-import { faker } from '@faker-js/faker';
-import { createAssertions } from '@helpers/createAssertions';
-import { category, skills, country, state, city } from '@helpers/static-data';
-import { createQuestionSet, getQuestionSetById, QuestionSetType } from './question-group';
-import { createCustomApplyField, deleteAllCustomApplyFields, getAllCustomApplyFields } from './custom-fields';
+// POST: /api/v2/job/{job}/required-fields
 
-export async function getDataForJobCreate() {
-    return {
-        "hideCoverPhoto": false,
-        "coverphoto": "",
-        "title": `Junior Test Engineer - ${faker.vehicle.vehicle()}`,
-        "details": "<p>Job Details Line Here.</p>",
-        "responsibilities": "<p>Job Responsibilities Here.</p>",
-        "category": category,
-        "skills": skills,
-        "vacancies": "2",
-        "job_type": {
-            "id": "on-site",
-            "name": "On-site"
-        },
-        "country": country,
-        "state": state,
-        "city": city,
-        "expire_at": "01/01/2030",
-        "employment_type": { "id": 3, "name": "Full Time" },
-        "experience_level": { "id": 1, "name": "Junior" },
-        "salary_type": { "id": 1, "name": "Monthly" },
-        "salary": null,
-        "salary_range": {
-            "max": "20000",
-            "min": "12000",
-            "currency": "BDT"
-        },
-        "office_time": "[SUN - THU: 7 AM to 6 PM]",
-        "benefits": [],
-        "has_benefits": true,
-        "employment_type_other": null,
-        "show_on_career_page": true
-    };
-}
+import authObjects from '@datafactory/auth';
+import { test, expect } from '@playwright/test';
+import { createAssertions } from "@helpers/createAssertions";
+import { deleteAllDraftJobs, createJob } from '@datafactory/job';
+import { createCustomApplyField, deleteAllCustomApplyFields, getAllCustomApplyFields } from '@datafactory/custom-fields';
 
-export async function createJob(authHeaders: any, job_data: any = null) {
-    const requestContext = await request.newContext();
-    const response = await requestContext.post('/api/v2/job/create', {
-        data: job_data || await getDataForJobCreate(),
-        headers: authHeaders
-    });
+test.describe("/api/v2/job/{job}/required-fields POST requests @company", async () => {
+    let new_job = null;
+    let job = null;
+    let custom_apply_fields = null;
+    let data = null;
 
-    expect.soft(response.status()).toBe(200);
-    const body = await response.json();
-
-    // await createAssertions(body);
-    expect(body.status).toBe("SUCCESS");
-    expect(body.message).toBe("Job created.");
-    return body.data;
-}
-
-export async function getAllDraftJobs(authHeaders: any) {
-    let draft_jobs = [];
-
-    const requestContext = await request.newContext();
-    const response = await requestContext.get('/api/v2/job/draft', {
-        headers: authHeaders
-    });
-
-    expect.soft(response.status()).toBe(200);
-    const body = await response.json();
-
-    // await createAssertions(body);
-    expect(body.status).toBe("SUCCESS");
-    expect(body.message).toBe(null);
-
-    // run a for loop and get data from https://app.easyjobs.dev/api/v2/job/draft?page=1 to page=last_page and put into draft_jobs
-    for (let i = 1; i <= body.data.last_page; i++) {
-        const response = await requestContext.get(`/api/v2/job/draft?page=${i}`, {
-            headers: authHeaders
-        });
-
-        expect.soft(response.status()).toBe(200);
-        const body = await response.json();
-
-        // await createAssertions(body);
-        expect(body.status).toBe("SUCCESS");
-        expect(body.message).toBe(null);
-
-        draft_jobs = draft_jobs.concat(body.data.data);
-    }
-
-    return draft_jobs;
-}
-
-export async function deleteJobBySlug(authHeaders: any, job_slug: string) {
-    const requestContext = await request.newContext();
-    const response = await requestContext.delete(`/api/v2/job/${job_slug}/delete`, {
-        headers: authHeaders
-    });
-
-    expect.soft(response.status()).toBe(200);
-    const body = await response.json();
-
-    // await createAssertions(body);
-    expect(body.status).toBe("SUCCESS");
-    expect(body.message).toBe("Job deleted.");
-}
-
-export async function deleteAllDraftJobs(authHeaders: any, jobs: any = null) {
-    const draft_jobs = jobs || await getAllDraftJobs(authHeaders);
-    for (const job of draft_jobs) {
-        await deleteJobBySlug(authHeaders, job.slug);
-    }
-}
-
-export async function addScreeningToJob(authHeaders: any, job_slug: string, screening_data: any = null) {
-    if (!screening_data) {
-        let first_job = await createJob(authHeaders);
-        let new_question_set_id = await createQuestionSet(authHeaders, QuestionSetType.SCREENING);
-        let questions = await getQuestionSetById(authHeaders, new_question_set_id);
-        // console.log(questions);
-        screening_data = {
-            "job_id": first_job.id,
-            "note": questions.note,
-            "internal_note": questions.internal_note,
-            "questions": questions.questions
-        };
-    }
-
-    const requestContext = await request.newContext();
-    const response = await requestContext.post(`/api/v2/job/${job_slug}/screening`, {
-        headers: authHeaders,
-        data: screening_data
-    });
-
-    expect.soft(response.status()).toBe(200);
-    const body = await response.json();
-
-    // await createAssertions(body);
-    expect(body.status).toBe("SUCCESS");
-    expect(body.message).toBe("Job updated.");
-    return body.data;
-}
-
-export async function addQuizToJob(authHeaders: any, job_slug: string, quiz_data: any = null) {
-    if (!quiz_data) {
-        let first_job = await createJob(authHeaders);
-        let new_question_set_id = await createQuestionSet(authHeaders, QuestionSetType.QUIZ);
-        let questions = await getQuestionSetById(authHeaders, new_question_set_id);
-        // console.log(questions);
-        quiz_data = {
-            "job_id": first_job.id,
-            "note": questions.note,
-            "internal_note": questions.internal_note,
-            "exam_duration": "31",
-            "marks_per_question": "11",
-            "questions": questions.questions,
-        };
-    }
-
-    const requestContext = await request.newContext();
-    const response = await requestContext.post(`/api/v2/job/${job_slug}/quiz`, {
-        headers: authHeaders,
-        data: quiz_data
-    });
-
-    expect.soft(response.status()).toBe(200);
-    const body = await response.json();
-
-    // await createAssertions(body);
-    expect(body.status).toBe("SUCCESS");
-    expect(body.message).toBe("Job updated.");
-    return body.data;
-}
-
-export async function addApplyFieldsToJob(authHeaders: any, job_slug: string, apply_fields_data: any = null) {
-    if (!apply_fields_data) {
-        await deleteAllCustomApplyFields(authHeaders);
-        await createCustomApplyField(authHeaders);
-        let custom_apply_fields = await getAllCustomApplyFields(authHeaders);
+    test.beforeAll(async () => {
+        await deleteAllDraftJobs(authObjects.companyOneAuthHeaders);
+        await deleteAllCustomApplyFields(authObjects.companyOneAuthHeaders);
+        new_job = await createJob(authObjects.companyOneAuthHeaders);
+        job = new_job.slug;
+        await createCustomApplyField(authObjects.companyOneAuthHeaders);
+        custom_apply_fields = await getAllCustomApplyFields(authObjects.companyOneAuthHeaders);
 
         // console.log(custom_apply_fields[0]);
 
-        let apply_fields_data = {
+        data = {
             "apply_rules": [
                 {
                     "index": 0,
@@ -379,21 +222,90 @@ export async function addApplyFieldsToJob(authHeaders: any, job_slug: string, ap
                 "selectAll": true
             }
         };
-    }
-
-    const requestContext = await request.newContext();
-    const response = await requestContext.post(`/api/v2/job/${job_slug}/required-fields`, {
-        headers: authHeaders,
-        data: apply_fields_data
     });
 
-    expect.soft(response.status()).toBe(200);
+    test.afterAll(async () => {
+        // await deleteAllDraftJobs(authObjects.companyOneAuthHeaders);
+        // await deleteAllCustomApplyFields(authObjects.companyOneAuthHeaders);
+    });
 
-    const body = await response.json();
-    // console.log(body.data.apply_rules);
-    // await createAssertions(body);
+    test("POST with valid company credentials @happy", async ({ request }) => {
+        const response = await request.post(`/api/v2/job/${job}/required-fields`, {
+            headers: authObjects.companyOneAuthHeaders,
+            data: data
+        });
 
-    expect(body.status).toBe("SUCCESS");
-    expect(body.data).toEqual([]);
-    expect(body.message).toBe("Updated.");
-}
+        expect.soft(response.status()).toBe(200);
+
+        const body = await response.json();
+        // console.log(body.data.apply_rules);
+        // await createAssertions(body);
+
+        expect(body.status).toBe("SUCCESS");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("Updated.");
+    });
+
+    test("POST with another company credentials @security", async ({ request }) => {
+        const response = await request.post(`/api/v2/job/${job}/required-fields`, {
+            headers: authObjects.companyTwoAuthHeaders,
+            data: data
+        });
+
+        expect.soft(response.status()).toBe(480);
+
+        const body = await response.json();
+        // await createAssertions(body);
+        expect(body.status).toBe("FAILED");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("Unauthorized Access");
+    });
+
+    test("POST with valid candidate credentials", async ({ request }) => {
+        const response = await request.post(`/api/v2/job/${job}/required-fields`, {
+            headers: authObjects.candidateOneAuthHeaders,
+            data: data
+        });
+
+        expect.soft(response.status()).toBe(480);
+
+        const body = await response.json();
+        // await createAssertions(body);
+        expect(body.status).toBe("failed");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("You do not have access permissions.");
+    });
+
+    test("POST without auth token", async ({ request }) => {
+        const response = await request.post(`/api/v2/job/${job}/required-fields`, {
+            headers: {
+                "ACCEPT": "application/json",
+            },
+            data: data
+        });
+
+        expect.soft(response.status()).toBe(401);
+
+        const body = await response.json();
+        expect(body.message).toBe('Unauthenticated.');
+    });
+
+    test("POST with invalid credentials", async ({ request }) => {
+        // Company two should not be able to access data from company one
+        const maliciousHeaders = authObjects.companyTwoAuthHeaders;
+        maliciousHeaders['Company-Id'] = authObjects.companyOneAuthHeaders['Company-Id'];
+        // maliciousHeaders['State-Version'] = authObjects.companyOneAuthHeaders['State-Version'];
+
+        const response = await request.post(`/api/v2/job/${job}/required-fields`, {
+            headers: maliciousHeaders,
+            data: data
+        });
+        expect.soft(response.status()).toBe(400);
+
+        const body = await response.json();
+        // await createAssertions(body);
+        expect(body.status).toBe("FAILED");
+        expect(body.data).toEqual([]);
+        expect(body.message).toBe("Something went wrong.");
+    });
+});

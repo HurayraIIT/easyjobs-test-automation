@@ -1773,7 +1773,7 @@ export const routes = [
     {
         "method": "POST", 
         "path": "/api/v2/job/{job}/required-fields",
-        "automated": false,
+        "automated": true,
         "flaky": false,
         "description": ""
     },
