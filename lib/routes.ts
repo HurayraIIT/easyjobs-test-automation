@@ -1766,7 +1766,7 @@ export const routes = [
     {
         "method": "GET", 
         "path": "/api/v2/job/{job}/required-fields",
-        "automated": false,
+        "automated": true,
         "flaky": false,
         "description": ""
     },
