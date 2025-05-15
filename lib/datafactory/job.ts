@@ -5,6 +5,11 @@ import { category, skills, country, state, city } from '@helpers/static-data';
 import { createQuestionSet, getQuestionSetById, QuestionSetType } from './question-group';
 import { createCustomApplyField, deleteAllCustomApplyFields, getAllCustomApplyFields } from './custom-fields';
 
+export enum JobStatus {
+    DRAFT = 1,
+    PUBLISHED = 2,
+}
+
 export async function getDataForJobCreate() {
     return {
         "hideCoverPhoto": false,
@@ -56,6 +61,17 @@ export async function createJob(authHeaders: any, job_data: any = null) {
     return body.data;
 }
 
+export async function createDraftJob(authHeaders: any) {
+    let data = await createJob(authHeaders);
+    return data;
+}
+
+export async function createPublishedJob(authHeaders: any) {
+    let data = await createJob(authHeaders);
+    await changeJobStatus(authHeaders, data.slug, JobStatus.PUBLISHED);
+    return data;
+}
+
 export async function getAllDraftJobs(authHeaders: any) {
     let draft_jobs = [];
 
@@ -90,6 +106,40 @@ export async function getAllDraftJobs(authHeaders: any) {
     return draft_jobs;
 }
 
+export async function getAllPublishedJobs(authHeaders: any) {
+    let published_jobs = [];
+
+    const requestContext = await request.newContext();
+    const response = await requestContext.get('/api/v2/job/published', {
+        headers: authHeaders
+    });
+
+    expect.soft(response.status()).toBe(200);
+    const body = await response.json();
+
+    // await createAssertions(body);
+    expect(body.status).toBe("SUCCESS");
+    expect(body.message).toBe(null);
+
+    // run a for loop and get data from https://app.easyjobs.dev/api/v2/job/published?page=1 to page=last_page and put into published_jobs
+    for (let i = 1; i <= body.data.last_page; i++) {
+        const response = await requestContext.get(`/api/v2/job/published?page=${i}`, {
+            headers: authHeaders
+        });
+
+        expect.soft(response.status()).toBe(200);
+        const body = await response.json();
+
+        // await createAssertions(body);
+        expect(body.status).toBe("SUCCESS");
+        expect(body.message).toBe(null);
+
+        published_jobs = published_jobs.concat(body.data.data);
+    }
+
+    return published_jobs;
+}
+
 export async function deleteJobBySlug(authHeaders: any, job_slug: string) {
     const requestContext = await request.newContext();
     const response = await requestContext.delete(`/api/v2/job/${job_slug}/delete`, {
@@ -107,6 +157,13 @@ export async function deleteJobBySlug(authHeaders: any, job_slug: string) {
 export async function deleteAllDraftJobs(authHeaders: any, jobs: any = null) {
     const draft_jobs = jobs || await getAllDraftJobs(authHeaders);
     for (const job of draft_jobs) {
+        await deleteJobBySlug(authHeaders, job.slug);
+    }
+}
+
+export async function deleteAllPublishedJobs(authHeaders: any, jobs: any = null) {
+    const published_jobs = jobs || await getAllPublishedJobs(authHeaders);
+    for (const job of published_jobs) {
         await deleteJobBySlug(authHeaders, job.slug);
     }
 }
@@ -396,4 +453,19 @@ export async function addApplyFieldsToJob(authHeaders: any, job_slug: string, ap
     expect(body.status).toBe("SUCCESS");
     expect(body.data).toEqual([]);
     expect(body.message).toBe("Updated.");
+}
+
+export async function changeJobStatus(authHeaders: any, job_slug: string, status: JobStatus) {
+    const requestContext = await request.newContext();
+    const response = await requestContext.post(`/api/v2/job/${job_slug}/change-status`, {
+        headers: authHeaders,
+        data: { "status": status }
+    });
+
+    expect.soft(response.status()).toBe(200);
+    const body = await response.json();
+
+    // await createAssertions(body);
+    expect(body.status).toBe("SUCCESS");
+    expect(body.data.status).toBe(status);
 }

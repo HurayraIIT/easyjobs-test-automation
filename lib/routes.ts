@@ -1479,7 +1479,7 @@ export const routes = [
     {
         "method": "GET", 
         "path": "/api/v2/job/published",
-        "automated": false,
+        "automated": true,
         "flaky": false,
         "description": ""
     },
@@ -1605,7 +1605,7 @@ export const routes = [
     {
         "method": "POST", 
         "path": "/api/v2/job/{job}/change-status",
-        "automated": false,
+        "automated": true,
         "flaky": false,
         "description": ""
     },
@@ -1774,7 +1774,7 @@ export const routes = [
         "method": "POST", 
         "path": "/api/v2/job/{job}/required-fields",
         "automated": true,
-        "flaky": false,
+        "flaky": true,
         "description": ""
     },
     {

@@ -7,5 +7,8 @@ import { createCustomApplyField } from '@datafactory/custom-fields';
 
 // test("create quiz", async ({ request }) => {
 //     // Create a new question set
+//     await createQuestionSet(authObjects.companyOneAuthHeaders);
+//     await createBulkAssessments(authObjects.companyOneAuthHeaders, 5);
+//     await createJob(authObjects.companyOneAuthHeaders);
 //     await createCustomApplyField(authObjects.companyOneAuthHeaders);
 // });
