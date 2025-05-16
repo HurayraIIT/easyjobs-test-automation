@@ -8,6 +8,7 @@ import { createCustomApplyField, deleteAllCustomApplyFields, getAllCustomApplyFi
 export enum JobStatus {
     DRAFT = 1,
     PUBLISHED = 2,
+    ARCHIVE = 3,
 }
 
 export async function getDataForJobCreate() {
