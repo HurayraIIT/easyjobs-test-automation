@@ -1,0 +1,103 @@
+# Test info
+
+- Name: /api/v2/job/quiz-meta-data GET requests @company >> GET with invalid credentials @security
+- Location: /home/runner/work/easyjobs-test-automation/easyjobs-test-automation/tests/api-v2/job/quiz-meta-data.get.spec.ts:50:5
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 471
+Received: 412
+    at /home/runner/work/easyjobs-test-automation/easyjobs-test-automation/tests/api-v2/job/quiz-meta-data.get.spec.ts:59:40
+```
+
+# Test source
+
+```ts
+   1 | // GET: /api/v2/job/quiz-meta-data
+   2 |
+   3 | import { test, expect } from '@playwright/test';
+   4 | import authObjects from '@datafactory/auth';
+   5 | import { createAssertions } from "@helpers/createAssertions";
+   6 | import { createQuestionSet, getQuestionSetById, getQuizMetaData, QuestionSetType } from '@datafactory/question-group';
+   7 |
+   8 | test.describe("/api/v2/job/quiz-meta-data GET requests @company", async () => {
+   9 |     test("GET with valid credentials @happy", async ({ request }) => {
+  10 |         // First create a question set
+  11 |         let question_set_id = await createQuestionSet(authObjects.companyOneAuthHeaders, QuestionSetType.QUIZ);
+  12 |         let question_set = await getQuestionSetById(authObjects.companyOneAuthHeaders, question_set_id);
+  13 |
+  14 |         // Get the quiz meta data and verify that the response has the question_set
+  15 |         const quiz_meta_data = await getQuizMetaData(authObjects.companyOneAuthHeaders);
+  16 |
+  17 |         let flag = 0;
+  18 |         for (let quiz of quiz_meta_data) {
+  19 |             if (quiz.id === question_set.id) {
+  20 |                 flag = 1;
+  21 |                 expect(quiz.id).toBe(question_set.id);
+  22 |                 expect(quiz.name).toBe(question_set.set_name);
+  23 |                 expect(quiz.exam_type).toBe(question_set.set_type.id);
+  24 |                 expect(quiz.exam_duration).toBeNull();
+  25 |                 expect(quiz.marks_per_question).toBeNull();
+  26 |                 expect(quiz.created_by).toBeGreaterThan(0);
+  27 |                 expect(quiz.updated_by).toBeGreaterThan(0);
+  28 |                 expect(quiz.deleted_at).toBeNull();
+  29 |                 expect(quiz.created_at).toBeTruthy();
+  30 |                 expect(quiz.updated_at).toBeTruthy();
+  31 |                 expect(quiz.internal_note).toBe(question_set.internal_note);
+  32 |             }
+  33 |         }
+  34 |         expect(flag).toBe(1);
+  35 |     });
+  36 |
+  37 |     test("GET without credentials", async ({ request }) => {
+  38 |         const response = await request.get(`/api/v2/job/quiz-meta-data`, {
+  39 |             headers: {
+  40 |                 "Accept": "application/json",
+  41 |             }
+  42 |         });
+  43 |
+  44 |         expect.soft(response.status()).toBe(401);
+  45 |
+  46 |         const body = await response.json();
+  47 |         expect(body.message).toBe("Unauthenticated.");
+  48 |     });
+  49 |
+  50 |     test("GET with invalid credentials @security", async ({ request }) => {
+  51 |         const maliciousHeaders = authObjects.companyTwoAuthHeaders;
+  52 |         maliciousHeaders['Company-Id'] = authObjects.companyOneAuthHeaders['Company-Id'];
+  53 |         // maliciousHeaders['State-Version'] = authObjects.companyOneAuthHeaders['State-Version'];
+  54 |
+  55 |         const response = await request.get(`/api/v2/job/quiz-meta-data`, {
+  56 |             headers: maliciousHeaders
+  57 |         });
+  58 |
+> 59 |         expect.soft(response.status()).toBe(471);
+     |                                        ^ Error: expect(received).toBe(expected) // Object.is equality
+  60 |
+  61 |         const body = await response.json();
+  62 |         // await createAssertions(body);
+  63 |         // expect(body.message).toBe("Unauthenticated.");
+  64 |         expect(body.status).toBe("FAILED");
+  65 |         expect(body.data).toEqual([]);
+  66 |         expect(body.message).toBe("Something went wrong.");
+  67 |     });
+  68 |
+  69 |     test("GET with candidates credentials", async ({ request }) => {
+  70 |         const response = await request.get(`/api/v2/job/quiz-meta-data`, {
+  71 |             headers: authObjects.candidateOneAuthHeaders
+  72 |         });
+  73 |
+  74 |         expect.soft(response.status()).toBe(480);
+  75 |
+  76 |         const body = await response.json();
+  77 |
+  78 |         // await createAssertions(body);
+  79 |         expect(body.status).toBe("failed");
+  80 |         expect(body.data).toEqual([]);
+  81 |         expect(body.message).toBe("You do not have access permissions.");
+  82 |     });
+  83 | });
+```
