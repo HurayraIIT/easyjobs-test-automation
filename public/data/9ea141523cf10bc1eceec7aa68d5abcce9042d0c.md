@@ -1,0 +1,89 @@
+# Test info
+
+- Name: /api/v2/company/setting/ai-setup GET requests @company >> GET with valid credentials but another company ID
+- Location: /home/runner/work/easyjobs-test-automation/easyjobs-test-automation/tests/api-v2/company/settings/ai-setup.get.spec.ts:35:5
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: "FAILED"
+Received: "failed"
+    at /home/runner/work/easyjobs-test-automation/easyjobs-test-automation/tests/api-v2/company/settings/ai-setup.get.spec.ts:49:29
+```
+
+# Test source
+
+```ts
+   1 | //GET: /api/v2/company/setting/ai-setup
+   2 |
+   3 | import { test, expect } from '@playwright/test';
+   4 | import authObjects from '@datafactory/auth';
+   5 | import { createAssertions } from "@helpers/createAssertions";
+   6 |
+   7 | test.describe("/api/v2/company/setting/ai-setup GET requests @company", async () => {
+   8 |     test("GET with valid credentials @happy", async ({ request }) => {
+   9 |         const response = await request.get(`/api/v2/company/setting/ai-setup`, {
+  10 |             headers: authObjects.companyOneAuthHeaders
+  11 |         });
+  12 |
+  13 |         expect.soft(response.status()).toBe(200);
+  14 |
+  15 |         const body = await response.json();
+  16 |         // await createAssertions(body);
+  17 |         expect(body.status).toBe("SUCCESS");
+  18 |         expect(body.data.ai_setup_enabled).toBe(true);
+  19 |         expect(body.message).toBeNull();
+  20 |     });
+  21 |
+  22 |     test("GET with invalid credentials", async ({ request }) => {
+  23 |         const response = await request.get(`/api/v2/company/setting/ai-setup`, {
+  24 |             headers: {
+  25 |                 "Accept": "application/json",
+  26 |             }
+  27 |         });
+  28 |
+  29 |         expect.soft(response.status()).toBe(401);
+  30 |
+  31 |         const body = await response.json();
+  32 |         expect(body.message).toBe("Unauthenticated.");
+  33 |     });
+  34 |
+  35 |     test("GET with valid credentials but another company ID", async ({ request }) => {
+  36 |         // Company two should not be able to access data from company one
+  37 |         const maliciousHeaders = authObjects.companyTwoAuthHeaders;
+  38 |         maliciousHeaders['Company-Id'] = authObjects.companyOneAuthHeaders['Company-Id'];
+  39 |         // maliciousHeaders['State-Version'] = authObjects.companyOneAuthHeaders['State-Version'];
+  40 |
+  41 |         const response = await request.get(`/api/v2/company/setting/ai-setup`, {
+  42 |             headers: maliciousHeaders
+  43 |         });
+  44 |
+  45 |         expect.soft(response.status()).toBe(471);
+  46 |
+  47 |         const body = await response.json();
+  48 |         // await createAssertions(body);
+> 49 |         expect(body.status).toBe("FAILED");
+     |                             ^ Error: expect(received).toBe(expected) // Object.is equality
+  50 |         expect(body.data).toEqual([]);
+  51 |         expect(body.message).toBe("Something went wrong.");
+  52 |     });
+  53 |
+  54 |     // TODO: Report issue
+  55 |     // test("GET with candidate auth", async ({ request }) => {
+  56 |     //     const response = await request.get(`/api/v2/company/setting/ai-setup`, {
+  57 |     //         headers: authObjects.candidateOneAuthHeaders
+  58 |     //     });
+  59 |
+  60 |     //     expect.soft(response.status()).toBe(480);
+  61 |
+  62 |     //     const body = await response.json();
+  63 |
+  64 |     //     // await createAssertions(body);
+  65 |     //     expect(body.status).toBe("failed");
+  66 |     //     expect(body.data).toEqual([]);
+  67 |     //     expect(body.message).toBe("You do not have access permissions.");
+  68 |     // });
+  69 | });
+```
