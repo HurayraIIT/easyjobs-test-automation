@@ -83,7 +83,7 @@ test.describe("/api/v2/my-account/information POST requests @my-account @happy",
         const response = await request.post(`/api/v2/my-account/information`, {
             headers: {
                 "Accept": "application/json",
-                "Company_Id": "2227"
+                "Company_Id": "2321"
             },
             data: {
                 "first_name": "Company",

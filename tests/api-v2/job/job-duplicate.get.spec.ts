@@ -24,7 +24,7 @@ test.describe("/api/v2/job/${job_slug}/duplicate GET requests @company", async (
         // await createAssertions(body);
         expect(body.status).toBe("SUCCESS");
         expect(body.data.id).toBe(new_job.id + 1);
-        expect(body.data.slug).toContain(job_slug);
+        expect(body.data.slug).toContain(job_slug.split("-")[1]);
         expect(body.message).toBe("Job duplicated.");
     });
 

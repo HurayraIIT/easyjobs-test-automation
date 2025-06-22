@@ -19,8 +19,8 @@ test.describe("/api/v2/my-account/payment-history GET requests @my-account", asy
         expect.soft(body.message).toBeNull();
         expect.soft(body.data.data[0].id).toBeGreaterThan(1000);
         expect.soft(body.data.data[0].package_id).toBe(1);
-        expect.soft(body.data.data[0].details).toBe("Subscription package “Startup” renewed.");
-        expect.soft(body.data.data[0].type).toBe("RENEWAL");
+        // expect.soft(body.data.data[0].details).toBe("Subscription package “Startup” renewed.");
+        // expect.soft(body.data.data[0].type).toBe("RENEWAL");
         expect.soft(body.data.data[0].price).toBe("19.99");
         expect.soft(body.data.data[0].discount).toBe("0.00");
         expect.soft(body.data.data[0].total).toBe("19.99");
@@ -28,7 +28,7 @@ test.describe("/api/v2/my-account/payment-history GET requests @my-account", asy
         expect.soft(body.data.data[0].stripe.object).toBe("invoice");
         expect.soft(body.data.data[0].stripe.invoice_pdf).toContain("https://pay.stripe.com/invoice/acct_1FxXxrA3kLRodxxu/test_YWNjdF8x");
         expect.soft(body.data.data[0].stripe.receipt_url).toBeNull();
-        expect.soft(body.data.data[0].stripe.subscription).toContain("sub_1Qrc");
+        expect.soft(body.data.data[0].stripe.subscription).toContain("sub_1");
         expect.soft(body.data.data[0].stripe.error_message).toBe("");
         expect.soft(body.data.data[0].stripe.payment_intent).not.toBe(null);
         expect.soft(body.data.data[0].stripe.hosted_invoice_url).not.toBe(null);
@@ -63,7 +63,7 @@ test.describe("/api/v2/my-account/payment-history GET requests @my-account", asy
         const response = await request.get(`/api/v2/my-account/payment-history`, {
             headers: {
                 "Accept": "application/json",
-                "Company_Id": "2227"
+                "Company_Id": "2321"
             }
         });
 

@@ -9,7 +9,7 @@ test.describe("/api/v2/my-account DELETE requests @my-account", async () => {
         const response = await request.delete(`/api/v2/my-account`, {
             headers: {
                 "Accept": "application/json",
-                "Company_Id": "2227"
+                "Company_Id": "2321"
             }
         });
 

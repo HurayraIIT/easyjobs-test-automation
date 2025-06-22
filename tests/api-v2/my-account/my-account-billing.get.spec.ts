@@ -47,7 +47,7 @@ test.describe("/api/v2/my-account/billing GET requests @my-account", async () =>
         const response = await request.get(`/api/v2/my-account/billing`, {
             headers: {
                 "Accept": "application/json",
-                "Company_Id": "2227"
+                "Company_Id": "2321"
             }
         });
 

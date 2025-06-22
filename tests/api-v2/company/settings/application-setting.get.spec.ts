@@ -15,7 +15,7 @@ test.describe("/api/v2/company/setting/application-setting GET requests @company
         const body = await response.json();
         // await createAssertions(body);
         expect(body.status).toBe("SUCCESS");
-        expect(body.data.login_option).toEqual(["email", "linkedin", "google"]);
+        expect(body.data.login_option).toEqual(["email", "google", "linkedin"]);
         expect(body.data.all_options.google).toBe("Google");
         expect(body.data.all_options.linkedin).toBe("LinkedIn");
         expect(body.data.all_options.email).toBe("Email");

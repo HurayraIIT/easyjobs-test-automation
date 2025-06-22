@@ -16,16 +16,16 @@ test.describe("/api/v2/company/setting/brand-info GET requests @company", async 
         const body = await response.json();
         // console.log(body);
         // await createAssertions(body);
-        expect(body.status).toBe("SUCCESS");
-        expect(body.data.logo).toBe("https://app.easyjobs.dev/app-easy-jobs/img/98x98.png");
-        expect(body.data.favicon).toBe("https://app.easyjobs.dev/favicon.png");
-        expect(body.data.hasLogo).toBe(false);
-        expect(body.data.logoSize).toBeNull();
-        expect(body.data.hasFavicon).toBe(false);
-        expect(body.data.faviconSize).toBeNull();
-        expect(body.data.remove_powered_by).toBe(true);
-        expect(body.data.brand_color).toBe("#f36c29");
-        expect(body.message).toBeNull();
+        expect.soft(body.status).toBe("SUCCESS");
+        expect.soft(body.data.logo).toBe("https://app.easyjobs.dev/app-easy-jobs/img/98x98.png");
+        expect.soft(body.data.favicon).toBe("https://app.easyjobs.dev/favicon.png");
+        expect.soft(body.data.hasLogo).toBe(false);
+        expect.soft(body.data.logoSize).toBeNull();
+        expect.soft(body.data.hasFavicon).toBe(false);
+        expect.soft(body.data.faviconSize).toBeNull();
+        expect.soft(body.data.remove_powered_by).toBe(true);
+        expect.soft(body.data.brand_color).toBe("#f36c29");
+        expect.soft(body.message).toBeNull();
     });
 
     test("GET with valid candidate credentials", async ({ request }) => {

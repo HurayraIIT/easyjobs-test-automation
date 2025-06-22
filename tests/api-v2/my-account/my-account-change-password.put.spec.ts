@@ -110,7 +110,7 @@ test.describe("/api/v2/my-account/change-password PUT requests @my-account", asy
         const response = await request.put(`/api/v2/my-account/change-password`, {
             headers: {
                 "Accept": "application/json",
-                "Company_Id": "2227"
+                "Company_Id": "2321"
             },
             data: {
                 "old_password": `${process.env.PASSWORD}`,
