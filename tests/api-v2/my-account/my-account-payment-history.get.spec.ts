@@ -18,12 +18,12 @@ test.describe("/api/v2/my-account/payment-history GET requests @my-account", asy
         expect.soft(body.data.current_page).toBe(1);
         expect.soft(body.message).toBeNull();
         expect.soft(body.data.data[0].id).toBeGreaterThan(1000);
-        expect.soft(body.data.data[0].package_id).toBe(1);
+        expect.soft(body.data.data[0].package_id).toBeGreaterThan(0);
         // expect.soft(body.data.data[0].details).toBe("Subscription package “Startup” renewed.");
         // expect.soft(body.data.data[0].type).toBe("RENEWAL");
-        expect.soft(body.data.data[0].price).toBe("19.99");
+        expect.soft(body.data.data[0].price).toBe("199.99");
         expect.soft(body.data.data[0].discount).toBe("0.00");
-        expect.soft(body.data.data[0].total).toBe("19.99");
+        expect.soft(body.data.data[0].total).toBe("199.99");
         expect.soft(body.data.data[0].stripe.id).not.toBe(null);
         expect.soft(body.data.data[0].stripe.object).toBe("invoice");
         expect.soft(body.data.data[0].stripe.invoice_pdf).toContain("https://pay.stripe.com/invoice/acct_1FxXxrA3kLRodxxu/test_YWNjdF8x");

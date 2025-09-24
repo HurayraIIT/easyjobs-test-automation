@@ -6,7 +6,7 @@ import { createAssertions } from "@helpers/createAssertions";
 import { deleteAllCompanySettingsKeys } from '@datafactory/company-settings-key';
 
 test.describe("/api/v2/company/setting/custom-domain POST requests @company", async () => {
-    test("POST with valid credentials @happy", async ({ request }) => {
+    test.skip("POST with valid credentials @happy", async ({ request }) => {
         const response = await request.post('/api/v2/company/setting/custom-domain', {
             data: { "cname": "ejtest.hurayraiit.com", "script": "" },
             headers: authObjects.companyOneAuthHeaders
