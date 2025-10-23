@@ -24,7 +24,7 @@ export default defineConfig({
         "./node_modules/playwright-slack-report/dist/src/SlackReporter.js",
         {
           slackWebHookUrl: process.env.SLACK_WEBHOOK_URL,
-          sendResults: "always", // "always" , "on-failure", "off"
+          sendResults: "on-failure", // "always" , "on-failure", "off"
           maxNumberOfFailuresToShow: 0,
           meta: [
             {
